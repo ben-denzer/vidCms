@@ -1,0 +1,76 @@
+#loginBox {
+    position: absolute;
+    width: 50vw;
+    background-color: lightskyblue;
+    top: 70px;
+    left: 25vw;
+    border: 3px solid black;
+
+    @media (max-width: 900px) {
+        width: 90vw;
+        left: 5vw;
+    }
+    @media (max-width: 500px) {
+        width: 98vw;
+        left: 1vw;
+    }
+    @media (max-width: 375px) {
+        top: 100px;
+    }
+    .formBox {
+        background-color: #fff;
+        width: 80%;
+        margin: 20px auto;
+        display: flex;
+        flex-direction: column;
+        border: 1px solid black;
+        padding: 15px;
+
+        .errorBox {
+            color: red;
+        }
+        h1 {
+            font-size: 22px;
+            font-weight: bold;
+            margin-top: 0;
+            margin-bottom: 5px;
+            align-self: center;
+        }
+        label {
+            font-size: 18px;
+            margin-top: 10px;
+            display: flex;
+            flex-direction: column;
+
+            span {
+                align-self: flex-start;
+            }
+            input {
+                width: 100%;
+            }
+        }
+        .saveInfo {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-end;
+
+            input {
+                width: 20px;
+            }
+        }
+        button {
+            width: 150px;
+            font-size: 18px;
+            float: right;
+            align-self: flex-end;
+        }
+        #forgot_pw {
+            color: blue;
+            text-decoration: underline;
+            &:hover {
+                cursor: pointer;
+            }
+        }
+    }
+}
+

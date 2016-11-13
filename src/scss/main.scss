@@ -1,0 +1,44 @@
+@import './home';
+@import './auth';
+
+#mainContainer {
+    width: 100vw;
+    height: 100vh;
+
+    .mainNav-container {
+        display: flex;
+        width: 100%;
+        height: 50px;
+        background-color: #fff;
+        flex-flow: row wrap;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 22px;
+
+        @media (max-width: 375px) {
+            justify-content: center;
+            height: 80px;
+        }
+        .mainNav {
+            display: flex;
+            height: 50px;
+            list-style-type: none;
+            justify-content: space-between;
+            align-items: center;
+
+            .nav-item {
+                margin: 0 10px;
+                cursor: pointer;
+
+                a {
+                    cursor: pointer;
+                    text-decoration: none;
+
+                    &:hover {
+                        color: blue;
+                    }
+                }
+            }
+        }
+    }
+}

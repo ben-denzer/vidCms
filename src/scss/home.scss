@@ -1,0 +1,25 @@
+#game_menu {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    width: 100%;
+
+    .game-menu-item {
+        width: 40%;
+        background-color: #ddd;
+        border: 3px solid lightskyblue;
+        border-radius: 10px;
+        height: 100px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 40px;
+        color: green;
+
+        @media (max-width: 700px) {
+            font-size: 30px;
+            width: 95%;
+            margin: 10px auto;
+        }
+    }
+}
