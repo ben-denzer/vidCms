@@ -2,13 +2,8 @@ export default {
     user: {
         name: '',
         token: '',
-        coins: 0,
-        score: 0,
-        showCoin: false
-    },
-    flashcards: {
-        words: ['me', 'you', 'us', 'them'],
-        wordIndex: 0
+        admin: false,
+        premium: false
     },
     message: {
         success: '',
@@ -21,7 +16,10 @@ export default {
         password2Val: '',
         emailVal: '',
         saveDataVal: false,
-        authErrorVal: ''
-    },
-    count: 0
+        authErrorVal: '',
+        editorHtml: '',
+        videoInputFile: [],
+        videoTitleVal: '',
+        videoHeadlineVal: ''
+    }
 };

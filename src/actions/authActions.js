@@ -29,7 +29,7 @@ const login = (credentials) => {
                 if (err === 'unauthorized') {
                     return dispatch({type: types.AUTH_ERROR, error: 'Invalid username or password'});
                 } else {
-                    return dispatch({type: 'NEW_MESSAGE', messageType: 'error', text: 'Network Error, Please Try Again'});
+                    return dispatch({type: types.NEW_MESSAGE, messageType: 'error', text: 'Network Error, Please Try Again'});
                 }
             }
         )

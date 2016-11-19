@@ -17,60 +17,61 @@
     @media (max-width: 375px) {
         top: 100px;
     }
-    .formBox {
-        background-color: #fff;
-        width: 80%;
-        margin: 20px auto;
+}
+.formBox {
+    background-color: #fff;
+    width: 80%;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+    padding: 15px;
+
+    .errorBox {
+        color: red;
+    }
+    h1 {
+        font-size: 22px;
+        font-weight: bold;
+        margin-top: 0;
+        margin-bottom: 5px;
+        align-self: center;
+    }
+    label {
+        font-size: 18px;
+        margin-top: 10px;
         display: flex;
         flex-direction: column;
-        border: 1px solid black;
-        padding: 15px;
 
-        .errorBox {
-            color: red;
+        span {
+            align-self: flex-start;
         }
-        h1 {
-            font-size: 22px;
-            font-weight: bold;
-            margin-top: 0;
-            margin-bottom: 5px;
-            align-self: center;
+        input {
+            width: 100%;
         }
-        label {
-            font-size: 18px;
-            margin-top: 10px;
-            display: flex;
-            flex-direction: column;
+    }
+    .saveInfo {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-end;
 
-            span {
-                align-self: flex-start;
-            }
-            input {
-                width: 100%;
-            }
+        input {
+            width: 20px;
         }
-        .saveInfo {
-            display: flex;
-            flex-direction: row;
-            align-items: flex-end;
-
-            input {
-                width: 20px;
-            }
-        }
-        button {
-            width: 150px;
-            font-size: 18px;
-            float: right;
-            align-self: flex-end;
-        }
-        #forgot_pw {
-            color: blue;
-            text-decoration: underline;
-            &:hover {
-                cursor: pointer;
-            }
+    }
+    button {
+        width: 150px;
+        font-size: 18px;
+        float: right;
+        align-self: flex-end;
+    }
+    #forgot_pw {
+        color: blue;
+        text-decoration: underline;
+        &:hover {
+            cursor: pointer;
         }
     }
 }
+
 

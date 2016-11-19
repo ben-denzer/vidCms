@@ -2,7 +2,6 @@ import React from 'react';
 import TextInput from './TextInput';
 
 const ResetForm = (props) => {
-    console.log(props);
     return (
         <div>
             <h1>Reset Password</h1>

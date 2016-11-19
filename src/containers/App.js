@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {logout} from '../actions/authActions';
-import Header from './Header';
+import Header from '../components/Header';
 
 const App = (props) => {
     return (
