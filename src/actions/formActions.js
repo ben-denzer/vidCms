@@ -36,8 +36,10 @@ const uploadPromise = (options) => {
     const req = new XMLHttpRequest();
     req.open('POST', 'http://localhost:8000/admin/upload');
     let formData = new FormData();
-    for (let i of options) {
-        i !== 'videoInputFile' && formData.append(i, options[i]);
+    for (let i in options) {
+        if (options.hasOwnProperty(i) && i !== 'videoInputFile') {
+            formData.append(i, options[i]);
+        }
     }
     formData.append('video', options.videoInputFile);
     req.send(formData);
