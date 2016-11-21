@@ -21,5 +21,8 @@ export default {
         videoInputFile: [],
         videoTitleVal: '',
         videoHeadlineVal: ''
+    },
+    content: {
+        allVideos: {}
     }
 };

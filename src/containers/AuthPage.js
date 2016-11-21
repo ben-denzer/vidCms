@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {browserHistory} from 'react-router';
 import {handleTextChange, handleCheck} from '../actions/formActions';
 import {login, sendResetEmail, signup, resetPw} from '../actions/authActions';
-import SaveDataCheckbox from '../components/SaveDataCheckbox';
+import SaveDataCheckbox from '../components/auth/SaveDataCheckbox';
 
 class AuthPage extends Component {
     constructor(props) {

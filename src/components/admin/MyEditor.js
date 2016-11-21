@@ -5,7 +5,7 @@ import {stateToHTML} from 'draft-js-export-html';
 import InlineStyleControls from './editor/InlineStyleControls';
 import BlockStyleControls from './editor/BlockStyleControls';
 import {styleMap, getBlockStyle} from './editor/helpers';
-import {editorChange} from '../actions/formActions';
+import {editorChange} from '../../actions/formActions';
 
 class MyEditor extends React.Component {
     constructor(props) {

@@ -1,9 +1,9 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import TextInput from './TextInput';
-import MyEditor from './MyEditor';
+import TextInput from '../components/share/TextInput';
+import MyEditor from '../components/admin/MyEditor';
 import {handleTextChange, submitUpload} from '../actions/formActions';
-import DragDrop from './DragDrop';
+import DragDrop from '../components/admin//DragDrop';
 
 class UploadForm extends React.Component {
     constructor(props) {
@@ -26,6 +26,7 @@ class UploadForm extends React.Component {
         this.setState({videoInputFile: []});
     }
     render() {
+        console.log('videoTitleVal', this.props.videoTitleVal);
         return (
             <div>
                 <h1>Upload</h1>

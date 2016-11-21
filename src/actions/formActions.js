@@ -1,4 +1,5 @@
 import * as types from '../constants/actionTypes';
+import {uploadPromise} from './apiPromise';
 
 function editorChange(currentState) {
     return {type: types.EDITOR_CHANGE, currentState};
@@ -30,19 +31,6 @@ function submitUpload(options, dispatch) {
             }
         )
     }
-}
-
-const uploadPromise = (options) => {
-    const req = new XMLHttpRequest();
-    req.open('POST', 'http://localhost:8000/admin/upload');
-    let formData = new FormData();
-    for (let i in options) {
-        if (options.hasOwnProperty(i) && i !== 'videoInputFile') {
-            formData.append(i, options[i]);
-        }
-    }
-    formData.append('video', options.videoInputFile);
-    req.send(formData);
 }
 
 export {

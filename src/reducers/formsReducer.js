@@ -22,6 +22,7 @@ export default function(state = initialState.forms, action) {
                 authErrorVal: ''
             });
         case 'UPLOAD_SUCCESS':
+            console.log('hit upload success');
             return Object.assign({}, state, {
                 authErrorVal: '',
                 editorHtml: '',

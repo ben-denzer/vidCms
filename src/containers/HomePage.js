@@ -1,18 +1,36 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import {getAllVideos} from '../actions/contentActions';
 
-const HomePage = (props) => {
-    return (
-        <div>
-            {props.user || 'no user'}
-        </div>
-    );
-};
+class HomePage extends React.Component {
+    componentDidMount() {
+        this.props.getAllVideos();
+    }
+    render() {
+        let videos;
+        if (this.props.videos.length) {
+            videos = this.props.videos.map(a => {
+                return a.premium ? 'prem' : 'free';
+            });
+        }
+        return (
+            <div>{videos}</div>
+        );
+    }
+
+}
 
 const mapStateToProps = (state) => {
     return {
-        user: state.user.name
+        user: state.user.name,
+        videos: state.content.allVideos
     };
 };
 
-export default connect(mapStateToProps, null)(HomePage);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        getAllVideos: () => dispatch(getAllVideos(dispatch))
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomePage);

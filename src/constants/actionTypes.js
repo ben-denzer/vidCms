@@ -1,3 +1,4 @@
+export const ALL_VIDEOS_SUCCESS = 'ALL_VIDEOS_SUCCESS';
 export const AUTH_ERROR         = 'AUTH_ERROR';
 export const SAVE_DATA_CLICKED  = 'SAVE_DATA_CLICKED';
 export const CLEAR_MESSAGE      = 'CLEAR_MESSAGE';

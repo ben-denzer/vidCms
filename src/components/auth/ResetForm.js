@@ -1,5 +1,5 @@
 import React from 'react';
-import TextInput from './TextInput';
+import TextInput from '../share/TextInput';
 
 const ResetForm = (props) => {
     return (

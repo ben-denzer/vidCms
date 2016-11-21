@@ -7,7 +7,7 @@ const TextInput = (props) => {
             <input
                 id={props.id}
                 type={props.type || 'text'}
-                value={props[props.id + 'Val']}
+                value={props.val}
                 onChange={props.handleChange}
             />
         </label>

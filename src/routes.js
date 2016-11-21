@@ -3,12 +3,12 @@ import { Route, IndexRoute }    from 'react-router';
 import App                      from './containers/App';
 import HomePage                 from './containers/HomePage';
 import AuthPage                 from './containers/AuthPage';
-import LoginForm                from './components/LoginForm';
-import SignupForm               from './components/SignupForm';
-import ResetForm                from './components/ResetForm';
-import ForgotPwForm             from './components/ForgotPwForm';
+import LoginForm                from './components/auth/LoginForm';
+import SignupForm               from './components/auth/SignupForm';
+import ResetForm                from './components/auth/ResetForm';
+import ForgotPwForm             from './components/auth/ForgotPwForm';
 import AdminPage                from './containers/AdminPage';
-import UploadForm               from './components/UploadForm';
+import UploadForm               from './containers/UploadForm';
 
 export default (
     <Route path="/" component={App}>
