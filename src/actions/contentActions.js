@@ -10,4 +10,13 @@ const getAllVideos = (dispatch) => {
     }
 };
 
-export {getAllVideos};
+const getFreeVideo = (id, dispatch) => {
+    return () => {
+        apiPromise({id}, 'public/getFreeVideo').then(
+            (video) => dispatch({type: types.GET_VIDEO_SUCCESS, video}),
+            () => dispatch({type: types.NEW_MESSAGE, messageType: 'error', text: 'Network Error, Please Try Again'})
+        );
+    }
+};
+
+export {getAllVideos, getFreeVideo};

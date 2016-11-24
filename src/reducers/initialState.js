@@ -20,9 +20,16 @@ export default {
         editorHtml: '',
         videoInputFile: [],
         videoTitleVal: '',
-        videoHeadlineVal: ''
+        videoHeadlineVal: '',
+        youtubeUrlVal: ''
     },
     content: {
-        allVideos: {}
+        allVideos: {},
+        currentVideo: {
+            video_title: '',
+            video_headline: '',
+            video_url: '',
+            video_text: ''
+        }
     }
 };

@@ -1,16 +1,23 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {getAllVideos} from '../actions/contentActions';
+import {getAllVideos} from '../actions/contentActions'
+import FreeVideoPlaceholder from '../components/content/FreeVideoPlaceholder';
 
-class HomePage extends React.Component {
+class VideoPage extends React.Component {
     componentDidMount() {
         this.props.getAllVideos();
     }
     render() {
-        let videos;
+        let videos = [];
         if (this.props.videos.length) {
             videos = this.props.videos.map(a => {
-                return a.premium ? 'prem' : 'free';
+                return <FreeVideoPlaceholder
+                    key={a.video_title}
+                    id={a.video_id}
+                    title={a.video_title || ''}
+                    headline={a.video_headline || ''}
+                    text={a.video_text || ''}
+                />
             });
         }
         return (
@@ -22,7 +29,6 @@ class HomePage extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        user: state.user.name,
         videos: state.content.allVideos
     };
 };
@@ -33,4 +39,4 @@ const mapDispatchToProps = (dispatch) => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
+export default connect(mapStateToProps, mapDispatchToProps)(VideoPage);

@@ -1,42 +1,71 @@
+$color1: #f9f9f9;
+$color2: #ccc;
+$color3: orange;
+$color4: yellow;
+
+$mainfont: 'Cabin', sans-serif;
+
 @import './home';
 @import './auth';
 @import './editor';
 
+body {
+    padding: 0;
+    margin: 0;
+}
+
 #mainContainer {
     width: 100vw;
     height: 100vh;
+    background-image: url('/img/main_bg.jpg');
+    background-size: cover;
+    background-attachment: fixed;
 
-    .mainNav-container {
-        display: flex;
+    .main-nav-container {
+        height: 60px;
         width: 100%;
-        height: 50px;
         background-color: #fff;
-        flex-flow: row wrap;
-        justify-content: space-between;
-        align-items: center;
-        font-size: 22px;
 
-        @media (max-width: 375px) {
-            justify-content: center;
-            height: 80px;
-        }
-        .mainNav {
+        .main-nav {
             display: flex;
-            height: 50px;
-            list-style-type: none;
+            flex-flow: row wrap;
             justify-content: space-between;
-            align-items: center;
+            padding: 0 10px;
+            height: 100%;
 
-            .nav-item {
-                margin: 0 10px;
-                cursor: pointer;
+            #nav_logo {
+                height: 60px;
+                display: flex;
+                align-items: center;
+
+                img {
+                    height: 55px;
+                    width: auto;
+                }
+            }
+            #nav_buttons {
+                display: flex;
+                height: 100%;
+                align-items: center;
 
                 a {
-                    cursor: pointer;
-                    text-decoration: none;
+                    font-size: 22px;
+                    margin: 0 10px;
+                    height: 75%;
+                    padding: 5px 10px;
 
                     &:hover {
-                        color: blue;
+                        cursor: pointer;
+                        color: #666;
+                    }
+                }
+                #nav_signup {
+                    border: 1px solid #222;
+                    background-color: $color3;
+
+                    &:hover {
+                        background-color: $color4;
+                        color: #222;
                     }
                 }
             }

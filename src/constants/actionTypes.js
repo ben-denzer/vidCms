@@ -4,6 +4,7 @@ export const SAVE_DATA_CLICKED  = 'SAVE_DATA_CLICKED';
 export const CLEAR_MESSAGE      = 'CLEAR_MESSAGE';
 export const EDITOR_CHANGE      = 'EDITOR_CHANGE';
 export const FILE_UPLOAD        = 'FILE_UPLOAD';
+export const GET_VIDEO_SUCCESS  = 'GET_VIDEO_SUCCESS';
 export const LOGIN_SUCCESS      = 'LOGIN_SUCCESS';
 export const LOGOUT             = 'LOGOUT';
 export const NEW_MESSAGE        = 'NEW_MESSAGE';

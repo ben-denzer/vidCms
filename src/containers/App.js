@@ -16,12 +16,12 @@ const mapStateToProps = (state) => {
     return {
         name: state.user.name
     }
-}
+};
 
 const mapDispatchToProps = (dispatch) => {
     return {
         logout: () => dispatch(logout())
     }
-}
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

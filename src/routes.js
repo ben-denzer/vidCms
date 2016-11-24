@@ -1,18 +1,24 @@
 import React                    from 'react';
-import { Route, IndexRoute }    from 'react-router';
+import {Route, IndexRoute}      from 'react-router';
+
+import AdminPage                from './containers/AdminPage';
 import App                      from './containers/App';
-import HomePage                 from './containers/HomePage';
 import AuthPage                 from './containers/AuthPage';
+import FreeVideoPage            from './components/content/FreeVideoPage';
+import ForgotPwForm             from './components/auth/ForgotPwForm';
+import HomePage                 from './components/HomePage';
 import LoginForm                from './components/auth/LoginForm';
 import SignupForm               from './components/auth/SignupForm';
 import ResetForm                from './components/auth/ResetForm';
-import ForgotPwForm             from './components/auth/ForgotPwForm';
-import AdminPage                from './containers/AdminPage';
 import UploadForm               from './containers/UploadForm';
+import VideoPage                from './containers/VideoPage';
 
 export default (
     <Route path="/" component={App}>
         <IndexRoute component={HomePage} />
+        <Route path="videos" component={VideoPage}>
+            <Route path="free/:id" component={FreeVideoPage} />
+        </Route>
         <Route path="auth/" component={AuthPage}>
             <Route path="login" component={LoginForm} />
             <Route path="signup" component={SignupForm} />

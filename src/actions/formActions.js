@@ -1,5 +1,5 @@
 import * as types from '../constants/actionTypes';
-import {uploadPromise} from './apiPromise';
+import {apiPromise, uploadPremiumPromise} from './apiPromise';
 
 function editorChange(currentState) {
     return {type: types.EDITOR_CHANGE, currentState};
@@ -17,10 +17,32 @@ function handleFileUpload(file) {
     return {type: types.FILE_UPLOAD, file};
 }
 
-function submitUpload(options, dispatch) {
-    console.log('action.hit');
+function submitUploadFree(options, dispatch) {
+    if (!options.videoTitleVal) return {type: types.NEW_MESSAGE, messageType: 'error', text: 'Please Add Title'};
+    if (!options.videoHeadlineVal) return {type: types.NEW_MESSAGE, messageType: 'error', text: 'Please Add Title'};
+    if (!options.youtubeUrlVal) return {type: types.NEW_MESSAGE, messageType: 'error', text: 'Please Add Embed Code'};
+
+    let tempUrl = options.youtubeUrlVal.split('"').filter(a => /^http/.test(a));
+    if (tempUrl.length !== 1) return {type: types.NEW_MESSAGE, messageType: 'error', text: 'Invalid Youtube Embed Code'}
+    options.youtubeUrlVal = tempUrl;
+
     return (dispatch) => {
-        uploadPromise(options).then(
+        apiPromise(options, 'admin/uploadFree').then(
+            () => dispatch({type: types.UPLOAD_SUCCESS}),
+            (err) => {
+                if (err === 'unauthorized') {
+                    return dispatch({type: types.AUTH_ERROR, error: 'unauthorized'});
+                } else {
+                    return dispatch({type: types.NEW_MESSAGE, messageType: 'error', text: 'Network Error, Please Try Again'});
+                }
+            }
+        )
+    }
+}
+
+function submitUploadPremium(options, dispatch) {
+    return (dispatch) => {
+        uploadPremiumPromise(options, 'uploadPremium').then(
             () => dispatch({type: types.UPLOAD_SUCCESS}),
             (err) => {
                 if (err === 'unauthorized') {
@@ -38,5 +60,6 @@ export {
     handleTextChange,
     handleCheck,
     handleFileUpload,
-    submitUpload
+    submitUploadFree,
+    submitUploadPremium
 };

@@ -1,25 +1,45 @@
-#game_menu {
+#home_container {
     display: flex;
-    flex-flow: row wrap;
-    justify-content: space-between;
-    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: $mainfont;
 
-    .game-menu-item {
-        width: 40%;
-        background-color: #ddd;
-        border: 3px solid lightskyblue;
-        border-radius: 10px;
-        height: 100px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+    h1 {
+        margin-top: 30vh;
         font-size: 40px;
-        color: green;
+        margin-bottom: -25px;
+        color: $color1;
+        letter-spacing: .01em;
 
-        @media (max-width: 700px) {
+        @media (max-width: 600px) {
             font-size: 30px;
-            width: 95%;
-            margin: 10px auto;
+            margin-bottom: 10px;
+        }
+    }
+    h2 {
+        font-size: 50px;
+        font-weight: bold;
+        color: $color1;
+        letter-spacing: .01em;
+
+        @media (max-width: 600px) {
+            font-size: 28px;
+        }
+    }
+    .home-button {
+        width: 200px;
+        background-color: $color3;
+        color: white;
+        border: 2px solid #222;
+        text-align: center;
+        padding: 10px;
+        font-size: 18px;
+        font-weight: bold;
+
+        &:hover {
+            cursor: pointer;
+            background-color: $color4;
         }
     }
 }

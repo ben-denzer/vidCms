@@ -25,10 +25,10 @@ const apiPromise = (options, url) => {
     });
 };
 
-const uploadPromise = (options) => {
+const uploadPremiumPromise = (options, url) => {
     return new Promise((resolve, reject) => {
         const req = new XMLHttpRequest();
-        req.open('POST', apiUrl + 'admin/upload');
+        req.open('POST', apiUrl + 'admin/' + url);
 
         req.onload = () => {
             if (req.status >= 200 && req.status < 400) {
@@ -56,4 +56,4 @@ const uploadPromise = (options) => {
     });
 };
 
-export {apiPromise, uploadPromise};
+export {apiPromise, uploadPremiumPromise};
