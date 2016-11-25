@@ -3,7 +3,6 @@ import TextInput from '../share/TextInput';
 import {browserHistory} from 'react-router';
 
 const LoginForm = (props) => {
-    console.log(props.usernameVal, props.passwordVal);
     return (
         <form className="formBox" id="loginForm">
             <h1>Log In</h1>

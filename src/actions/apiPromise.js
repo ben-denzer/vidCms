@@ -1,7 +1,6 @@
 const apiUrl = 'http://localhost:8000/';
 
 const apiPromise = (options, url) => {
-    console.log(options, url);
     return new Promise((resolve, reject) => {
         let req = new XMLHttpRequest();
         req.open('POST', apiUrl + url);

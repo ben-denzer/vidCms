@@ -14,7 +14,6 @@ class MyEditor extends React.Component {
 
         this.focus = () => this.refs.editor.focus();
         this.onChange = (editorState) => {
-            console.log('change');
             this.setState({ editorState })
             this.props.editorChange(stateToHTML(editorState.getCurrentContent()));
         };
@@ -75,11 +74,11 @@ class MyEditor extends React.Component {
                 <BlockStyleControls
                     editorState={editorState}
                     onToggle={this.toggleBlockType}
-                    />
+                />
                 <InlineStyleControls
                     editorState={editorState}
                     onToggle={this.toggleInlineStyle}
-                    />
+                />
                 <div className={className} onClick={this.focus}>
                     <Editor
                         blockStyleFn={getBlockStyle}
@@ -88,10 +87,9 @@ class MyEditor extends React.Component {
                         handleKeyCommand={this.handleKeyCommand}
                         onChange={this.onChange}
                         onTab={this.onTab}
-                        placeholder="Type Here..."
                         ref="editor"
                         spellCheck={true}
-                        />
+                    />
                 </div>
             </div>
         );

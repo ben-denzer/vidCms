@@ -9,7 +9,7 @@ const HomePage = (props) => {
             <button
                 className="home-button"
                 id="video_button"
-                onClick={() => browserHistory.push('videos')}
+                onClick={() => browserHistory.push('videos/')}
             >
                 Go To Videos
             </button>

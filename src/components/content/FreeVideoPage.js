@@ -3,18 +3,26 @@ import {connect} from 'react-redux';
 import {getFreeVideo} from '../../actions/contentActions';
 
 class FreeVideoPage extends React.Component {
+    constructor(props) {
+        super(props);
+        this.createMarkup = this.createMarkup.bind(this);
+    }
     componentDidMount() {
         this.props.getFreeVideo(this.props.params.id);
     }
+    createMarkup() {
+        const text = this.props;
+        if (/<script/.test(text)) return {__html: ''}
+        return {__html: this.props.text.toString()};
+    }
     render() {
-        const {title, headline, url, text} = this.props;
-        console.log(title);
+        const {title, headline, url} = this.props;
         return (
-            <div>
+            <div id="free_video_page">
                 <h1>{title}</h1>
-                <strong>{headline}</strong>
+                <h2 id="free_video_headline">{headline}</h2>
                 <iframe width="560" height="315" src={url} frameBorder="0" allowFullScreen></iframe>
-                <div>{text || ''}</div>
+                <div id="free_video_text" dangerouslySetInnerHTML={this.createMarkup()} />
             </div>
         );
     }

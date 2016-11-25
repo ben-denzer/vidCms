@@ -12,7 +12,7 @@ class UploadForm extends React.Component {
         this.handleUpload = this.handleUpload.bind(this);
         this.submit = this.submit.bind(this);
         this.toggleFree = this.toggleFree.bind(this);
-        this.state = {videoInputFile: [], free: true};
+        this.state = {videoInputFile: [], premium: false};
     }
     handleChange(e) {
         this.props.handleTextChange(e.target.id, e.target.value);
@@ -23,7 +23,7 @@ class UploadForm extends React.Component {
     submit(e) {
         e.preventDefault();
         const {videoTitleVal, videoHeadlineVal, editorHtml, youtubeUrlVal} = this.props;
-        if (this.state.free) {
+        if (!this.state.premium) {
             this.props.submitUploadFree({
                 videoTitleVal,
                 videoHeadlineVal,
@@ -40,35 +40,41 @@ class UploadForm extends React.Component {
         }
         this.setState({videoInputFile: []});
     }
-    toggleFree(free) {
-        this.setState({free});
+    toggleFree(premium) {
+        this.setState({premium});
     }
     render() {
         return (
-            <div>
+            <div id="upload_page">
                 <h1>Upload</h1>
-                <form className="formBox">
-                    <div className="errorBox">{this.props.error || 'no error'}</div>
-                    <label>
-                        Youtube
-                        <input
-                            type="radio"
-                            name="freeVid"
-                            onChange={() => this.toggleFree(true)}
-                            checked={this.state.free}
-                        />
-                    </label>
-                    <label>
-                        Premium
-                        <input
-                            type="radio"
-                            name="freeVid"
-                            onChange={() => this.toggleFree(false)}
-                            checked={!this.state.free}
-                        />
-                    </label>
+                <form className="upload-box">
+                    <div className="error-box">{this.props.error || 'no error'}</div>
+                    <div className="radio-box">
+                        <div className="radio-col">
+                            <label>
+                                Free Youtube Video
+                            </label>
+                            <label>
+                                Premium Video
+                            </label>
+                        </div>
+                        <div className="radio-col">
+                            <input
+                                type="radio"
+                                name="freeVid"
+                                onChange={() => this.toggleFree(false)}
+                                checked={!this.state.premium}
+                            />
+                            <input
+                                type="radio"
+                                name="freeVid"
+                                onChange={() => this.toggleFree(true)}
+                                checked={this.state.premium}
+                            />
+                        </div>
+                    </div>
                     <div>
-                        {this.state.free ?
+                        {!this.state.premium ?
                             <TextInput
                                 id="youtubeUrl"
                                 val={this.props.youtubeUrlVal}
@@ -90,6 +96,7 @@ class UploadForm extends React.Component {
                         val={this.props.videoHeadlineVal}
                         handleChange={this.handleChange}
                     />
+                    <label className="text-input"><span>Text</span></label>
                     <MyEditor />
                     <button onClick={this.submit}>Submit</button>
                 </form>

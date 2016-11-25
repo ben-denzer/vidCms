@@ -3,8 +3,7 @@ import React from 'react';
 
 const AdminPage = (props) => {
     return (
-        <div>
-            {props.html || "no html"}
+        <div id="admin_page">
             {props.children}
         </div>
     );

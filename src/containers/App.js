@@ -4,9 +4,10 @@ import {logout} from '../actions/authActions';
 import Header from '../components/Header';
 
 const App = (props) => {
+    console.log(props.user);
     return (
         <div id="mainContainer" className="App">
-            <Header name={props.name} logout={props.logout} />
+            <Header name={props.user.name} logout={props.logout} />
             {props.children}
         </div>
     );
@@ -14,7 +15,7 @@ const App = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        name: state.user.name
+        user: state.user
     }
 };
 

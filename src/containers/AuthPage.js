@@ -42,7 +42,8 @@ class AuthPage extends Component {
                     password:   passwordVal,
                     p2:         password2Val,
                     email:      emailVal,
-                    saveData:   saveDataVal
+                    saveData:   saveDataVal,
+                    premium:    false
                 });
             case path.includes('login'):
                 return login({
@@ -67,7 +68,6 @@ class AuthPage extends Component {
         }
     }
     render() {
-        console.log(location.pathname.slice(12));
         const {user, usernameVal, passwordVal, password2Val, saveDataVal, authErrorVal} = this.props;
         return (
             <div id="loginBox">

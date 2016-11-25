@@ -11,14 +11,12 @@ import LoginForm                from './components/auth/LoginForm';
 import SignupForm               from './components/auth/SignupForm';
 import ResetForm                from './components/auth/ResetForm';
 import UploadForm               from './containers/UploadForm';
-import VideoPage                from './containers/VideoPage';
+import VideoHome                from './containers/VideoHome';
 
 export default (
     <Route path="/" component={App}>
         <IndexRoute component={HomePage} />
-        <Route path="videos" component={VideoPage}>
-            <Route path="free/:id" component={FreeVideoPage} />
-        </Route>
+        <Route path="videos" component={VideoHome} />
         <Route path="auth/" component={AuthPage}>
             <Route path="login" component={LoginForm} />
             <Route path="signup" component={SignupForm} />
@@ -28,5 +26,6 @@ export default (
         <Route path="admin" component={AdminPage}>
             <Route path="upload" component={UploadForm} />
         </Route>
+        <Route path="watch/:id" component={FreeVideoPage} />
     </Route>
 );
