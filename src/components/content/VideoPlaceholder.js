@@ -6,10 +6,14 @@ const VideoPlaceholder = (props) => {
     const {title, headline, id} = props;
     return (
         <div className="video-placeholder-container">
-            <h3>{title}</h3>
-            <h4>{headline}</h4>
-            <div className="premium-only">{props.premium && "Premium Members Only"}</div>
-            <img onClick={() => browserHistory.push(`/watch/${id}`)} src={videoPlaceholderImg} alt="click to see video" />
+            <h2>{title}</h2>
+            <h3>{headline}</h3>
+            <div>{props.premium_video ? <span className="premium-only">Premium Members Only</span> : ""}</div>
+            <img
+                onClick={() => browserHistory.push(`/watch/${props.premium_video ? 'premium' : 'free'}/${id}`)}
+                src={videoPlaceholderImg}
+                alt="click to see video"
+            />
         </div>
     );
 };

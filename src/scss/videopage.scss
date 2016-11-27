@@ -28,12 +28,14 @@
         }
         .premium-only {
             color: $color3;
+            background-color: rgba(0,0,0,1);
+            padding: 2px 5px;
             font-size: 16px;
         }
     }
 }
 
-#free_video_page {
+#video_page {
     @include insidepage;
     display: flex;
     flex-direction: column;
@@ -46,7 +48,13 @@
     h2 {
         margin-top: 0;
     }
-    #free_video_text {
+    iframe,
+    #premium_video_container {
+        width: 560px;
+        height: 315px;
+        max-width: 99%;
+    }
+    #video_text {
         width: 60%;
         margin-top: 25px;
         margin-bottom: 100px;

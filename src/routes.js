@@ -9,6 +9,7 @@ import ForgotPwForm             from './components/auth/ForgotPwForm';
 import HomePage                 from './components/HomePage';
 import LoginForm                from './components/auth/LoginForm';
 import SignupForm               from './components/auth/SignupForm';
+import PremiumVideoPage         from './components/content/PremiumVideoPage';
 import ResetForm                from './components/auth/ResetForm';
 import UploadForm               from './containers/UploadForm';
 import VideoHome                from './containers/VideoHome';
@@ -26,6 +27,9 @@ export default (
         <Route path="admin" component={AdminPage}>
             <Route path="upload" component={UploadForm} />
         </Route>
-        <Route path="watch/:id" component={FreeVideoPage} />
+        <Route path="watch">
+            <Route path="free/:id" component={FreeVideoPage} />
+            <Route path="premium/:id" component={PremiumVideoPage} />
+        </Route>
     </Route>
 );

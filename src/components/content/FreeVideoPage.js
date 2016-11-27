@@ -1,14 +1,17 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {getFreeVideo} from '../../actions/contentActions';
+import {getFreeVideo, clearCurrentVideo} from '../../actions/contentActions';
 
 class FreeVideoPage extends React.Component {
     constructor(props) {
         super(props);
         this.createMarkup = this.createMarkup.bind(this);
     }
-    componentDidMount() {
+    componentWillMount() {
         this.props.getFreeVideo(this.props.params.id);
+    }
+    componentWillUnmount() {
+        this.props.clearCurrentVideo();
     }
     createMarkup() {
         const text = this.props;
@@ -18,11 +21,11 @@ class FreeVideoPage extends React.Component {
     render() {
         const {title, headline, url} = this.props;
         return (
-            <div id="free_video_page">
+            <div id="video_page">
                 <h1>{title}</h1>
-                <h2 id="free_video_headline">{headline}</h2>
-                <iframe width="560" height="315" src={url} frameBorder="0" allowFullScreen></iframe>
-                <div id="free_video_text" dangerouslySetInnerHTML={this.createMarkup()} />
+                <h2 id="video_headline">{headline}</h2>
+                <iframe src={url} frameBorder="0" allowFullScreen></iframe>
+                <div id="video_text" dangerouslySetInnerHTML={this.createMarkup()} />
             </div>
         );
     }
@@ -39,7 +42,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        getFreeVideo: (id) => dispatch(getFreeVideo(id, dispatch))
+        getFreeVideo: (id) => dispatch(getFreeVideo(id, dispatch)),
+        clearCurrentVideo: () => dispatch(clearCurrentVideo())
     }
 };
 

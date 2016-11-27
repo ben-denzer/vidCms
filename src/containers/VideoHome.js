@@ -5,7 +5,7 @@ import VideoPlaceholder from '../components/content/VideoPlaceholder';
 
 class VideoPage extends React.Component {
     componentDidMount() {
-        this.props.getAllVideos();
+        !this.props.videos.length && this.props.getAllVideos();
     }
     render() {
         let videos = [];
@@ -17,6 +17,7 @@ class VideoPage extends React.Component {
                     title={a.video_title || ''}
                     headline={a.video_headline || ''}
                     text={a.video_text || ''}
+                    premium_video={a.premium}
                 />
             });
         }

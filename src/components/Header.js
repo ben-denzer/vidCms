@@ -6,7 +6,7 @@ const Header = (props) => {
     return (
         <nav className="main-nav-container">
             <div className="main-nav">
-                <div id="nav_logo"><img src={logo} alt="my logo" /></div>
+                <div id="nav_logo"><img onClick={() => browserHistory.push("/")} src={logo} alt="my logo" /></div>
                 <div id="nav_buttons">{
                     !props.name ?
                         <div id="auth_button_group">
