@@ -33,7 +33,7 @@ class PremiumVideoPage extends React.Component {
             <div id="video_page">
                 <h1>{title}</h1>
                 <h2 id="video_headline">{headline}</h2>
-                <div>{url && premium_user && <VideoBlock premium_user={premium_user} fullUrl={fullUrl} /> || <Upgrade />}</div>
+                <div>{url && premium_user ? <VideoBlock premium_user={premium_user} fullUrl={fullUrl} /> : <Upgrade />}</div>
                 <div id="video_text" dangerouslySetInnerHTML={this.createMarkup()} />
             </div>
         );

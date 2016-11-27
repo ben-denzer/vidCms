@@ -14,7 +14,7 @@ const Header = (props) => {
                             <a type="button" id="nav_signup" onClick={() => browserHistory.push("/auth/signup")}>Sign Up</a>
                         </div>
                         : <div id="auth_button_group">
-                            <a type="button" id="nav_myaccount" onClick={() => browserHistory.push("auth/account")}>My Account</a>
+                            <a type="button" id="nav_myaccount" onClick={() => browserHistory.push("/account")}>My Account</a>
                             <a type="button" id="nav_logout" onClick={props.logout}>Log Out</a>
                         </div>
                     }

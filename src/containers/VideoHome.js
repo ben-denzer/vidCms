@@ -22,7 +22,10 @@ class VideoPage extends React.Component {
             });
         }
         return (
-            <div id="video_page_container">{videos}</div>
+            <div id="video_page_container">
+                <h1>Latest Videos</h1>
+                {videos}
+            </div>
         );
     }
 }

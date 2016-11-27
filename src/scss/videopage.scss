@@ -9,22 +9,22 @@
         margin: 10px;
         display: flex;
         flex-direction: column;
-        flex: 1 0 auto;
         align-items: center;
+        justify-content: space-between;
         text-align: center;
 
-        h3 {
-            font-size: 20px;
+        h2 {
+            font-size: 24px;
             margin-bottom: 0;
         }
-        h4 {
+        h3 {
             margin-top: 0;
-            font-size: 16px;
+            margin-bottom: 5px;
+            font-size: 18px;
         }
         img {
             width: 200px;
             margin: auto;
-            align-self: flex-end;
         }
         .premium-only {
             color: $color3;

@@ -10,6 +10,12 @@ $mainfont: 'Cabin', sans-serif;
     margin: 2% auto;
     padding: 0 10px;
     background-color: rgba(255,255,255,.3);
+
+    h1 {
+        text-align: center;
+        margin-bottom: 0;
+        width: 100%;
+    }
 }
 
 @import './home';
@@ -17,6 +23,7 @@ $mainfont: 'Cabin', sans-serif;
 @import './editor';
 @import './videopage';
 @import './admin';
+@import './account';
 
 body {
     padding: 0;
