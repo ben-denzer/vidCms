@@ -21,7 +21,8 @@ export default {
         videoInputFile: [],
         videoTitleVal: '',
         videoHeadlineVal: '',
-        youtubeUrlVal: ''
+        youtubeUrlVal: '',
+        commentVal: ''
     },
     content: {
         allVideos: {},
@@ -29,7 +30,21 @@ export default {
             video_title: '',
             video_headline: '',
             video_url: '',
-            video_text: ''
+            video_text: '',
+            comments: [
+                {
+                    name: 'ben-free',
+                    comment: 'this is a great video.'
+                },
+                {
+                    name: 'ben-premium',
+                    comment: '+1'
+                },
+                {
+                    name: 'hacker',
+                    comment: '<script>alert("youre screwed")</script>'
+                }
+            ]
         }
     }
 };

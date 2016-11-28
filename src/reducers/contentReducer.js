@@ -12,8 +12,13 @@ export default function(state = initialState.content, action) {
                 }
             }
             return Object.assign({}, state, {currentVideo});
+        case 'COMMENT_SUBMITTED':
+            const allComments = [...state.currentVideo.comments, {name: action.name, comment: action.comment}];
+            const newCurrentVideo = Object.assign({}, state.currentVideo, {comments: allComments});
+            return Object.assign({}, state, {currentVideo: newCurrentVideo});
         case 'GET_VIDEO_SUCCESS':
-            return Object.assign({}, state, {currentVideo: action.video[0]});
+            const forTesting = Object.assign({}, action.video[0], {comments: [{name: 'ben-free', comment: 'this is a good one'}]});
+            return Object.assign({}, state, {currentVideo: /*action.video[0]*/forTesting});
         default:
             return state;
     }

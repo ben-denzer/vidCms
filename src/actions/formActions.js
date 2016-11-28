@@ -17,6 +17,24 @@ function handleFileUpload(file) {
     return {type: types.FILE_UPLOAD, file};
 }
 
+function submitComment(options, dispatch) {
+    submitCommentToApi(options, dispatch);
+    return {type: types.COMMENT_SUBMITTED, name: options.name, comment: options.comment};
+}
+
+function submitCommentToApi(options, dispatch) {
+    apiPromise(options, 'auth/submitComment').then(
+        () => dispatch({type: types.COMMENT_SUCCESS}),
+        (err) => {
+            if (err === 'unauthorized') {
+                return dispatch({type: types.AUTH_ERROR, error: 'unauthorized'});
+            } else {
+                return dispatch({type: types.NEW_MESSAGE, messageType: 'error', text: 'Network Error, Please Try Again'});
+            }
+        }
+    )
+}
+
 function submitUploadFree(options, dispatch) {
     if (!options.videoTitleVal) return {type: types.NEW_MESSAGE, messageType: 'error', text: 'Please Add Title'};
     if (!options.videoHeadlineVal) return {type: types.NEW_MESSAGE, messageType: 'error', text: 'Please Add Title'};
@@ -60,6 +78,7 @@ export {
     handleTextChange,
     handleCheck,
     handleFileUpload,
+    submitComment,
     submitUploadFree,
     submitUploadPremium
 };
