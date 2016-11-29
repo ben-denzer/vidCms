@@ -31,20 +31,7 @@ export default {
             video_headline: '',
             video_url: '',
             video_text: '',
-            comments: [
-                {
-                    name: 'ben-free',
-                    comment: 'this is a great video.'
-                },
-                {
-                    name: 'ben-premium',
-                    comment: '+1'
-                },
-                {
-                    name: 'hacker',
-                    comment: '<script>alert("youre screwed")</script>'
-                }
-            ]
         }
-    }
+    },
+    comments: []
 };

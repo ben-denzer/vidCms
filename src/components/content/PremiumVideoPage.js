@@ -4,7 +4,8 @@ import {browserHistory} from 'react-router';
 import {getPremiumVideo, clearCurrentVideo} from '../../actions/contentActions';
 import VideoBlock from './VideoBlock';
 import Upgrade from './Upgrade';
-import {handleTextChange, submitComment} from '../../actions/formActions.js';
+import {handleTextChange} from '../../actions/formActions.js';
+import {submitComment, getComments} from '../../actions/commentActions';
 
 class PremiumVideoPage extends React.Component {
     constructor(props) {
@@ -29,12 +30,12 @@ class PremiumVideoPage extends React.Component {
     }
     getVideo() {
         this.props.getPremiumVideo(this.props.params.id, this.props.token);
+        this.props.getComments(this.props.params.id);
     }
     handleChange(e) {
         this.props.handleTextChange('comment', e.target.value);
     }
     submitComment() {
-        console.log(this.props.token);
         this.props.submitComment({
             name: this.props.name,
             token: this.props.token,
@@ -48,10 +49,11 @@ class PremiumVideoPage extends React.Component {
         const fullUrl = 'http://localhost:8000/uploads/' + url;
         let comments;
         if (video_comments && video_comments.length) {
+            let i = 0;
             comments = video_comments.map(a => {
-                return <div key={a.name.slice(0,2).concat(a.comment.slice(0,3))} className="commentContainer">
-                    <div className="comment_name">{a.name}</div>
-                    <div className="comment_main">{a.comment}</div>
+                return <div key={i++} className="commentContainer">
+                    <div className="comment-name">{a.username}</div>
+                    <div className="comment-main">{a.comment_text}</div>
                 </div>
             });
         }
@@ -61,8 +63,10 @@ class PremiumVideoPage extends React.Component {
                 <h2 id="video_headline">{headline}</h2>
                 <div>{url && premium_user ? <VideoBlock premium_user={premium_user} fullUrl={fullUrl} /> : <Upgrade />}</div>
                 <div id="video_text" dangerouslySetInnerHTML={this.createMarkup()} />
-                <h5>Comments</h5>
-                <div id="comment_section">{comments}</div>
+                <div id="comment_section">
+                    <h5 id="comment_header">Comments</h5>
+                    {comments}
+                </div>
                 <p id="add_comment">Add Comment</p>
                 <div id="comment_editor_container">
                 <button onClick={this.submitComment}>Submit</button>
@@ -89,17 +93,18 @@ const mapStateToProps = (state) => {
         headline:       state.content.currentVideo.video_headline,
         url:            state.content.currentVideo.video_url,
         text:           state.content.currentVideo.video_text,
-        video_comments: state.content.currentVideo.comments,
+        video_comments: state.comments,
         commentVal:     state.forms.commentVal
     }
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        getPremiumVideo: (id, token) => dispatch(getPremiumVideo(id, token, dispatch)),
-        clearCurrentVideo: () => dispatch(clearCurrentVideo()),
-        handleTextChange: (inputId, inputVal) => dispatch(handleTextChange(inputId, inputVal)),
-        submitComment: (options) => dispatch(submitComment(options, dispatch))
+        getPremiumVideo:    (id, token) => dispatch(getPremiumVideo(id, token, dispatch)),
+        clearCurrentVideo:  () => dispatch(clearCurrentVideo()),
+        handleTextChange:   (inputId, inputVal) => dispatch(handleTextChange(inputId, inputVal)),
+        submitComment:      (options) => dispatch(submitComment(options, dispatch)),
+        getComments:        (video_id) => dispatch(getComments(video_id, dispatch))
     }
 };
 
