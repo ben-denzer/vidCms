@@ -2,10 +2,11 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {browserHistory} from 'react-router';
 import {getPremiumVideo, clearCurrentVideo} from '../../actions/contentActions';
-import VideoBlock from './VideoBlock';
-import Upgrade from './Upgrade';
 import {handleTextChange} from '../../actions/formActions.js';
 import {submitComment, getComments} from '../../actions/commentActions';
+import VideoBlock from './VideoBlock';
+import Upgrade from './Upgrade';
+import CommentSection from './CommentSection';
 
 class PremiumVideoPage extends React.Component {
     constructor(props) {
@@ -45,40 +46,21 @@ class PremiumVideoPage extends React.Component {
     }
     render() {
         const {title, headline, url, premium_user, token, video_comments, commentVal} = this.props;
-        console.log('vc', video_comments);
         const fullUrl = 'http://localhost:8000/uploads/' + url;
-        let comments;
-        if (video_comments && video_comments.length) {
-            let i = 0;
-            comments = video_comments.map(a => {
-                return <div key={i++} className="commentContainer">
-                    <div className="comment-name">{a.username}</div>
-                    <div className="comment-main">{a.comment_text}</div>
-                </div>
-            });
-        }
+
         return (
             <div id="video_page">
                 <h1>{title}</h1>
                 <h2 id="video_headline">{headline}</h2>
                 <div>{url && premium_user ? <VideoBlock premium_user={premium_user} fullUrl={fullUrl} /> : <Upgrade />}</div>
                 <div id="video_text" dangerouslySetInnerHTML={this.createMarkup()} />
-                <div id="comment_section">
-                    <h5 id="comment_header">Comments</h5>
-                    {comments}
-                </div>
-                <p id="add_comment">Add Comment</p>
-                <div id="comment_editor_container">
-                <button onClick={this.submitComment}>Submit</button>
-                    {
-                        token ?
-                            <textarea onChange={this.handleChange} id="comment_editor" value={commentVal} /> :
-                            <p>
-                                <span className="link" onClick={() => browserHistory.push("auth/login")}>Log In</span> or
-                                <span className="link" onClick={() => browserHistory.push("auth/signup")}>Sign Up</span> to Comment
-                            </p>
-                    }
-                </div>
+                <CommentSection
+                    video_comments={video_comments}
+                    token={token}
+                    submitComment={() => this.submitComment()}
+                    handleChange={(e) => this.handleChange(e)}
+                    commentVal={commentVal}
+                />
             </div>
         );
     }
