@@ -1,18 +1,19 @@
 import React from 'react';
 import {browserHistory} from 'react-router';
+import {parseDate} from '../../logic/shared';
 
 const CommentSection = (props) => {
     const {video_comments, submitComment, token, handleChange, commentVal} = props;
-    let comments;
+    let comments = ['no comments'];
     if (video_comments && video_comments.length) {
         comments = video_comments.map((a, i) => {
             return <div key={i++} className="commentContainer">
                 <div className="comment-name">{a.username}</div>
+                <div className="comment-date">{parseDate(a.comment_date)}</div>
                 <div className="comment-main">{a.comment_text}</div>
             </div>
         });
     }
-
     return (
         <div id="comment_section_container">
             <div id="comment_section">
@@ -21,7 +22,6 @@ const CommentSection = (props) => {
             </div>
             <p id="add_comment">Add Comment</p>
             <div id="comment_editor_container">
-            <button onClick={submitComment}>Submit</button>
                 {
                     token ?
                         <textarea onChange={handleChange} id="comment_editor" value={commentVal} /> :
@@ -30,6 +30,7 @@ const CommentSection = (props) => {
                             <span className="link" onClick={() => browserHistory.push("auth/signup")}>Sign Up</span> to Comment
                         </p>
                 }
+                <button onClick={submitComment}>Submit</button>
             </div>
         </div>
     );

@@ -78,7 +78,7 @@
             margin: 10px;
         }
     }
-    #comment_section {
+    #comment_section_container {
         width: 60%;
 
         @media (max-width: 900px) {
@@ -91,8 +91,13 @@
             font-size: 22px;
             text-align: left;
         }
+        .comment-date {
+            display: inline-block;
+        }
         .comment-name {
+            display: inline-block;
             font-weight: bold;
+            margin-right: 10px;
             margin-bottom: 5px;
         }
         .comment-main {

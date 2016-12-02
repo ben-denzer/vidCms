@@ -1,5 +1,6 @@
 import {apiPromise} from './apiPromise';
 import * as types from '../constants/actionTypes';
+import {browserHistory} from 'react-router';
 
 const checkForToken = () => {
     return (dispatch) => {
@@ -29,6 +30,7 @@ const login = (credentials) => {
         const options = {username, password};
         apiPromise(options, 'auth/login').then(
             (data) => {
+                browserHistory.goBack();
                 if (saveData) window.localStorage.setItem('token', data.token);
                 return dispatch({
                     type: types.LOGIN_SUCCESS,
@@ -83,6 +85,7 @@ const signup = (credentials, dispatch) => {
         const options = {username, password, email, premium};
         apiPromise(options, 'auth/signup').then(
             (data) => {
+                browserHistory.goBack();
                 if (saveData) window.localStorage.setItem('token', data.token);
                 return dispatch({type: types.SIGNUP_SUCCESS, name: username, token: data.token, premium});
             }, (err) => {

@@ -4,7 +4,6 @@ import {logout} from '../actions/authActions';
 import Header from '../components/Header';
 
 const App = (props) => {
-    console.log(props.user);
     return (
         <div id="mainContainer" className="App">
             <Header name={props.user.name} logout={props.logout} />

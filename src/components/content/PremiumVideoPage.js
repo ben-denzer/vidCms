@@ -1,6 +1,5 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {browserHistory} from 'react-router';
 import {getPremiumVideo, clearCurrentVideo} from '../../actions/contentActions';
 import {handleTextChange} from '../../actions/formActions.js';
 import {submitComment, getComments} from '../../actions/commentActions';
