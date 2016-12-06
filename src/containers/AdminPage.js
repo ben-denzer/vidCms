@@ -9,7 +9,7 @@ class AdminPage extends React.Component {
         this.props.admin && this.props.getAdminData(this.props.user.token);
     }
     componentWillReceiveProps(nextProps) {
-        !this.props.admin && nextProps.admin && this.props.getAdminData();
+        !this.props.admin && nextProps.admin && this.props.getAdminData(nextProps.user.token);
     }
     render() {
         console.log(this.props.user);

@@ -2,10 +2,9 @@
 import * as types from '../constants/actionTypes';
 import {apiPromise} from './apiPromise';
 
-const getAdminData = (options, dispatch) => {
-    console.log('adminActions', 'called');
+const getAdminData = (token, dispatch) => {
     return (dispatch) => {
-        apiPromise({options}, 'admin/getData').then(
+        apiPromise({token}, 'admin/getData').then(
             (data) => {
                 return dispatch({type: types.ADMIN_DATA_SUCCESS, data})
             },

@@ -20,6 +20,7 @@ const apiPromise = (options, url) => {
         req.onerror = () => {
             reject('onError called');
         };
+        console.log('apiPromise', options);
         req.send(JSON.stringify(options));
     });
 };
