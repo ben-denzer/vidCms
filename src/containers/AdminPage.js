@@ -6,7 +6,10 @@ import {getAdminData} from '../actions/adminActions';
 class AdminPage extends React.Component {
     componentWillMount() {
         console.log('adminPage', 'mounting')
-        this.props.admin && this.props.getData();
+        this.props.admin && this.props.getAdminData(this.props.user.token);
+    }
+    componentWillReceiveProps(nextProps) {
+        !this.props.admin && nextProps.admin && this.props.getAdminData();
     }
     render() {
         console.log(this.props.user);
@@ -30,7 +33,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        getAdminData: (token) => dispatch(getAdminData(token))
+        getAdminData: (token) => dispatch(getAdminData(token, dispatch))
     }
 }
 
