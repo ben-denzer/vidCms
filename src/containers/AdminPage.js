@@ -1,12 +1,37 @@
 import React from 'react';
-//import {browserHistory} from 'react-router';
+import {connect} from 'react-redux';
+import {browserHistory} from 'react-router';
+import {getAdminData} from '../actions/adminActions';
 
-const AdminPage = (props) => {
-    return (
-        <div id="admin_page">
-            {props.children}
-        </div>
-    );
-};
+class AdminPage extends React.Component {
+    componentWillMount() {
+        console.log('adminPage', 'mounting')
+        this.props.admin && this.props.getData();
+    }
+    render() {
+        console.log(this.props.user);
+        if (!this.props.admin) return <div>Log In To Continue</div>
+        return (
+            <div id="admin_page">
+                <div className="admin-button" onClick={() => browserHistory.push('admin/upload')}>Upload Videos</div>
+                <div className="admin-button" onClick={() => browserHistory.push('admin/users')}>Manage Users</div>
+            </div>
+        );
+    }
+}
 
-export default AdminPage;
+const mapStateToProps = (state) => {
+    return {
+        user: state.user,
+        admin: state.user.admin,
+        route: state.routing
+    };
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        getAdminData: (token) => dispatch(getAdminData(token))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AdminPage);
