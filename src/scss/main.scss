@@ -40,57 +40,66 @@ body {
     background-size: cover;
     background-attachment: fixed;
 
-    .main-nav-container {
-        height: 60px;
-        width: 100%;
-        background-color: #fff;
+    .nav-wrapper-one {
+        padding-right: 5px;
 
-        .main-nav {
-            display: flex;
-            flex-flow: row wrap;
-            justify-content: space-between;
-            padding: 0 10px;
-            height: 100%;
+        .brand-logo {
+            margin-top: 7px;
 
-            #nav_logo {
-                height: 60px;
-                display: flex;
-                align-items: center;
+            @media (max-width: 650px) {
+                margin-top: 10px;
+            }
+            @media (max-width: 992px) {
+                transform: none;
+                left: 0;
+            }
 
-                img {
-                    height: 55px;
-                    width: auto;
+            img {
+                height: 50px;
+                width: auto;
 
-                    &:hover {
-                        cursor: pointer;
-                    }
+                @media (max-width: 650px) {
+                    height: 40px;
                 }
             }
-            #nav_buttons {
-                display: flex;
-                height: 100%;
-                align-items: center;
+        }
+    }
+    .nav-wrapper-two {
+        background-color: #f7f7f7;
+        color: #222;
 
+        .center {
+            display: flex;
+            justify-content: center;
+
+            li {
+                margin: auto 20px;
                 a {
-                    font-size: 22px;
-                    margin: 0 10px;
-                    height: 75%;
-                    padding: 5px 10px;
-
-                    &:hover {
-                        cursor: pointer;
-                        color: #666;
-                    }
+                    color: #222;
                 }
-                #nav_signup {
-                    border: 1px solid #222;
-                    background-color: $color3;
+            }
+        }
+    }
 
-                    &:hover {
-                        background-color: $color4;
-                        color: #222;
-                    }
-                }
+    #cta_container {
+        margin-top: 70px;
+        background-color: #f7f7f7;
+        width: 100%;
+        padding: 30px;
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-between;
+
+        .cta-box {
+            max-width: 350px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            img {
+                width: 95%;
+                height: auto;
+                margin: 10px auto;
             }
         }
     }
