@@ -1,4 +1,5 @@
-const apiUrl = 'http://localhost:8000/';
+//const apiUrl = 'http://localhost:8000/';
+const apiUrl = 'https://bdenzer.xyz/equinimity/';
 
 const apiPromise = (options, url) => {
     return new Promise((resolve, reject) => {
