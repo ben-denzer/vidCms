@@ -3,10 +3,11 @@ import {connect} from 'react-redux';
 import {logout} from '../actions/authActions';
 import {clearMessage} from '../actions/messageActions';
 import Header from '../components/Header';
+import {browserHistory} from 'react-router';
 
 const App = (props) => {
     const {error, success, info} = props.message;
-    if (error || success || info) setTimeout(_ => props.clearMessage, 6000);
+    if (error || success || info) setTimeout(() => props.clearMessage, 6000);
     return (
         <div id="mainContainer" className="App">
             <Header name={props.user.name} logout={props.logout} />

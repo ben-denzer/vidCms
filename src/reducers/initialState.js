@@ -31,7 +31,8 @@ export default {
             video_headline: '',
             video_url: '',
             video_text: '',
-        }
+        },
+        recentVideos: []
     },
     comments: []
 };

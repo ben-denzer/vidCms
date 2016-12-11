@@ -5,41 +5,128 @@
     justify-content: center;
     font-family: $mainfont;
 
-    h1 {
-        margin-top: 30vh;
-        font-size: 40px;
-        margin-bottom: -25px;
-        color: $color1;
-        letter-spacing: .01em;
+    .carousel {
+        h2 {
+            font-size: 50px;
+            font-weight: bold;
+            letter-spacing: .01em;
+            color: $color3;
 
-        @media (max-width: 600px) {
-            font-size: 30px;
-            margin-bottom: 10px;
+            @media (max-width: 600px) {
+                font-size: 28px;
+            }
+        }
+        h4 {
+            color: $color1;
+            font-size: 20px;
         }
     }
-    h2 {
-        font-size: 50px;
-        font-weight: bold;
-        color: $color1;
-        letter-spacing: .01em;
 
-        @media (max-width: 600px) {
-            font-size: 28px;
-        }
-    }
-    .home-button {
-        width: 200px;
+    #homepage_text {
+        width: 100%;
         background-color: $color3;
-        color: white;
-        border: 2px solid #222;
-        text-align: center;
-        padding: 10px;
-        font-size: 18px;
-        font-weight: bold;
+        padding: 50px 10px;
 
-        &:hover {
-            cursor: pointer;
-            background-color: $color4;
+        h2 {
+            margin-top: 0;
+            color: $color1;
+            font-size: 36px;
+            text-align: center;
+        }
+        p {
+            max-width: 600px;
+            margin: auto;
+            font-size: 20px;
+            color: $color1;
+            text-align: center;
+        }
+    }
+
+    #cta_container {
+        margin-top: 120px;
+        background-color: $color1;
+        width: 100%;
+        padding: 30px;
+        display: flex;
+        justify-content: space-between;
+
+        @media (max-width: 900px) {
+            flex-flow: row wrap;
+            justify-content: center;
+        }
+
+        .cta-box {
+            max-width: 350px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            img {
+                width: 95%;
+                height: auto;
+                margin: 10px auto;
+
+                &:hover {
+                    cursor: pointer;
+                    opacity: .7;
+                }
+            }
+        }
+    }
+    #recent_videos_container {
+        background-color: $color1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+
+        h2 {
+            align-self: flex-start;
+            margin: 15px 0 0 30px;
+        }
+
+        #recent_videos {
+            display: flex;
+            width: 100%;
+            padding: 30px;
+            justify-content: space-between;
+
+            @media (max-width: 900px) {
+                flex-flow: row wrap;
+                justify-content: center;
+            }
+
+            .video-placeholder-container {
+                max-width: 350px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: space-between;
+                text-align: center;
+
+                h2 {
+                    font-size: 26px;
+                    font-weight: bold;
+                    text-align: center;
+                    margin: 0;
+                }
+                h3 {
+                    font-size: 20px;
+                    font-weight: normal;
+                    text-align: center;
+                    margin: 0;
+                }
+                img {
+                    width: 95%;
+                    height: auto;
+                    margin: 10px auto;
+
+                    &:hover {
+                        cursor: pointer;
+                        opacity: .7;
+                    }
+                }
+            }
         }
     }
 }
