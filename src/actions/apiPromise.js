@@ -1,5 +1,6 @@
-//const apiUrl = 'http://localhost:8000/';
-const apiUrl = 'https://bdenzer.xyz/equinimity/';
+const apiUrl = process.env['NODE_ENV'] === 'development' ?
+    'http://localhost:8000/' :
+    'https://bdenzer.xyz/equinimity/';
 
 const apiPromise = (options, url) => {
     return new Promise((resolve, reject) => {
@@ -21,7 +22,6 @@ const apiPromise = (options, url) => {
         req.onerror = () => {
             reject('onError called');
         };
-        console.log('apiPromise', options);
         req.send(JSON.stringify(options));
     });
 };

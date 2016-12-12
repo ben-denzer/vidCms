@@ -1,10 +1,11 @@
 $color1: #f9f9f9;
 $color2: #ccc;
-$color3: salmon;
+$color3: #ee6e73;
 $color4: yellow;
 $darkText: #222;
 
 $mainfont: 'Cabin', sans-serif;
+$navHeight: 60px;
 
 @mixin insidepage {
     width: 90vw;
@@ -46,20 +47,69 @@ body {
         margin-bottom: 0;
         border: 0;
 
-        ul {
-            li {
-                a {
-                    color: $color1;
+        @media (min-width: 768px) {
+            height: $navHeight;
+        }
+
+        .container-fluid {
+            height: 100%;
+
+            .navbar-header {
+                height: 100%;
+
+                .navbar-brand {
+                    height: $navHeight;
+                    padding: 0 5px;
+                    display: flex;
+                    align-items: center;
+
+                    img {
+                        max-height: 50px;
+                        width: auto;
+                    }
+                }
+                .navbar-toggle {
+                    margin-top: 13px;
+
+                    .icon-bar {
+                        background-color: $color1;
+                    }
+                }
+            }
+
+            ul {
+                @media (min-width: 768px) {
+                    height: $navHeight;
                 }
 
-                &:hover {
-                    cursor: pointer !important;
+                li {
+                    @media (min-width: 768px) {
+                        height: $navHeight;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                    }
 
                     a {
-                        color: $darkText;
+                        color: $color1;
+                    }
+
+                    &:hover {
+                        cursor: pointer !important;
+
+                        a {
+                            color: $darkText;
+                        }
                     }
                 }
             }
         }
+    }
+    #footer {
+        width: 100%;
+        height: 150px;
+        background-color: $color3;
+        color: $color1;
+        text-align: center;
     }
 }

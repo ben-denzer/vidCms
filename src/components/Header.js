@@ -13,13 +13,17 @@ const Header = (props) => {
                         <span className="icon-bar"></span>
                         <span className="icon-bar"></span>
                     </button>
-                    <a className="navbar-brand" href="#">Brand</a>
+                    <a className="navbar-brand" onClick={() => browserHistory.push('/')}>
+                        <img src={logo} alt="Equinimity Energy Healing - Las Vegas" />
+                    </a>
                 </div>
 
                 <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul className="nav navbar-nav navbar-right">
-                        <li><a href="#">Action</a></li>
-                        <li><a href="#">Another action</a></li>
+                        <li><a onClick={() => browserHistory.push('/')}>Home</a></li>
+                        <li><a onClick={() => browserHistory.push('/about')}>About Us</a></li>
+                        <li><a onClick={() => browserHistory.push('/videos')}>Videos</a></li>
+                        <li><a onClick={() => browserHistory.push('/contact')}>Contact</a></li>
                         {!props.name ?
                             <li><a id="nav_login" onClick={() => browserHistory.push("/auth/login")}>Log In</a></li> :
                             <li><a id="nav_myaccount" onClick={() => browserHistory.push("/account")}>My Account</a></li>

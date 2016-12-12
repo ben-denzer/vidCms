@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {logout} from '../actions/authActions';
 import {clearMessage} from '../actions/messageActions';
 import Header from '../components/Header';
-import {browserHistory} from 'react-router';
+import Footer from '../components/Footer';
 
 const App = (props) => {
     const {error, success, info} = props.message;
@@ -15,6 +15,7 @@ const App = (props) => {
             <div className="messageBox" id="successBox">{success}</div>
             <div className="messageBox" id="infoBox">{info}</div>
             {props.children}
+            <Footer />
         </div>
     );
 };

@@ -8,24 +8,28 @@ const CtaContainer = () => {
     return (
         <div id="cta_container">
             <div className="cta-box">
+                <h2>Schedule an Appointment</h2>
                 <img
-                    src={team}
-                    alt="Meet the Team"
-                    onClick={(() => browserHistory.push('team'))}
+                    src={schedule}
+                    alt="Schedule an Appointment"
+                    onClick={() => browserHistory.push('/contact')}
                 />
-                <h5>Meet the Team</h5>
             </div>
             <div className="cta-box">
+                <h2>All Videos</h2>
                 <img
                     src={hp_video_placeholder}
                     alt="See our Videos"
-                    onClick={() => browserHistory.push('videos')}
+                    onClick={() => browserHistory.push('/videos')}
                 />
-                <h5>Watch</h5>
             </div>
             <div className="cta-box">
-                <img src={schedule} alt="Schedule an Appointment" />
-                <h5>Schedule an Appointment</h5>
+                <h2>Meet the Team</h2>
+                <img
+                    src={team}
+                    alt="Meet the Team"
+                    onClick={(() => browserHistory.push('/team'))}
+                />
             </div>
         </div>
     );

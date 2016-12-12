@@ -18,9 +18,8 @@ const RecentVideos = (props) => {
     }
     return (
         <div id="recent_videos_container">
-            <h2>Recent Videos</h2>
             <div id="recent_videos">
-                {videos || 'Nothing to show'}
+                {videos || 'Error Loading Recent Videos, Please Refresh Your Browser'}
             </div>
         </div>
     );
