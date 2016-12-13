@@ -18,6 +18,8 @@ class VideoPage extends React.Component {
                     headline={a.video_headline || ''}
                     text={a.video_text || ''}
                     premium_video={a.premium}
+                    video_date={a.video_date}
+                    placeholder_url={a.placeholder_url}
                 />
             });
         }

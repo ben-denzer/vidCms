@@ -1,9 +1,8 @@
 import React from 'react';
 import {browserHistory} from 'react-router';
-import videoPlaceholderImg from '../../img/video-placeholder.jpg';
 
 const VideoPlaceholder = (props) => {
-    const {title, headline, id} = props;
+    const {title, headline, id, premium_video, placeholder_url} = props;
     return (
         <div className="video-placeholder-container">
             <div>
@@ -11,10 +10,10 @@ const VideoPlaceholder = (props) => {
                 <h3>{headline}</h3>
             </div>
             <div>
-                <div>{props.premium_video ? <span className="premium-only">Premium Members Only</span> : ""}</div>
+                <div>{premium_video ? <span className="premium-only">Premium Members Only</span> : ""}</div>
                 <img
                     onClick={() => browserHistory.push(`/watch/${props.premium_video ? 'premium' : 'free'}/${id}`)}
-                    src={videoPlaceholderImg}
+                    src={placeholder_url}
                     alt="click to see video"
                 />
             </div>

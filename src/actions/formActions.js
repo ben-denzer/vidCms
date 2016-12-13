@@ -22,9 +22,10 @@ function submitUploadFree(options, dispatch) {
     if (!options.videoHeadlineVal) return {type: types.NEW_MESSAGE, messageType: 'error', text: 'Please Add Title'};
     if (!options.youtubeUrlVal) return {type: types.NEW_MESSAGE, messageType: 'error', text: 'Please Add Embed Code'};
 
-    let tempUrl = options.youtubeUrlVal.split('"').filter(a => /^http/.test(a));
+    const tempUrl = options.youtubeUrlVal.split('"').filter(a => /^http/.test(a));
     if (tempUrl.length !== 1) return {type: types.NEW_MESSAGE, messageType: 'error', text: 'Invalid Youtube Embed Code'}
     options.youtubeUrlVal = tempUrl;
+    options.placeholderUrl = tempUrl.slice(tempUrl.lastIndexOf('/'));
 
     return (dispatch) => {
         apiPromise(options, 'admin/uploadFree').then(

@@ -11,21 +11,21 @@ const Carousel = () => {
                     <img src={slide2} role="presentation" />
                     <div className="carousel-caption">
                         <h2 className="caption-heading">e&middot;qua&middot;nim&middot;i&middot;ty</h2>
-                        <h4 className="caption-body">mental calmness, composure, amd evenness of temper, especially in a difficult situation</h4>
+                        <h4 className="caption-body">mental calmness, composure, and evenness of temper, especially in a difficult situation</h4>
                     </div>
                 </div>
                 <div className="item">
                     <img src={slide3} role="presentation" />
                     <div className="carousel-caption">
                         <h2 className="caption-heading">e&middot;qua&middot;nim&middot;i&middot;ty</h2>
-                        <h4 className="caption-body">mental calmness, composure, amd evenness of temper, especially in a difficult situation</h4>
+                        <h4 className="caption-body">mental calmness, composure, and evenness of temper, especially in a difficult situation</h4>
                     </div>
                 </div>
                 <div className="item">
                     <img src={slide1} role="presentation" />
                     <div className="carousel-caption">
                         <h2 className="caption-heading">e&middot;qua&middot;nim&middot;i&middot;ty</h2>
-                        <h4 className="caption-body">mental calmness, composure, amd evenness of temper, especially in a difficult situation</h4>
+                        <h4 className="caption-body">mental calmness, composure, and evenness of temper, especially in a difficult situation</h4>
                     </div>
                 </div>
             </div>

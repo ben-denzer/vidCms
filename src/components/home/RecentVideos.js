@@ -13,6 +13,7 @@ const RecentVideos = (props) => {
                 text={a.video_text || ''}
                 premium_video={a.premium}
                 date={a.video_date}
+                placeholder_url={a.placeholder_url}
             />
         });
     }
