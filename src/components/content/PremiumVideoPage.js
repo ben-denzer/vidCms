@@ -14,7 +14,7 @@ class PremiumVideoPage extends React.Component {
         this.getVideo = this.getVideo.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.submitComment = this.submitComment.bind(this);
-        const apiUrl = process.env['NODE_ENV'] === 'development' ?
+        this.apiUrl = process.env['NODE_ENV'] === 'development' ?
             'http://localhost:8000/' :
             'https://bdenzer.xyz/equinimity/';
     }
@@ -48,7 +48,7 @@ class PremiumVideoPage extends React.Component {
     }
     render() {
         const {title, headline, url, premium_user, token, video_comments, commentVal} = this.props;
-        const fullUrl = apiUrl + url;
+        const fullUrl = this.apiUrl + url;
 
         return (
             <div id="video_page">
