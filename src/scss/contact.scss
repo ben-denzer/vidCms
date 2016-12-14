@@ -1,0 +1,113 @@
+#contact_page {
+    @include insidepage;
+    padding: 10px 0;
+
+    .contact-section {
+        display: flex;
+        flex-direction: column;
+
+        .contact-section-top {
+            margin-top: 10px;
+            width: 100vw;
+            padding-left: 0;
+            margin-left: 0;
+            background-color: $color3;
+            padding: 30px;
+
+            @media (max-width: 1199px) {
+                width: 100%;
+            }
+
+            h2 {
+                width: 100%;
+                text-align: center;
+                color: $color1;
+                font-size: 40px;
+                font-weight: bold;
+            }
+        }
+
+        .contact-section-bottom {
+            display: flex;
+            padding: 0 50px;
+
+            @media (max-width: 1199px) {
+                padding: 0 30px;
+            }
+            @media (max-width: 500px) {
+                padding: 0 10px;
+            }
+
+            &.contact-img-right {
+                flex-direction: row-reverse;
+            }
+
+            @media (max-width: 1199px) {
+                flex-direction: column;
+
+                &.contact-img-right {
+                    flex-direction: column;
+                }
+            }
+
+            .contact-img-container {
+                margin-top: -30px;
+                width: 100%;
+                max-width: 500px;
+                text-align: center;
+
+                @media (max-width: 1199px) {
+                    margin-top: -10px;
+                    align-self: center;
+                }
+
+                img {
+                    box-sizing: border-box;
+                    width: 100%;
+                }
+            }
+
+            .contact-text-section {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                padding: 30px;
+
+                .quote {
+                    padding: 40px;
+                    font-size: 30px;
+                    line-height: 34px;
+                    font-style: italic;
+                    color: sandybrown;
+
+                    @media (max-width: 1199px) {
+                        padding: 20px;
+                    }
+                    @media (max-width: 500px) {
+                        padding: 10px;
+                        font-size: 24px;
+                    }
+                }
+
+                @media (max-width: 900px) {
+                    padding: 15px;
+                }
+
+                @media (max-width: 600px) {
+                    padding: 5px;
+                }
+
+                #business_name {
+                    font-size: 36px;
+                    font-weight: bold;
+                    margin-bottom: 0;
+                }
+
+                #phone {
+                    font-size: 28px;
+                    margin-bottom: 20px;
+                }
+            }
+        }
+    }
+}

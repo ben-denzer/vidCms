@@ -3,6 +3,7 @@ import TextInput from '../share/TextInput';
 import AuthButtons from './AuthButtons';
 
 const LoginForm = (props) => {
+    console.log('loginForm.js', props.message);
     return (
         <form className="formBox" id="loginForm">
             <h1>Log In</h1>
@@ -17,7 +18,12 @@ const LoginForm = (props) => {
                 val={props.passwordVal}
                 handleChange={props.handleChange}
             />
-            <AuthButtons handleCheck={props.handleCheck} authSubmit={props.authSubmit} />
+            <AuthButtons
+                formType="login"
+                handleCheck={props.handleCheck}
+                authSubmit={props.authSubmit}
+                message={props.message}
+            />
         </form>
     );
 };

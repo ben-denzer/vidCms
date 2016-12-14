@@ -4,4 +4,8 @@ const clearMessage = () => {
     return {type: CLEAR_MESSAGE};
 };
 
-export {clearMessage};
+const setMessage = (dispatch) => {
+    setTimeout(() => dispatch(clearMessage()), 10000);
+}
+
+export {setMessage, clearMessage};

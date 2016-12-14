@@ -10,7 +10,7 @@ $footerHeight: 150px;
 
 @mixin insidepage {
     width: 100%;
-    min-height: calc(100vh - $navHeight - $footerHeight);
+    min-height: calc(100vh - #{$navHeight} - #{$footerHeight});
     padding: 10px 50px;
     background-color: $color1;
     background-image: url("/img/tree_bg.jpg");
@@ -29,12 +29,14 @@ $footerHeight: 150px;
     }
 }
 
-@import './home';
-@import './auth';
-@import './editor';
-@import './videopage';
+@import './about';
 @import './admin';
 @import './account';
+@import './auth';
+@import './contact';
+@import './editor';
+@import './home';
+@import './videopage';
 
 body {
     padding: 0;
@@ -49,6 +51,11 @@ body {
     background-image: url('/img/main_bg.jpg');
     background-size: cover;
     background-attachment: fixed;
+
+    .alert {
+        text-align: center;
+        margin-bottom: 0;
+    }
 
     .navbar {
         background-color: $color3;

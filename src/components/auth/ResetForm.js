@@ -1,9 +1,10 @@
 import React from 'react';
 import TextInput from '../share/TextInput';
+import MessageBox from '../share/MessageBox';
 
 const ResetForm = (props) => {
     return (
-        <div>
+        <form className="formBox" id="signupForm">
             <h1>Reset Password</h1>
             <TextInput
                 id="username"
@@ -23,7 +24,11 @@ const ResetForm = (props) => {
                 val={props.password2Val}
                 handleChange={props.handleChange}
             />
-        </div>
+            <div id="auth_buttons_container">
+                <button onClick={props.authSubmit}>Submit</button>
+                <MessageBox message={props.message} />
+            </div>
+        </form>
     );
 };
 

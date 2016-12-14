@@ -1,5 +1,6 @@
 import React from 'react';
 import TextInput from '../share/TextInput';
+import AuthButtons from './AuthButtons';
 
 const SignupForm = (props) => {
     return (
@@ -29,6 +30,12 @@ const SignupForm = (props) => {
                 label="Email - ONLY used if you forget your password"
                 val={props.emailVal}
                 handleChange={props.handleChange}
+            />
+            <AuthButtons
+                formType="signup"
+                handleCheck={props.handleCheck}
+                authSubmit={props.authSubmit}
+                message={props.message}
             />
         </form>
     );

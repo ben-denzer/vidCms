@@ -7,6 +7,7 @@ export const CLEAR_MESSAGE          = 'CLEAR_MESSAGE';
 export const COMMENT_SUBMITTED      = 'COMMENT_SUBMITTED';
 export const COMMENT_SUCCESS        = 'COMMENT_SUCCESS';
 export const EDITOR_CHANGE          = 'EDITOR_CHANGE';
+export const EMAIL_SUCCESS          = 'EMAIL_SUCCESS';
 export const FILE_UPLOAD            = 'FILE_UPLOAD';
 export const GET_COMMENTS_SUCCESS   = 'GET_COMMENTS_SUCCESS';
 export const GET_VIDEO_SUCCESS      = 'GET_VIDEO_SUCCESS';

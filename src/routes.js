@@ -1,10 +1,12 @@
 import React                    from 'react';
 import {Route, IndexRoute}      from 'react-router';
 
+import AboutPage                from './components/AboutPage';
 import AccountPage              from './containers/AccountPage';
 import AdminPage                from './containers/AdminPage';
 import App                      from './containers/App';
 import AuthPage                 from './containers/AuthPage';
+import ContactPage              from './components/ContactPage';
 import FreeVideoPage            from './components/content/FreeVideoPage';
 import ForgotPwForm             from './components/auth/ForgotPwForm';
 import HomePage                 from './components/HomePage';
@@ -18,6 +20,7 @@ import VideoHome                from './containers/VideoHome';
 export default (
     <Route path="/" component={App}>
         <IndexRoute component={HomePage} />
+        <Route path="about" component={AboutPage} />
         <Route path="account" component={AccountPage} />
         <Route path="admin" component={AdminPage}>
             <Route path="upload" component={UploadForm} />
@@ -28,6 +31,7 @@ export default (
             <Route path="forgotPw" component={ForgotPwForm} />
             <Route path="reset/*" component={ResetForm} />
         </Route>
+        <Route path="contact" component={ContactPage} />
         <Route path="watch">
             <Route path="free/:id" component={FreeVideoPage} />
             <Route path="premium/:id" component={PremiumVideoPage} />

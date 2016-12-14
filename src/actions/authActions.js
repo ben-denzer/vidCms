@@ -1,6 +1,7 @@
 import {apiPromise} from './apiPromise';
 import * as types from '../constants/actionTypes';
 import {browserHistory} from 'react-router';
+import {setMessage} from './messageActions';
 
 const checkForToken = () => {
     return (dispatch) => {
@@ -17,6 +18,7 @@ const checkForToken = () => {
                     });
                 },
                 (err) => {
+                    setMessage(dispatch);
                     dispatch({type: types.AUTH_ERROR, messageType: 'info', text: 'Session Expired'})
                 }
             )
@@ -40,6 +42,7 @@ const login = (credentials) => {
                     admin: data.admin
                 });
             }, (err) => {
+                setMessage(dispatch);
                 if (err === 'unauthorized') {
                     return dispatch({type: types.AUTH_ERROR, error: 'Invalid username or password'});
                 } else {
@@ -70,7 +73,14 @@ const resetPw = (options, tokenUrl, dispatch) => {
                     admin: data.admin
                 });
             },
-            (err) => dispatch({type: types.NEW_MESSAGE, messageType: 'error', text: 'Network Error, Please Try Again'})
+            (err) => {
+                setMessage(dispatch);
+                if (err === 'unauthorized') {
+                    return dispatch({type: types.AUTH_ERROR, error: 'Your Token Has Expired, Please Click On "Login", and "Forgot Password" again'});
+                } else {
+                    return dispatch({type: types.NEW_MESSAGE, messageType: 'error', text: 'Network Error, Please Try Again'});
+                }
+            }
         );
     };
 };
@@ -89,6 +99,7 @@ const signup = (credentials, dispatch) => {
                 if (saveData) window.localStorage.setItem('token', data.token);
                 return dispatch({type: types.SIGNUP_SUCCESS, name: username, token: data.token, premium});
             }, (err) => {
+                setMessage(dispatch);
                 if (err === 'unauthorized') {
                     return dispatch({type: types.AUTH_ERROR, error: 'Username Is Already In Use'});
                 } else {
@@ -101,14 +112,18 @@ const signup = (credentials, dispatch) => {
 
 const sendResetEmail = (options, dispatch) => {
     return (dispatch) => {
+        setMessage(dispatch);
         apiPromise(options, 'auth/resetPassword').then(
-            () => dispatch({
-                type: types.NEW_MESSAGE,
-                messageType: 'info',
-                text: 'Your email has been sent. Be sure to check your spam folder'
+            () => {
+                setMessage(dispatch);
+                browserHistory.push('/')
+                dispatch({type: types.EMAIL_SUCCESS})
             },
-            () => dispatch({type: types.NEW_MESSAGE, messageType: 'error', text: 'Network Error, Please Try Again'})
-        ));
+            (err) => {
+                setMessage(dispatch);
+                dispatch({type: types.NEW_MESSAGE, messageType: 'error', text: 'Network Error, Please Try Again'});
+            }
+        );
     };
 };
 

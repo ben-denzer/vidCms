@@ -70,7 +70,7 @@ class AuthPage extends Component {
         }
     }
     render() {
-        const {user, usernameVal, passwordVal, password2Val, saveDataVal, authErrorVal} = this.props;
+        const {user, usernameVal, passwordVal, password2Val, saveDataVal, authErrorVal, message} = this.props;
         return (
             <div id="auth_page">
                 {user || ''}
@@ -85,6 +85,7 @@ class AuthPage extends Component {
                         passwordVal,
                         password2Val,
                         saveDataVal,
+                        message
                     }
                 )}
             </div>
@@ -96,12 +97,13 @@ const mapStateToProps = (state) => {
     const {usernameVal, passwordVal, password2Val, emailVal, saveDataVal, authErrorVal} = state.forms;
     return {
         user: state.user.name,
+        message: state.message,
         usernameVal,
         passwordVal,
         password2Val,
         emailVal,
         saveDataVal,
-        authErrorVal
+        authErrorVal,
     };
 };
 
