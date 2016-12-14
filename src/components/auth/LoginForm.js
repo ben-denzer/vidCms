@@ -1,6 +1,6 @@
 import React from 'react';
 import TextInput from '../share/TextInput';
-import {browserHistory} from 'react-router';
+import AuthButtons from './AuthButtons';
 
 const LoginForm = (props) => {
     return (
@@ -17,7 +17,7 @@ const LoginForm = (props) => {
                 val={props.passwordVal}
                 handleChange={props.handleChange}
             />
-            <a onClick={() => browserHistory.push('/auth/forgotPw')}>Forgot Password</a>
+            <AuthButtons handleCheck={props.handleCheck} authSubmit={props.authSubmit} />
         </form>
     );
 };

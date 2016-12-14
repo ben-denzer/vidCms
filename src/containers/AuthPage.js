@@ -3,7 +3,6 @@ import {connect} from 'react-redux';
 import {browserHistory} from 'react-router';
 import {handleTextChange, handleCheck} from '../actions/formActions';
 import {login, sendResetEmail, signup, resetPw} from '../actions/authActions';
-import SaveDataCheckbox from '../components/auth/SaveDataCheckbox';
 
 class AuthPage extends Component {
     constructor(props) {
@@ -21,7 +20,8 @@ class AuthPage extends Component {
     handleCheck(e) {
         this.props.handleCheck(!this.props.saveDataVal);
     }
-    authSubmit() {
+    authSubmit(e) {
+        e.preventDefault();
         const {
             usernameVal,
             passwordVal,
@@ -34,7 +34,9 @@ class AuthPage extends Component {
             login,
             resetPw
         } = this.props;
+
         const path = location.pathname;
+
         switch(true) {
             case path.includes('signup'):
                 return signup({
@@ -70,7 +72,7 @@ class AuthPage extends Component {
     render() {
         const {user, usernameVal, passwordVal, password2Val, saveDataVal, authErrorVal} = this.props;
         return (
-            <div id="loginBox">
+            <div id="auth_page">
                 {user || ''}
                 <div id="authError">{authErrorVal || ''}</div>
                 {this.props.children && React.cloneElement(
@@ -82,11 +84,9 @@ class AuthPage extends Component {
                         usernameVal,
                         passwordVal,
                         password2Val,
-                        saveDataVal
+                        saveDataVal,
                     }
                 )}
-                <SaveDataCheckbox handleCheck={this.handleCheck} />
-                <button onClick={this.authSubmit}>Submit</button>
             </div>
         );
     }

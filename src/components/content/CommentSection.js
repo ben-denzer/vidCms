@@ -20,17 +20,18 @@ const CommentSection = (props) => {
                 <h5 id="comment_header">Comments</h5>
                 {comments}
             </div>
-            <p id="add_comment">Add Comment</p>
             <div id="comment_editor_container">
+                <p id="add_comment">Add Comment</p>
                 {
                     token ?
                         <textarea onChange={handleChange} id="comment_editor" value={commentVal} /> :
                         <p>
-                            <span className="link" onClick={() => browserHistory.push("auth/login")}>Log In</span> or
-                            <span className="link" onClick={() => browserHistory.push("auth/signup")}>Sign Up</span> to Comment
+                            <span className="link" onClick={() => browserHistory.push("auth/login")}>
+                                Log In</span> or <span className="link" onClick={() => browserHistory.push("auth/signup")}>
+                                Sign Up</span> to Comment
                         </p>
                 }
-                <button onClick={submitComment}>Submit</button>
+                {token && <button onClick={submitComment}>Submit</button>}
             </div>
         </div>
     );
