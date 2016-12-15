@@ -12,13 +12,17 @@ class AdminPage extends React.Component {
         !this.props.admin && nextProps.admin && this.props.getAdminData(nextProps.user.token);
     }
     render() {
-        console.log(this.props.user);
-        if (!this.props.admin) return <div>Log In To Continue</div>
+        console.log(this.props.allData);
+        if (!this.props.admin) return <div id="admin_page">Log In To Continue</div>
         return (
             <div id="admin_page">
-                <div className="admin-button" onClick={() => browserHistory.push('admin/upload')}>Upload Videos</div>
-                <div className="admin-button" onClick={() => browserHistory.push('admin/users')}>Manage Users</div>
-                {this.props.children}
+                <div id="admin_sidebar">
+                    <div className="admin-button" onClick={() => browserHistory.push('/admin/upload')}>Upload Videos</div>
+                    <div className="admin-button" onClick={() => browserHistory.push('/admin/users')}>Manage Users</div>
+                </div>
+                <div id="admin_main">
+                    {this.props.children}
+                </div>
             </div>
         );
     }
@@ -28,7 +32,8 @@ const mapStateToProps = (state) => {
     return {
         user: state.user,
         admin: state.user.admin,
-        route: state.routing
+        route: state.routing,
+        allData: state.admin
     };
 }
 

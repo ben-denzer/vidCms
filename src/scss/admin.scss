@@ -1,61 +1,100 @@
 #admin_page {
     @include insidepage;
-    padding: 15px;
+    background: $color1;
+    display: flex;
 
-    #upload_page {
-        width: 95%;
-        background-color: #fff;
-        margin: 0 auto;
-        padding: 15px;
+    @media (max-width: 600px) {
+        flex-direction: column;
+    }
+
+    #admin_sidebar {
+        width: 200px;
+        padding: 0 20px;
         display: flex;
         flex-direction: column;
-        align-items: center;
+        border-right: 2px solid black;
 
-        .upload-box {
-            width: 80%;
+        @media (max-width: 600px) {
+            width: 100%;
+            flex-flow: row wrap;
+            justify-content: center;
+            border-right: 0;
+            border-bottom: 1px solid black;
+        }
 
-            .error-box {
-                width: 100%;
-                text-align: center;
+        .admin-button {
+            font-size: 18px;
+            padding: 5px 15px;
+
+            &:hover {
+                color: blue;
+                text-decoration: underline;
+                cursor: pointer;
             }
-            .radio-box {
-                display: flex;
+        }
+    }
 
-                .radio-col {
+    #admin_main {
+        width: calc(100% - 200px);
+
+        @media (max-width: 600px) {
+            width: 100%;
+        }
+
+        #upload_page {
+            width: 95%;
+            background-color: #fff;
+            margin: 0 auto;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            .upload-box {
+                width: 100%;
+
+                .radio-box {
                     display: flex;
-                    flex-direction: column;
 
-                    input {
-                        margin-left: 20px;
+                    .radio-col {
+                        display: flex;
+                        flex-direction: column;
+
+                        input {
+                            margin-left: 20px;
+                        }
                     }
                 }
-            }
-            #dropzone {
-                width: 100%;
-                text-align: center;
-                margin-top: 15px;
-                margin-bottom: -20px;
-
-                div {
-                    width: 100% !important;
-                    height: 75px !important;
+                #dropzone {
+                    width: 100%;
+                    text-align: center;
+                    margin-top: 15px;
+                    margin-bottom: -20px;
 
                     div {
-                        padding-top: 15px;
+                        width: 100% !important;
+                        height: 75px !important;
+
+                        div {
+                            padding-top: 15px;
+                        }
+                    }
+                    button {
+                        margin: 10px auto;
                     }
                 }
-                button {
-                    margin: 10px auto;
-                }
-            }
-            .text-input {
-                margin-top: 20px;
-                span {
-                    display: block;
-                    margin-top: 15px;
-                }
-                input {
-                    width: 100%;
+                .text-input {
+                    margin-top: 20px;
+                    width: 95%;
+
+                    span {
+                        display: block;
+                        margin-top: 15px;
+                    }
+
+                    input {
+                        width: 100%;
+                    }
                 }
             }
         }

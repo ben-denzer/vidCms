@@ -5,12 +5,12 @@ import {apiPromise} from './apiPromise';
 const getAdminData = (token, dispatch) => {
     return (dispatch) => {
         apiPromise({token}, 'admin/getData').then(
-            (data) => {
-                return dispatch({type: types.ADMIN_DATA_SUCCESS, data})
+            (allData) => {
+                return dispatch({type: types.ADMIN_DATA_SUCCESS, allData})
             },
             (err) => {
                 if (err === 'unauthorized') {
-                    return dispatch({type: types.AUTH_ERROR, error: 'unauthorized'});
+                    return dispatch({type: types.NEW_MESSAGE, error: 'You need to be logged in to access this.'});
                 } else {
                     return dispatch({type: types.NEW_MESSAGE, messageType: 'error', text: 'Network Error, Please Try Again'});
                 }

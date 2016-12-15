@@ -48,7 +48,6 @@ class UploadForm extends React.Component {
             <div id="upload_page">
                 <h1>Upload</h1>
                 <form className="upload-box">
-                    <div className="error-box">{this.props.error || 'no error'}</div>
                     <div className="radio-box">
                         <div className="radio-col">
                             <label>

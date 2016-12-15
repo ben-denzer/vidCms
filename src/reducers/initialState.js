@@ -34,5 +34,6 @@ export default {
         },
         recentVideos: []
     },
-    comments: []
+    comments: [],
+    admin: []
 };
