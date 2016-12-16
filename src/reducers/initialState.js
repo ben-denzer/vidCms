@@ -35,5 +35,11 @@ export default {
         recentVideos: []
     },
     comments: [],
-    admin: []
+    admin: {
+        adminData: {
+            users: [],
+            comments: [],
+            videos: []
+        }
+    }
 };

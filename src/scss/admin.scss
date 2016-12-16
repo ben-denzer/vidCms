@@ -98,5 +98,39 @@
                 }
             }
         }
+        select {
+            margin-left: 10px;
+        }
+        .admin-table {
+            min-width: 100%;
+            margin: 20px auto 20px 10px;
+            border: 2px solid black;
+            border-collapse: collapse;
+
+            tr {
+                &:nth-child(even) {
+                    background-color: #eee;
+                }
+
+                &:hover {
+                    td {
+                        background-color: $color3;
+                        color: $color1;
+                        cursor: pointer;
+                    }
+                }
+
+                th {
+                    padding: 0 10px;
+                    background-color: #ccc;
+                    border: 1px solid black;
+                }
+
+                td {
+                    border: 1px solid black;
+                    padding: 0 10px;
+                }
+            }
+        }
     }
 }
