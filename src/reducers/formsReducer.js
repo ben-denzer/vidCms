@@ -1,7 +1,6 @@
 import initialState from './initialState';
 
 export default function(state = initialState.forms, action) {
-    console.log('formsReducer', action.type)
     switch(action.type) {
         case 'AUTH_ERROR':
             return Object.assign({}, state, {authErrorVal: action.error});

@@ -1,74 +1,34 @@
 import React from 'react';
-import {parseDate} from '../../logic/shared';
+import {parseDate, userSort} from '../../logic/shared';
 
 class ManageUsers extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             users: this.props.users,
-            select: 'old-new',
-            radio: 'allUsers'
+            sortBy: 'A-Z',
+            filterBy: 'allUsers'
         };
         this.handleRadioChange = this.handleRadioChange.bind(this);
-        this.filter = this.filter.bind(this);
         this.handleSort=  this.handleSort.bind(this);
-        this.sort = this.sort.bind(this);
     }
     componentWillReceiveProps(nextProps) {
-        if (!this.state.users.length && nextProps.users.length) {
-            this.setState({users: nextProps.users});
-        }
+        const {users, sortBy, filterBy} = this.state;
+        if (!users.length && nextProps.users.length) userSort(nextProps.users, sortBy, filterBy).then(users => this.setState({users}));
     }
     handleSort(e) {
         this.setState({select: e.target.value});
-        this.sort();
+        userSort(this.props.users, e.target.value, this.state.filterBy).then(users => this.setState({users}));
     }
     handleRadioChange(e) {
-        this.setState({radio: e.target.id});
-        this.filter(e.target.id);
-    }
-    filter(type = this.state.select) {
-        let newSet;
-        switch(type) {
-            case 'allUsers':
-                newSet = this.props.users.filter(a => a);
-                break;
-            case 'free':
-                newSet = this.props.users.filter(a => !a.premium);
-                break;
-            case 'premium':
-                newSet = this.props.users.filter(a => a.premium);
-                break;
-            default:
-                break;
-        }
-        this.setState({users: newSet});
-        this.sort(newSet);
-    }
-    sort(users = this.state.users) {
-        let newSet;
-        switch(this.state.select) {
-            case 'A-Z':
-                newSet = users.sort((a,b) => a.username.toUpperCase() < b.username.toUpperCase());
-                break;
-            case 'Z-A':
-                newSet = users.sort((a,b) => a.username.toUpperCase() > b.username.toUpperCase());
-                break;
-            case ('new-old'):
-                newSet = users.sort((a,b) => a.signup_date > b.signup_date);
-                break;
-            case 'old-new':
-                newSet = users.sort((a,b) => a.signup_date < b.signup_date);
-                break;
-            default:
-                break;
-        }
-        this.setState({users: newSet});
+        console.log(e.target.id);
+        this.setState({filterBy: e.target.id});
+        userSort(this.props.users, this.state.sortBy, e.target.id).then(users => this.setState({users}));
     }
     render() {
-        const {radio, select, users} = this.state;
+        const {sortBy, filterBy, users} = this.state;
         let rows = <tr><td colSpan="8">No Data</td></tr>
-        console.log(this.props);
+        console.log('users', users, 'len', users.length)
         if (users && users.length) {
             rows = users.map(a => {
                 return (
@@ -91,7 +51,7 @@ class ManageUsers extends React.Component {
                             <input
                                 type="radio"
                                 id="allUsers"
-                                checked={radio === 'allUsers'}
+                                checked={filterBy === 'allUsers'}
                                 onChange={this.handleRadioChange}
                             />
                             All Users
@@ -100,7 +60,7 @@ class ManageUsers extends React.Component {
                             <input
                                 type="radio"
                                 id="premium"
-                                checked={radio === 'premium'}
+                                checked={filterBy === 'premium'}
                                 onChange={this.handleRadioChange}
                             />
                             Premium Members
@@ -109,17 +69,17 @@ class ManageUsers extends React.Component {
                             <input
                                 type="radio"
                                 id="free"
-                                checked={radio === 'free'}
+                                checked={filterBy === 'free'}
                                 onChange={this.handleRadioChange}
                             />
                             Free Users
                         </label>
                     </div>
-                    <select id="user-sort" className="admin-sort" value={this.state.select} onChange={this.handleSort}>
-                        <option value="old-new">Oldest to Newest</option>
-                        <option value="new-old">Newest to Oldest</option>
+                    <select id="user-sort" className="admin-sort" value={sortBy} onChange={this.handleSort}>
                         <option value="A-Z">A-Z</option>
                         <option value="Z-A">Z-A</option>
+                        <option value="old-new">Oldest to Newest</option>
+                        <option value="new-old">Newest to Oldest</option>
                     </select>
                 </div>
                 <table className="admin-table">
