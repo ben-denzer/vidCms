@@ -16,6 +16,7 @@ import SignupForm               from './components/auth/SignupForm';
 import PremiumVideoPage         from './components/content/PremiumVideoPage';
 import ResetForm                from './components/auth/ResetForm';
 import UploadForm               from './containers/UploadForm';
+import UserPage                 from './components/admin/UserPage';
 import VideoHome                from './containers/VideoHome';
 
 export default (
@@ -26,6 +27,7 @@ export default (
         <Route path="admin" component={AdminPage}>
             <Route path="upload" component={UploadForm} />
             <Route path="users" component={ManageUsers} />
+            <Route path="users/:id" component={UserPage} />
         </Route>
         <Route path="auth/" component={AuthPage}>
             <Route path="login" component={LoginForm} />

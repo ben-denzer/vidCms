@@ -1,4 +1,5 @@
 import React from 'react';
+import {browserHistory} from 'react-router';
 import {parseDate, userSort} from '../../logic/shared';
 
 class ManageUsers extends React.Component {
@@ -17,13 +18,12 @@ class ManageUsers extends React.Component {
         if (!users.length && nextProps.users.length) userSort(nextProps.users, sortBy, filterBy).then(users => this.setState({users}));
     }
     handleSort(e) {
-        this.setState({select: e.target.value});
-        userSort(this.props.users, e.target.value, this.state.filterBy).then(users => this.setState({users}));
+        const tempVal = e.target.value;
+        userSort(this.props.users, e.target.value, this.state.filterBy).then(users => this.setState({users, sortBy: tempVal}));
     }
     handleRadioChange(e) {
-        console.log(e.target.id);
-        this.setState({filterBy: e.target.id});
-        userSort(this.props.users, this.state.sortBy, e.target.id).then(users => this.setState({users}));
+        const tempVal = e.target.id;
+        userSort(this.props.users, this.state.sortBy, e.target.id).then(users => this.setState({users, filterBy: tempVal}));
     }
     render() {
         const {sortBy, filterBy, users} = this.state;
@@ -32,7 +32,7 @@ class ManageUsers extends React.Component {
         if (users && users.length) {
             rows = users.map(a => {
                 return (
-                    <tr key={a.user_id}>
+                    <tr key={a.user_id} onClick={() => browserHistory.push(`/admin/users/${a.user_id}`)}>
                         <td>{a.username}</td>
                         <td>{a.email}</td>
                         <td>{parseDate(a.signup_date)}</td>
