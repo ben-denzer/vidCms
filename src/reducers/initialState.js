@@ -40,6 +40,9 @@ export default {
             users: [],
             comments: [],
             videos: []
-        }
+        },
+    },
+    trashCan: {
+        commentTrashCan: []
     }
 };

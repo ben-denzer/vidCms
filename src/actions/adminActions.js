@@ -19,4 +19,32 @@ const getAdminData = (token, dispatch) => {
     }
 }
 
-export {getAdminData};
+function deleteComments(token, trash) {
+    return (dispatch) => {
+        apiPromise({token, trash}, '/admin/deleteComments').then(
+            () => {
+                dispatch({type: types.DELETE_ITEMS, trash});
+            },
+            (err) => {
+                if (err === 'unauthorized') {
+                    return dispatch({type: types.NEW_MESSAGE, error: 'You need to be logged in to access this.'});
+                } else {
+                    return dispatch({type: types.NEW_MESSAGE, messageType: 'error', text: 'Network Error, Please Try Again'});
+                }
+            }
+        );
+    };
+}
+
+function putCommentInTrash(token, comment_id, trash) {
+    const itemsToRemove = [...trash, comment_id];
+    return (dispatch) => {
+        if (window.undoTimer) {
+            clearTimeout(window.undoTimer);
+        }
+        window.undoTimer = setTimeout(() => dispatch(deleteComments(token, itemsToRemove)), 7000);
+        return dispatch({type: types.TRASH_COMMENT, itemsToRemove});
+    };
+}
+
+export {getAdminData, putCommentInTrash};

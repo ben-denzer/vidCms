@@ -6,6 +6,7 @@ import message      from './messageReducer';
 import content      from './contentReducer';
 import comments     from './commentsReducer';
 import admin        from './adminReducer';
+import trashCan     from './trashCanReducer';
 
 const rootReducer = combineReducers({
     user,
@@ -14,6 +15,7 @@ const rootReducer = combineReducers({
     content,
     comments,
     admin,
+    trashCan,
     routing: routerReducer
 });
 

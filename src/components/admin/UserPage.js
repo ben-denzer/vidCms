@@ -2,7 +2,7 @@ import React from 'react';
 import {parseDate} from '../../logic/shared';
 
 const UserPage = (props) => {
-    const {users, comments, videos, params} = props;
+    const {users, comments, videos, params, removeComment} = props;
     const thisUser = users.length && users.filter(a => a.user_id.toString() === params.id.toString())[0];
     let rows = <tr><td colSpan="3">No Comments Found</td></tr>;
 
@@ -15,6 +15,7 @@ const UserPage = (props) => {
                     <td>{parseDate(comment.comment_date)}</td>
                     <td>{videoName}</td>
                     <td>{comment.comment_text}</td>
+                    <td className="remove-comment" id={`comment${comment.comment_id}`}onClick={removeComment} />
                 </tr>
             );
         });
@@ -43,12 +44,13 @@ const UserPage = (props) => {
                     : null
                 }
                 <div><strong>Comments</strong></div>
-                <table id="comments_table">
+                <table id="comments_table" className="admin-table">
                     <thead>
                         <tr>
                             <th>Date</th>
                             <th>Video</th>
                             <th>Comment</th>
+                            <th>Remove</th>
                         </tr>
                     </thead>
                     <tbody>
