@@ -19,7 +19,7 @@ const App = (props) => {
 const mapStateToProps = (state) => {
     return {
         user: state.user,
-        message: state.message
+        message: state.message,
     };
 };
 

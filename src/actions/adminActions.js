@@ -19,11 +19,12 @@ const getAdminData = (token, dispatch) => {
     }
 }
 
-function deleteComments(token, trash) {
+function deleteComments(token, trash, allComments) {
+    console.log('deleteComments - trash', trash, 'allComments', allComments);
     return (dispatch) => {
-        apiPromise({token, trash}, '/admin/deleteComments').then(
+        apiPromise({token, trash}, 'admin/deleteComments').then(
             () => {
-                dispatch({type: types.DELETE_ITEMS, trash});
+                dispatch({type: types.DELETE_COMMENTS_SUCCESS, trash, allComments});
             },
             (err) => {
                 if (err === 'unauthorized') {
@@ -36,13 +37,14 @@ function deleteComments(token, trash) {
     };
 }
 
-function putCommentInTrash(token, comment_id, trash) {
+function putCommentInTrash(token, comment_id, trash, comments) {
     const itemsToRemove = [...trash, comment_id];
+    console.log('adminActions putCommentInTrash - itemsToRemove', itemsToRemove, 'comment_id', comment_id, 'trash', trash, 'comments', comments);
     return (dispatch) => {
         if (window.undoTimer) {
             clearTimeout(window.undoTimer);
         }
-        window.undoTimer = setTimeout(() => dispatch(deleteComments(token, itemsToRemove)), 7000);
+        window.undoTimer = setTimeout(() => dispatch(deleteComments(token, itemsToRemove, comments)), 1000);
         return dispatch({type: types.TRASH_COMMENT, itemsToRemove});
     };
 }

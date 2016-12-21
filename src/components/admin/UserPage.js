@@ -19,9 +19,7 @@ const UserPage = (props) => {
                 </tr>
             );
         });
-        console.log('final', rows);
     }
-
 
     return (
         <div id="user_page">
