@@ -98,14 +98,27 @@
                 }
             }
         }
+
+        #user_page {
+            h4 {
+                width: 100%;
+                text-align: center;
+            }
+            p {
+                margin-left: 10px;
+                font-size: 18px;
+            }
+        }
+
         select {
             margin-left: 10px;
         }
         .admin-table {
             min-width: 100%;
-            margin: 20px auto 20px 10px;
+            margin: 20px 10px;
             border: 2px solid black;
             border-collapse: collapse;
+            font-size: 14px;
 
             tr {
                 &:nth-child(even) {
