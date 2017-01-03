@@ -51,4 +51,9 @@ const parseDate = (str) => {
     return `${d[1]}-${d[2].slice(0,2)}-${d[0]}`
 };
 
-export {parseDate, userSort};
+const unescapeLinks = (text, cb) => {
+    if (!text) return cb('');
+    cb(null, 'changed');
+};
+
+export {parseDate, userSort, unescapeLinks};
