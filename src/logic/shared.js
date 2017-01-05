@@ -51,9 +51,12 @@ const parseDate = (str) => {
     return `${d[1]}-${d[2].slice(0,2)}-${d[0]}`
 };
 
-const unescapeLinks = (text, cb) => {
-    if (!text) return cb('');
-    cb(null, 'changed');
+const unescapeLinks = (text) => {
+    return new Promise((resolve) => {
+        if (!text) return resolve('');
+        const pattern = /(https?:\/\/)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g;
+        resolve(text.replace(pattern, (match) => `<a target="_blank" href="${match}">${match}</a>`));
+    });
 };
 
 export {parseDate, userSort, unescapeLinks};

@@ -18,7 +18,6 @@ class AdminPage extends React.Component {
     render() {
         if (!this.props.admin) return <div id="admin_page">Log In To Continue</div>
         const {users, comments, videos} = this.props.allData;
-        console.log('adminPage render - comments', comments,'trash', this.props.commentTrashCan);
         return (
             <div id="admin_page">
                 <div id="admin_sidebar">
