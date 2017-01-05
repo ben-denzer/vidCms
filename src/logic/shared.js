@@ -53,8 +53,10 @@ const parseDate = (str) => {
 
 const unescapeLinks = (text) => {
     return new Promise((resolve) => {
+        console.log('logic', text);
         if (!text) return resolve('');
         const pattern = /(https?:\/\/)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g;
+        console.log('logic final', text.replace(pattern, (match) => `<a target="_blank" href="${match}">${match}</a>`))
         resolve(text.replace(pattern, (match) => `<a target="_blank" href="${match}">${match}</a>`));
     });
 };

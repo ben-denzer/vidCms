@@ -1,5 +1,6 @@
 import * as types from '../constants/actionTypes';
 import {apiPromise, uploadPremiumPromise} from './apiPromise';
+import {unescapeLinks} from '../logic/shared';
 
 function editorChange(currentState) {
     return {type: types.EDITOR_CHANGE, currentState};
@@ -28,16 +29,22 @@ function submitUploadFree(options, dispatch) {
     options.placeholderUrl = tempUrl.slice(tempUrl.lastIndexOf('/'));
 
     return (dispatch) => {
-        apiPromise(options, 'admin/uploadFree').then(
-            () => dispatch({type: types.UPLOAD_SUCCESS}),
-            (err) => {
-                if (err === 'unauthorized') {
-                    return dispatch({type: types.AUTH_ERROR, error: 'unauthorized'});
-                } else {
-                    return dispatch({type: types.NEW_MESSAGE, messageType: 'error', text: 'Network Error, Please Try Again'});
-                }
+        console.log('options', options, 'editorHtml', options.editorHtml);
+        unescapeLinks(options.editorHtml).then(
+            (finalText) => {
+                options = Object.assign({}, options, {editorHtml: finalText})
+                apiPromise(options, 'admin/uploadFree').then(
+                    () => dispatch({type: types.UPLOAD_SUCCESS}),
+                    (err) => {
+                        if (err === 'unauthorized') {
+                            return dispatch({type: types.AUTH_ERROR, error: 'unauthorized'});
+                        } else {
+                            return dispatch({type: types.NEW_MESSAGE, messageType: 'error', text: 'Network Error, Please Try Again'});
+                        }
+                    }
+                )
             }
-        )
+        ).catch(() => dispatch({type: types.NEW_MESSAGE, messageType: 'error', text: 'Network Error, Please Try Again'}));
     }
 }
 
