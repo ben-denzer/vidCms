@@ -7,7 +7,6 @@ export default function(state = initialState.forms, action) {
         case 'COMMENT_SUBMITTED':
             return Object.assign({}, state, {commentVal: ''});
         case 'EDITOR_CHANGE':
-            console.log(action.currentState);
             return Object.assign({}, state, {editorHtml: action.currentState});
         case 'EMAIL_SUCCESS':
             return Object.assign({}, state, {emailVal: ''});

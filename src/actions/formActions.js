@@ -29,7 +29,6 @@ function submitUploadFree(options, dispatch) {
     options.placeholderUrl = tempUrl.slice(tempUrl.lastIndexOf('/'));
 
     return (dispatch) => {
-        console.log('options', options, 'editorHtml', options.editorHtml);
         unescapeLinks(options.editorHtml).then(
             (finalText) => {
                 options = Object.assign({}, options, {editorHtml: finalText})
