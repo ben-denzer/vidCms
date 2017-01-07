@@ -48,11 +48,13 @@ const uploadPremiumPromise = (options, url) => {
 
         let formData = new FormData();
         for (let i in options) {
-            if (options.hasOwnProperty(i) && i !== 'videoInputFile') {
+            if (options.hasOwnProperty(i) && !/file/i.test(i)) {
                 formData.append(i, options[i]);
             }
         }
-        formData.append('video', options.videoInputFile);
+        options.videoInputFile && formData.append('video', options.videoInputFile);
+        options.inputFile && formData.append('image', options.inputFile);
+
         req.send(formData);
     });
 };
