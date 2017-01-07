@@ -63,8 +63,8 @@ class UploadForm extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        blogTitleVal: state.forms.videoTitleVal,
-        blogHeadlineVal: state.forms.videoHeadlineVal,
+        blogTitleVal: state.forms.blogTitleVal,
+        blogHeadlineVal: state.forms.blogHeadlineVal,
         editorHtml: state.forms.editorHtml,
         error: state.message.error
     }
