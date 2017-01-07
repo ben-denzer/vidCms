@@ -11,18 +11,21 @@ export default {
         info: ''
     },
     forms: {
-        usernameVal: '',
+        authErrorVal: '',
+        blogTitleVal: '',
+        blogHeadlineVal: '',
+        commentVal: '',
+        editorHtml: '',
+        emailVal: '',
+        inputFile: [],
         passwordVal: '',
         password2Val: '',
-        emailVal: '',
         saveDataVal: false,
-        authErrorVal: '',
-        editorHtml: '',
+        usernameVal: '',
         videoInputFile: [],
         videoTitleVal: '',
         videoHeadlineVal: '',
         youtubeUrlVal: '',
-        commentVal: ''
     },
     content: {
         allVideos: {},

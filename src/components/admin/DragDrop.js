@@ -18,7 +18,7 @@ class DragDrop extends React.Component {
         return (
             <div id="dropzone">
                 <Dropzone ref="dropzone" onDrop={this.onDrop} >
-                    <div>{!this.props.file.length ? 'Drop video here, or click to select files to upload.' : 'Uploaded'}</div>
+                    <div>{!this.props.file.length ? 'Drop file here, or click to select files to upload.' : 'Uploaded'}</div>
                 </Dropzone>
                 <button type="button" onClick={this.onOpenClick}>
                     Open

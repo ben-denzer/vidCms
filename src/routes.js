@@ -6,6 +6,7 @@ import AccountPage              from './containers/AccountPage';
 import AdminPage                from './containers/AdminPage';
 import App                      from './containers/App';
 import AuthPage                 from './containers/AuthPage';
+import BlogUploadForm           from './containers/BlogUploadForm';
 import ContactPage              from './components/ContactPage';
 import FreeVideoPage            from './components/content/FreeVideoPage';
 import ForgotPwForm             from './components/auth/ForgotPwForm';
@@ -15,7 +16,7 @@ import ManageUsers              from './components/admin/ManageUsers';
 import SignupForm               from './components/auth/SignupForm';
 import PremiumVideoPage         from './components/content/PremiumVideoPage';
 import ResetForm                from './components/auth/ResetForm';
-import UploadForm               from './containers/UploadForm';
+import VideoUploadForm          from './containers/VideoUploadForm';
 import UserPage                 from './components/admin/UserPage';
 import VideoHome                from './containers/VideoHome';
 
@@ -25,7 +26,8 @@ export default (
         <Route path="about" component={AboutPage} />
         <Route path="account" component={AccountPage} />
         <Route path="admin" component={AdminPage}>
-            <Route path="upload" component={UploadForm} />
+            <Route path="upload/video" component={VideoUploadForm} />
+            <Route path="upload/blog" component={BlogUploadForm} />
             <Route path="users" component={ManageUsers} />
             <Route path="users/:id" component={UserPage} />
         </Route>

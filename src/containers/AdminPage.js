@@ -21,7 +21,8 @@ class AdminPage extends React.Component {
         return (
             <div id="admin_page">
                 <div id="admin_sidebar">
-                    <div className="admin-button" onClick={() => browserHistory.push('/admin/upload')}>Upload Videos</div>
+                    <div className="admin-button" onClick={() => browserHistory.push('/admin/upload/video')}>Upload Videos</div>
+                    <div className="admin-button" onClick={() => browserHistory.push('/admin/upload/blog')}>Upload Blog</div>
                     <div className="admin-button" onClick={() => browserHistory.push('/admin/users')}>Manage Users</div>
                 </div>
                 <div id="admin_main">

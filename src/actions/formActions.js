@@ -18,6 +18,21 @@ function handleFileUpload(file) {
     return {type: types.FILE_UPLOAD, file};
 }
 
+function submitBlog(options, dispatch) {
+    return (dispatch) => {
+        uploadPremiumPromise(options, 'uploadBlog').then(
+            () => dispatch({type: types.UPLOAD_SUCCESS}),
+            (err) => {
+                if (err === 'unauthorized') {
+                    return dispatch({type: types.AUTH_ERROR, error: 'unauthorized'});
+                } else {
+                    return dispatch({type: types.NEW_MESSAGE, messageType: 'error', text: 'Network Error, Please Try Again'});
+                }
+            }
+        )
+    }
+}
+
 function submitUploadFree(options, dispatch) {
     if (!options.videoTitleVal) return {type: types.NEW_MESSAGE, messageType: 'error', text: 'Please Add Title'};
     if (!options.videoHeadlineVal) return {type: types.NEW_MESSAGE, messageType: 'error', text: 'Please Add Title'};
@@ -67,6 +82,7 @@ export {
     handleTextChange,
     handleCheck,
     handleFileUpload,
+    submitBlog,
     submitUploadFree,
     submitUploadPremium
 };
