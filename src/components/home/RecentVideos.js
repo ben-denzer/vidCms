@@ -18,8 +18,8 @@ const RecentVideos = (props) => {
         });
     }
     return (
-        <div id="recent_videos_container">
-            <div id="recent_videos">
+        <div id="recent_videos_container" className="hpt-content-container">
+            <div id="recent_videos" className="hpt-content-inner">
                 {videos || 'Error Loading Recent Videos, Please Refresh Your Browser'}
             </div>
         </div>

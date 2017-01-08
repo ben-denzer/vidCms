@@ -43,6 +43,10 @@ const userSort = (array, sortBy, filterBy) => {
     });
 };
 
+const createMarkup = (str) => {
+    if (/<script/.test(str.toString())) return {__html: ''}
+    return {__html: str.toString()};
+}
 
 const parseDate = (str) => {
     if (!str) return 'now';
@@ -65,4 +69,4 @@ const unescapeLinks = (text) => {
     });
 };
 
-export {parseDate, userSort, unescapeLinks};
+export {createMarkup, parseDate, userSort, unescapeLinks};

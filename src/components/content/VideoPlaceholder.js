@@ -4,7 +4,7 @@ import {browserHistory} from 'react-router';
 const VideoPlaceholder = (props) => {
     const {title, headline, id, placeholder_url} = props;
     return (
-        <div className="video-placeholder-container">
+        <div className="content-placeholder-container">
             <div>
                 <h2>{title}</h2>
                 <h3>{headline}</h3>
