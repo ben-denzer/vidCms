@@ -5,12 +5,28 @@ const clearCurrentVideo = () => {
     return {type: types.CLEAR_CURRENT_VIDEO};
 };
 
-const getAllVideos = (dispatch) => {
-    return () => {
+const getAllBlogs = () => {
+    return (dispatch) => {
+        apiPromise({}, 'public/getAllBlogs').then(
+            (allBlogs) => dispatch({type: types.ALL_BLOGS_SUCCESS, allBlogs}),
+            () => dispatch({type: types.NEW_MESSAGE, messageType: 'error', text: 'Network Error, Please Try Again'})
+        );
+    }
+};
+
+const getAllVideos = () => {
+    return (dispatch) => {
         apiPromise({}, 'public/getAllVideos').then(
             (allVideos) => dispatch({type: types.ALL_VIDEOS_SUCCESS, allVideos}),
             () => dispatch({type: types.NEW_MESSAGE, messageType: 'error', text: 'Network Error, Please Try Again'})
         );
+    }
+};
+
+const getAllContent = () => {
+    return (dispatch) => {
+        dispatch(getAllBlogs());
+        dispatch(getAllVideos());
     }
 };
 
@@ -32,4 +48,4 @@ const getPremiumVideo = (video_id, token, dispatch) => {
     }
 }
 
-export {clearCurrentVideo, getAllVideos, getFreeVideo, getPremiumVideo};
+export {clearCurrentVideo, getAllContent, getFreeVideo, getPremiumVideo};

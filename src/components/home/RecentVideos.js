@@ -6,7 +6,7 @@ const RecentVideos = (props) => {
     if (props.allVideos.length) {
         videos = props.allVideos.slice(0,3).map(a => {
             return <VideoPlaceholder
-                key={a.video_title}
+                key={a.video_id}
                 id={a.video_id}
                 title={a.video_title || ''}
                 headline={a.video_headline || ''}

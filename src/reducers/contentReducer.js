@@ -2,6 +2,8 @@ import initialState from './initialState';
 
 export default function(state = initialState.content, action) {
     switch(action.type) {
+        case 'ALL_BLOGS_SUCCESS':
+            return Object.assign({}, state, {allBlogs: action.allBlogs});
         case 'ALL_VIDEOS_SUCCESS':
             return Object.assign({}, state, {allVideos: action.allVideos});
         case 'CLEAR_CURRENT_VIDEO':

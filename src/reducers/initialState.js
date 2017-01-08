@@ -29,11 +29,18 @@ export default {
     },
     content: {
         allVideos: {},
+        allBlogs: {},
         currentVideo: {
             video_title: '',
             video_headline: '',
             video_url: '',
             video_text: '',
+        },
+        currentBlog: {
+            blog_title: '',
+            blog_headline: '',
+            blog_url: '',
+            blog_text: '',
         },
         recentVideos: []
     },

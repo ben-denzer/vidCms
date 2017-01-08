@@ -7,11 +7,11 @@ import configureStore from './store/configureStore';
 import {syncHistoryWithStore} from 'react-router-redux';
 import './scss/main.scss';
 import {checkForToken} from './actions/authActions';
-import {getAllVideos} from './actions/contentActions'
+import {getAllContent} from './actions/contentActions'
 
 const store = configureStore();
 store.dispatch(checkForToken());
-store.dispatch(getAllVideos(store.dispatch));
+store.dispatch(getAllContent());
 const history= syncHistoryWithStore(browserHistory, store);
 
 ReactDOM.render(
