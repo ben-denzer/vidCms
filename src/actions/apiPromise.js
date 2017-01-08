@@ -1,6 +1,6 @@
 const apiUrl = process.env['NODE_ENV'] === 'development' ?
     'http://localhost:8000/' :
-    'https://bdenzer.xyz/equinimity/';
+    'https://bdenzer.com/blogApi/';
 
 const apiPromise = (options, url) => {
     return new Promise((resolve, reject) => {

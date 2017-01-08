@@ -6,6 +6,7 @@ import AccountPage              from './containers/AccountPage';
 import AdminPage                from './containers/AdminPage';
 import App                      from './containers/App';
 import AuthPage                 from './containers/AuthPage';
+import BlogPage                 from './components/BlogPage';
 import BlogUploadForm           from './containers/BlogUploadForm';
 import ContactPage              from './components/ContactPage';
 import FreeVideoPage            from './components/content/FreeVideoPage';
@@ -38,6 +39,7 @@ export default (
             <Route path="reset/*" component={ResetForm} />
         </Route>
         <Route path="contact" component={ContactPage} />
+        <Route path="read/:post_url" component={BlogPage} />
         <Route path="watch">
             <Route path="free/:id" component={FreeVideoPage} />
             <Route path="premium/:id" component={PremiumVideoPage} />

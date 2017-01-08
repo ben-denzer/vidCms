@@ -1,6 +1,5 @@
 import React from 'react';
 import {connect} from 'react-redux';
-//import {browserHistory} from 'react-router';
 import VideoContent from '../components/content/VideoContent';
 import Upgrade from '../components/content/Upgrade';
 
@@ -12,7 +11,6 @@ class VideoPage extends React.Component {
     }
     componentWillMount() {
         const currentVideo = this.props.videos.filter(a => a.video_id === this.props.params.id);
-        console.log(currentVideo);
         currentVideo.length ?
             this.setState({currentVideo: currentVideo[0]}) :
             this.setState({currentVideo: {error: 'Page Not Found'}});
