@@ -19,6 +19,9 @@ function handleFileUpload(file) {
 }
 
 function submitBlog(options, dispatch) {
+    if (!options.blogTitleVal) return {type: types.NEW_MESSAGE, messageType: 'error', text: 'Please Add Title'};
+    if (!options.editorHtml) return {type: types.NEW_MESSAGE, messageType: 'error', text: 'Post Can\'t Be Empty'};
+
     return (dispatch) => {
         uploadPremiumPromise(options, 'uploadBlog').then(
             () => dispatch({type: types.UPLOAD_SUCCESS}),
@@ -35,7 +38,6 @@ function submitBlog(options, dispatch) {
 
 function submitUploadFree(options, dispatch) {
     if (!options.videoTitleVal) return {type: types.NEW_MESSAGE, messageType: 'error', text: 'Please Add Title'};
-    if (!options.videoHeadlineVal) return {type: types.NEW_MESSAGE, messageType: 'error', text: 'Please Add Title'};
     if (!options.youtubeUrlVal) return {type: types.NEW_MESSAGE, messageType: 'error', text: 'Please Add Embed Code'};
 
     const tempUrl = options.youtubeUrlVal.split('"').filter(a => /^http/.test(a));
@@ -63,6 +65,8 @@ function submitUploadFree(options, dispatch) {
 }
 
 function submitUploadPremium(options, dispatch) {
+    if (!options.videoTitleVal) return {type: types.NEW_MESSAGE, messageType: 'error', text: 'Please Add Title'};
+
     return (dispatch) => {
         uploadPremiumPromise(options, 'uploadPremium').then(
             () => dispatch({type: types.UPLOAD_SUCCESS}),
