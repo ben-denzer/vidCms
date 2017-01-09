@@ -23,9 +23,9 @@ const BlogPage = (props) => {
     // Set default image to JS logo hosted on main domain, check for custom blog image
     let blogImageUrl = 'https://bdenzer.com/images/js.png';
     if (props.allImages.length) {
-        const customImage = props.allImages.filter(a => a.blog_fk === blog_id)[0].image_url;
+        const customImage = props.allImages.filter(a => a.blog_fk === blog_id)[0];
 
-        if (customImage) blogImageUrl = `${apiUrl}${customImage}`;
+        if (customImage) blogImageUrl = `${apiUrl}${customImage.image_url}`;
     }
 
     return (
@@ -35,8 +35,10 @@ const BlogPage = (props) => {
                 <h2>{blog_headline}</h2>
             </div>
             <div id="blog_post_container">
-                <div><img src={blogImageUrl} alt={blog_title} /></div>
-                <div dangerouslySetInnerHTML={createMarkup(blog_text)} />
+                <div className="fakeAd" />
+                <div id="blog_image_container"><img src={blogImageUrl} alt={blog_title} /></div>
+                <div id="blog_text" dangerouslySetInnerHTML={createMarkup(blog_text)} />
+                <div className="fakeAd" />
             </div>
         </div>
     );
