@@ -16,7 +16,7 @@ class PremiumVideoPage extends React.Component {
         this.submitComment = this.submitComment.bind(this);
         this.apiUrl = process.env['NODE_ENV'] === 'development' ?
             'http://localhost:8000/uploads/' :
-            'https://bdenzer.xyz/equinimity/uploads/';
+            'https://bdenzer.xyz/blog/uploads/';
     }
     componentWillMount() {
         this.props.premium_user && this.getVideo();

@@ -1,5 +1,6 @@
 export const ADMIN_DATA_SUCCESS         = 'ADMIN_DATA_SUCCESS';
 export const ALL_BLOGS_SUCCESS          = 'ALL_BLOGS_SUCCESS';
+export const ALL_IMAGES_SUCCESS         = 'ALL_IMAGES_SUCCESS';
 export const ALL_VIDEOS_SUCCESS         = 'ALL_VIDEOS_SUCCESS';
 export const AUTH_ERROR                 = 'AUTH_ERROR';
 export const SAVE_DATA_CLICKED          = 'SAVE_DATA_CLICKED';

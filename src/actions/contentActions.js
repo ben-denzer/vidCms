@@ -14,6 +14,15 @@ const getAllBlogs = () => {
     }
 };
 
+const getAllImages = () => {
+    return (dispatch) => {
+        apiPromise({}, 'public/getAllImages').then(
+            (allImages) => dispatch({type: types.ALL_IMAGES_SUCCESS, allImages}),
+            () => dispatch({type: types.NEW_MESSAGE, messageType: 'error', text: 'Network Error, Please Try Again'})
+        );
+    }
+};
+
 const getAllVideos = () => {
     return (dispatch) => {
         apiPromise({}, 'public/getAllVideos').then(
@@ -26,6 +35,7 @@ const getAllVideos = () => {
 const getAllContent = () => {
     return (dispatch) => {
         dispatch(getAllBlogs());
+        dispatch(getAllImages());
         dispatch(getAllVideos());
     }
 };

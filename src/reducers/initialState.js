@@ -28,8 +28,9 @@ export default {
         youtubeUrlVal: '',
     },
     content: {
-        allVideos: [],
         allBlogs: [],
+        allImages: [],
+        allVideos: [],
         currentVideo: {
             video_title: '',
             video_headline: '',
