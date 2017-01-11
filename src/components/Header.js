@@ -2,18 +2,19 @@ import React from 'react';
 import { browserHistory } from 'react-router';
 import {Navbar, Nav, NavItem, NavDropdown, MenuItem} from 'react-bootstrap';
 import logo from '../img/logo.png';
+import styles from '../styles/navStyles';
 
 const Header = (props) => {
     return (
-        <Navbar inverse collapseOnSelect>
+        <Navbar style={styles.navbar} inverse collapseOnSelect>
             <Navbar.Header>
-                <Navbar.Brand>
-                    <a href="#">React-Bootstrap</a>
+                <Navbar.Brand style={styles.brand}>
+                    <h1 style={styles.h1}>Ben Denzer</h1>
                 </Navbar.Brand>
                 <Navbar.Toggle />
             </Navbar.Header>
             <Navbar.Collapse>
-                <Nav pullRight>
+                <Nav style={styles.navUl} pullRight>
                     <NavItem eventKey={1} href="#">Link Right</NavItem>
                     <NavItem eventKey={2} href="#">Link Right</NavItem>
                     <NavDropdown eventKey={3} title="Dropdown" id="basic-nav-dropdown">
@@ -39,9 +40,7 @@ const Header = (props) => {
     //                     <span className="icon-bar"></span>
     //                     <span className="icon-bar"></span>
     //                 </button>
-    //                 <a className="navbar-brand" onClick={() => browserHistory.push('/')}>
-    //                     <img src={logo} alt="Equinimity Energy Healing - Las Vegas" />
-    //                 </a>
+
     //             </div>
 
     //             <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
