@@ -14,16 +14,18 @@ import ForgotPwForm             from './components/auth/ForgotPwForm';
 import HomePage                 from './components/HomePage';
 import LoginForm                from './components/auth/LoginForm';
 import ManageUsers              from './components/admin/ManageUsers';
-import SignupForm               from './components/auth/SignupForm';
+import PortfolioPage            from './components/PortfolioPage'
 import PremiumVideoPage         from './components/content/PremiumVideoPage';
 import ResetForm                from './components/auth/ResetForm';
+import SignupForm               from './components/auth/SignupForm';
 import VideoUploadForm          from './containers/VideoUploadForm';
 import UserPage                 from './components/admin/UserPage';
 import VideoHome                from './containers/VideoHome';
 
 export default (
     <Route path="/" component={App}>
-        <IndexRoute component={HomePage} />
+        <IndexRoute component={PortfolioPage} />
+        <Route path="blog" component={HomePage} />
         <Route path="about" component={AboutPage} />
         <Route path="account" component={AccountPage} />
         <Route path="admin" component={AdminPage}>

@@ -1,0 +1,184 @@
+#portfolio_container {
+    font-family: 'Cabin', sans-serif;
+    font-size: 15pt;
+    background-image: url("/img/portfolio/bluelights.jpg");
+    background-size: cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+
+    .navbar li {
+        margin-top: 3px;
+        font-size: 14pt;
+        font-weight: bold;
+    }
+
+    .dropdown-header {
+        font-size: 12pt !important;
+        font-weight: bold !important;
+    }
+
+    .dropdown-menu li {
+        font-size: 11pt;
+        font-weight: normal;
+    }
+
+    @media (max-width: 480px) {
+        .navbar-collapse ul {
+            background-color: #eee;
+        }
+        .navbar-collapse a:hover {
+            color: black !important;
+        }
+    }
+
+    .navbar-collapse li:hover {
+        color: black;
+    }
+
+    .page-header {
+        text-align: center;
+        margin-top: 60px;
+        font-family: 'Courgette', sans-serif;
+        color: white;
+    }
+
+    .page-header a {
+        text-decoration: none;
+        color: white;
+    }
+
+    .page-header a:hover {
+        text-decoration: underline;
+    }
+
+    h1 {
+        font-size: 34pt;
+    }
+
+    h2 {
+        font-size: 18pt;
+        margin-top: 5px;
+    }
+
+    h3, h4 {
+        font-family: 'Orbitron', sans-serif;
+        font-weight: bold;
+        color: #aaa;
+        text-align: center;
+    }
+
+    h3 {
+        font-size: 20pt;
+        margin-top: 20px;
+    }
+
+    .topHeading {
+        margin-top: 10px;
+    }
+
+    h4 {
+        font-size: 16pt;
+        margin-top: 20px;
+    }
+    .blackBox {
+        padding: 10px 10px 45px 10px;
+        background-color: black;
+        opacity: .9;
+        color: white;
+    }
+    @media (max-width: 600px) {
+        .inner {
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    }
+
+    .centered {
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .imgHolder img {
+        padding-top: 15px;
+    }
+
+    .list ul {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .thumb {
+        margin: 0 auto 10px auto;
+    }
+
+    .btn {
+        font-family: 'Orbitron', sans-serif;
+        font-size: 15pt;
+        font-weight: bold;
+        margin: 0 auto 10px auto;
+    }
+
+    .btn .small {
+        margin-top: -5px;
+        font-family: 'Cabin', sans-serif;
+        font-weight: normal;
+        font-size: 12pt;
+    }
+
+    #recent_work {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-between;
+        max-width: 1600px;
+        margin: 5px auto;
+    }
+
+    .project-container {
+        width: calc(33% - 10px);
+        min-width: 320px;
+        margin: 5px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        flex: 1 0 auto;
+    }
+
+    .project-tools {
+        font-weight: bold;
+    }
+
+    #skills_row {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-around;
+    }
+
+    .skills-list-box {
+        width: calc(33% - 10px);
+        min-width: 250px;
+        margin: 5px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+
+    @media (max-width: 700px) {
+        .project-container {
+            width: 95%;
+            margin: 10px auto;
+        }
+    }
+
+    @media (max-width: 550px) {
+        .skills-list-box {
+            width: 95%;
+            margin: 10px auto;
+            align-items: flex-start;
+            padding-left: 10px;
+        }
+    }
+}

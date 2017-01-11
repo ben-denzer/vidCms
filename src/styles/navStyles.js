@@ -4,6 +4,8 @@ const navStyles = {
     navbar: {
         margin: 0,
         border: 0,
+        padding: 0,
+        width: '100vw',
     },
     brand: {
         height: '100%',

@@ -6,12 +6,13 @@ import Footer from '../components/Footer';
 import MessageBox from '../components/share/MessageBox';
 
 const App = (props) => {
+    console.log(props);
     return (
         <div id="mainContainer" className="App">
             <Header name={props.user.name} logout={props.logout} />
             <MessageBox message={props.message} />
             {props.children}
-            <Footer />
+            {props.location.pathname !== '/' && <Footer />}
         </div>
     );
 };
