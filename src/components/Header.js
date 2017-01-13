@@ -1,5 +1,5 @@
 import React from 'react';
-import { browserHistory } from 'react-router';
+// import { browserHistory } from 'react-router';
 import {Navbar, Nav, NavItem, NavDropdown, MenuItem} from 'react-bootstrap';
 import styles from '../styles/navStyles';
 
@@ -14,7 +14,7 @@ const Header = (props) => {
             </Navbar.Header>
             <Navbar.Collapse>
                 <Nav style={styles.navUl} pullRight>
-                    <NavItem eventKey={1} target="_blank" href="/pdf/denzer_resume.pdf">RESUME</NavItem>
+                    <NavItem eventKey={1}>RESUME</NavItem>
                     <NavDropdown eventKey={3} title="PROJECTS" id="basic-nav-dropdown">
                         <MenuItem eventKey={3.1}>Action</MenuItem>
                         <MenuItem eventKey={3.2}>Another action</MenuItem>
