@@ -1,6 +1,6 @@
 import React from 'react';
-// import { browserHistory } from 'react-router';
-import {Navbar, Nav, NavItem, NavDropdown, MenuItem} from 'react-bootstrap';
+import { browserHistory } from 'react-router';
+import {Navbar, Nav, NavItem} from 'react-bootstrap';
 import styles from '../styles/navStyles';
 
 const Header = (props) => {
@@ -14,15 +14,16 @@ const Header = (props) => {
             </Navbar.Header>
             <Navbar.Collapse>
                 <Nav style={styles.navUl} pullRight>
-                    <NavItem eventKey={1}>Home</NavItem>
-                    <NavItem eventKdy={2}>About</NavItem>
-                    <NavDropdown eventKey={3} title="PROJECTS" id="basic-nav-dropdown">
-                        <MenuItem eventKey={3.1}>Action</MenuItem>
-                        <MenuItem eventKey={3.2}>Another action</MenuItem>
-                        <MenuItem eventKey={3.3}>Something else here</MenuItem>
-                        <MenuItem divider />
-                        <MenuItem eventKey={3.3}>Separated link</MenuItem>
-                    </NavDropdown>
+                    <NavItem eventKey={1} onClick={() => browserHistory.push('/')}>Home</NavItem>
+                    <NavItem eventKey={2} onClick={() => browserHistory.push('/about')}>About</NavItem>
+                    <NavItem eventKey={3} onClick={() => browserHistory.push('/videos')}>Videos</NavItem>
+                    <NavItem eventKey={4} onClick={() => browserHistory.push('/articles')}>Blog</NavItem>
+                    <NavItem eventKey={5} onClick={() => browserHistory.push('/contact')}>Contact</NavItem>
+                    {props.name && <NavItem eventKey={6} onClick={() => browserHistory.push('/account')}>My Account</NavItem>}
+                    {props.name ?
+                        <NavItem eventKey={7} onClick={() => props.logout()}>Log Out</NavItem> :
+                        <NavItem eventKey={7} onClick={() => browserHistory.push('/auth/login')}>Log In</NavItem>
+                    }
                 </Nav>
             </Navbar.Collapse>
         </Navbar>

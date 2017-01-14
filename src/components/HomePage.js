@@ -8,7 +8,6 @@ import RecentVideos     from '../components/home/RecentVideos';
 import HomePageMeetUs   from '../components/home/HomePageMeetUs';
 
 const HomePage = (props) => {
-    console.log(props.allBlogs);
     return (
         <div id="home_container">
             <Carousel />
