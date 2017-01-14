@@ -20,9 +20,10 @@ const Header = (props) => {
                     <NavItem eventKey={4} onClick={() => browserHistory.push('/articles')}>Blog</NavItem>
                     <NavItem eventKey={5} onClick={() => browserHistory.push('/contact')}>Contact</NavItem>
                     {props.name && <NavItem eventKey={6} onClick={() => browserHistory.push('/account')}>My Account</NavItem>}
-                    {props.name ?
-                        <NavItem eventKey={7} onClick={() => props.logout()}>Log Out</NavItem> :
-                        <NavItem eventKey={7} onClick={() => browserHistory.push('/auth/login')}>Log In</NavItem>
+                    {
+                        props.name ?
+                            <NavItem eventKey={7} onClick={() => props.logout()}>Log Out</NavItem> :
+                            <NavItem eventKey={7} onClick={() => browserHistory.push('/auth/login')}>Log In</NavItem>
                     }
                 </Nav>
             </Navbar.Collapse>

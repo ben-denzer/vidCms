@@ -11,6 +11,7 @@ const RecentBlogs = (props) => {
                 title={a.blog_title || ''}
                 headline={a.blog_headline || ''}
                 text={a.blog_text || ''}
+                blog_post_url={a.blog_post_url}
                 date={a.blog_date}
             />
         });

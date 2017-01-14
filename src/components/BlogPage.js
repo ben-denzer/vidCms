@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {createMarkup} from '../logic/shared';
+import RecentPosts from './content/RecentPosts';
 
 const BlogPage = (props) => {
     const apiUrl = process.env['NODE_ENV'] === 'development' ?
@@ -38,6 +39,7 @@ const BlogPage = (props) => {
                 <div className="fakeAd" />
                 <div id="blog_image_container"><img src={blogImageUrl} alt={blog_title} /></div>
                 <div id="blog_text" dangerouslySetInnerHTML={createMarkup(blog_text)} />
+                <RecentPosts allBlogs={props.allBlogs} />
                 <div className="fakeAd" />
             </div>
         </div>
