@@ -1,3 +1,7 @@
+#blog_home_container {
+    @include insidepage;
+}
+
 #blog_page_container {
     @include insidepage;
     display: flex;

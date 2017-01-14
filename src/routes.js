@@ -6,6 +6,7 @@ import AccountPage              from './containers/AccountPage';
 import AdminPage                from './containers/AdminPage';
 import App                      from './containers/App';
 import AuthPage                 from './containers/AuthPage';
+import BlogHome                 from './components/BlogHome';
 import BlogPage                 from './components/BlogPage';
 import BlogUploadForm           from './containers/BlogUploadForm';
 import ContactPage              from './components/ContactPage';
@@ -19,7 +20,7 @@ import ResetForm                from './components/auth/ResetForm';
 import SignupForm               from './components/auth/SignupForm';
 import VideoUploadForm          from './containers/VideoUploadForm';
 import UserPage                 from './components/admin/UserPage';
-import VideoHome                from './containers/VideoHome';
+import VideoHome                from './components/VideoHome';
 
 export default (
     <Route path="/" component={App}>
@@ -32,6 +33,7 @@ export default (
             <Route path="users" component={ManageUsers} />
             <Route path="users/:id" component={UserPage} />
         </Route>
+        <Route path="articles" component={BlogHome} />
         <Route path="auth/" component={AuthPage}>
             <Route path="login" component={LoginForm} />
             <Route path="signup" component={SignupForm} />
@@ -39,7 +41,9 @@ export default (
             <Route path="reset/*" component={ResetForm} />
         </Route>
         <Route path="contact" component={ContactPage} />
-        <Route path="read/:post_url" component={BlogPage} />
+        <Route path="read">
+            <Route path="free/:post_url" component={BlogPage} />
+        </Route>
         <Route path="watch">
             <Route path="free/:id" component={FreeVideoPage} />
             <Route path="premium/:id" component={PremiumVideoPage} />

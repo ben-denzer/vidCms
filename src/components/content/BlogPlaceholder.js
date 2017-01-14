@@ -7,7 +7,7 @@ const BlogPlaceholder = (props) => {
         <div
             id="blog_placeholder_container"
             className="content-placeholder-container"
-            onClick={() => browserHistory.push(`/read/${props.title.split(' ').join('-')}`)}
+            onClick={() => browserHistory.push(`/read/free/${props.title.split(' ').join('-')}`)}
         >
             <h2 id="blog_title" className="content-title">{props.title}</h2>
             <h3 id="blog_headline" className="content-title">{props.headline}</h3>
