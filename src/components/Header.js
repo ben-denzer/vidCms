@@ -14,7 +14,8 @@ const Header = (props) => {
             </Navbar.Header>
             <Navbar.Collapse>
                 <Nav style={styles.navUl} pullRight>
-                    <NavItem eventKey={1}>RESUME</NavItem>
+                    <NavItem eventKey={1}>Home</NavItem>
+                    <NavItem eventKdy={2}>About</NavItem>
                     <NavDropdown eventKey={3} title="PROJECTS" id="basic-nav-dropdown">
                         <MenuItem eventKey={3.1}>Action</MenuItem>
                         <MenuItem eventKey={3.2}>Another action</MenuItem>
