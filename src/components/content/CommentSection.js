@@ -3,10 +3,10 @@ import {browserHistory} from 'react-router';
 import {parseDate} from '../../logic/shared';
 
 const CommentSection = (props) => {
-    const {video_comments, submitComment, token, handleChange, commentVal} = props;
+    const {comments, submitComment, token, handleChange, commentVal} = props;
     let eachComment = ['no comments'];
-    if (video_comments && video_comments.length) {
-        eachComment = video_comments.map((a, i) => {
+    if (comments && comments.length) {
+        eachComment = comments.map((a, i) => {
             return <div key={i++} className="commentContainer">
                 <div className="comment-name">{a.username}</div>
                 <div className="comment-date">{parseDate(a.comment_date)}</div>

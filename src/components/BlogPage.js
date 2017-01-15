@@ -1,8 +1,10 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {createMarkup} from '../logic/shared';
-import {getBlogComments} from '../actions/commentActions';
+import {handleTextChange} from '../actions/formActions.js';
+import {submitComment, getBlogComments} from '../actions/commentActions';
 import RecentPosts from './content/RecentPosts';
+import CommentSection from './content/CommentSection';
 
 const apiUrl = process.env['NODE_ENV'] === 'development' ?
     'http://localhost:8000/uploads/' :
@@ -16,7 +18,7 @@ class BlogPage extends React.Component {
         this.submitComment = this.submitComment.bind(this);
     }
     componentWillMount() {
-        this.props.getBlogComments(this.props.blog_id);
+        this.props.getBlogComments(this.props.params.post_url);
     }
     createMarkup() {
         const text = this.props;
@@ -30,8 +32,8 @@ class BlogPage extends React.Component {
         this.props.submitComment({
             name: this.props.name,
             token: this.props.token,
-            video: this.props.params.id,
-            blog: null,
+            video: null,
+            blog: this.props.params.post_url,
             comment: this.props.commentVal
         });
     }
@@ -56,6 +58,8 @@ class BlogPage extends React.Component {
             if (customImage) blogImageUrl = `${apiUrl}${customImage.image_url}`;
         }
 
+        const {token, blog_comments, commentVal} = this.props;
+        console.log('comments', blog_comments);
         return (
             <div id="blog_page_container">
                 <div id="blog_header_container">
@@ -68,6 +72,13 @@ class BlogPage extends React.Component {
                     <div id="blog_text" dangerouslySetInnerHTML={createMarkup(blog_text)} />
                     <RecentPosts allBlogs={this.props.allBlogs} />
                     <div className="fakeAd" />
+                    <CommentSection
+                        comments={blog_comments}
+                        token={token}
+                        submitComment={() => this.submitComment(blog_id)}
+                        handleChange={(e) => this.handleChange(e)}
+                        commentVal={commentVal}
+                    />
                 </div>
             </div>
         );
@@ -77,14 +88,20 @@ class BlogPage extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        allBlogs: state.content.allBlogs,
-        allImages: state.content.allImages,
+        allBlogs:       state.content.allBlogs,
+        allImages:      state.content.allImages,
+        name:           state.user.name,
+        token:          state.user.token,
+        blog_comments:  state.comments,
+        commentVal:     state.forms.commentVal
     }
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        getBlogComments: (blog_id) => dispatch(getBlogComments(blog_id, dispatch))
+        handleTextChange:   (inputId, inputVal) => dispatch(handleTextChange(inputId, inputVal)),
+        submitComment:      (options) => dispatch(submitComment(options, dispatch)),
+        getBlogComments:    (blog_id) => dispatch(getBlogComments(blog_id, dispatch))
     }
 };
 

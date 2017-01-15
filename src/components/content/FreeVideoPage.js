@@ -46,7 +46,7 @@ class FreeVideoPage extends React.Component {
                 <iframe src={url} frameBorder="0" allowFullScreen></iframe>
                 <div id="video_text" dangerouslySetInnerHTML={this.createMarkup()} />
                 <CommentSection
-                    video_comments={video_comments}
+                    comments={video_comments}
                     token={token}
                     submitComment={() => this.submitComment()}
                     handleChange={(e) => this.handleChange(e)}

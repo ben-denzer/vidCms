@@ -1,9 +1,9 @@
 import * as types from '../constants/actionTypes';
 import {apiPromise} from './apiPromise';
 
-function getBlogComments(blog_id, dispatch) {
+function getBlogComments(blog_post_url, dispatch) {
     return () => {
-        apiPromise({blog_id}, 'public/getBlogComments').then(
+        apiPromise({blog_post_url}, 'public/getBlogComments').then(
             (comments) => dispatch({type: types.GET_COMMENTS_SUCCESS, comments}),
             (err) => {
                 if (err === 'unauthorized') {

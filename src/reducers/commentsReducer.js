@@ -7,6 +7,7 @@ export default function(state = initialState.comments, action) {
         case 'COMMENT_SUBMITTED':
             return [...state, {username: action.username, comment_text: action.comment_text}];
         case 'GET_COMMENTS_SUCCESS':
+            console.log('comments_success', action.comments);
             return action.comments;
         default:
             return state;

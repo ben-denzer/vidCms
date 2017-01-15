@@ -57,7 +57,7 @@ class PremiumVideoPage extends React.Component {
                 <div>{url && premium_user ? <VideoBlock premium_user={premium_user} fullUrl={fullUrl} /> : <Upgrade />}</div>
                 <div id="video_text" dangerouslySetInnerHTML={this.createMarkup()} />
                 <CommentSection
-                    video_comments={video_comments}
+                    comments={video_comments}
                     token={token}
                     submitComment={() => this.submitComment()}
                     handleChange={(e) => this.handleChange(e)}
