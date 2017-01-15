@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {getFreeVideo, clearCurrentVideo} from '../../actions/contentActions';
 import {handleTextChange} from '../../actions/formActions.js';
-import {submitComment, getComments} from '../../actions/commentActions';
+import {submitComment, getVideoComments} from '../../actions/commentActions';
 import CommentSection from './CommentSection';
 
 
@@ -15,7 +15,7 @@ class FreeVideoPage extends React.Component {
     }
     componentWillMount() {
         this.props.getFreeVideo(this.props.params.id);
-        this.props.getComments(this.props.params.id);
+        this.props.getVideoComments(this.props.params.id);
     }
     componentWillUnmount() {
         this.props.clearCurrentVideo();
@@ -33,6 +33,7 @@ class FreeVideoPage extends React.Component {
             name: this.props.name,
             token: this.props.token,
             video: this.props.params.id,
+            blog: null,
             comment: this.props.commentVal
         });
     }
@@ -75,7 +76,7 @@ const mapDispatchToProps = (dispatch) => {
         clearCurrentVideo:  () => dispatch(clearCurrentVideo()),
         handleTextChange:   (inputId, inputVal) => dispatch(handleTextChange(inputId, inputVal)),
         submitComment:      (options) => dispatch(submitComment(options, dispatch)),
-        getComments:        (video_id) => dispatch(getComments(video_id, dispatch))
+        getVideoComments:   (video_id) => dispatch(getVideoComments(video_id, dispatch))
     }
 };
 

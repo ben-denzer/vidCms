@@ -1,9 +1,24 @@
 import * as types from '../constants/actionTypes';
 import {apiPromise} from './apiPromise';
 
-function getComments(video_id, dispatch) {
+function getBlogComments(blog_id, dispatch) {
     return () => {
-        apiPromise({video_id}, 'public/getComments').then(
+        apiPromise({blog_id}, 'public/getBlogComments').then(
+            (comments) => dispatch({type: types.GET_COMMENTS_SUCCESS, comments}),
+            (err) => {
+                if (err === 'unauthorized') {
+                    return dispatch({type: types.AUTH_ERROR, error: 'unauthorized'});
+                } else {
+                    return dispatch({type: types.NEW_MESSAGE, messageType: 'error', text: 'Network Error, Please Try Again'});
+                }
+            }
+        )
+    }
+}
+
+function getVideoComments(video_id, dispatch) {
+    return () => {
+        apiPromise({video_id}, 'public/getVideoComments').then(
             (comments) => dispatch({type: types.GET_COMMENTS_SUCCESS, comments}),
             (err) => {
                 if (err === 'unauthorized') {
@@ -37,5 +52,6 @@ function submitCommentToApi(options, dispatch) {
 
 export {
     submitComment,
-    getComments
+    getBlogComments,
+    getVideoComments
 };

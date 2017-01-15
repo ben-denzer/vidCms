@@ -4,9 +4,9 @@ import {parseDate} from '../../logic/shared';
 
 const CommentSection = (props) => {
     const {video_comments, submitComment, token, handleChange, commentVal} = props;
-    let comments = ['no comments'];
+    let eachComment = ['no comments'];
     if (video_comments && video_comments.length) {
-        comments = video_comments.map((a, i) => {
+        eachComment = video_comments.map((a, i) => {
             return <div key={i++} className="commentContainer">
                 <div className="comment-name">{a.username}</div>
                 <div className="comment-date">{parseDate(a.comment_date)}</div>
@@ -18,7 +18,7 @@ const CommentSection = (props) => {
         <div id="comment_section_container">
             <div id="comment_section">
                 <h5 id="comment_header">Comments</h5>
-                {comments}
+                {eachComment}
             </div>
             <div id="comment_editor_container">
                 <p id="add_comment">Add Comment</p>

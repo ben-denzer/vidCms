@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {getPremiumVideo, clearCurrentVideo} from '../../actions/contentActions';
 import {handleTextChange} from '../../actions/formActions.js';
-import {submitComment, getComments} from '../../actions/commentActions';
+import {submitComment, getVideoComments} from '../../actions/commentActions';
 import VideoBlock from './VideoBlock';
 import Upgrade from './Upgrade';
 import CommentSection from './CommentSection';
@@ -33,7 +33,7 @@ class PremiumVideoPage extends React.Component {
     }
     getVideo() {
         this.props.getPremiumVideo(this.props.params.id, this.props.token);
-        this.props.getComments(this.props.params.id);
+        this.props.getVideoComments(this.props.params.id);
     }
     handleChange(e) {
         this.props.handleTextChange('comment', e.target.value);
@@ -88,7 +88,7 @@ const mapDispatchToProps = (dispatch) => {
         clearCurrentVideo:  () => dispatch(clearCurrentVideo()),
         handleTextChange:   (inputId, inputVal) => dispatch(handleTextChange(inputId, inputVal)),
         submitComment:      (options) => dispatch(submitComment(options, dispatch)),
-        getComments:        (video_id) => dispatch(getComments(video_id, dispatch))
+        getVideoComments:        (video_id) => dispatch(getVideoComments(video_id, dispatch))
     }
 };
 
