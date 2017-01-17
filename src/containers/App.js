@@ -11,7 +11,7 @@ const App = (props) => {
             <Header name={props.user.name} logout={props.logout} />
             <MessageBox message={props.message} />
             {props.children}
-            {props.location.pathname !== '/' && <Footer />}
+            <Footer />
         </div>
     );
 };
