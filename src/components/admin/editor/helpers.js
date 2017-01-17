@@ -2,6 +2,7 @@ export const BLOCK_TYPES = [
     { label: 'Sub_Heading', style: 'header-two' },
     { label: 'UL', style: 'unordered-list-item' },
     { label: 'OL', style: 'ordered-list-item' },
+    { label: 'Code', style: 'code-block' },
 ];
 
 export function getBlockStyle(block) {

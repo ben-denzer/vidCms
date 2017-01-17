@@ -14,7 +14,7 @@ class MyEditor extends React.Component {
 
         this.focus = () => this.refs.editor.focus();
         this.onChange = (editorState) => {
-            this.setState({ editorState })
+            this.setState({ editorState });
             this.props.editorChange(stateToHTML(editorState.getCurrentContent()));
         };
 

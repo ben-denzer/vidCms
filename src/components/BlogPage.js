@@ -59,7 +59,7 @@ class BlogPage extends React.Component {
         }
 
         const {token, blog_comments, commentVal} = this.props;
-        console.log('comments', blog_comments);
+        console.log(this.props.allBlogs);
         return (
             <div id="blog_page_container">
                 <div id="blog_header_container">
