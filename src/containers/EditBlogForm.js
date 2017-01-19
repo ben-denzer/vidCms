@@ -2,23 +2,16 @@ import React from 'react';
 import {connect} from 'react-redux';
 import TextInput from '../components/share/TextInput';
 import MyEditor from '../components/admin/MyEditor';
-import {handleTextChange, submitBlog, populateBlogForm} from '../actions/formActions';
+import {handleTextChange, submitBlog} from '../actions/formActions';
 import DragDrop from '../components/admin/DragDrop';
 
-class UploadForm extends React.Component {
+class EditBlogForm extends React.Component {
     constructor(props) {
         super(props);
         this.handleChange = this.handleChange.bind(this);
         this.handleUpload = this.handleUpload.bind(this);
         this.submit = this.submit.bind(this);
         this.state = {inputFile: []};
-    }
-    componentWillMount() {
-        const {params, blogs} = this.props;
-        if (params.blog_post_url) {
-            const thisBlog = blogs.filter(a => a.blog_post_url === params.blog_post_url)[0];
-            this.props.populateBlogForm(thisBlog);
-        }
     }
     handleChange(e) {
         this.props.handleTextChange(e.target.id, e.target.value);
@@ -81,8 +74,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         handleTextChange: (inputId, inputVal) => dispatch(handleTextChange(inputId, inputVal)),
         submitBlog: (options) => dispatch(submitBlog(options, dispatch)),
-        populateBlogForm: (options) => dispatch(populateBlogForm(options)),
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(UploadForm);
+export default connect(mapStateToProps, mapDispatchToProps)(EditBlogForm);

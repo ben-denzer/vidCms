@@ -16,6 +16,8 @@ export default function(state = initialState.forms, action) {
             return Object.assign({}, state, {saveDataVal: action.newVal});
         case 'TEXT_CHANGE':
             return Object.assign({}, state, {[action.inputId + 'Val']: action.inputVal});
+        case 'POPULATE_BLOG_FORM':
+            return Object.assign({}, state, {blogTitleVal: action.thisBlog.blog_title});
         case 'SIGNUP_SUCCESS':
             return Object.assign({}, state, {
                 usernameVal: '',

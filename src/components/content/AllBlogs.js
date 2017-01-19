@@ -14,6 +14,7 @@ const AllBlogs = (props) => {
                 blog_post_url={a.blog_post_url}
                 date={a.blog_date}
                 showDate={props.showDate}
+                rootUrl={props.rootUrl}
             />
         });
     }

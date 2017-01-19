@@ -18,6 +18,10 @@ function handleFileUpload(file) {
     return {type: types.FILE_UPLOAD, file};
 }
 
+function populateBlogForm(thisBlog) {
+    return {type: types.POPULATE_BLOG_FORM, thisBlog};
+}
+
 function submitBlog(options, dispatch) {
     if (!options.blogTitleVal) return {type: types.NEW_MESSAGE, messageType: 'error', text: 'Please Add Title'};
     if (!options.editorHtml) return {type: types.NEW_MESSAGE, messageType: 'error', text: 'Post Can\'t Be Empty'};
@@ -86,6 +90,7 @@ export {
     handleTextChange,
     handleCheck,
     handleFileUpload,
+    populateBlogForm,
     submitBlog,
     submitUploadFree,
     submitUploadPremium

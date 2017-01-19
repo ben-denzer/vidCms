@@ -17,6 +17,7 @@ export const GET_VIDEO_SUCCESS          = 'GET_VIDEO_SUCCESS';
 export const LOGIN_SUCCESS              = 'LOGIN_SUCCESS';
 export const LOGOUT                     = 'LOGOUT';
 export const NEW_MESSAGE                = 'NEW_MESSAGE';
+export const POPULATE_BLOG_FORM         = 'POPULATE_BLOG_FORM';
 export const SIGNUP_SUCCESS             = 'SIGNUP_SUCCESS';
 export const TEXT_CHANGE                = 'TEXT_CHANGE';
 export const TRASH_COMMENT              = 'TRASH_COMMENT';
