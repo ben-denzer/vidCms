@@ -24,6 +24,7 @@ class AdminPage extends React.Component {
                     <div className="admin-button" onClick={() => browserHistory.push('/admin/upload/video')}>Upload Videos</div>
                     <div className="admin-button" onClick={() => browserHistory.push('/admin/upload/blog')}>Upload Blog</div>
                     <div className="admin-button" onClick={() => browserHistory.push('/admin/users')}>Manage Users</div>
+                    <div className="admin-button" onClick={() => browserHistory.push('/admin/edit/blogs/')}>Edit Post</div>
                 </div>
                 <div id="admin_main">
                     {this.props.children && React.cloneElement(this.props.children,

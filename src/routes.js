@@ -11,7 +11,6 @@ import BlogPage                 from './components/BlogPage';
 import BlogUploadForm           from './containers/BlogUploadForm';
 import ContactPage              from './components/ContactPage';
 import EditBlogHome             from './components/admin/EditBlogHome';
-import EditBlogForm             from './containers/EditBlogForm';
 import FreeVideoPage            from './components/content/FreeVideoPage';
 import ForgotPwForm             from './components/auth/ForgotPwForm';
 import HomePage                 from './components/HomePage';
@@ -32,7 +31,7 @@ export default (
         <Route path="admin" component={AdminPage}>
             <Route path="upload/video" component={VideoUploadForm} />
             <Route path="upload/blog" component={BlogUploadForm} />
-            <Route path="edit/blog" component={EditBlogHome} />
+            <Route path="edit/blogs" component={EditBlogHome} />
             <Route path="edit/blog/:blog_post_url" component={BlogUploadForm} />
             <Route path="users" component={ManageUsers} />
             <Route path="users/:id" component={UserPage} />
