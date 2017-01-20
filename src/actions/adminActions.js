@@ -6,6 +6,7 @@ const getAdminData = (token, dispatch) => {
     return (dispatch) => {
         apiPromise({token}, 'admin/getData').then(
             (allData) => {
+                console.log('in action', allData);
                 return dispatch({type: types.ADMIN_DATA_SUCCESS, allData})
             },
             (err) => {

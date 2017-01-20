@@ -21,18 +21,19 @@ export default function(state = initialState.forms, action) {
                 {},
                 state,
                 {
-                    blogTitleVal: action.thisBlog.blog_title,
-                    blogHeadlineVal: action.thisBlog.blog_headline
+                    blogTitleVal        : action.thisBlog.blog_title,
+                    blogHeadlineVal     : action.thisBlog.blog_headline,
+                    editorHtml          : action.thisBlog.blog_text
                 }
             );
         case 'SIGNUP_SUCCESS':
             return Object.assign({}, state, {
-                usernameVal: '',
-                passwordVal: '',
-                password2Val: '',
-                emailVal: '',
-                saveDataVal: false,
-                authErrorVal: ''
+                usernameVal     : '',
+                passwordVal     : '',
+                password2Val    : '',
+                emailVal        : '',
+                saveDataVal     : false,
+                authErrorVal    : ''
             });
         case 'UPLOAD_SUCCESS':
             return Object.assign({}, state, {

@@ -39,7 +39,6 @@ class UploadForm extends React.Component {
 
         this.setState({inputFile: []});
     }
-
     render() {
         return (
             <div id="upload_page">
@@ -60,7 +59,7 @@ class UploadForm extends React.Component {
                         handleChange={this.handleChange}
                     />
                     <label className="text-input"><span>Text</span></label>
-                    <MyEditor />
+                    <MyEditor startingText={this.props.editorHtml} />
                     <button onClick={this.submit}>Submit</button>
                 </form>
             </div>

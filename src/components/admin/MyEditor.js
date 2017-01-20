@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import { Editor, EditorState, RichUtils } from 'draft-js';
+import { Editor, EditorState, RichUtils, convertFromHTML, ContentState } from 'draft-js';
 import {stateToHTML} from 'draft-js-export-html';
 import InlineStyleControls from './editor/InlineStyleControls';
 import BlockStyleControls from './editor/BlockStyleControls';
@@ -23,7 +23,15 @@ class MyEditor extends React.Component {
         this.toggleBlockType = (type) => this._toggleBlockType(type);
         this.toggleInlineStyle = (style) => this._toggleInlineStyle(style);
     }
-
+    componentWillMount() {
+        console.log(this.props.startingText);
+        if (this.props.startingText) {
+            const markup = this.props.startingText;
+            const blocksFromHTML = convertFromHTML(markup);
+            const state = ContentState.createFromBlockArray(blocksFromHTML);
+            this.setState({editorState: EditorState.createWithContent(state)});
+        }
+    }
     _handleKeyCommand(command) {
         const {editorState} = this.state;
         const newState = RichUtils.handleKeyCommand(editorState, command);
