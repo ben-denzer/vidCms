@@ -33,6 +33,7 @@ class AdminPage extends React.Component {
                             comments,
                             videos,
                             blogs,
+                            images,
                             removeComment: this.removeComment,
                             commentTrashCan: this.props.commentTrashCan
                         }

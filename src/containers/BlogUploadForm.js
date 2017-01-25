@@ -5,6 +5,10 @@ import MyEditor from '../components/admin/MyEditor';
 import {handleTextChange, submitBlog, populateBlogForm} from '../actions/formActions';
 import DragDrop from '../components/admin/DragDrop';
 
+const apiUrl = process.env['NODE_ENV'] === 'development' ?
+    'http://localhost:8000/uploads/' :
+    'https://bdenzer.xyz/blog/uploads/';
+
 class UploadForm extends React.Component {
     constructor(props) {
         super(props);
@@ -40,6 +44,11 @@ class UploadForm extends React.Component {
         this.setState({inputFile: []});
     }
     render() {
+        let blogImageUrl = '';
+        if (this.props.images.length) {
+            const thisImage = this.props.images.filter(a => a.blog_fk === this.props.params.blog_post_url)[0].image_url;
+            if (thisImage) blogImageUrl = thisImage;
+        }
         return (
             <div id="upload_page">
                 <h1>Blog</h1>
@@ -48,7 +57,7 @@ class UploadForm extends React.Component {
                         file={this.state.inputFile}
                         handleUpload={this.handleUpload}
                     />
-                    {this.props.blogImageVal && <img src={this.props.blogImageVal} role="presentation" />}
+                    {blogImageUrl && <img src={`${apiUrl}${blogImageUrl}`} role="presentation" />}
                     <TextInput
                         id="blogTitle"
                         val={this.props.blogTitleVal}
