@@ -24,7 +24,6 @@ class MyEditor extends React.Component {
         this.toggleInlineStyle = (style) => this._toggleInlineStyle(style);
     }
     componentWillMount() {
-        console.log(this.props.startingText);
         if (this.props.startingText) {
             const markup = this.props.startingText;
             const blocksFromHTML = convertFromHTML(markup);
