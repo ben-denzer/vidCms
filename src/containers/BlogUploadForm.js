@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import TextInput from '../components/share/TextInput';
 import MyEditor from '../components/admin/MyEditor';
-import {handleTextChange, submitBlog, populateBlogForm} from '../actions/formActions';
+import {handleTextChange, submitBlog, populateBlogForm, dePopulateBlogForm} from '../actions/formActions';
 import DragDrop from '../components/admin/DragDrop';
 
 const apiUrl = process.env['NODE_ENV'] === 'development' ?
@@ -18,11 +18,16 @@ class UploadForm extends React.Component {
         this.state = {inputFile: []};
     }
     componentWillMount() {
-        const {params, blogs} = this.props;
+        const {params, blogs, images} = this.props;
         if (params.blog_post_url) {
             const thisBlog = blogs.filter(a => a.blog_post_url === params.blog_post_url)[0];
-            this.props.populateBlogForm(thisBlog);
+            const thisImageUrl = images.filter(a => a.blog_fk === params.blog_post_url)[0].image_url;
+            const blogAndImage = Object.assign({}, thisBlog, {image_url: thisImageUrl});
+            this.props.populateBlogForm(blogAndImage);
         }
+    }
+    componentWillUnmount() {
+        this.props.dePopulateBlogForm();
     }
     handleChange(e) {
         this.props.handleTextChange(e.target.id, e.target.value);
@@ -44,12 +49,8 @@ class UploadForm extends React.Component {
         this.setState({inputFile: []});
     }
     render() {
-        const {images, params, blogTitleVal, blogHeadlineVal, editorHtml} = this.props;
-        let blogImageUrl = '';
-        if (images.length) {
-            const thisImage = images.filter(a => a.blog_fk === params.blog_post_url)[0].image_url;
-            if (thisImage) blogImageUrl = thisImage;
-        }
+        const {blogTitleVal, blogHeadlineVal, blogImageUrl} = this.props;
+
         return (
             <div id="upload_page">
                 <h1>Blog</h1>
@@ -75,7 +76,7 @@ class UploadForm extends React.Component {
                         handleChange={this.handleChange}
                     />
                     <label className="text-input"><span>Text</span></label>
-                    <MyEditor startingText={editorHtml} />
+                    <MyEditor />
                     <button onClick={this.submit}>Submit</button>
                 </form>
             </div>
@@ -85,18 +86,19 @@ class UploadForm extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        blogTitleVal: state.forms.blogTitleVal,
-        blogHeadlineVal: state.forms.blogHeadlineVal,
-        editorHtml: state.forms.editorHtml,
-        error: state.message.error
+        blogTitleVal        : state.forms.blogTitleVal,
+        blogHeadlineVal     : state.forms.blogHeadlineVal,
+        blogImageUrl        : state.forms.blogImageUrl,
+        error               : state.message.error
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        handleTextChange: (inputId, inputVal) => dispatch(handleTextChange(inputId, inputVal)),
-        submitBlog: (options) => dispatch(submitBlog(options, dispatch)),
-        populateBlogForm: (options) => dispatch(populateBlogForm(options)),
+        handleTextChange:       (inputId, inputVal) => dispatch(handleTextChange(inputId, inputVal)),
+        submitBlog:             (options) => dispatch(submitBlog(options, dispatch)),
+        populateBlogForm:       (options) => dispatch(populateBlogForm(options)),
+        dePopulateBlogForm:     () => dispatch(dePopulateBlogForm())
     }
 }
 

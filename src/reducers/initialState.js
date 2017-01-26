@@ -12,6 +12,7 @@ export default {
     },
     forms: {
         authErrorVal: '',
+        blogImageUrl: '',
         blogTitleVal: '',
         blogHeadlineVal: '',
         commentVal: '',

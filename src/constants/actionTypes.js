@@ -8,6 +8,7 @@ export const CLEAR_CURRENT_VIDEO        = 'CLEAR_CURRENT_VIDEO';
 export const CLEAR_MESSAGE              = 'CLEAR_MESSAGE';
 export const COMMENT_SUBMITTED          = 'COMMENT_SUBMITTED';
 export const COMMENT_SUCCESS            = 'COMMENT_SUCCESS';
+export const DE_POPULATE_BLOG_FORM      = 'DE_POPULATE_BLOG_FORM';
 export const DELETE_COMMENTS_SUCCESS    = 'DELETE_COMMENTS_SUCCESS';
 export const EDITOR_CHANGE              = 'EDITOR_CHANGE';
 export const EMAIL_SUCCESS              = 'EMAIL_SUCCESS';

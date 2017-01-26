@@ -6,6 +6,17 @@ export default function(state = initialState.forms, action) {
             return Object.assign({}, state, {authErrorVal: action.error});
         case 'COMMENT_SUBMITTED':
             return Object.assign({}, state, {commentVal: ''});
+        case 'DE_POPULATE_BLOG_FORM':
+            return Object.assign(
+                {},
+                state,
+                {
+                    blogTitleVal        : '',
+                    blogHeadlineVal     : '',
+                    editorHtml          : '',
+                    blogImageUrl        : ''
+                }
+            );
         case 'EDITOR_CHANGE':
             return Object.assign({}, state, {editorHtml: action.currentState});
         case 'EMAIL_SUCCESS':
@@ -23,7 +34,8 @@ export default function(state = initialState.forms, action) {
                 {
                     blogTitleVal        : action.thisBlog.blog_title,
                     blogHeadlineVal     : action.thisBlog.blog_headline,
-                    editorHtml          : action.thisBlog.blog_text
+                    editorHtml          : action.thisBlog.blog_text,
+                    blogImageUrl        : action.thisBlog.image_url,
                 }
             );
         case 'SIGNUP_SUCCESS':

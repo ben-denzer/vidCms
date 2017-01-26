@@ -2,6 +2,10 @@ import * as types from '../constants/actionTypes';
 import {apiPromise, uploadPremiumPromise} from './apiPromise';
 import {unescapeLinks} from '../logic/shared';
 
+function dePopulateBlogForm() {
+    return {type: types.DE_POPULATE_BLOG_FORM};
+}
+
 function editorChange(currentState) {
     return {type: types.EDITOR_CHANGE, currentState};
 }
@@ -86,6 +90,7 @@ function submitUploadPremium(options, dispatch) {
 }
 
 export {
+    dePopulateBlogForm,
     editorChange,
     handleTextChange,
     handleCheck,

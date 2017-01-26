@@ -24,8 +24,8 @@ class MyEditor extends React.Component {
         this.toggleInlineStyle = (style) => this._toggleInlineStyle(style);
     }
     componentWillMount() {
-        if (this.props.startingText) {
-            const markup = this.props.startingText;
+        if (this.props.editorHtml) {
+            const markup = this.props.editorHtml;
             const blocksFromHTML = convertFromHTML(markup);
             const state = ContentState.createFromBlockArray(blocksFromHTML);
             this.setState({editorState: EditorState.createWithContent(state)});
@@ -103,10 +103,16 @@ class MyEditor extends React.Component {
     }
 }
 
+const mapStateToProps = (state) => {
+    return {
+        editorHtml: state.forms.editorHtml
+    }
+}
+
 const mapDispatchToProps = (dispatch) => {
     return {
         editorChange: (current) => dispatch(editorChange(current))
     }
 };
 
-export default connect(null, mapDispatchToProps)(MyEditor);
+export default connect(mapStateToProps, mapDispatchToProps)(MyEditor);

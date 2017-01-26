@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {browserHistory} from 'react-router';
 import {getAdminData, putCommentInTrash} from '../actions/adminActions';
+import {dePopulateBlogForm} from '../actions/formActions';
 
 class AdminPage extends React.Component {
     componentWillMount() {
@@ -22,7 +23,13 @@ class AdminPage extends React.Component {
             <div id="admin_page">
                 <div id="admin_sidebar">
                     <div className="admin-button" onClick={() => browserHistory.push('/admin/upload/video')}>Upload Videos</div>
-                    <div className="admin-button" onClick={() => browserHistory.push('/admin/upload/blog')}>Upload Blog</div>
+                    <div className="admin-button"
+                        onClick={() => {
+                            this.props.dePopulateBlogForm();
+                            browserHistory.push('/admin/upload/blog')
+                        }}>
+                        Upload Blog
+                    </div>
                     <div className="admin-button" onClick={() => browserHistory.push('/admin/users')}>Manage Users</div>
                     <div className="admin-button" onClick={() => browserHistory.push('/admin/edit/blogs/')}>Edit Post</div>
                 </div>
@@ -46,17 +53,18 @@ class AdminPage extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        user: state.user,
-        admin: state.user.admin,
-        allData: state.admin.adminData,
-        commentTrashCan: state.trashCan.commentTrashCan
+        user                : state.user,
+        admin               : state.user.admin,
+        allData             : state.admin.adminData,
+        commentTrashCan     : state.trashCan.commentTrashCan
     };
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        getAdminData: (token) => dispatch(getAdminData(token, dispatch)),
-        putCommentInTrash: (token, id, trash, comments) => dispatch(putCommentInTrash(token, id, trash, comments))
+        getAdminData:           (token) => dispatch(getAdminData(token, dispatch)),
+        putCommentInTrash:      (token, id, trash, comments) => dispatch(putCommentInTrash(token, id, trash, comments)),
+        dePopulateBlogForm:     () => dispatch(dePopulateBlogForm())
     }
 }
 
