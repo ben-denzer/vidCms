@@ -44,9 +44,10 @@ class UploadForm extends React.Component {
         this.setState({inputFile: []});
     }
     render() {
+        const {images, params, blogTitleVal, blogHeadlineVal, editorHtml} = this.props;
         let blogImageUrl = '';
-        if (this.props.images.length) {
-            const thisImage = this.props.images.filter(a => a.blog_fk === this.props.params.blog_post_url)[0].image_url;
+        if (images.length) {
+            const thisImage = images.filter(a => a.blog_fk === params.blog_post_url)[0].image_url;
             if (thisImage) blogImageUrl = thisImage;
         }
         return (
@@ -65,16 +66,16 @@ class UploadForm extends React.Component {
                     }
                     <TextInput
                         id="blogTitle"
-                        val={this.props.blogTitleVal}
+                        val={blogTitleVal}
                         handleChange={this.handleChange}
                     />
                     <TextInput
                         id="blogHeadline"
-                        val={this.props.blogHeadlineVal}
+                        val={blogHeadlineVal}
                         handleChange={this.handleChange}
                     />
                     <label className="text-input"><span>Text</span></label>
-                    <MyEditor startingText={this.props.editorHtml} />
+                    <MyEditor startingText={editorHtml} />
                     <button onClick={this.submit}>Submit</button>
                 </form>
             </div>
