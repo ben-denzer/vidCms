@@ -53,6 +53,16 @@
             .upload-box {
                 width: 100%;
 
+                #upload_img_container {
+                    width: 100%;
+                    text-align: right;
+
+                    img {
+                        height: 200px;
+                        width: auto;
+                    }
+                }
+
                 .radio-box {
                     display: flex;
 

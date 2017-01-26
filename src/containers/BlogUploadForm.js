@@ -57,7 +57,12 @@ class UploadForm extends React.Component {
                         file={this.state.inputFile}
                         handleUpload={this.handleUpload}
                     />
-                    {blogImageUrl && <img src={`${apiUrl}${blogImageUrl}`} role="presentation" />}
+                    {
+                        blogImageUrl &&
+                            <div id="upload_img_container">
+                                <img src={`${apiUrl}${blogImageUrl}`} role="presentation" />
+                            </div>
+                    }
                     <TextInput
                         id="blogTitle"
                         val={this.props.blogTitleVal}
