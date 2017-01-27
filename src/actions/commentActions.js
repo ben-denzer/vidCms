@@ -32,7 +32,6 @@ function getVideoComments(video_id, dispatch) {
 }
 
 function submitComment(options, dispatch) {
-    console.log('commentActions', options);
     submitCommentToApi(options, dispatch);
     return {type: types.COMMENT_SUBMITTED, username: options.name, comment_text: options.comment};
 }

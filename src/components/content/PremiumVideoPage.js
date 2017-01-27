@@ -40,10 +40,11 @@ class PremiumVideoPage extends React.Component {
     }
     submitComment() {
         this.props.submitComment({
-            name: this.props.name,
-            token: this.props.token,
-            video: this.props.params.id,
-            comment: this.props.commentVal
+            name:       this.props.name,
+            token:      this.props.token,
+            video:      this.props.title.split(' ').join('-'),
+            blog:       null,
+            comment:    this.props.commentVal
         });
     }
     render() {
