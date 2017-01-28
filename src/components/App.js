@@ -1,16 +1,17 @@
-import React from 'react';
-import {Match, Link} from 'react-router';
-import styled from 'styled-components';
-import HomePage from './HomePage';
-import Page2 from './Page2';
+import React            from 'react';
+import {Match}          from 'react-router';
+import styled           from 'styled-components';
+import Navbar           from './shared/Navbar';
+import HomePage         from './HomePage';
+import AboutPage        from './static/AboutPage';
 
 const App = (props) => {
     return (
         <AppContainer>
-            <Link to='/'>Home</Link>
-            <Link to='/Page2'>Page 2</Link>
-            <Match exactly pattern='/' component={HomePage} />
-            <Match exactly pattern='/Page2' component={Page2} />
+            <Navbar />
+
+            <Match exactly pattern='/'          component={ HomePage } />
+            <Match exactly pattern='/about'     component={ AboutPage } />
         </AppContainer>
     );
 };

@@ -3,7 +3,7 @@ import {PageTitle} from '../styles/share';
 
 const HomePage = (props) => {
     return (
-        <PageTitle>Home</PageTitle>
+        <PageTitle>Hi {props.name}</PageTitle>
     );
 };
 

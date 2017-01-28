@@ -7,6 +7,8 @@ import {checkForToken}        from './actions/authActions';
 import {getAllContent}        from './actions/contentActions'
 import App                    from './components/App';
 
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 const store = configureStore();
 store.dispatch(checkForToken());
 store.dispatch(getAllContent());
