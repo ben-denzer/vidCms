@@ -1,8 +1,21 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React                  from 'react';
+import ReactDOM               from 'react-dom';
+import {Provider}             from 'react-redux';
+import {BrowserRouter, Match} from 'react-router';
+import configureStore         from './store/configureStore';
+import {checkForToken}        from './actions/authActions';
+import {getAllContent}        from './actions/contentActions'
+import App                    from './components/App';
 
+const store = configureStore();
+store.dispatch(checkForToken());
+store.dispatch(getAllContent());
 
 ReactDOM.render(
-  <App />,
+  <Provider store={store}>
+    <BrowserRouter>
+      <Match pattern='/' component={App} />
+    </BrowserRouter>
+  </Provider>,
   document.getElementById('root')
 );
