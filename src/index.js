@@ -5,7 +5,7 @@ import {BrowserRouter, Match} from 'react-router';
 import configureStore         from './store/configureStore';
 import {checkForToken}        from './actions/authActions';
 import {getAllContent}        from './actions/contentActions'
-import App                    from './components/App';
+import AppContainer           from './containers/AppContainer';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -16,7 +16,7 @@ store.dispatch(getAllContent());
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
-      <Match pattern='/' component={App} />
+      <Match pattern='/' component={AppContainer} />
     </BrowserRouter>
   </Provider>,
   document.getElementById('root')

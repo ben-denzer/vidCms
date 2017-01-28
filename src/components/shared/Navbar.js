@@ -21,8 +21,8 @@ const MyNav = ( props ) => {
                     { props.name && <li role="presentation"><Link to='/account'>My Account</Link></li> }
                     {
                         props.name ?
-                            <li role="presentation"><a onClick={() => props.logout()}></a></li> :
-                            <li role="presentation"><Link to='/auth/login'>Login</Link></li>
+                            <li role="presentation"><a onClick={() => props.logout()}>Log Out</a></li> :
+                            <li role="presentation"><Link to='/auth/login'>Log In</Link></li>
                     }
                 </ul>
             </Navbar.Collapse>

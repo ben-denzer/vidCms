@@ -8,7 +8,7 @@ import AboutPage        from './static/AboutPage';
 const App = (props) => {
     return (
         <AppContainer>
-            <Navbar />
+            <Navbar name={props.name} />
 
             <Match exactly pattern='/'          component={ HomePage } />
             <Match exactly pattern='/about'     component={ AboutPage } />
