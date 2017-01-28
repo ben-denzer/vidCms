@@ -1,3 +1,5 @@
+import {NEW_MESSAGE} from '../constants/actionTypes';
+
 const apiUrl = process.env['NODE_ENV'] === 'development' ?
     'http://localhost:8000/' :
     'https://bdenzer.com/blogApi/';
@@ -59,4 +61,10 @@ const uploadPremiumPromise = (options, url) => {
     });
 };
 
-export {apiPromise, uploadPremiumPromise};
+const networkErrorAction = {
+    type: NEW_MESSAGE,
+    messageType: 'error',
+    text: 'Network Error, Please Try Again'
+};
+
+export {apiPromise, uploadPremiumPromise, networkErrorAction};

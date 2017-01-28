@@ -6,6 +6,7 @@ import HomePage         from './HomePage';
 import AboutPage        from './static/AboutPage';
 
 const App = (props) => {
+    console.log('ina app', props.allBlogs);
     return (
         <AppContainer>
             <Navbar name={props.name} />

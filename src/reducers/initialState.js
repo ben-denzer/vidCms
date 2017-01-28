@@ -32,13 +32,14 @@ export default {
         allBlogs: [],
         allImages: [],
         allVideos: [],
-        currentVideo: {
-            video_title: '',
-            video_headline: '',
-            video_url: '',
-            video_text: '',
+        currentPost: {
+            post_title: '',
+            post_headline: '',
+            post_url: '',
+            post_text: '',
         },
-        recentVideos: []
+        recentVideos: [],
+        recentBlogs: [],
     },
     comments: [],
     admin: {

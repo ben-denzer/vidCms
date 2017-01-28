@@ -2,12 +2,10 @@ import initialState from './initialState';
 
 export default function(state = initialState.content, action) {
     switch(action.type) {
-        case 'ALL_BLOGS_SUCCESS':
-            return Object.assign({}, state, {allBlogs: action.allBlogs});
-        case 'ALL_IMAGES_SUCCESS':
-            return Object.assign({}, state, {allImages: action.allImages});
-        case 'ALL_VIDEOS_SUCCESS':
-            return Object.assign({}, state, {allVideos: action.allVideos});
+        case 'ALL_CONTENT_SUCCESS':
+            const {allBlogs, allImages, allVideos} = action;
+            return Object.assign({}, state, {allBlogs, allImages, allVideos});
+
         case 'CLEAR_CURRENT_VIDEO':
             let currentVideo = {};
             for (let i in state.currentVideo) {
@@ -16,8 +14,10 @@ export default function(state = initialState.content, action) {
                 }
             }
             return Object.assign({}, state, {currentVideo});
+
         case 'GET_VIDEO_SUCCESS':
             return Object.assign({}, state, {currentVideo: action.video[0]});
+
         default:
             return state;
     }

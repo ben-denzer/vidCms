@@ -1,60 +1,42 @@
-import * as types from '../constants/actionTypes';
-import {apiPromise} from './apiPromise';
+import {apiPromise, networkErrorAction} from './apiPromise';
+import {CLEAR_CURRENT_VIDEO, ALL_CONTENT_SUCCESS, GET_VIDEO_SUCCESS} from '../constants/actionTypes';
 
 const clearCurrentVideo = () => {
-    return {type: types.CLEAR_CURRENT_VIDEO};
+    return {type: CLEAR_CURRENT_VIDEO};
 };
 
-const getAllBlogs = () => {
-    return (dispatch) => {
-        apiPromise({}, 'public/getAllBlogs').then(
-            (allBlogs) => dispatch({type: types.ALL_BLOGS_SUCCESS, allBlogs}),
-            () => dispatch({type: types.NEW_MESSAGE, messageType: 'error', text: 'Network Error, Please Try Again'})
-        );
-    }
-};
-
-const getAllImages = () => {
-    return (dispatch) => {
-        apiPromise({}, 'public/getAllImages').then(
-            (allImages) => dispatch({type: types.ALL_IMAGES_SUCCESS, allImages}),
-            () => dispatch({type: types.NEW_MESSAGE, messageType: 'error', text: 'Network Error, Please Try Again'})
-        );
-    }
-};
-
-const getAllVideos = () => {
-    return (dispatch) => {
-        apiPromise({}, 'public/getAllVideos').then(
-            (allVideos) => dispatch({type: types.ALL_VIDEOS_SUCCESS, allVideos}),
-            () => dispatch({type: types.NEW_MESSAGE, messageType: 'error', text: 'Network Error, Please Try Again'})
-        );
-    }
-};
+const getAllBlogs   = () => apiPromise({}, 'public/getAllBlogs');
+const getAllImages  = () => apiPromise({}, 'public/getAllImages');
+const getAllVideos  = () => apiPromise({}, 'public/getAllVideos');
 
 const getAllContent = () => {
     return (dispatch) => {
-        dispatch(getAllBlogs());
-        dispatch(getAllImages());
-        dispatch(getAllVideos());
+        Promise.all([getAllBlogs(), getAllImages(), getAllVideos()])
+            .then(data => {
+                const [allBlogs, allImages, allVideos] = data;
+                dispatch({
+                    type: ALL_CONTENT_SUCCESS,
+                    allBlogs,
+                    allImages,
+                    allVideos
+                })
+            }).catch(() => dispatch(networkErrorAction));
     }
 };
 
-const getFreeVideo = (id, dispatch) => {
-    return () => {
+const getFreeVideo = (id) => {
+    return (dispatch) => {
         apiPromise({id}, 'public/getFreeVideo').then(
-            (video) => dispatch({type: types.GET_VIDEO_SUCCESS, video}),
-            () => dispatch({type: types.NEW_MESSAGE, messageType: 'error', text: 'Network Error, Please Try Again'})
-        );
+            video => dispatch({type: GET_VIDEO_SUCCESS, video})
+        ).catch(() => dispatch(networkErrorAction));
     }
 };
 
-const getPremiumVideo = (video_id, token, dispatch) => {
-    return () => {
+const getPremiumVideo = (video_id, token) => {
+    return (dispatch) => {
         apiPromise({video_id, token}, 'auth/getPremiumVideo').then(
-            (video) => dispatch({type: types.GET_VIDEO_SUCCESS, video}),
-            () => dispatch({type: types.NEW_MESSAGE, messageType: 'error', text: 'Network Error, Please Try Again'})
-        );
+            video => dispatch({type: GET_VIDEO_SUCCESS, video}),
+        ).catch(() => dispatch(networkErrorAction));
     }
 }
 
