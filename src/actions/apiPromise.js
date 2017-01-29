@@ -4,6 +4,14 @@ const apiUrl = process.env['NODE_ENV'] === 'development' ?
     'http://localhost:8000/' :
     'https://bdenzer.com/blogApi/';
 
+const getPublicJson = url => {
+    return new Promise((resolve, reject) => {
+        fetch(`${apiUrl}${url}`)
+            .then(res => res.json())
+            .then(json => resolve(json))
+    });
+}
+
 const apiPromise = (options, url) => {
     return new Promise((resolve, reject) => {
         let req = new XMLHttpRequest();
@@ -67,4 +75,4 @@ const networkErrorAction = {
     text: 'Network Error, Please Try Again'
 };
 
-export {apiPromise, uploadPremiumPromise, networkErrorAction};
+export {apiPromise, getPublicJson, uploadPremiumPromise, networkErrorAction};

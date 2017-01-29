@@ -1,19 +1,20 @@
-import {apiPromise, networkErrorAction} from './apiPromise';
+import {apiPromise, getPublicJson, networkErrorAction} from './apiPromise';
 import {CLEAR_CURRENT_VIDEO, ALL_CONTENT_SUCCESS, GET_VIDEO_SUCCESS} from '../constants/actionTypes';
 
 const clearCurrentVideo = () => {
     return {type: CLEAR_CURRENT_VIDEO};
 };
 
-const getAllBlogs   = () => apiPromise({}, 'public/getAllBlogs');
-const getAllImages  = () => apiPromise({}, 'public/getAllImages');
-const getAllVideos  = () => apiPromise({}, 'public/getAllVideos');
+const getAllBlogs   = () => getPublicJson('public/getAllBlogs');
+const getAllImages  = () => getPublicJson('public/getAllImages');
+const getAllVideos  = () => getPublicJson('public/getAllVideos');
 
 const getAllContent = () => {
     return (dispatch) => {
         Promise.all([getAllBlogs(), getAllImages(), getAllVideos()])
             .then(data => {
                 const [allBlogs, allImages, allVideos] = data;
+                console.log('allBlogs in actions', allBlogs);
                 dispatch({
                     type: ALL_CONTENT_SUCCESS,
                     allBlogs,
