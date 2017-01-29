@@ -1,5 +1,6 @@
 export const ADMIN_DATA_SUCCESS         = 'ADMIN_DATA_SUCCESS';
 export const ALL_CONTENT_SUCCESS        = 'ALL_CONTENT_SUCCESS';
+export const API_STARTED                = 'API_STARTED';
 export const AUTH_ERROR                 = 'AUTH_ERROR';
 export const SAVE_DATA_CLICKED          = 'SAVE_DATA_CLICKED';
 export const CLEAR_CURRENT_VIDEO        = 'CLEAR_CURRENT_VIDEO';
@@ -15,6 +16,7 @@ export const GET_COMMENTS_SUCCESS       = 'GET_COMMENTS_SUCCESS';
 export const GET_VIDEO_SUCCESS          = 'GET_VIDEO_SUCCESS';
 export const LOGIN_SUCCESS              = 'LOGIN_SUCCESS';
 export const LOGOUT                     = 'LOGOUT';
+export const NETWORK_ERROR              = 'NETWORK_ERROR';
 export const NEW_MESSAGE                = 'NEW_MESSAGE';
 export const POPULATE_BLOG_FORM         = 'POPULATE_BLOG_FORM';
 export const SIGNUP_SUCCESS             = 'SIGNUP_SUCCESS';

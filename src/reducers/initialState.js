@@ -1,52 +1,54 @@
 export default {
     user: {
-        name: '',
-        token: '',
-        admin: false,
-        premium: false
+        name    : '',
+        token   : '',
+        admin   : false,
+        premium : false
     },
     message: {
-        success: '',
-        error: '',
-        info: ''
+        success         : '',
+        error           : '',
+        info            : '',
+        pendingApiCalls : 0
+
     },
     forms: {
-        authErrorVal: '',
-        blogImageUrl: '',
-        blogTitleVal: '',
-        blogHeadlineVal: '',
-        commentVal: '',
-        editorHtml: '',
-        emailVal: '',
-        inputFile: [],
-        passwordVal: '',
-        password2Val: '',
-        saveDataVal: false,
-        usernameVal: '',
-        videoInputFile: [],
-        videoTitleVal: '',
+        authErrorVal    : '',
+        blogImageUrl    : '',
+        blogTitleVal    : '',
+        blogHeadlineVal : '',
+        commentVal      : '',
+        editorHtml      : '',
+        emailVal        : '',
+        inputFile       : [],
+        passwordVal     : '',
+        password2Val    : '',
+        saveDataVal     : false,
+        usernameVal     : '',
+        videoInputFile  : [],
+        videoTitleVal   : '',
         videoHeadlineVal: '',
-        youtubeUrlVal: '',
+        youtubeUrlVal   : '',
     },
     content: {
-        allBlogs: [],
-        allImages: [],
-        allVideos: [],
+        allBlogs    : [],
+        allImages   : [],
+        allVideos   : [],
         currentPost: {
-            post_title: '',
-            post_headline: '',
-            post_url: '',
-            post_text: '',
+            post_title      : '',
+            post_headline   : '',
+            post_url        : '',
+            post_text       : '',
         },
-        recentVideos: [],
-        recentBlogs: [],
+        recentVideos    : [],
+        recentBlogs     : [],
     },
     comments: [],
     admin: {
         adminData: {
-            users: [],
+            users   : [],
             comments: [],
-            videos: []
+            videos  : []
         },
     },
     trashCan: {

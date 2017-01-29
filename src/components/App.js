@@ -6,7 +6,7 @@ import HomePage         from './HomePage';
 import AboutPage        from './static/AboutPage';
 
 const App = (props) => {
-    console.log('in app', props.allBlogs);
+    console.log(props.pendingApiCalls);
     return (
         <AppContainer>
             <Navbar name={props.name} />
@@ -19,7 +19,6 @@ const App = (props) => {
 
 const AppContainer = styled.div`
     width: 100%;
-    background-color: #ccc;
 `;
 
 export default App;

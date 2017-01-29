@@ -1,12 +1,12 @@
 import styled from 'styled-components';
+//import pageBg from '../img/tree_bg.png';
 
 export const InteriorPage = styled.div`
     width: 100%;
-    background-color: '#ccc';
+    min-height: 80vh;
 `;
 
 export const PageTitle = styled.h1`
-    font-size: 24px;
+    font-size: 36px;
     text-align: center;
-    color: red;
 `;

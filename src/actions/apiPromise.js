@@ -1,5 +1,3 @@
-import {NEW_MESSAGE} from '../constants/actionTypes';
-
 const apiUrl = process.env['NODE_ENV'] === 'development' ?
     'http://localhost:8000/' :
     'https://bdenzer.com/blogApi/';
@@ -9,6 +7,7 @@ const getPublicJson = url => {
         fetch(`${apiUrl}${url}`)
             .then(res => res.json())
             .then(json => resolve(json))
+            .catch(() => reject())
     });
 }
 
@@ -69,10 +68,5 @@ const uploadPremiumPromise = (options, url) => {
     });
 };
 
-const networkErrorAction = {
-    type: NEW_MESSAGE,
-    messageType: 'error',
-    text: 'Network Error, Please Try Again'
-};
 
-export {apiPromise, getPublicJson, uploadPremiumPromise, networkErrorAction};
+export {apiPromise, getPublicJson, uploadPremiumPromise};
