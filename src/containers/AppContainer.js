@@ -17,7 +17,7 @@ const mapStateToProps = state => {
     } = state.message;
 
     return {
-        name: 'ben',
+        name: state.user.name,
         allBlogs,
         allImages,
         allVideos,

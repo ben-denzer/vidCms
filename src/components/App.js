@@ -4,15 +4,16 @@ import styled           from 'styled-components';
 import Navbar           from './shared/Navbar';
 import HomePage         from './HomePage';
 import AboutPage        from './static/AboutPage';
+import AuthContainer    from '../containers/AuthContainer';
 
 const App = (props) => {
-    console.log(props.pendingApiCalls);
     return (
         <AppContainer>
             <Navbar name={props.name} />
 
-            <Match exactly pattern='/'          component={ HomePage } />
-            <Match exactly pattern='/about'     component={ AboutPage } />
+            <Match exactly pattern='/'          component={HomePage} />
+            <Match exactly pattern='/about'     component={AboutPage} />
+            <Match pattern='/auth'              component={AuthContainer} />
         </AppContainer>
     );
 };

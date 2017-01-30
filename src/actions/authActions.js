@@ -32,7 +32,6 @@ const login = (credentials) => {
         const options = {username, password};
         apiPromise(options, 'auth/login').then(
             (data) => {
-                browserHistory.goBack();
                 if (saveData) window.localStorage.setItem('token', data.token);
                 return dispatch({
                     type: types.LOGIN_SUCCESS,
