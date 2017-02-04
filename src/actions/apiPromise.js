@@ -9,6 +9,24 @@ const getPublicJson = url => {
             .then(json => resolve(json))
             .catch(() => reject())
     });
+};
+
+const postToApi = (options, url) => {
+    const fetchHeaders = new Headers({
+        'Content-Type': 'application/json'
+    });
+
+    const fetchInit = {
+        'method'    : 'post',
+        'headers'   : fetchHeaders,
+        'body'      : JSON.stringify(options)
+    };
+
+    return new Promise((resolve, reject) => {
+        fetch(`${apiUrl}${url}`, fetchInit)
+            .then(data => resolve(data))
+            .catch(() => reject());
+    });
 }
 
 const apiPromise = (options, url) => {
@@ -69,4 +87,4 @@ const uploadPremiumPromise = (options, url) => {
 };
 
 
-export {apiPromise, getPublicJson, uploadPremiumPromise};
+export {apiPromise, getPublicJson, postToApi, uploadPremiumPromise};

@@ -1,4 +1,4 @@
-import {apiPromise} from './apiPromise';
+import {apiPromise, postToApi} from './apiPromise';
 import * as types from '../constants/actionTypes';
 import {browserHistory} from 'react-router';
 
@@ -28,7 +28,7 @@ const login = (credentials) => {
     return (dispatch) => {
         const {username, password, saveData} = credentials;
         const options = {username, password};
-        apiPromise(options, 'auth/login').then(
+        postToApi(options, 'auth/login').then(
             (data) => {
                 if (saveData) window.localStorage.setItem('token', data.token);
                 return dispatch({
