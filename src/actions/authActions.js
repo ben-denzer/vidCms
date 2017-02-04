@@ -44,6 +44,7 @@ const login = credentials => {
 };
 
 const logout = () => {
+    console.log('logout called');
     window.localStorage.removeItem('token');
     return {type: LOGOUT}
 }
