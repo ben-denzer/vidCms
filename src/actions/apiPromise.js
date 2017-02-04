@@ -24,7 +24,7 @@ const postToApi = (options, url) => {
 
     return new Promise((resolve, reject) => {
         fetch(`${apiUrl}${url}`, fetchInit)
-            .then(data => resolve(data))
+            .then(data => resolve(data.json()))
             .catch(() => reject());
     });
 }

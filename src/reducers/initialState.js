@@ -1,9 +1,9 @@
 export default {
     user: {
-        name    : '',
-        token   : '',
-        admin   : false,
-        premium : false
+        username    : '',
+        token       : '',
+        admin       : false,
+        premium     : false
     },
     message: {
         success         : '',

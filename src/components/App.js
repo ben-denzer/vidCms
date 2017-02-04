@@ -9,7 +9,7 @@ import AuthContainer    from '../containers/AuthContainer';
 const App = (props) => {
     return (
         <AppContainer>
-            <Navbar name={props.name} />
+            <Navbar username={props.username} />
 
             <Match exactly pattern='/'          component={HomePage} />
             <Match exactly pattern='/about'     component={AboutPage} />

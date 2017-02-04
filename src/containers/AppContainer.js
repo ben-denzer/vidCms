@@ -3,21 +3,12 @@ import {logout}     from '../actions/authActions';
 import App          from '../components/App';
 
 const mapStateToProps = state => {
-    const {
-        allBlogs,
-        allImages,
-        allVideos
-    } = state.content;
-
-    const {
-        success,
-        error,
-        info,
-        pendingApiCalls
-    } = state.message;
+    const {allBlogs, allImages, allVideos} = state.content;
+    const {success, error, info, pendingApiCalls} = state.message;
+    const {username} = state.user;
 
     return {
-        name: state.user.name,
+        username,
         allBlogs,
         allImages,
         allVideos,

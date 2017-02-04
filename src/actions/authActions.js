@@ -1,68 +1,62 @@
 import {apiPromise, postToApi} from './apiPromise';
-import * as types from '../constants/actionTypes';
 import {browserHistory} from 'react-router';
+import {
+    AUTH_ERROR,
+    LOGIN_SUCCESS,
+    LOGOUT,
+    NEW_MESSAGE,
+    SIGNUP_SUCCESS,
+    EMAIL_SUCCESS
+} from '../constants/actionTypes';
+
+const authErrorAction = (err, dispatch) => {
+    if (err === 'unauthorized') {
+        return dispatch({type: AUTH_ERROR, error: 'Invalid username or password'});
+    } else {
+        return dispatch({type: NEW_MESSAGE, messageType: 'error', text: 'Network Error, Please Try Again'});
+    }
+};
 
 const checkForToken = () => {
-    return (dispatch) => {
+    return dispatch => {
         const token = window.localStorage.getItem('token');
         if (token) {
-            apiPromise({token}, 'auth/loginWithToken').then(
-                (data) => {
-                    return dispatch({
-                        type: types.LOGIN_SUCCESS,
-                        name: data.username,
-                        token: data.token,
-                        premium: data.premium,
-                        admin: data.admin
-                    });
-                },
-                (err) => {
-                    dispatch({type: types.AUTH_ERROR, messageType: 'info', text: 'Session Expired'})
-                }
-            )
+            postToApi({token}, 'auth/loginWithToken')
+                .then(data => {
+                    const {username, token, premium, admin} = data;
+                    dispatch({type: LOGIN_SUCCESS, username, token, premium, admin});
+                }).catch(() => dispatch({type: AUTH_ERROR, messageType: 'info', text: 'Session Expired'}));
         }
     }
 };
 
-const login = (credentials) => {
-    return (dispatch) => {
+const login = credentials => {
+    return dispatch => {
         const {username, password, saveData} = credentials;
         const options = {username, password};
-        postToApi(options, 'auth/login').then(
-            (data) => {
+        postToApi(options, 'auth/login')
+            .then(data => {
+                const {token, premium, admin} = data;
                 if (saveData) window.localStorage.setItem('token', data.token);
-                return dispatch({
-                    type: types.LOGIN_SUCCESS,
-                    name: username,
-                    token: data.token,
-                    premium: data.premium,
-                    admin: data.admin
-                });
-            }, (err) => {
-                if (err === 'unauthorized') {
-                    return dispatch({type: types.AUTH_ERROR, error: 'Invalid username or password'});
-                } else {
-                    return dispatch({type: types.NEW_MESSAGE, messageType: 'error', text: 'Network Error, Please Try Again'});
-                }
-            }
-        )
+                dispatch({type: LOGIN_SUCCESS, username, token, premium, admin});
+            }).catch(err => authErrorAction(err, dispatch));
     };
 };
 
 const logout = () => {
     window.localStorage.removeItem('token');
-    return {type: types.LOGOUT}
+    return {type: LOGOUT}
 }
 
 const resetPw = (options, tokenUrl, dispatch) => {
     const {username, password, p2} = options;
-    if (password.length < 4) return dispatch({type: types.AUTH_ERROR, error: 'Password Must Be at Least 4 Characters Long'});
-    if (password !== p2) return dispatch({type: types.AUTH_ERROR, error: 'Passwords Do Not Match'});
+    if (password.length < 4) return dispatch({type: AUTH_ERROR, error: 'Password Must Be at Least 4 Characters Long'});
+    if (password !== p2) return dispatch({type: AUTH_ERROR, error: 'Passwords Do Not Match'});
     return (dispatch) => {
         apiPromise({username, password}, `auth/reset/${tokenUrl}`).then(
             (data) => {
                 return dispatch({
-                    type: types.LOGIN_SUCCESS,
+                    type: LOGIN_SUCCESS,
                     name: data.username,
                     token: data.token,
                     premium: data.premium,
@@ -71,36 +65,29 @@ const resetPw = (options, tokenUrl, dispatch) => {
             },
             (err) => {
                 if (err === 'unauthorized') {
-                    return dispatch({type: types.AUTH_ERROR, error: 'Your Token Has Expired, Please Click On "Login", and "Forgot Password" again'});
+                    return dispatch({type: AUTH_ERROR, error: 'Your Token Has Expired, Please Click On "Login", and "Forgot Password" again'});
                 } else {
-                    return dispatch({type: types.NEW_MESSAGE, messageType: 'error', text: 'Network Error, Please Try Again'});
+                    return dispatch({type: NEW_MESSAGE, messageType: 'error', text: 'Network Error, Please Try Again'});
                 }
             }
         );
     };
 };
 
-const signup = (credentials, dispatch) => {
+const signup = credentials => {
     return (dispatch) => {
         const {username, password, p2, email, saveData, premium} = credentials;
-        if (username.length < 2) return dispatch({type: types.AUTH_ERROR, error: 'Username Must Be at Least 2 Characters Long'});
-        if (password.length < 4) return dispatch({type: types.AUTH_ERROR, error: 'Password Must Be at Least 4 Characters Long'});
-        if (password !== p2) return dispatch({type: types.AUTH_ERROR, error: 'Passwords Do Not Match'});
+        if (username.length < 2) return dispatch({type: AUTH_ERROR, error: 'Username Must Be at Least 2 Characters Long'});
+        if (password.length < 4) return dispatch({type: AUTH_ERROR, error: 'Password Must Be at Least 4 Characters Long'});
+        if (password !== p2) return dispatch({type: AUTH_ERROR, error: 'Passwords Do Not Match'});
 
         const options = {username, password, email, premium};
-        apiPromise(options, 'auth/signup').then(
-            (data) => {
-                browserHistory.goBack();
-                if (saveData) window.localStorage.setItem('token', data.token);
-                return dispatch({type: types.SIGNUP_SUCCESS, name: username, token: data.token, premium});
-            }, (err) => {
-                if (err === 'unauthorized') {
-                    return dispatch({type: types.AUTH_ERROR, error: 'Username Is Already In Use'});
-                } else {
-                    return dispatch({type: types.NEW_MESSAGE, messageType: 'error', text: 'Network Error, Please Try Again'});
-                }
-            }
-        )
+        postToApi(options, 'auth/signup')
+            .then(data => {
+                const {username, token} = data;
+                if (saveData) window.localStorage.setItem('token', token);
+                dispatch({type: SIGNUP_SUCCESS, username, token, premium});
+            }).catch(err => authErrorAction(err, dispatch));
     }
 };
 
@@ -109,10 +96,10 @@ const sendResetEmail = (options, dispatch) => {
         apiPromise(options, 'auth/resetPassword').then(
             () => {
                 browserHistory.push('/')
-                dispatch({type: types.EMAIL_SUCCESS})
+                dispatch({type: EMAIL_SUCCESS})
             },
             (err) => {
-                dispatch({type: types.NEW_MESSAGE, messageType: 'error', text: 'Network Error, Please Try Again'});
+                dispatch({type: NEW_MESSAGE, messageType: 'error', text: 'Network Error, Please Try Again'});
             }
         );
     };
