@@ -9,13 +9,13 @@ import {
     EMAIL_SUCCESS
 } from '../constants/actionTypes';
 
-const authErrorAction = (err, dispatch) => {
+const authErrorAction = (err, dispatch, signup) => {
     // Only sending error message if unauthorized
     if (err) {
-        console.log('has err', err);
-        return dispatch({type: AUTH_ERROR, error: 'Invalid username or password'});
+        signup ?
+            dispatch({type: AUTH_ERROR, error: 'Username is taken. Please try again.'}) :
+            dispatch({type: AUTH_ERROR, error: 'Invalid username or password'});
     } else {
-        console.log('no err', err);
         return dispatch({type: NEW_MESSAGE, messageType: 'error', text: 'Network Error, Please Try Again'});
     }
 };
@@ -88,10 +88,10 @@ const signup = credentials => {
         const options = {username, password, email, premium};
         postToApi(options, 'auth/signup')
             .then(data => {
-                const {username, token} = data;
+                const {token} = data;
                 if (saveData) window.localStorage.setItem('token', token);
                 dispatch({type: SIGNUP_SUCCESS, username, token, premium});
-            }).catch(err => authErrorAction(err, dispatch));
+            }).catch(err => authErrorAction(err, dispatch, 'signup'));
     }
 };
 
