@@ -10,9 +10,12 @@ import {
 } from '../constants/actionTypes';
 
 const authErrorAction = (err, dispatch) => {
-    if (err === 'unauthorized') {
+    // Only sending error message if unauthorized
+    if (err) {
+        console.log('has err', err);
         return dispatch({type: AUTH_ERROR, error: 'Invalid username or password'});
     } else {
+        console.log('no err', err);
         return dispatch({type: NEW_MESSAGE, messageType: 'error', text: 'Network Error, Please Try Again'});
     }
 };

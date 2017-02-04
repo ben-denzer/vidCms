@@ -24,8 +24,16 @@ const postToApi = (options, url) => {
 
     return new Promise((resolve, reject) => {
         fetch(`${apiUrl}${url}`, fetchInit)
-            .then(data => resolve(data.json()))
-            .catch(() => reject());
+            .then(data => {
+                if (data.ok) {
+                    resolve(data.json());
+                } else {
+                    if (data.status === 401 || data.status === 403) {
+                        reject('unauthorized');
+                    }
+                }
+
+            }).catch(err => reject());
     });
 }
 
