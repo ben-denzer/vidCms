@@ -1,8 +1,8 @@
 import React        from 'react';
-import TextInput    from '../shared/TextInput';
-import AuthButtons  from './AuthButtons';
-import {PageTitle}  from '../../styles/share';
-import {FormBox}    from '../../styles/authFormStyles';
+import TextInput    from '../../shared/TextInput';
+import AuthButtons  from '../AuthButtons';
+import {PageTitle}  from '../../../styles/share';
+import {FormBox}    from '../../../styles/authFormStyles';
 
 
 const LoginForm = (props) => {
