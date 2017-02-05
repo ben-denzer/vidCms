@@ -1,5 +1,9 @@
 import React            from 'react';
-import {Route, Redirect, withRouter}from 'react-router-dom';
+import {
+    Route,
+    Redirect,
+    withRouter
+}                       from 'react-router-dom';
 import styled           from 'styled-components';
 import Navbar           from './shared/Navbar';
 import HomePage         from './HomePage';
@@ -16,17 +20,18 @@ class App extends React.Component {
         }
     }
     render() {
+        const {username, logout, lastRoute} = this.props;
         return (
             <AppContainer>
-                <Navbar username={this.props.username} logout={this.props.logout} />
+                <Navbar username={username} logout={logout} />
 
                 <Route exact path='/' component={HomePage} />
                 <Route exact path='/about' component={AboutPage} />
                 <PrivateRoute
                     path="/auth"
                     component={AuthContainer}
-                    username={this.props.username}
-                    lastRoute={this.props.lastRoute}
+                    username={username}
+                    lastRoute={lastRoute}
                 />
 
             </AppContainer>
