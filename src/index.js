@@ -14,10 +14,10 @@ store.dispatch(checkForToken());
 store.dispatch(getAllContent());
 
 ReactDOM.render(
-  <Provider store={store}>
-    <BrowserRouter>
-      <AppContainer />
-    </BrowserRouter>
-  </Provider>,
-  document.getElementById('root')
+    <Provider store={store}>
+        <BrowserRouter>
+            <AppContainer />
+        </BrowserRouter>
+    </Provider>,
+    document.getElementById('root')
 );

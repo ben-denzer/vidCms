@@ -19,6 +19,7 @@ export const LOGOUT                     = 'LOGOUT';
 export const NETWORK_ERROR              = 'NETWORK_ERROR';
 export const NEW_MESSAGE                = 'NEW_MESSAGE';
 export const POPULATE_BLOG_FORM         = 'POPULATE_BLOG_FORM';
+export const PUSH_LOCATION              = 'PUSH_LOCATION';
 export const SIGNUP_SUCCESS             = 'SIGNUP_SUCCESS';
 export const TEXT_CHANGE                = 'TEXT_CHANGE';
 export const TRASH_COMMENT              = 'TRASH_COMMENT';

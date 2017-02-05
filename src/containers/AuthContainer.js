@@ -1,4 +1,5 @@
 import {connect} from 'react-redux';
+import {withRouter} from 'react-router-dom';
 import {handleTextChange, handleCheck} from '../actions/formActions';
 import {login, sendResetEmail, signup, resetPw} from '../actions/authActions';
 import AuthPage from '../components/AuthPage';
@@ -28,4 +29,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(AuthPage);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(AuthPage));
