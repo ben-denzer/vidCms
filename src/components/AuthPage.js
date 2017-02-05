@@ -1,5 +1,5 @@
 import React            from 'react';
-import {Match}          from 'react-router';
+import {Route}          from 'react-router-dom';
 import {InteriorPage}   from '../styles/share';
 import LoginForm        from './auth/forms/LoginForm';
 import SignupForm       from './auth/forms/SignupForm';
@@ -70,7 +70,7 @@ class AuthPage extends React.Component {
         const {usernameVal, passwordVal, password2Val, emailVal} = this.props;
         return (
             <InteriorPage>
-                <Match exactly pattern='/auth/login'
+                <Route exact path='/auth/login'
                     render={() => {
                         return (
                             <LoginForm
@@ -83,7 +83,7 @@ class AuthPage extends React.Component {
                         );
                     }}
                 />
-                <Match exactly pattern='/auth/signup'
+                <Route exact path='/auth/signup'
                     render={() => {
                         return (
                             <SignupForm

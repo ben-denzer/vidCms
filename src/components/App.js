@@ -1,5 +1,5 @@
 import React            from 'react';
-import {Match}          from 'react-router';
+import {Route}          from 'react-router-dom';
 import styled           from 'styled-components';
 import Navbar           from './shared/Navbar';
 import HomePage         from './HomePage';
@@ -11,9 +11,9 @@ const App = (props) => {
         <AppContainer>
             <Navbar username={props.username} logout={props.logout} />
 
-            <Match exactly pattern='/'          component={HomePage} />
-            <Match exactly pattern='/about'     component={AboutPage} />
-            <Match pattern='/auth'              component={AuthContainer} />
+            <Route exact path='/'          component={HomePage} />
+            <Route exact path='/about'     component={AboutPage} />
+            <Route path='/auth'              component={AuthContainer} />
         </AppContainer>
     );
 };
