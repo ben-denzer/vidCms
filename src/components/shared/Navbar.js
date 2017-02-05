@@ -1,7 +1,6 @@
 import React        from 'react';
 import {Link}       from 'react-router';
 import {Navbar}     from 'react-bootstrap';
-import styled       from 'styled-components'
 
 const MyNav = (props) => {
     return (
