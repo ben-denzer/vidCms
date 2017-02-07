@@ -3,6 +3,7 @@ import {Route}          from 'react-router-dom';
 import {InteriorPage}   from '../styles/share';
 import LoginForm        from './auth/forms/LoginForm';
 import SignupForm       from './auth/forms/SignupForm';
+import ForgotPwForm     from './auth/forms/ForgotPwForm';
 
 class AuthPage extends React.Component {
     constructor(props) {
@@ -79,6 +80,7 @@ class AuthPage extends React.Component {
                                 handleChange={this.handleChange}
                                 authSubmit={this.authSubmit}
                                 handleCheck={this.handleCheck}
+                                message={this.props.message}
                             />
                         );
                     }}
@@ -94,6 +96,19 @@ class AuthPage extends React.Component {
                                 handleChange={this.handleChange}
                                 authSubmit={this.authSubmit}
                                 handleCheck={this.handleCheck}
+                                message={this.props.message}
+                            />
+                        );
+                    }}
+                />
+                <Route exact path='/auth/forgotPassword'
+                    render={() => {
+                        return (
+                            <ForgotPwForm
+                                emailVal={emailVal}
+                                handleChange={this.handleChange}
+                                authSubmit={this.authSubmit}
+                                message={this.props.message}
                             />
                         );
                     }}
