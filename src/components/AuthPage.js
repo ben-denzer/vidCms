@@ -52,6 +52,7 @@ class AuthPage extends React.Component {
                     saveData:   saveDataVal
                 });
             case path.includes('forgot'):
+                this.props.push('/');
                 return sendResetEmail({email: emailVal});
             case path.includes('reset'):
                 const token = path.slice(12);
