@@ -1,5 +1,4 @@
 import {apiPromise, postToApi} from './apiPromise';
-import {browserHistory} from 'react-router';
 import {
     AUTH_ERROR,
     LOGIN_SUCCESS,
@@ -78,6 +77,18 @@ const resetPw = (options, tokenUrl, dispatch) => {
     };
 };
 
+const sendResetEmail = (options, dispatch) => {
+    return (dispatch) => {
+        postToApi(options, 'auth/resetPassword')
+            .then(() => dispatch({type: EMAIL_SUCCESS}))
+            .catch(() => dispatch({
+                type: NEW_MESSAGE,
+                messageType: 'error',
+                text: 'Network Error, Please Try Again'
+            }));
+    };
+};
+
 const signup = credentials => {
     return (dispatch) => {
         const {username, password, p2, email, saveData, premium} = credentials;
@@ -93,20 +104,6 @@ const signup = credentials => {
                 dispatch({type: SIGNUP_SUCCESS, username, token, premium});
             }).catch(err => authErrorAction(err, dispatch, 'signup'));
     }
-};
-
-const sendResetEmail = (options, dispatch) => {
-    return (dispatch) => {
-        apiPromise(options, 'auth/resetPassword').then(
-            () => {
-                browserHistory.push('/')
-                dispatch({type: EMAIL_SUCCESS})
-            },
-            (err) => {
-                dispatch({type: NEW_MESSAGE, messageType: 'error', text: 'Network Error, Please Try Again'});
-            }
-        );
-    };
 };
 
 export {checkForToken, login, logout, resetPw, sendResetEmail, signup};
