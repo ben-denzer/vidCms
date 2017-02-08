@@ -4,6 +4,7 @@ import {InteriorPage}   from '../styles/share';
 import LoginForm        from './auth/forms/LoginForm';
 import SignupForm       from './auth/forms/SignupForm';
 import ForgotPwForm     from './auth/forms/ForgotPwForm';
+import ResetForm        from './auth/forms/ResetForm';
 
 class AuthPage extends React.Component {
     constructor(props) {
@@ -69,7 +70,7 @@ class AuthPage extends React.Component {
         }
     }
     render() {
-        const {usernameVal, passwordVal, password2Val, emailVal} = this.props;
+        const {usernameVal, passwordVal, password2Val, emailVal, message} = this.props;
         return (
             <InteriorPage>
                 <Route exact path='/auth/login'
@@ -81,7 +82,7 @@ class AuthPage extends React.Component {
                                 handleChange={this.handleChange}
                                 authSubmit={this.authSubmit}
                                 handleCheck={this.handleCheck}
-                                message={this.props.message}
+                                message={message}
                             />
                         );
                     }}
@@ -97,7 +98,7 @@ class AuthPage extends React.Component {
                                 handleChange={this.handleChange}
                                 authSubmit={this.authSubmit}
                                 handleCheck={this.handleCheck}
-                                message={this.props.message}
+                                message={message}
                             />
                         );
                     }}
@@ -112,6 +113,20 @@ class AuthPage extends React.Component {
                                 message={this.props.message}
                             />
                         );
+                    }}
+                />
+                <Route path='/auth/reset/:token'
+                    render={() => {
+                        return (
+                            <ResetForm
+                                usernameVal={usernameVal}
+                                passwordVal={passwordVal}
+                                password2Val={password2Val}
+                                handleChange={this.handleChange}
+                                authSubmit={this.authSubmit}
+                                message={message}
+                            />
+                        )
                     }}
                 />
             </InteriorPage>

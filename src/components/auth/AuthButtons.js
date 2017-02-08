@@ -8,7 +8,7 @@ const AuthButtons = (props) => {
     return (
         <AuthButtonsContainer>
             <AuthButtonsTop>
-                {props.formType === 'login' ? <Link to='/auth/forgotPw'>Forgot Password</Link> : <div></div>}
+                {props.formType === 'login' ? <Link to='/auth/forgotPassword'>Forgot Password</Link> : <div></div>}
                 <SaveDataCheckbox handleCheck={() => props.handleCheck()} />
             </AuthButtonsTop>
             <AuthSubmitButton onClick={props.authSubmit}>Submit</AuthSubmitButton>
