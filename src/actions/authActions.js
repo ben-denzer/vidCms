@@ -1,4 +1,4 @@
-import {apiPromise, postToApi} from './apiPromise';
+import {postToApi} from './apiPromise';
 import {
     AUTH_ERROR,
     LOGIN_SUCCESS,
@@ -8,12 +8,18 @@ import {
     EMAIL_SUCCESS
 } from '../constants/actionTypes';
 
-const authErrorAction = (err, dispatch, signup) => {
+const authErrorAction = (err, dispatch, formName) => {
     // Only sending error message if unauthorized
     if (err) {
-        signup ?
-            dispatch({type: AUTH_ERROR, error: 'Username is taken. Please try again.'}) :
-            dispatch({type: AUTH_ERROR, error: 'Invalid username or password'});
+        let error;
+        if (formName === 'signup') {
+            error = 'Username is taken. Please try again.';
+        } else if (formName === 'reset') {
+            error = 'Your Token Has Expired, Please Click On "Login", and "Forgot Password" again';
+        } else {  // login error
+            error = 'Invalid username or password';
+        }
+        dispatch({type: AUTH_ERROR, error});
     } else {
         return dispatch({type: NEW_MESSAGE, messageType: 'error', text: 'Network Error, Please Try Again'});
     }
@@ -41,39 +47,35 @@ const login = credentials => {
                 const {token, premium, admin} = data;
                 if (saveData) window.localStorage.setItem('token', data.token);
                 dispatch({type: LOGIN_SUCCESS, username, token, premium, admin});
-            }).catch(err => authErrorAction(err, dispatch));
+            }).catch(err => authErrorAction(err, dispatch, 'login'));
     };
 };
 
 const logout = () => {
-    console.log('logout called');
     window.localStorage.removeItem('token');
     return {type: LOGOUT}
-}
+};
 
-const resetPw = (options, tokenUrl, dispatch) => {
-    const {username, password, p2} = options;
+const resetPw = (credentials, tokenUrl, dispatch) => {
+    const {username, password, p2} = credentials;
     if (password.length < 4) return dispatch({type: AUTH_ERROR, error: 'Password Must Be at Least 4 Characters Long'});
     if (password !== p2) return dispatch({type: AUTH_ERROR, error: 'Passwords Do Not Match'});
+
+    const options = {username, password};
     return (dispatch) => {
-        apiPromise({username, password}, `auth/reset/${tokenUrl}`).then(
-            (data) => {
-                return dispatch({
-                    type: LOGIN_SUCCESS,
-                    name: data.username,
-                    token: data.token,
-                    premium: data.premium,
-                    admin: data.admin
-                });
-            },
-            (err) => {
-                if (err === 'unauthorized') {
-                    return dispatch({type: AUTH_ERROR, error: 'Your Token Has Expired, Please Click On "Login", and "Forgot Password" again'});
-                } else {
-                    return dispatch({type: NEW_MESSAGE, messageType: 'error', text: 'Network Error, Please Try Again'});
+        postToApi(options, `auth/reset/${tokenUrl}`)
+            .then(
+                (data) => {
+                    const {token, premium, admin} = data;
+                    return dispatch({
+                        type: LOGIN_SUCCESS,
+                        username,
+                        token,
+                        premium,
+                        admin
+                    });
                 }
-            }
-        );
+            ).catch((err) => authErrorAction(err, dispatch, 'reset'));
     };
 };
 
@@ -81,11 +83,7 @@ const sendResetEmail = (options, dispatch) => {
     return (dispatch) => {
         postToApi(options, 'auth/resetPassword')
             .then(() => dispatch({type: EMAIL_SUCCESS}))
-            .catch(() => dispatch({
-                type: NEW_MESSAGE,
-                messageType: 'error',
-                text: 'Network Error, Please Try Again'
-            }));
+            .catch(() => authErrorAction(null, dispatch));
     };
 };
 
