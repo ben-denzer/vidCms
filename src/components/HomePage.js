@@ -1,9 +1,13 @@
 import React from 'react';
-import {PageTitle} from '../styles/share';
+import {PageTitle, PageHeadline, ContentContainer} from '../styles/share';
 
 const HomePage = (props) => {
     return (
-        <PageTitle>Hi {props.name}</PageTitle>
+        <div>
+            <PageTitle>NodeReact.com</PageTitle>
+            <PageHeadline>JavaScript === Life</PageHeadline>
+            <ContentContainer></ContentContainer>
+        </div>
     );
 };
 

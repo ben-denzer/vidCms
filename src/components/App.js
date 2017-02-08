@@ -46,6 +46,8 @@ const PrivateRoute = ({ path, username, component, lastRoute }) => {
 
 const AppContainer = styled.div`
     width: 100%;
+    background-color: #ddd;
+    min-height: 100vh;
 `;
 
 export default withRouter(App);
