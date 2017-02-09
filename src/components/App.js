@@ -1,14 +1,11 @@
 import React            from 'react';
-import {
-    Route,
-    Redirect,
-    withRouter
-}                       from 'react-router-dom';
+import {Route, Redirect, withRouter} from 'react-router-dom';
 import styled           from 'styled-components';
 import Navbar           from './shared/Navbar';
 import HomePage         from './HomePage';
 import AboutPage        from './static/AboutPage';
 import AuthContainer    from '../containers/AuthContainer';
+import AdminContainer   from '../containers/AdminContainer';
 
 class App extends React.Component {
     componentDidMount() {
@@ -33,6 +30,7 @@ class App extends React.Component {
                     username={username}
                     lastRoute={lastRoute}
                 />
+                <Route path='/admin' component={AdminContainer} />
 
             </AppContainer>
         );
