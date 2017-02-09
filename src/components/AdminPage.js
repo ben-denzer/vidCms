@@ -1,6 +1,7 @@
-import React from 'react';
-import {Link, Route} from 'react-router';
-import styled from 'styled-components';
+import React                from 'react';
+import {Link, Route}        from 'react-router-dom';
+import styled               from 'styled-components';
+import BlogUploadForm       from './admin/BlogUploadForm';
 
 class AdminPage extends React.Component {
     componentWillMount() {
@@ -16,7 +17,19 @@ class AdminPage extends React.Component {
     }
     render() {
         if (!this.props.admin) return <AdminContainer>Log In To Continue</AdminContainer>
-        const {users, comments, videos, blogs, images} = this.props.allData;
+        const {
+            blogTitleVal,
+            blogHeadlineVal,
+            blogImageUrl,
+            error,
+            allData,
+            handleTextChange,
+            submitBlog,
+            populateBlogForm,
+            dePopulateBlogForm,
+        } = this.props;
+        const {users, comments, videos, blogs, images} = allData;
+
         return (
             <AdminContainer>
                 <AdminSidebar>
@@ -32,7 +45,24 @@ class AdminPage extends React.Component {
                     <AdminButton onClick={() => this.props.push('/admin/edit/blogs/')}>Edit Post</AdminButton>
                 </AdminSidebar>
                 <AdminMain>
-                    {this.props.children && React.cloneElement(this.props.children,
+                    <Route path='/admin/upload/blog'
+                        render={() => {
+                            return (
+                                <BlogUploadForm
+                                    blogs={blogs}
+                                    images={images}
+                                    blogTitleVal={blogTitleVal}
+                                    blogHeadlineVal={blogHeadlineVal}
+                                    blogImageUrl={blogImageUrl}
+                                    error={error}
+                                    handleTextChange={handleTextChange}
+                                    submitBlog={submitBlog}
+                                    dePopulateBlogForm={dePopulateBlogForm}
+                                />
+                            );
+                        }}
+                    />
+                    {/*this.props.children && React.cloneElement(this.props.children,
                         {
                             users,
                             comments,
@@ -42,7 +72,7 @@ class AdminPage extends React.Component {
                             removeComment: this.removeComment,
                             commentTrashCan: this.props.commentTrashCan
                         }
-                    )}
+                    )*/}
                 </AdminMain>
             </AdminContainer>
         );

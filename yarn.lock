@@ -204,6 +204,10 @@ asynckit@^0.4.0:
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/asynckit/-/asynckit-0.4.0.tgz#c79ed97f7f34cb8f2ba1bc9790bcc366474b4b79"
 
+attr-accept@^1.0.3:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/attr-accept/-/attr-accept-1.1.0.tgz#b5cd35227f163935a8f1de10ed3eba16941f6be6"
+
 autoprefixer@^6.3.1:
   version "6.7.0"
   resolved "https://registry.yarnpkg.com/autoprefixer/-/autoprefixer-6.7.0.tgz#88992cf04df141e7b8293550f2ee716c565d1cae"
@@ -1771,6 +1775,24 @@ dotenv@2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-2.0.0.tgz#bd759c357aaa70365e01c96b7b0bec08a6e0d949"
 
+draft-js:
+  version "0.10.0"
+  resolved "https://registry.yarnpkg.com/draft-js/-/draft-js-0.10.0.tgz#29d16191012b932fdab28a9b37ec1538f421abf6"
+  dependencies:
+    fbjs "^0.8.7"
+    immutable "~3.7.4"
+    object-assign "^4.1.0"
+
+draft-js-export-html:
+  version "0.5.2"
+  resolved "https://registry.yarnpkg.com/draft-js-export-html/-/draft-js-export-html-0.5.2.tgz#089e55ce06d5aed0dbd9af5eee2eb56c58a1c428"
+  dependencies:
+    draft-js-utils "^0.1.5"
+
+draft-js-utils@^0.1.5:
+  version "0.1.7"
+  resolved "https://registry.yarnpkg.com/draft-js-utils/-/draft-js-utils-0.1.7.tgz#e2b6927ca620edf1855a4bfc1cf1d21080a70f16"
+
 duplexer@^0.1.1:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/duplexer/-/duplexer-0.1.1.tgz#ace6ff808c1ce66b57d1ebf97977acb02334cfc1"
@@ -2657,6 +2679,10 @@ ieee754@^1.1.4:
 ignore@^3.1.5:
   version "3.2.2"
   resolved "https://registry.yarnpkg.com/ignore/-/ignore-3.2.2.tgz#1c51e1ef53bab6ddc15db4d9ac4ec139eceb3410"
+
+immutable@~3.7.4:
+  version "3.7.6"
+  resolved "https://registry.yarnpkg.com/immutable/-/immutable-3.7.6.tgz#13b4d3cb12befa15482a26fe1b2ebae640071e4b"
 
 imurmurhash@^0.1.4:
   version "0.1.4"
@@ -4462,6 +4488,12 @@ react-dom:
     fbjs "^0.8.1"
     loose-envify "^1.1.0"
     object-assign "^4.1.0"
+
+react-dropzone:
+  version "3.9.2"
+  resolved "https://registry.yarnpkg.com/react-dropzone/-/react-dropzone-3.9.2.tgz#84703d1ee20ea4118f64fa38c14218415fecb1e9"
+  dependencies:
+    attr-accept "^1.0.3"
 
 react-overlays@^0.6.10:
   version "0.6.10"
