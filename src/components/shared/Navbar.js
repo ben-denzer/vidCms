@@ -7,8 +7,11 @@ import headerImg    from '../../img/header-bg.jpg';
 const MyNav = (props) => {
     return (
         <Header>
-            <AboveNav></AboveNav>
+            <AboveNav>
+                <LogoH1>NodeReact.com</LogoH1>
+            </AboveNav>
             <Navbar inverse collapseOnSelect fluid>
+                <Navbar.Toggle />
                 <Navbar.Collapse>
                     <ul className="nav navbar-nav navbar-right">
                         <li role="presentation"><Link to='/'>Home</Link></li>
@@ -34,10 +37,30 @@ const MyNav = (props) => {
 };
 
 const Header = styled.header``;
+
 const AboveNav = styled.div`
     height: 100px;
     background-image: url("${headerImg}");
     background-size: cover;
+    display: flex;
+    align-items: flex-start;
+`;
+
+const LogoH1 = styled.h1`
+    font-size: 82px;
+    font-family: 'Indie Flower', cursive;
+    font-weight: bold;
+    text-align: center;
+    margin-left: 20px;
+    color: #bb0000;
+    text-shadow: 4px 3px 3px #333;
+
+    @media (max-width: 650px) {
+        font-size: 40px;
+        margin: 0;
+        width: 100%;
+        text-align: center;
+    }
 `;
 
 export default MyNav;

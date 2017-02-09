@@ -1,12 +1,23 @@
 import React from 'react';
-import {PageTitle, PageHeadline, ContentContainer} from '../styles/share';
+import RecentPosts from './home/RecentPosts';
+import {
+    PageTitle,
+    PageHeadline,
+    PageContainer,
+    ContentContainer,
+    Sidebar
+} from '../styles/share';
 
 const HomePage = (props) => {
     return (
         <div>
-            <PageTitle>NodeReact.com</PageTitle>
-            <PageHeadline>JavaScript === Life</PageHeadline>
-            <ContentContainer></ContentContainer>
+            <PageTitle>JavaScript, Soft Skills, Getting Your First Job, and More</PageTitle>
+            <PageContainer>
+                <ContentContainer>
+                    <RecentPosts allBlogs={props.allBlogs} />
+                </ContentContainer>
+                <Sidebar></Sidebar>
+            </PageContainer>
         </div>
     );
 };
