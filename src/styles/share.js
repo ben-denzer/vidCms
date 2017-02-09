@@ -17,6 +17,7 @@ export const PageContainer = styled.div`
     max-width: 1400px;
     margin: 0 auto;
     display: flex;
+    flex-flow: row wrap;
     font-family: Helvitica, Arial, sans-serif;
 
     @media (max-width: 1000px) {
@@ -32,15 +33,15 @@ export const PageHeadline = styled.h2`
 `;
 
 export const PageTitle = styled.h1`
+    width: 100%;
     font-size: 30px;
     font-family: 'Montserrat', sans-serif;
     font-weight: bold;
-    text-align: center;
     margin-bottom: 0;
 `;
 
-export const Sidebar = styled.div`
-    width: 25%;
-    display: flex;
-    flex-direction: column;
+export const SectionHeader = styled.h2`
+    font-family: 'Montserrat', sans-serif;
+    font-size: 22px;
+    text-align: center;
 `;

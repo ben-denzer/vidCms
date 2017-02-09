@@ -1,24 +1,23 @@
-import React from 'react';
-import RecentPosts from './home/RecentPosts';
+import React        from 'react';
+import RecentPosts  from './home/RecentPosts';
+import Sidebar      from './shared/Sidebar';
 import {
     PageTitle,
-    PageHeadline,
     PageContainer,
     ContentContainer,
-    Sidebar
+    SectionHeader
 } from '../styles/share';
 
 const HomePage = (props) => {
     return (
-        <div>
+        <PageContainer>
             <PageTitle>JavaScript, Soft Skills, Getting Your First Job, and More</PageTitle>
-            <PageContainer>
-                <ContentContainer>
-                    <RecentPosts allBlogs={props.allBlogs} />
-                </ContentContainer>
-                <Sidebar></Sidebar>
-            </PageContainer>
-        </div>
+            <ContentContainer>
+                <SectionHeader>Recent Posts</SectionHeader>
+                <RecentPosts allBlogs={props.allBlogs} />
+            </ContentContainer>
+            <Sidebar />
+        </PageContainer>
     );
 };
 
