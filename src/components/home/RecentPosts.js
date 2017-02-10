@@ -10,7 +10,13 @@ const RecentPosts = ({allBlogs, allImages}) => {
             console.log('in map', blog)
             const imgUrl = allImages.filter(image => image.blog_fk === blog.blog_post_url)[0].image_url;
             return (
-                <EachRecentPost key={blog.blog_id} blog={blog} imgUrl={imgUrl} />
+                <EachRecentPost
+                    key={blog.blog_id}
+                    title={blog.blog_title}
+                    headline={blog.blog_headline}
+                    blogUrl={blog.blog_post_url}
+                    imgUrl={imgUrl}
+                />
             );
         });
     }

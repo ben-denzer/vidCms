@@ -3,15 +3,15 @@ import styled from 'styled-components';
 import {withRouter} from 'react-router-dom';
 
 const EachRecentPost = props => {
-    const {blog_id, blog_title, blog_headline, blog_text, blog_date, blog_post_url} = props.blog;
-    const {imgUrl} = props;
+    const {title, headline, blogUrl, imgUrl} = props;
     const apiUrl = 'http://localhost:8000/uploads/';
+
     return (
-        <RecentPostContainer onClick={() => props.push(`/blog/${blog_post_url}`)} className='RecentPostContainer'>
-            <Image className='RecentPostImage' src={`${apiUrl}${imgUrl}`} alt={blog_title} />
+        <RecentPostContainer onClick={() => props.push(`/blog/${blogUrl}`)} className='RecentPostContainer'>
+            <Image className='RecentPostImage' src={`${apiUrl}${imgUrl}`} alt={title} />
             <TextContainer className='TextContainer'>
-                <Title>{blog_title}</Title>
-                <Headline>{blog_headline}</Headline>
+                <Title>{title}</Title>
+                <Headline>{headline}</Headline>
             </TextContainer>
         </RecentPostContainer>
     );
