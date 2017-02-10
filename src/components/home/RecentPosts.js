@@ -7,7 +7,6 @@ const RecentPosts = ({allBlogs, allImages}) => {
 
     if (allBlogs && allBlogs.length) {
         recentPosts = allBlogs.map(blog => {
-            console.log('in map', blog)
             const imgUrl = allImages.filter(image => image.blog_fk === blog.blog_post_url)[0].image_url;
             return (
                 <EachRecentPost

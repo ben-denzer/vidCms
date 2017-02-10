@@ -6,6 +6,7 @@ import HomePage         from './HomePage';
 import AboutPage        from './static/AboutPage';
 import AuthContainer    from '../containers/AuthContainer';
 import AdminContainer   from '../containers/AdminContainer';
+import BlogPage         from './BlogPage';
 
 class App extends React.Component {
     componentDidMount() {
@@ -23,17 +24,12 @@ class App extends React.Component {
                 <Navbar username={username} logout={logout} />
 
                 <Route exact path='/'
-                    render={() => {
-                        return (
-                            <HomePage
-                                allBlogs={allBlogs}
-                                allImages={allImages}
-                                allVideos={allVideos}
-                            />
-                        );
-                    }}
+                    render={() => <HomePage allBlogs={allBlogs} allImages={allImages} allVideos={allVideos} />}
                 />
                 <Route exact path='/about' component={AboutPage} />
+                <Route path='/blog'
+                    render={() => <BlogPage allBlogs={allBlogs} allImages={allImages} />}
+                />
                 <PrivateRoute
                     path="/auth"
                     component={AuthContainer}
