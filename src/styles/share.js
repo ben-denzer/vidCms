@@ -38,6 +38,7 @@ export const PageTitle = styled.h1`
     font-family: 'Montserrat', sans-serif;
     font-weight: bold;
     margin-bottom: 0;
+    text-align: center;
 `;
 
 export const SectionHeader = styled.h2`

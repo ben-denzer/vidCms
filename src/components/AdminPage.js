@@ -1,5 +1,5 @@
 import React                from 'react';
-import {Link, Route}        from 'react-router-dom';
+import {/*Link,*/ Route}        from 'react-router-dom';
 import styled               from 'styled-components';
 import BlogUploadForm       from './admin/BlogUploadForm';
 
@@ -25,11 +25,11 @@ class AdminPage extends React.Component {
             allData,
             handleTextChange,
             submitBlog,
-            populateBlogForm,
+            //populateBlogForm,
             dePopulateBlogForm,
             editorHtml
         } = this.props;
-        const {users, comments, videos, blogs, images} = allData;
+        const {/*users, comments, videos,*/ blogs, images} = allData;
 
         return (
             <AdminContainer>

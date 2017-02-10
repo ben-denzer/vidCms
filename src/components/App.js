@@ -17,12 +17,22 @@ class App extends React.Component {
         }
     }
     render() {
-        const {username, logout, lastRoute} = this.props;
+        const {username, logout, lastRoute, allBlogs, allImages, allVideos} = this.props;
         return (
             <AppContainer>
                 <Navbar username={username} logout={logout} />
 
-                <Route exact path='/' component={HomePage} />
+                <Route exact path='/'
+                    render={() => {
+                        return (
+                            <HomePage
+                                allBlogs={allBlogs}
+                                allImages={allImages}
+                                allVideos={allVideos}
+                            />
+                        );
+                    }}
+                />
                 <Route exact path='/about' component={AboutPage} />
                 <PrivateRoute
                     path="/auth"

@@ -10,11 +10,14 @@ import {
 
 const HomePage = (props) => {
     return (
-        <PageContainer>
-            <PageTitle>JavaScript, Soft Skills, Getting Your First Job, and More</PageTitle>
-            <ContentContainer>
-                <SectionHeader>Recent Posts</SectionHeader>
-                <RecentPosts allBlogs={props.allBlogs} />
+        <PageContainer className="pageContainer">
+            <ContentContainer className="contentContainer">
+                <PageTitle className="pageTitle">Node, React, Web Development, and Life</PageTitle>
+                <SectionHeader className="sectionHeader">Recent Posts</SectionHeader>
+                <RecentPosts
+                    allBlogs={props.allBlogs}
+                    allImages={props.allImages}
+                />
             </ContentContainer>
             <Sidebar />
         </PageContainer>
