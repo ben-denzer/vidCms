@@ -27,6 +27,7 @@ class AdminPage extends React.Component {
             submitBlog,
             populateBlogForm,
             dePopulateBlogForm,
+            editorHtml
         } = this.props;
         const {users, comments, videos, blogs, images} = allData;
 
@@ -58,6 +59,7 @@ class AdminPage extends React.Component {
                                     handleTextChange={handleTextChange}
                                     submitBlog={submitBlog}
                                     dePopulateBlogForm={dePopulateBlogForm}
+                                    editorHtml={editorHtml}
                                 />
                             );
                         }}

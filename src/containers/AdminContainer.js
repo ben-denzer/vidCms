@@ -13,6 +13,7 @@ const mapStateToProps = (state) => {
         blogTitleVal        : state.forms.blogTitleVal,
         blogHeadlineVal     : state.forms.blogHeadlineVal,
         blogImageUrl        : state.forms.blogImageUrl,
+        editorHtml          : state.forms.editorHtml,
         error               : state.message.error
     };
 };
