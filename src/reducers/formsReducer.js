@@ -47,11 +47,14 @@ export default function(state = initialState.forms, action) {
             });
         case 'UPLOAD_SUCCESS':
             return Object.assign({}, state, {
-                authErrorVal: '',
-                editorHtml: '',
-                videoInputFile: [],
-                videoTitleVal: '',
-                videoHeadlineVal: ''
+                authErrorVal        : '',
+                blogTitleVal        : '',
+                blogHeadlineVal     : '',
+                editorHtml          : '',
+                blogImageUrl        : '',
+                inputFile           : [],
+                videoTitleVal       : '',
+                videoHeadlineVal    : ''
             });
         default:
             return state;
