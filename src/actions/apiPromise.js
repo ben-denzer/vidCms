@@ -1,6 +1,4 @@
-const apiUrl = process.env['NODE_ENV'] === 'development' ?
-    'http://localhost:8000/' :
-    'https://bdenzer.com/blogApi/';
+import {apiUrl} from '../.keys';
 
 const getPublicJson = url => {
     return new Promise((resolve, reject) => {

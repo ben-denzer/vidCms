@@ -3,19 +3,27 @@ import styled           from 'styled-components';
 import {Link}           from 'react-router-dom';
 import profile          from '../../img/profile.jpg';
 import {SectionHeader}  from '../../styles/share';
+import {mediaUrl}         from '../../.keys';
 
 const Sidebar = (props) => {
+    console.log(props, props.img);
     return (
         <SidebarContainer>
+            {props.img && <BlogImg src={`${mediaUrl}${props.img}`} alt={props.alt} />}
             <SidebarAd />
             <SidebarContent>
                 <SectionHeader>About The Author</SectionHeader>
-                <SidebarImg src={profile} alt="Ben Denzer" />
+                <ProfileImg src={profile} alt="Ben Denzer" />
                 <p>My name is Ben Denzer and I'm a JavaScript developer in the Las Vegas area. <Link to='/about'>more</Link></p>
             </SidebarContent>
         </SidebarContainer>
     );
 };
+
+const BlogImg = styled.img`
+    width: 100%;
+    height: auto;
+`;
 
 const SidebarAd = styled.div`
     height: 300px;
@@ -36,7 +44,7 @@ const SidebarContent = styled.div`
     padding: 0 10px;
 `;
 
-const SidebarImg = styled.img`
+const ProfileImg = styled.img`
     width: 100%;
     height: auto;
 `;

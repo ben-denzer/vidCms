@@ -3,10 +3,7 @@ import styled from 'styled-components';
 import TextInput from '../shared/TextInput';
 import MyEditor from './children/MyEditor';
 import DragDrop from './children/DragDrop';
-
-const apiUrl = process.env['NODE_ENV'] === 'development' ?
-    'http://localhost:8000/uploads/' :
-    'https://bdenzer.xyz/blog/uploads/';
+import {apiUrl} from '../../.keys';
 
 class BlogUploadForm extends React.Component {
     constructor(props) {

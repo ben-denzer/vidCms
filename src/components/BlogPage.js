@@ -1,6 +1,7 @@
 import React        from 'react';
 import Sidebar      from './shared/Sidebar';
 import {withRouter} from 'react-router-dom';
+import createMarkup from '../logic/createMarkup';
 import {
     PageTitle,
     PageContainer,
@@ -15,7 +16,6 @@ const BlogPage = ({allBlogs, allImages}) => {
 
     if (allBlogs && allBlogs.length) {
         post = allBlogs.filter(blog => path.slice(path.lastIndexOf('/') + 1) === blog.blog_post_url)[0];
-        image = allImages.filter(image => image.blog_fk === post.blog_post_url)[0].image_url;
 
         if (!post) {
             return (
@@ -26,6 +26,8 @@ const BlogPage = ({allBlogs, allImages}) => {
                     <Sidebar />
                 </PageContainer>
             );
+        } else {
+            image = allImages.filter(image => image.blog_fk === post.blog_post_url)[0].image_url;
         }
     }
 
@@ -38,14 +40,9 @@ const BlogPage = ({allBlogs, allImages}) => {
                 <SectionHeader className="sectionHeader">{blog_headline}</SectionHeader>
                 <div dangerouslySetInnerHTML={blog_text && createMarkup(blog_text)} />
             </ContentContainer>
-            <Sidebar />
+            <Sidebar img={image} alt="Blog Image" />
         </PageContainer>
     );
-};
-
-const createMarkup = text => {
-    if (/<script/.test(text)) return {__html: ''}
-    return {__html: text.toString()};
 };
 
 export default withRouter(BlogPage);

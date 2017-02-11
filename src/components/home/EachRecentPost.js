@@ -1,14 +1,14 @@
-import React from 'react';
-import styled from 'styled-components';
+import React        from 'react';
+import styled       from 'styled-components';
 import {withRouter} from 'react-router-dom';
+import {mediaUrl}     from '../../.keys';
 
 const EachRecentPost = props => {
     const {title, headline, blogUrl, imgUrl} = props;
-    const apiUrl = 'http://localhost:8000/uploads/';
 
     return (
         <RecentPostContainer onClick={() => props.push(`/blog/${blogUrl}`)} className='RecentPostContainer'>
-            <Image className='RecentPostImage' src={`${apiUrl}${imgUrl}`} alt={title} />
+            <Image className='RecentPostImage' src={`${mediaUrl}${imgUrl}`} alt={title} />
             <TextContainer className='TextContainer'>
                 <Title>{title}</Title>
                 <Headline>{headline}</Headline>
