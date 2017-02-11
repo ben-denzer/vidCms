@@ -1,8 +1,15 @@
 import {connect}            from 'react-redux';
 import {getAdminData, putCommentInTrash} from '../actions/adminActions';
-import {handleTextChange, submitBlog, populateBlogForm, dePopulateBlogForm} from '../actions/formActions';
+import {
+    handleTextChange,
+    submitBlog,
+    populateBlogForm,
+    dePopulateBlogForm,
+    submitUploadFree,
+    submitUploadPremium
+} from '../actions/formActions';
 
-import AdminPage            from '../components/AdminPage';
+import AdminPage from '../components/AdminPage';
 
 const mapStateToProps = (state) => {
     return {
@@ -14,6 +21,9 @@ const mapStateToProps = (state) => {
         blogHeadlineVal     : state.forms.blogHeadlineVal,
         blogImageUrl        : state.forms.blogImageUrl,
         editorHtml          : state.forms.editorHtml,
+        videoTitleVal       : state.forms.videoTitleVal,
+        videoHeadlineVal    : state.forms.videoHeadlineVal,
+        youtubeUrlVal       : state.forms.youtubeUrlVal,
         error               : state.message.error
     };
 };
@@ -28,6 +38,8 @@ const mapDispatchToProps = (dispatch) => {
                                 },
         populateBlogForm:       (options) => dispatch(populateBlogForm(options)),
         submitBlog:             (options) => dispatch(submitBlog(options, dispatch)),
+        submitUploadFree:       (options) => dispatch(submitUploadFree(options, dispatch)),
+        submitUploadPremium:    (options) => dispatch(submitUploadPremium(options, dispatch))
     }
 };
 

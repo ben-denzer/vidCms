@@ -2,6 +2,7 @@ import React                from 'react';
 import {/*Link,*/ Route}        from 'react-router-dom';
 import styled               from 'styled-components';
 import BlogUploadForm       from './admin/BlogUploadForm';
+import VideoUploadForm      from './admin/VideoUploadForm';
 
 class AdminPage extends React.Component {
     componentWillMount() {
@@ -25,9 +26,14 @@ class AdminPage extends React.Component {
             allData,
             handleTextChange,
             submitBlog,
+            submitUploadFree,
+            submitUploadPremium,
             //populateBlogForm,
             dePopulateBlogForm,
-            editorHtml
+            editorHtml,
+            videoTitleVal,
+            videoHeadlineVal,
+            youtubeUrlVal
         } = this.props;
         const {/*users, comments, videos,*/ blogs, images} = allData;
 
@@ -60,6 +66,23 @@ class AdminPage extends React.Component {
                                     submitBlog={submitBlog}
                                     dePopulateBlogForm={dePopulateBlogForm}
                                     editorHtml={editorHtml}
+                                />
+                            );
+                        }}
+                    />
+                    <Route path='/admin/upload/video'
+                        render={() => {
+                            return (
+                                <VideoUploadForm
+                                    videoTitleVal={videoTitleVal}
+                                    videoHeadlineVal={videoHeadlineVal}
+                                    error={error}
+                                    handleTextChange={handleTextChange}
+                                    submitUploadFree={submitUploadFree}
+                                    submitUploadPremium={submitUploadPremium}
+                                    dePopulateBlogForm={dePopulateBlogForm}
+                                    editorHtml={editorHtml}
+                                    youtubeUrlVal={youtubeUrlVal}
                                 />
                             );
                         }}

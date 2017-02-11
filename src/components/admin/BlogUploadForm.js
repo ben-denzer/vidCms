@@ -1,9 +1,9 @@
 import React from 'react';
-import styled from 'styled-components';
 import TextInput from '../shared/TextInput';
 import MyEditor from './children/MyEditor';
 import DragDrop from './children/DragDrop';
 import {apiUrl} from '../../.keys';
+import {UploadImage, UploadImageContainer, UploadBox, UploadPage} from '../../styles/adminFormStyles';
 
 class BlogUploadForm extends React.Component {
     constructor(props) {
@@ -80,30 +80,5 @@ class BlogUploadForm extends React.Component {
         );
     }
 }
-
-const UploadPage = styled.div`
-    width: 95%;
-    background-color: #fff;
-    margin: 0 auto;
-    padding: 15px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border: 2px solid black;
-`;
-
-const UploadBox = styled.form`
-    width: 100%;
-`;
-
-const UploadImageContainer = styled.div`
-    width: 100%;
-    text-align: right;
-`;
-
-const UploadImage = styled.img`
-    height: 200px;
-    width: auto;
-`;
 
 export default BlogUploadForm;

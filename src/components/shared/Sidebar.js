@@ -3,10 +3,9 @@ import styled           from 'styled-components';
 import {Link}           from 'react-router-dom';
 import profile          from '../../img/profile.jpg';
 import {SectionHeader}  from '../../styles/share';
-import {mediaUrl}         from '../../.keys';
+import {mediaUrl}       from '../../.keys';
 
 const Sidebar = (props) => {
-    console.log(props, props.img);
     return (
         <SidebarContainer>
             {props.img && <BlogImg src={`${mediaUrl}${props.img}`} alt={props.alt} />}
