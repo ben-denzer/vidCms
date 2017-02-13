@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom';
 
 const EachRecentPost = props => {
     return (
-        <StyledLink to={`/blog/${props.blog_post_url}`}>
+        <StyledLink to={`/blog/${props.blogUrl}`}>
             <RecentTitle>{props.title}</RecentTitle>
             <RecentHeadline>{props.headline}</RecentHeadline>
         </StyledLink>
