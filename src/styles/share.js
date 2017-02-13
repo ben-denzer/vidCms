@@ -44,5 +44,5 @@ export const PageTitle = styled.h1`
 export const SectionHeader = styled.h2`
     font-family: 'Montserrat', sans-serif;
     font-size: 22px;
-    text-align: center;
+    margin-left: 40px;
 `;

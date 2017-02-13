@@ -1,5 +1,6 @@
 import React        from 'react';
 import RecentPosts  from './home/RecentPosts';
+import RecentVideos from './home/RecentVideos';
 import Sidebar      from './shared/Sidebar';
 import {
     PageTitle,
@@ -18,6 +19,8 @@ const HomePage = (props) => {
                     allBlogs={props.allBlogs}
                     allImages={props.allImages}
                 />
+                <SectionHeader>Recent Uploads</SectionHeader>
+                <RecentVideos allVideos={props.allVideos} />
             </ContentContainer>
             <Sidebar />
         </PageContainer>

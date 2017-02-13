@@ -21,6 +21,11 @@ const RecentPostContainer = styled.div`
     display: flex;
     align-items: flex-end;
     margin-bottom: 10px;
+
+    &:hover {
+        cursor: pointer;
+        opacity: .8;
+    }
 `;
 
 const Image = styled.img`
