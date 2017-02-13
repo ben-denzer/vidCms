@@ -1,5 +1,5 @@
 import React from 'react';
-import { InteriorPage, PageTitle } from '../../styles/share';
+import { InteriorPage, PageTitle } from '../styles/share';
 
 
 const AboutPage = (props) => {

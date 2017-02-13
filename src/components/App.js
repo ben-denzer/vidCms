@@ -3,10 +3,11 @@ import {Route, Redirect, withRouter} from 'react-router-dom';
 import styled           from 'styled-components';
 import Navbar           from './shared/Navbar';
 import HomePage         from './HomePage';
-import AboutPage        from './static/AboutPage';
+import AboutPage        from './AboutPage';
+import AllPosts         from './AllPosts';
 import AuthContainer    from '../containers/AuthContainer';
 import AdminContainer   from '../containers/AdminContainer';
-import BlogPage         from './BlogPage';
+import SingleBlogPage   from './SingleBlogPage';
 
 class App extends React.Component {
     componentDidMount() {
@@ -27,8 +28,11 @@ class App extends React.Component {
                     render={() => <HomePage allBlogs={allBlogs} allImages={allImages} allVideos={allVideos} />}
                 />
                 <Route exact path='/about' component={AboutPage} />
-                <Route path='/blog'
-                    render={() => <BlogPage allBlogs={allBlogs} allImages={allImages} />}
+                <Route exact path='/blog' render={
+                    () => <AllPosts allBlogs={allBlogs} allImages={allImages} />}
+                />
+                <Route path='/blog/:id'
+                    render={() => <SingleBlogPage allBlogs={allBlogs} allImages={allImages} />}
                 />
                 <PrivateRoute
                     path="/auth"
@@ -52,6 +56,8 @@ const AppContainer = styled.div`
     width: 100%;
     background-color: #ddd;
     min-height: 100vh;
+    padding-bottom: 50px;
+    font-size: 18px;
 `;
 
 export default withRouter(App);

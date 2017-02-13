@@ -1,8 +1,10 @@
 import React        from 'react';
-import RecentPosts  from './home/RecentPosts';
-import RecentVideos from './home/RecentVideos';
+import styled       from 'styled-components';
+import {Link}       from 'react-router-dom';
+import RecentPosts  from './content/RecentPosts';
 import Sidebar      from './shared/Sidebar';
 import {
+    PageHeading,
     PageTitle,
     PageContainer,
     ContentContainer,
@@ -13,18 +15,42 @@ const HomePage = (props) => {
     return (
         <PageContainer className="pageContainer">
             <ContentContainer className="contentContainer">
-                <PageTitle className="pageTitle">Node, React, Web Development, and Life</PageTitle>
-                <SectionHeader className="sectionHeader">Recent Posts</SectionHeader>
-                <RecentPosts
-                    allBlogs={props.allBlogs}
-                    allImages={props.allImages}
-                />
-                <SectionHeader>Recent Uploads</SectionHeader>
-                <RecentVideos allVideos={props.allVideos} />
+                <PageHeading>
+                    <PageTitle className="pageTitle">Node, React, Web Development, and Life</PageTitle>
+                </PageHeading>
+                <p>I took a pretty unconventional path into web development. I am a licenced crane operator, a commercial driver, and a geotechnical driller. I'm also a front end developer at my day job and a full stack JavaScript developer in my spare time.</p>
+
+                <p>This site is about front-end / node.js development and anything else that I find interesting.</p>
+                <HpLinkContainer>
+                    <StyledLink to='/blog'>Articles</StyledLink>
+                    <StyledLink to='/videos'>Videos</StyledLink>
+                </HpLinkContainer>
+                <RecentPosts allBlogs={props.allBlogs} allVideos={props.allVideos} />
             </ContentContainer>
             <Sidebar />
         </PageContainer>
     );
 };
+
+const HpLinkContainer = styled.div`
+    width: 100%;
+    padding: 40px;
+    background: rgba(255,255,255,.2);
+    max-width: 1000px;
+    display: flex;
+    justify-content: space-around;
+`;
+
+const StyledLink = styled(Link)`
+    color: blue;
+    text-decoration: none;
+    font-size: 24px;
+
+    &:hover {
+        color: black;
+    }
+`;
+
+
 
 export default HomePage;
