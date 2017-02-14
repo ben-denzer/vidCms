@@ -7,8 +7,7 @@ import {
     PageHeading,
     PageTitle,
     PageContainer,
-    ContentContainer,
-    SectionHeader
+    ContentContainer
 } from '../styles/share';
 
 const HomePage = (props) => {

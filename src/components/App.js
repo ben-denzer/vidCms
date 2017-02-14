@@ -5,6 +5,7 @@ import Navbar           from './shared/Navbar';
 import HomePage         from './HomePage';
 import AboutPage        from './AboutPage';
 import AllPosts         from './AllPosts';
+import AllVideos        from './AllVideos';
 import AuthContainer    from '../containers/AuthContainer';
 import AdminContainer   from '../containers/AdminContainer';
 import SingleBlogPage   from './SingleBlogPage';
@@ -27,21 +28,26 @@ class App extends React.Component {
                 <Route exact path='/'
                     render={() => <HomePage allBlogs={allBlogs} allImages={allImages} allVideos={allVideos} />}
                 />
-                <Route exact path='/about' component={AboutPage} />
-                <Route exact path='/blog' render={
-                    () => <AllPosts allBlogs={allBlogs} allImages={allImages} />}
+                <Route exact path='/about'
+                    component={AboutPage}
                 />
-                <Route path='/blog/:id'
-                    render={() => <SingleBlogPage allBlogs={allBlogs} allImages={allImages} />}
+                <Route path='/admin'
+                    component={AdminContainer}
                 />
-                <PrivateRoute
-                    path="/auth"
+                <PrivateRoute path="/auth"
                     component={AuthContainer}
                     username={username}
                     lastRoute={lastRoute}
                 />
-                <Route path='/admin' component={AdminContainer} />
-
+                <Route exact path='/blog'
+                    render={() => <AllPosts allBlogs={allBlogs} allImages={allImages} />}
+                />
+                <Route path='/blog/:id'
+                    render={() => <SingleBlogPage allBlogs={allBlogs} allImages={allImages} />}
+                />
+                <Route exact path="/videos"
+                    render={() => <AllVideos allVideos={allVideos} />}
+                />
             </AppContainer>
         );
     }
