@@ -1,7 +1,6 @@
 import React            from 'react';
 import styled           from 'styled-components';
-import EachRecentPost   from './EachRecentPost';
-import EachRecentVideo  from './EachRecentVideo';
+import RecentPostLink   from './RecentPostLink';
 
 const RecentPosts = ({allBlogs, allImages, allVideos}) => {
     let recentPosts = <div></div>
@@ -10,7 +9,7 @@ const RecentPosts = ({allBlogs, allImages, allVideos}) => {
     if (allBlogs && allBlogs.length) {
         recentPosts = allBlogs.slice(0,3).map(blog => {
             return (
-                <EachRecentPost
+                <RecentPostLink
                     key={blog.blog_id}
                     title={blog.blog_title}
                     headline={blog.blog_headline}
@@ -23,7 +22,7 @@ const RecentPosts = ({allBlogs, allImages, allVideos}) => {
     if (allVideos && allVideos.length) {
         recentVideos = allVideos.slice(0,3).map(video => {
             return (
-                <EachRecentVideo
+                <RecentPostLink
                     key={video.video_id}
                     id={video.video_id}
                     title={video.video_title}
