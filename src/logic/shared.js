@@ -43,16 +43,7 @@ const userSort = (array, sortBy, filterBy) => {
     });
 };
 
-const createMarkup = (str) => {
-    if (/<script/.test(str.toString())) return {__html: ''}
-    return {__html: str.toString()};
-}
 
-const parseDate = (str) => {
-    if (!str) return 'now';
-    let d = str.split('-');
-    return `${d[1]}-${d[2].slice(0,2)}-${d[0]}`
-};
 
 const unescapeLinks = (text) => {
     return new Promise((resolve) => {
@@ -62,11 +53,15 @@ const unescapeLinks = (text) => {
             pattern,
             (match) => {
                 let realUrl = match;
-                if (!/http/.test(match)) realUrl = `http://${match}`;
+                if (!/https/.test(match)) {
+                    realUrl = `https://${match}`;
+                } else if (!/http/.test(match)) {
+                    realUrl = `http://${match}`;
+                }
                 return `<a target="_blank" href="${realUrl}">${match}</a>`;
             }
         ));
     });
 };
 
-export {createMarkup, parseDate, userSort, unescapeLinks};
+export {userSort, unescapeLinks};

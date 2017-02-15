@@ -37,7 +37,7 @@ class VideoPage extends React.Component {
         if (!this.props.title) return <div>Loading...</div>
         const {title, headline, url, text, token, video_comments, commentVal} = this.props;
         return (
-            <VideoPageContainer>
+            <VideoPageContainer id="video_page_container">
                 <Title>{title}</Title>
                 <Headline id="video_headline">{headline}</Headline>
                 <VideoBox src={url} frameBorder="0" allowFullScreen></VideoBox>
@@ -58,7 +58,6 @@ const VideoPageContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: rgba(255,255,255,.7);
 `;
 
 const Title = styled.h1`

@@ -17,6 +17,7 @@ class App extends React.Component {
     }
     componentWillReceiveProps(nextProps) {
         if (this.props.location.pathname !== nextProps.location.pathname) {
+            window.scrollTo(0,0);
             this.props.addLocationToHistory(nextProps.location.pathname);
         }
     }
