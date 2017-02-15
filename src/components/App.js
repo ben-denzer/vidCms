@@ -9,6 +9,7 @@ import AllVideos        from './AllVideos';
 import AuthContainer    from '../containers/AuthContainer';
 import AdminContainer   from '../containers/AdminContainer';
 import SingleBlogPage   from './SingleBlogPage';
+import VideoContainer   from '../containers/VideoContainer';
 
 class App extends React.Component {
     componentDidMount() {
@@ -48,6 +49,7 @@ class App extends React.Component {
                 <Route exact path="/videos"
                     render={() => <AllVideos allVideos={allVideos} />}
                 />
+                <Route path="/watch/:type/:id" component={VideoContainer} />
             </AppContainer>
         );
     }

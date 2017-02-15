@@ -16,7 +16,18 @@ export default function(state = initialState.content, action) {
             return Object.assign({}, state, {currentVideo});
 
         case 'GET_VIDEO_SUCCESS':
-            return Object.assign({}, state, {currentVideo: action.video[0]});
+            const {video_title, video_headline, video_text, video_url} = action.video[0];
+            const newCurrentPost = Object.assign(
+                {},
+                state.currentPost,
+                {
+                    post_title      : video_title,
+                    post_headline   : video_headline,
+                    post_text       : video_text,
+                    post_url        : video_url
+                }
+            )
+            return Object.assign({}, state, {currentPost: newCurrentPost});
 
         default:
             return state;
