@@ -1,10 +1,11 @@
 import React            from 'react';
+import styled           from 'styled-components';
+import createMarkup     from '../logic/createMarkup';
 import CommentSection   from './shared/CommentSection';
 
 class VideoPage extends React.Component {
     constructor(props) {
         super(props);
-        this.createMarkup  = this.createMarkup.bind(this);
         this.handleChange  = this.handleChange.bind(this);
         this.submitComment = this.submitComment.bind(this);
     }
@@ -12,16 +13,13 @@ class VideoPage extends React.Component {
         const pathParts = this.props.location.pathname.split('/').filter(a => a);
         const videoType = pathParts[1];
         const videoId   = pathParts[2];
-        this.props.getFreeVideo(videoId);
-        this.props.getVideoComments(videoId);
+        if (videoType === 'free') {
+            this.props.getFreeVideo(videoId);
+            this.props.getVideoComments(videoId);
+        }
     }
     componentWillUnmount() {
         this.props.clearCurrentVideo();
-    }
-    createMarkup() {
-        const text = this.props;
-        if (/<script/.test(text)) return {__html: ''}
-        return {__html: this.props.text.toString()};
     }
     handleChange(e) {
         this.props.handleTextChange('comment', e.target.value);
@@ -36,15 +34,14 @@ class VideoPage extends React.Component {
         });
     }
     render() {
-        console.log('vidPage', this.props);
-        //if (!this.props.title) return <div>Loading...</div>
-        const {title, headline, url, token, video_comments, commentVal} = this.props;
+        if (!this.props.title) return <div>Loading...</div>
+        const {title, headline, url, text, token, video_comments, commentVal} = this.props;
         return (
-            <div id="video_page">
-                <h1>{title}</h1>
-                <h2 id="video_headline">{headline}</h2>
-                <iframe src={url} frameBorder="0" allowFullScreen></iframe>
-                <div id="video_text" dangerouslySetInnerHTML={this.createMarkup()} />
+            <VideoPageContainer>
+                <Title>{title}</Title>
+                <Headline id="video_headline">{headline}</Headline>
+                <VideoBox src={url} frameBorder="0" allowFullScreen></VideoBox>
+                <Text id="video_text" dangerouslySetInnerHTML={createMarkup(text)} />
                 <CommentSection
                     comments={video_comments}
                     token={token}
@@ -52,9 +49,43 @@ class VideoPage extends React.Component {
                     handleChange={(e) => this.handleChange(e)}
                     commentVal={commentVal}
                 />
-            </div>
+            </VideoPageContainer>
         );
     }
 }
+
+const VideoPageContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgba(255,255,255,.7);
+`;
+
+const Title = styled.h1`
+    margin-bottom: 0;
+`;
+
+const Headline = styled.h2`
+    margin: 5px auto 10px;
+`;
+
+const VideoBox = styled.iframe`
+    width: 560px;
+    height: 315px;
+    max-width: 99%;
+`;
+
+const Text = styled.div`
+    width: 60%;
+    margin-top: 25px;
+    font-size: 16px;
+
+    @media (max-width: 900px) {
+        width: 90%;
+    }
+    @media (max-width: 600px) {
+        width: 99%;
+    }
+`;
 
 export default VideoPage;
