@@ -3,11 +3,12 @@ import {withRouter}     from 'react-router-dom';
 import styled           from 'styled-components';
 import parseDate        from '../../logic/parseDate';
 
-const CommentSection = props => {
+const CommentBlock = props => {
     const {comments, submitComment, token, handleChange, commentVal} = props;
     let eachComment = ['no comments'];
     if (comments && comments.length) {
         eachComment = comments.map((a, i) => {
+            console.log('comments', comments, 'length', comments.length, 'a', a, 'i', i);
             return (
                 <CommentContainer key={i++} className="commentContainer">
                     <Name className="comment-name">{a.username}</Name>
@@ -29,8 +30,8 @@ const CommentSection = props => {
                     token ?
                         <CommentTextArea onChange={handleChange} id="comment_editor" value={commentVal} /> :
                         <p>
-                            <AuthLink className="link" onClick={() => props.push("auth/login")}>
-                                Log In</AuthLink> or <AuthLink className="link" onClick={() => props.push("auth/signup")}>
+                            <AuthLink className="link" onClick={() => props.push('/auth/login')}>
+                                Log In</AuthLink> or <AuthLink className="link" onClick={() => props.push('/auth/signup')}>
                                 Sign Up</AuthLink> to Comment
                         </p>
                 }
@@ -53,6 +54,7 @@ const CommentSectionContainer = styled.div`
 `;
 
 const CommentContainer = styled.div``;
+const CommentSection = styled.div``;
 
 const CommentHeader = styled.h3`
     margin-top: 50px;
@@ -110,4 +112,4 @@ const SubmitButton = styled.button`
     align-self: flex-end;
 `;
 
-export default withRouter(CommentSection);
+export default withRouter(CommentBlock);
