@@ -4,10 +4,12 @@ import styled           from 'styled-components';
 import parseDate        from '../../logic/parseDate';
 
 const CommentBlock = props => {
+    console.log(props);
     const {comments, submitComment, token, handleChange, commentVal} = props;
     let eachComment = ['no comments'];
     if (comments && comments.length) {
         eachComment = comments.map((a, i) => {
+            console.log(a);
             return (
                 <CommentContainer key={i++} className="commentContainer">
                     <Name className="comment-name">{a.username}</Name>

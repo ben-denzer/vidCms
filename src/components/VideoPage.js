@@ -14,6 +14,7 @@ class VideoPage extends React.Component {
         const videoType = pathParts[1];
         const videoId   = pathParts[2];
         if (videoType === 'free') {
+            console.log('video_id', videoId)
             this.props.getFreeVideo(videoId);
             this.props.getVideoComments(videoId);
         }
