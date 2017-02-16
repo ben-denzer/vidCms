@@ -29,6 +29,11 @@ const VideoThumbnailContainer = styled.div`
     align-items: center;
     justify-content: space-between;
     text-align: center;
+
+    &:hover {
+        cursor: pointer;
+        opacity: .8;
+    }
 `;
 
 const Heading = styled.div``;

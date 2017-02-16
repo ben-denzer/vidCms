@@ -8,7 +8,6 @@ const CommentBlock = props => {
     let eachComment = ['no comments'];
     if (comments && comments.length) {
         eachComment = comments.map((a, i) => {
-            console.log('comments', comments, 'length', comments.length, 'a', a, 'i', i);
             return (
                 <CommentContainer key={i++} className="commentContainer">
                     <Name className="comment-name">{a.username}</Name>

@@ -1,4 +1,5 @@
 import React            from 'react';
+import styled           from 'styled-components';
 import VideoThumbnail   from './content/VideoThumbnail';
 import Sidebar          from './shared/Sidebar';
 import {
@@ -32,11 +33,18 @@ const VideoHome = ({allVideos}) => {
                 <PageHeading>
                     <PageTitle className="pageTitle">All Videos</PageTitle>
                 </PageHeading>
-                {videos}
+                <VideoThumbContainer>
+                    {videos}
+                </VideoThumbContainer>
             </ContentContainer>
             <Sidebar />
         </PageContainer>
     );
 };
+
+const VideoThumbContainer = styled.div`
+    display: flex;
+    flex-direction: row wrap;
+`;
 
 export default VideoHome;
