@@ -6,7 +6,7 @@ import VideoPage                            from '../components/VideoPage';
 
 const mapStateToProps = state => {
     return {
-        name:           state.user.name,
+        username:       state.user.username,
         token:          state.user.token,
         title:          state.content.currentPost.post_title,
         headline:       state.content.currentPost.post_headline,

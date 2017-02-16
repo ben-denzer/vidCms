@@ -27,7 +27,7 @@ class VideoPage extends React.Component {
     }
     submitComment() {
         this.props.submitComment({
-            name:       this.props.name,
+            username:   this.props.username,
             token:      this.props.token,
             video:      this.props.title.split(' ').join('-'),
             blog:       null,

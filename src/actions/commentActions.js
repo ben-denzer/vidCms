@@ -33,7 +33,7 @@ function getVideoComments(video_id, dispatch) {
 
 function submitComment(options, dispatch) {
     submitCommentToApi(options, dispatch);
-    return {type: types.COMMENT_SUBMITTED, username: options.name, comment_text: options.comment};
+    return {type: types.COMMENT_SUBMITTED, username: options.username, comment_text: options.comment};
 }
 
 function submitCommentToApi(options, dispatch) {
