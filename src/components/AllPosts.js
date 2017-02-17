@@ -1,6 +1,13 @@
 import React            from 'react';
 import styled           from 'styled-components';
 import BlogThumbnail    from './content/BlogThumbnail';
+import Sidebar          from './shared/Sidebar';
+import {
+    PageHeading,
+    PageTitle,
+    PageContainer,
+    ContentContainer
+} from '../styles/share';
 
 const AllPosts = ({allBlogs, allImages}) => {
     let recentPosts = <div key={0}></div>
@@ -21,9 +28,15 @@ const AllPosts = ({allBlogs, allImages}) => {
     }
 
     return (
-        <AllPostsContainer className="recentPostsContainer">
-            {recentPosts}
-        </AllPostsContainer>
+        <PageContainer className="pageContainer">
+            <ContentContainer className="contentContainer">
+                <PageHeading>
+                    <PageTitle className="pageTitle">All Videos</PageTitle>
+                </PageHeading>
+                {recentPosts}
+            </ContentContainer>
+            <Sidebar />
+        </PageContainer>
     );
 };
 
