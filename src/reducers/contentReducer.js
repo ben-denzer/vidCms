@@ -3,8 +3,8 @@ import initialState from './initialState';
 export default function(state = initialState.content, action) {
     switch(action.type) {
         case 'ALL_CONTENT_SUCCESS':
-            const {allBlogs, allImages, allVideos} = action;
-            return Object.assign({}, state, {allBlogs, allImages, allVideos});
+            const {allBlogs, allComments, allImages, allVideos} = action;
+            return Object.assign({}, state, {allBlogs, allComments, allImages, allVideos});
 
         case 'CLEAR_CURRENT_VIDEO':
             let currentVideo = {};

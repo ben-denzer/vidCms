@@ -11,19 +11,21 @@ const clearCurrentVideo = () => {
     return {type: CLEAR_CURRENT_VIDEO};
 };
 
-const getAllBlogs   = () => getPublicJson('public/getAllBlogs');
-const getAllImages  = () => getPublicJson('public/getAllImages');
-const getAllVideos  = () => getPublicJson('public/getAllVideos');
+const getAllBlogs       = () => getPublicJson('public/getAllBlogs');
+const getAllComments    = () => getPublicJson('public/getAllComments');
+const getAllImages      = () => getPublicJson('public/getAllImages');
+const getAllVideos      = () => getPublicJson('public/getAllVideos');
 
 const getAllContent = () => {
     return (dispatch) => {
         dispatch({type: API_STARTED});
-        Promise.all([getAllBlogs(), getAllImages(), getAllVideos()])
+        Promise.all([getAllBlogs(), getAllComments(), getAllImages(), getAllVideos()])
             .then(data => {
-                const [allBlogs, allImages, allVideos] = data;
+                const [allBlogs, allComments, allImages, allVideos] = data;
                 dispatch({
                     type: ALL_CONTENT_SUCCESS,
                     allBlogs,
+                    allComments,
                     allImages,
                     allVideos
                 })

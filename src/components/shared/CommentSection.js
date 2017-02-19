@@ -1,46 +1,87 @@
 import React            from 'react';
-import {withRouter}     from 'react-router-dom';
 import styled           from 'styled-components';
 import parseDate        from '../../logic/parseDate';
 
-const CommentBlock = props => {
-    console.log(props);
-    const {comments, submitComment, token, handleChange, commentVal} = props;
-    let eachComment = ['no comments'];
-    if (comments && comments.length) {
-        eachComment = comments.map((a, i) => {
-            console.log(a);
-            return (
-                <CommentContainer key={i++} className="commentContainer">
-                    <Name className="comment-name">{a.username}</Name>
-                    <Date className="comment-date">{parseDate(a.comment_date)}</Date>
-                    <Main className="comment-main">{a.comment_text}</Main>
-                </CommentContainer>
-            );
+class CommentBlock extends React.Component {
+    constructor(props) {
+        super(props);
+        this.handleChange = this.handleChange.bind(this);
+        this.submitComment = this.submitComment.bind(this);
+    }
+
+    componentWillMount() {
+        const postPath = location.pathname;
+        const postType = /watch/.test(postPath) ? 'video' : 'blog';
+        const post_fk = postPath.slice(postPath.lastIndexOf('/') + 1);
+        this.setState({postType, post_fk});
+    }
+
+    handleChange(e) {
+        this.props.handleTextChange('comment', e.target.value);
+    }
+
+    filterComments() {
+        const {post_fk} = this.state;
+        return this.props.allComments.filter(a => {
+            console.log('post_fk', post_fk, 'a.blog_fk', a.blog_fk, a.video_fk);
+            return a.blog_fk === post_fk || a.video_fk === post_fk;
         });
     }
-    return (
-        <CommentSectionContainer id="comment_section_container">
-            <CommentSection id="comment_section">
-                <CommentHeader id="comment_header">Comments</CommentHeader>
-                {eachComment}
-            </CommentSection>
-            <CommentEditorContainer id="comment_editor_container">
-                <Add id="add_comment">Add Comment</Add>
-                {
-                    token ?
-                        <CommentTextArea onChange={handleChange} id="comment_editor" value={commentVal} /> :
-                        <p>
-                            <AuthLink className="link" onClick={() => props.push('/auth/login')}>
-                                Log In</AuthLink> or <AuthLink className="link" onClick={() => props.push('/auth/signup')}>
-                                Sign Up</AuthLink> to Comment
-                        </p>
-                }
-                {token && <SubmitButton onClick={submitComment}>Submit</SubmitButton>}
-            </CommentEditorContainer>
-        </CommentSectionContainer>
-    );
-};
+
+    submitComment() {
+        if (!this.props.commentVal) return;
+        const {username, token, commentVal} = this.props;
+        const {postType, post_fk} = this.state;
+        this.props.submitComment({
+            username,
+            token,
+            [postType]: post_fk,
+            comment:    commentVal
+        });
+    }
+
+    render() {
+        const {token, commentVal} = this.props;
+        const filteredComments = this.filterComments();
+        let eachComment = ['no comments'];
+        if (filteredComments && filteredComments.length) {
+            eachComment = filteredComments.map(a => {
+                return (
+                    <CommentContainer key={`${a.username}${Math.random()}`} className="commentContainer">
+                        <Name className="comment-name">{a.username}</Name>
+                        <Date className="comment-date">{parseDate(a.comment_date)}</Date>
+                        <Main className="comment-main">{a.comment_text}</Main>
+                    </CommentContainer>
+                );
+            });
+        }
+        return (
+            <CommentSectionContainer id="comment_section_container">
+                <CommentSection id="comment_section">
+                    <CommentHeader id="comment_header">Comments</CommentHeader>
+                    {eachComment}
+                </CommentSection>
+                <CommentEditorContainer id="comment_editor_container">
+                    <Add id="add_comment">Add Comment</Add>
+                    {
+                        token ?
+                            <CommentTextArea 
+                                onChange={this.handleChange} 
+                                id="comment_editor" 
+                                value={commentVal} 
+                            /> :
+                            <p>
+                                <AuthLink className="link" onClick={() => this.props.push('/auth/login')}>
+                                    Log In</AuthLink> or <AuthLink className="link" onClick={() => this.props.push('/auth/signup')}>
+                                    Sign Up</AuthLink> to Comment
+                            </p>
+                    }
+                    {token && <SubmitButton onClick={this.submitComment}>Submit</SubmitButton>}
+                </CommentEditorContainer>
+            </CommentSectionContainer>
+        );
+    }
+}
 
 const CommentSectionContainer = styled.div`
     width: 60%;
@@ -113,4 +154,4 @@ const SubmitButton = styled.button`
     align-self: flex-end;
 `;
 
-export default withRouter(CommentBlock);
+export default CommentBlock;

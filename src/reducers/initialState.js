@@ -34,6 +34,7 @@ export default {
         allBlogs    : [],
         allImages   : [],
         allVideos   : [],
+        allComments : [],
         currentPost: {
             post_title      : '',
             post_headline   : '',

@@ -1,38 +1,19 @@
 import React            from 'react';
 import styled           from 'styled-components';
 import createMarkup     from '../logic/createMarkup';
-//import CommentSection   from '../containers/CommentContainer';
+import CommentSection   from '../containers/CommentContainer';
 
 class VideoPage extends React.Component {
-    constructor(props) {
-        super(props);
-        this.handleChange  = this.handleChange.bind(this);
-        this.submitComment = this.submitComment.bind(this);
-    }
     componentWillMount() {
         const pathParts = this.props.location.pathname.split('/').filter(a => a);
         const videoType = pathParts[1];
         const videoId   = pathParts[2];
-        // if (videoType === 'free') {
-        //     console.log('video_id', videoId)
-        //     this.props.getFreeVideo(videoId);
-        //     this.props.getVideoComments(videoId);
-        // }
+        if (videoType === 'free') {
+            this.props.getFreeVideo(videoId);
+        }
     }
     componentWillUnmount() {
         this.props.clearCurrentVideo();
-    }
-    handleChange(e) {
-        this.props.handleTextChange('comment', e.target.value);
-    }
-    submitComment() {
-        this.props.submitComment({
-            username:   this.props.username,
-            token:      this.props.token,
-            video:      this.props.title.split(' ').join('-'),
-            blog:       null,
-            comment:    this.props.commentVal
-        });
     }
     render() {
         if (!this.props.title) return <div>Loading...</div>
@@ -43,7 +24,7 @@ class VideoPage extends React.Component {
                 <Headline id="video_headline">{headline}</Headline>
                 <VideoBox src={url} frameBorder="0" allowFullScreen></VideoBox>
                 <Text id="video_text" dangerouslySetInnerHTML={createMarkup(text)} />
-                {/*<CommentSection />*/}
+                <CommentSection />
             </VideoPageContainer>
         );
     }
