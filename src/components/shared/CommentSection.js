@@ -23,7 +23,6 @@ class CommentBlock extends React.Component {
     filterComments() {
         const {post_fk} = this.state;
         return this.props.allComments.filter(a => {
-            console.log('post_fk', post_fk, 'a.blog_fk', a.blog_fk, a.video_fk);
             return a.blog_fk === post_fk || a.video_fk === post_fk;
         });
     }
@@ -35,12 +34,14 @@ class CommentBlock extends React.Component {
         this.props.submitComment({
             username,
             token,
+            post_fk,
             [postType]: post_fk,
             comment:    commentVal
         });
     }
 
     render() {
+        console.log(this.props.allComments);
         const {token, commentVal} = this.props;
         const filteredComments = this.filterComments();
         let eachComment = ['no comments'];
@@ -49,7 +50,9 @@ class CommentBlock extends React.Component {
                 return (
                     <CommentContainer key={`${a.username}${Math.random()}`} className="commentContainer">
                         <Name className="comment-name">{a.username}</Name>
-                        <Date className="comment-date">{parseDate(a.comment_date)}</Date>
+                        <Date className="comment-date">
+                            {a.comment_date ? parseDate(a.comment_date) : 'now'}
+                        </Date>
                         <Main className="comment-main">{a.comment_text}</Main>
                     </CommentContainer>
                 );

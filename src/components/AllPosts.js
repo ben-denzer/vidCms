@@ -1,5 +1,4 @@
 import React            from 'react';
-import styled           from 'styled-components';
 import BlogThumbnail    from './content/BlogThumbnail';
 import Sidebar          from './shared/Sidebar';
 import {
@@ -39,10 +38,5 @@ const AllPosts = ({allBlogs, allImages}) => {
         </PageContainer>
     );
 };
-
-const AllPostsContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-`;
 
 export default AllPosts;

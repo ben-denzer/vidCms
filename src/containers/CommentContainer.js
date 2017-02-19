@@ -1,7 +1,7 @@
 import {connect}            from 'react-redux';
 import {withRouter}         from 'react-router-dom';
 import {handleTextChange}   from '../actions/formActions.js';
-import {submitComment}      from '../actions/commentActions';
+import {submitComment}      from '../actions/contentActions';
 import CommentSection       from '../components/shared/CommentSection';
 
 const mapStateToProps = state => ({

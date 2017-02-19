@@ -17,7 +17,7 @@ class VideoPage extends React.Component {
     }
     render() {
         if (!this.props.title) return <div>Loading...</div>
-        const {title, headline, url, text, token, video_comments, commentVal} = this.props;
+        const {title, headline, url, text} = this.props;
         return (
             <VideoPageContainer id="video_page_container">
                 <Title>{title}</Title>

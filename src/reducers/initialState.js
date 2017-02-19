@@ -44,7 +44,6 @@ export default {
         recentVideos    : [],
         recentBlogs     : [],
     },
-    comments: [],
     admin: {
         adminData: {
             users   : [],

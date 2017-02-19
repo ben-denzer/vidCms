@@ -15,6 +15,19 @@ export default function(state = initialState.content, action) {
             }
             return Object.assign({}, state, {currentVideo});
 
+        case 'COMMENT_SUBMITTED':
+            const original = state.allComments;
+            const newState = [
+                ...original,
+                {
+                    username: action.username,
+                    comment_text: action.comment_text,
+                    blog_fk: action.post_fk,   // Kind of a hack, but this is short-lived (until refresh)
+                    video_fk: action.post_fk   // <----
+                }
+            ];
+            return Object.assign({}, state, {allComments: newState});
+
         case 'GET_VIDEO_SUCCESS':
             const {video_title, video_headline, video_text, video_url} = action.video[0];
             const newCurrentPost = Object.assign(
