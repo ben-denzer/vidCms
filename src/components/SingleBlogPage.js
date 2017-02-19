@@ -2,6 +2,7 @@ import React        from 'react';
 import Sidebar      from './shared/Sidebar';
 import {withRouter} from 'react-router-dom';
 import createMarkup from '../logic/createMarkup';
+import CommentSection from '../containers/CommentContainer';
 import {
     PageTitle,
     PageContainer,
@@ -39,6 +40,7 @@ const BlogPage = ({allBlogs, allImages}) => {
                 <PageTitle className="pageTitle">{blog_title}</PageTitle>
                 <SectionHeader className="sectionHeader">{blog_headline}</SectionHeader>
                 <div dangerouslySetInnerHTML={blog_text && createMarkup(blog_text)} />
+                <CommentSection />
             </ContentContainer>
             <Sidebar img={image} alt="Blog Image" />
         </PageContainer>
