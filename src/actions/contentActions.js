@@ -1,19 +1,17 @@
-import {apiPromise, getPublicJson} from './apiPromise';
+import {postToApi, getPublicJson} from './apiPromise';
 import {
+    ALL_CONTENT_SUCCESS,
+    API_STARTED,
+    AUTH_ERROR,
     CLEAR_CURRENT_VIDEO,
     COMMENT_SUBMITTED,
     COMMENT_SUCCESS,
-    ALL_CONTENT_SUCCESS,
     GET_VIDEO_SUCCESS,
-    API_STARTED,
     NETWORK_ERROR,
-    AUTH_ERROR,
     NEW_MESSAGE
 } from '../constants/actionTypes';
 
-const clearCurrentVideo = () => {
-    return {type: CLEAR_CURRENT_VIDEO};
-};
+const clearCurrentVideo = () => ({type: CLEAR_CURRENT_VIDEO});
 
 const getAllBlogs       = () => getPublicJson('public/getAllBlogs');
 const getAllComments    = () => getPublicJson('public/getAllComments');
@@ -37,23 +35,35 @@ const getAllContent = () => {
     }
 };
 
-const getFreeVideo = (id) => {
-    return (dispatch) => {
-        apiPromise({id}, 'public/getFreeVideo').then(
-            video => dispatch({type: GET_VIDEO_SUCCESS, video})
-        ).catch(() => dispatch({type: NETWORK_ERROR}));
+const getFreeVideo = id => {
+    return dispatch => {
+        postToApi({id}, 'public/getFreeVideo')
+            .then(video => dispatch({type: GET_VIDEO_SUCCESS, video}))
+            .catch(() => dispatch({type: NETWORK_ERROR}));
     }
 };
 
 const getPremiumVideo = (video_id, token) => {
-    return (dispatch) => {
-        apiPromise({video_id, token}, 'auth/getPremiumVideo').then(
-            video => dispatch({type: GET_VIDEO_SUCCESS, video}),
-        ).catch(() => dispatch({type: NETWORK_ERROR}));
+    return dispatch => {
+        postToApi({video_id, token}, 'auth/getPremiumVideo')
+            .then(video => dispatch({type: GET_VIDEO_SUCCESS, video}))
+            .catch(() => dispatch({type: NETWORK_ERROR}));
     }
+};
+
+const submitCommentToApi = (options, dispatch) => {
+    postToApi(options, 'auth/submitComment')
+        .then(() => dispatch({type: COMMENT_SUCCESS}))
+        .catch((err) => {
+            if (err === 'unauthorized') {
+                return dispatch({type: AUTH_ERROR, error: 'unauthorized'});
+            } else {
+                return dispatch({type: NEW_MESSAGE, messageType: 'error', text: 'Network Error, Please Try Again'});
+            }
+        });
 }
 
-function submitComment(options, dispatch) {
+const submitComment = (options, dispatch) => {
     submitCommentToApi(options, dispatch);
     return {
         type: COMMENT_SUBMITTED,
@@ -61,19 +71,12 @@ function submitComment(options, dispatch) {
         comment_text: options.comment, 
         post_fk: options.post_fk
     };
-}
+};
 
-function submitCommentToApi(options, dispatch) {
-    apiPromise(options, 'auth/submitComment').then(
-        () => dispatch({type: COMMENT_SUCCESS}),
-        (err) => {
-            if (err === 'unauthorized') {
-                return dispatch({type: AUTH_ERROR, error: 'unauthorized'});
-            } else {
-                return dispatch({type: NEW_MESSAGE, messageType: 'error', text: 'Network Error, Please Try Again'});
-            }
-        }
-    )
-}
-
-export {clearCurrentVideo, getAllContent, getFreeVideo, getPremiumVideo, submitComment};
+export {
+    clearCurrentVideo,
+    getAllContent,
+    getFreeVideo,
+    getPremiumVideo,
+    submitComment
+};
