@@ -15,7 +15,6 @@ export const GET_COMMENTS_SUCCESS       = 'GET_COMMENTS_SUCCESS';
 export const GET_VIDEO_SUCCESS          = 'GET_VIDEO_SUCCESS';
 export const LOGIN_SUCCESS              = 'LOGIN_SUCCESS';
 export const LOGOUT                     = 'LOGOUT';
-export const NETWORK_ERROR              = 'NETWORK_ERROR';
 export const NEW_MESSAGE                = 'NEW_MESSAGE';
 export const POPULATE_BLOG_FORM         = 'POPULATE_BLOG_FORM';
 export const PUSH_LOCATION              = 'PUSH_LOCATION';

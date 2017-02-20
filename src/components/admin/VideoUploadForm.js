@@ -22,7 +22,7 @@ class UploadForm extends React.Component {
     submit(e) {
         e.preventDefault();
         const {videoTitleVal, videoHeadlineVal, editorHtml, youtubeUrlVal} = this.props;
-        console.log('title', videoTitleVal, 'head', videoHeadlineVal, 'editor', editorHtml, 'url', youtubeUrlVal, this.state.premium);
+
         if (!this.state.premium) {
             this.props.submitUploadFree({
                 videoTitleVal,

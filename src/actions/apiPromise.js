@@ -1,5 +1,13 @@
 import {apiUrl} from '../.keys';
 
+const errorParser = status => {
+    return status === 401 || status === 403 ?
+        'unauthorized' :
+        status < 500 ?
+            'Request Error' :
+            'Server Error';
+};
+
 const getPublicJson = url => {
     return new Promise((resolve, reject) => {
         fetch(`${apiUrl}${url}`)
@@ -23,17 +31,35 @@ const postToApi = (options, url) => {
     return new Promise((resolve, reject) => {
         fetch(`${apiUrl}${url}`, fetchInit)
             .then(data => {
-                if (data.ok) {
-                    resolve(data.json());
-                } else {
-                    if (data.status === 401 || data.status === 403) {
-                        reject('unauthorized');
-                    }
-                }
-
+                if (data.ok)    resolve(data.json());
+                else            reject(errorParser(data.status));
             }).catch(err => reject());
     });
-}
+};
+
+const postWithMedia = (options, url) => {
+    let formData = new FormData();
+    for (let i in options) {
+        if (options.hasOwnProperty(i) && !/file/i.test(i)) {
+            formData.append(i, options[i]);
+        }
+    }
+    options.videoInputFile && formData.append('video', options.videoInputFile);
+    options.inputFile && formData.append('image', options.inputFile);
+
+    const fetchInit = {
+        'method'    : 'post',
+        'body'      : formData
+    };
+
+    return new Promise((resolve, reject) => {
+        fetch(`${apiUrl}${url}`, fetchInit)
+            .then(data => {
+                if (data.ok)    resolve(data.json());
+                else            reject(errorParser(data.status));
+            }).catch(err => reject());
+    });
+};
 
 const apiPromise = (options, url) => {
     return new Promise((resolve, reject) => {
@@ -93,4 +119,4 @@ const uploadPremiumPromise = (options, url) => {
 };
 
 
-export {apiPromise, getPublicJson, postToApi, uploadPremiumPromise};
+export {apiPromise, getPublicJson, postToApi, postWithMedia, uploadPremiumPromise};
