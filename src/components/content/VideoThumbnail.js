@@ -1,15 +1,20 @@
 import React        from 'react';
 import {withRouter} from 'react-router-dom';
 import styled       from 'styled-components';
+import premiumOnly  from '../../img/premium_placeholder.jpg';
 
 const VideoThumbnail = (props) => {
     const {title, headline, id, placeholder_url, premium_video} = props;
+    const placeholderUrl = premium_video ?
+        premiumOnly :
+        placeholder_url;
+
     return (
         <VideoThumbnailContainer>
             <ImgBox>
                 <Thumb
                     onClick={() => props.push(`/watch/${premium_video ? 'premium' : 'free'}/${id}`)}
-                    src={placeholder_url}
+                    src={placeholderUrl}
                     alt="click to see video"
                 />
             </ImgBox>

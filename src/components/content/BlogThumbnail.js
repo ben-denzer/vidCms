@@ -1,7 +1,7 @@
 import React        from 'react';
 import styled       from 'styled-components';
 import {withRouter} from 'react-router-dom';
-import {mediaUrl}     from '../../.keys';
+import {mediaUrl}   from '../../.keys';
 
 const BlogThumbnail = props => {
     const {title, headline, blogUrl, imgUrl} = props;
