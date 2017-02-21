@@ -1,5 +1,5 @@
-import {apiPromise, postToApi, postWithMedia, uploadPremiumPromise} from './apiPromise';
-import {unescapeLinks} from '../logic/shared';
+import {postToApi, postWithMedia}   from './apiPromise';
+import {unescapeLinks}              from '../logic/shared';
 import {
     AUTH_ERROR,
     DE_POPULATE_BLOG_FORM,
@@ -78,7 +78,7 @@ const submitUploadFree = options => {
             .then(() => dispatch({type: UPLOAD_SUCCESS}))
             .catch(err => authErrorAction(err, dispatch));
     }
-}
+};
 
 const submitUploadPremium = options => {
     if (!options.videoTitleVal) return {type: NEW_MESSAGE, messageType: 'error', text: 'Please Add Title'};
@@ -86,8 +86,9 @@ const submitUploadPremium = options => {
     return dispatch => {
         postWithMedia(options, 'admin/uploadPremium')
             .then(() => dispatch({type: UPLOAD_SUCCESS}))
-            .catch(() => err => authErrorAction(err, dispatch));    }
-}
+            .catch(() => err => authErrorAction(err, dispatch));
+    }
+};
 
 export {
     dePopulateBlogForm,
