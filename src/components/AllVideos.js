@@ -44,7 +44,7 @@ const VideoHome = ({allVideos}) => {
 
 const VideoThumbContainer = styled.div`
     display: flex;
-    flex-direction: row wrap;
+    flex-direction: column;
 `;
 
 export default VideoHome;

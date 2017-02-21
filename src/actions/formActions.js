@@ -80,21 +80,13 @@ const submitUploadFree = options => {
     }
 }
 
-function submitUploadPremium(options, dispatch) {
+const submitUploadPremium = options => {
     if (!options.videoTitleVal) return {type: NEW_MESSAGE, messageType: 'error', text: 'Please Add Title'};
 
-    return (dispatch) => {
-        uploadPremiumPromise(options, 'uploadPremium').then(
-            () => dispatch({type: UPLOAD_SUCCESS}),
-            (err) => {
-                if (err === 'unauthorized') {
-                    return dispatch({type: AUTH_ERROR, error: 'unauthorized'});
-                } else {
-                    return dispatch({type: NEW_MESSAGE, messageType: 'error', text: 'Network Error, Please Try Again'});
-                }
-            }
-        )
-    }
+    return dispatch => {
+        postWithMedia(options, 'admin/uploadPremium')
+            .then(() => dispatch({type: UPLOAD_SUCCESS}))
+            .catch(() => err => authErrorAction(err, dispatch));    }
 }
 
 export {
