@@ -19,6 +19,7 @@ export const NETWORK_ERROR              = 'NETWORK_ERROR';
 export const NEW_MESSAGE                = 'NEW_MESSAGE';
 export const POPULATE_BLOG_FORM         = 'POPULATE_BLOG_FORM';
 export const PUSH_LOCATION              = 'PUSH_LOCATION';
+export const REMOVE_CLEAR_FORMS         = 'REMOVE_CLEAR_FORMS';
 export const SAVE_DATA_CLICKED          = 'SAVE_DATA_CLICKED';
 export const SIGNUP_SUCCESS             = 'SIGNUP_SUCCESS';
 export const TEXT_CHANGE                = 'TEXT_CHANGE';

@@ -1,10 +1,10 @@
-import React                        from 'react';
-import {connect}                    from 'react-redux';
-import {stateToHTML}                from 'draft-js-export-html';
-import InlineStyleControls          from './editor/InlineStyleControls';
-import BlockStyleControls           from './editor/BlockStyleControls';
-import {styleMap, getBlockStyle}    from './editor/helpers';
-import {editorChange}               from '../../../actions/formActions';
+import React                            from 'react';
+import {connect}                        from 'react-redux';
+import {stateToHTML}                    from 'draft-js-export-html';
+import InlineStyleControls              from './editor/InlineStyleControls';
+import BlockStyleControls               from './editor/BlockStyleControls';
+import {styleMap, getBlockStyle}        from './editor/helpers';
+import {editorChange, removeClearForms} from '../../../actions/formActions';
 import {
     Editor,
     EditorState,
@@ -22,6 +22,7 @@ class MyEditor extends React.Component {
 
         this.focus = () => this.refs.editor.focus();
         this.onChange = (editorState) => {
+            if (props.clearForms) this.props.removeClearForms();
             this.setState({ editorState });
             this.props.editorChange(stateToHTML(editorState.getCurrentContent()));
         };
@@ -39,6 +40,11 @@ class MyEditor extends React.Component {
             this.setState({editorState: EditorState.createWithContent(state)});
         }
     }
+    componentWillReceiveProps(nextProps) {
+        if (!this.props.clearForms && nextProps.clearForms) {
+            this.setState({editorState: EditorState.createEmpty()});
+        }
+    };
     _handleKeyCommand(command) {
         const {editorState} = this.state;
         const newState = RichUtils.handleKeyCommand(editorState, command);
@@ -113,13 +119,15 @@ class MyEditor extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        editorHtml: state.forms.editorHtml
+        editorHtml: state.forms.editorHtml,
+        clearForms: state.forms.clearForms
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        editorChange: (current) => dispatch(editorChange(current))
+        editorChange: (current) => dispatch(editorChange(current)),
+        removeClearForms: () => dispatch(removeClearForms())
     }
 };
 

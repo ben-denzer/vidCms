@@ -8,6 +8,7 @@ import {
     NEW_MESSAGE,
     TEXT_CHANGE,
     POPULATE_BLOG_FORM,
+    REMOVE_CLEAR_FORMS,
     SAVE_DATA_CLICKED,
     UPLOAD_SUCCESS
 } from '../constants/actionTypes';
@@ -27,6 +28,7 @@ const handleTextChange      = (inputId, inputVal) => ({type: TEXT_CHANGE, inputI
 const handleCheck           = newVal => ({type: SAVE_DATA_CLICKED, newVal});
 const handleFileUpload      = file => ({type: FILE_UPLOAD, file});
 const populateBlogForm      = thisBlog => ({type: POPULATE_BLOG_FORM, thisBlog});
+const removeClearForms      = () => ({type: REMOVE_CLEAR_FORMS});
 
 const submitBlog = options =>  {
     if (!options.blogTitleVal) return {
@@ -97,6 +99,7 @@ export {
     handleCheck,
     handleFileUpload,
     populateBlogForm,
+    removeClearForms,
     submitBlog,
     submitUploadFree,
     submitUploadPremium

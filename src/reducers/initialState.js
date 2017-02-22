@@ -18,6 +18,7 @@ export default {
         blogTitleVal    : '',
         blogHeadlineVal : '',
         commentVal      : '',
+        clearForms      : false,
         editorHtml      : '',
         emailVal        : '',
         inputFile       : [],

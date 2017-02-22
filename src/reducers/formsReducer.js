@@ -36,6 +36,8 @@ export default function(state = initialState.forms, action) {
                     blogImageUrl        : action.thisBlog.image_url,
                 }
             );
+        case 'REMOVE_CLEAR_FORMS':
+            return Object.assign({}, state, {clearForms: false});
         case 'SIGNUP_SUCCESS':
             return Object.assign({}, state, {
                 usernameVal     : '',
@@ -50,6 +52,7 @@ export default function(state = initialState.forms, action) {
                 authErrorVal        : '',
                 blogTitleVal        : '',
                 blogHeadlineVal     : '',
+                clearForms          : true,
                 editorHtml          : '',
                 blogImageUrl        : '',
                 inputFile           : [],
