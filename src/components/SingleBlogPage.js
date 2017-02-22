@@ -1,10 +1,12 @@
-import React        from 'react';
-import Sidebar      from './shared/Sidebar';
-import {withRouter} from 'react-router-dom';
-import createMarkup from '../logic/createMarkup';
-import CommentSection from '../containers/CommentContainer';
+import React            from 'react';
+import Sidebar          from './shared/Sidebar';
+import {withRouter}     from 'react-router-dom';
+import {createMarkupWithLinks}     from '../logic/createMarkup';
+import unescapeLinks    from '../logic/unescapeLinks';
+import CommentSection   from '../containers/CommentContainer';
 import {
     PageTitle,
+    PageHeadline,
     PageContainer,
     ContentContainer,
     SectionHeader
@@ -38,8 +40,8 @@ const BlogPage = ({allBlogs, allImages}) => {
         <PageContainer className="pageContainer">
             <ContentContainer className="contentContainer">
                 <PageTitle className="pageTitle">{blog_title}</PageTitle>
-                <SectionHeader className="sectionHeader">{blog_headline}</SectionHeader>
-                <div dangerouslySetInnerHTML={blog_text && createMarkup(blog_text)} />
+                <PageHeadline className="sectionHeader">{blog_headline}</PageHeadline>
+                <div dangerouslySetInnerHTML={blog_text && createMarkupWithLinks(blog_text)} />
                 <CommentSection />
             </ContentContainer>
             <Sidebar img={image} alt="Blog Image" />

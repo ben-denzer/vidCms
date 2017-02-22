@@ -1,11 +1,18 @@
-import React from 'react';
-import {connect} from 'react-redux';
-import { Editor, EditorState, RichUtils, convertFromHTML, ContentState } from 'draft-js';
-import {stateToHTML} from 'draft-js-export-html';
-import InlineStyleControls from './editor/InlineStyleControls';
-import BlockStyleControls from './editor/BlockStyleControls';
-import {styleMap, getBlockStyle} from './editor/helpers';
-import {editorChange} from '../../../actions/formActions';
+import React                        from 'react';
+import {connect}                    from 'react-redux';
+import {stateToHTML}                from 'draft-js-export-html';
+import InlineStyleControls          from './editor/InlineStyleControls';
+import BlockStyleControls           from './editor/BlockStyleControls';
+import {styleMap, getBlockStyle}    from './editor/helpers';
+import {editorChange}               from '../../../actions/formActions';
+import {
+    Editor,
+    EditorState,
+    RichUtils,
+    convertFromHTML,
+    ContentState
+} from 'draft-js';
+
 import '../../../styles/editor.css';
 
 class MyEditor extends React.Component {

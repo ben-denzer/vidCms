@@ -1,14 +1,15 @@
 import React            from 'react';
 import styled           from 'styled-components';
 import createMarkup     from '../logic/createMarkup';
+import {apiUrl}         from '../.keys';
 import CommentSection   from '../containers/CommentContainer';
+import PremiumVidBox    from './content/PremiumVidBox';
 
 class VideoPage extends React.Component {
     componentWillMount() {
-        const pathParts = this.props.location.pathname.split('/').filter(a => a);
-        const videoType = pathParts[1];
-        const videoId   = pathParts[2];
-        if (videoType === 'free') {
+        const params = this.props.match.params;
+        const videoId = params.id;
+        if (params.type === 'free') {
             this.props.getFreeVideo(videoId);
         }
     }
@@ -16,13 +17,18 @@ class VideoPage extends React.Component {
         this.props.clearCurrentVideo();
     }
     render() {
+        const params = this.props.match.params;
         if (!this.props.title) return <div>Loading...</div>
-        const {title, headline, url, text} = this.props;
+        const {title, headline, url, text, premium_user} = this.props;
         return (
             <VideoPageContainer id="video_page_container">
                 <Title>{title}</Title>
                 <Headline id="video_headline">{headline}</Headline>
-                <VideoBox src={url} frameBorder="0" allowFullScreen></VideoBox>
+                {
+                    params.type === 'premium' ?
+                        <PremiumVidBox premium_user={premium_user} fullUrl={`${apiUrl}${url}`} /> :
+                        <VideoBox src={url} frameBorder="0" allowFullScreen></VideoBox>
+                }
                 <Text id="video_text" dangerouslySetInnerHTML={createMarkup(text)} />
                 <CommentSection />
             </VideoPageContainer>
