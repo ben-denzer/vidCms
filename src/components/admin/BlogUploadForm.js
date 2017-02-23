@@ -8,51 +8,42 @@ import {UploadImage, UploadImageContainer, UploadBox, UploadPage} from '../../st
 class BlogUploadForm extends React.Component {
     constructor(props) {
         super(props);
-        this.handleChange = this.handleChange.bind(this);
-        this.handleUpload = this.handleUpload.bind(this);
-        this.submit = this.submit.bind(this);
         this.state = {inputFile: []};
+        this.submit = this.submit.bind(this);
+        this.handleFileUpload = this.handleFileUpload.bind(this);
     }
-    // componentWillMount() {
-    //     const {params, blogs, images} = this.props;
-    //     if (params.blog_post_url) {
-    //         const thisBlog = blogs.filter(a => a.blog_post_url === params.blog_post_url)[0];
-    //         const thisImageUrl = images.filter(a => a.blog_fk === params.blog_post_url)[0].image_url;
-    //         const blogAndImage = Object.assign({}, thisBlog, {image_url: thisImageUrl});
-    //         this.props.populateBlogForm(blogAndImage);
-    //     }
-    // }
     componentWillUnmount() {
-        this.props.dePopulateBlogForm();
+        this.props.clearAdminForm();
     }
-    handleChange(e) {
-        this.props.handleTextChange(e.target.id, e.target.value);
-    }
-    handleUpload(arr) {
-        this.setState({inputFile: arr});
+    handleFileUpload(inputFile) {
+        this.setState({inputFile})
     }
     submit(e) {
         e.preventDefault();
-        const {blogTitleVal, blogHeadlineVal, editorHtml} = this.props;
+        const {editorHtml, submitBlog, uploadTitleVal, uploadHeadlineVal} = this.props;
 
-        this.props.submitBlog({
-            blogTitleVal,
-            blogHeadlineVal,
+        submitBlog({
+            uploadTitleVal,
+            uploadHeadlineVal,
             inputFile: this.state.inputFile[0],
             editorHtml,
         });
-
-        this.setState({inputFile: []});
     }
     render() {
-        const {blogTitleVal, blogHeadlineVal, blogImageUrl} = this.props;
+        const {
+            blogImageUrl,
+            handleTextChange,
+            uploadTitleVal,
+            uploadHeadlineVal
+        } = this.props;
+
         return (
             <UploadPage>
                 <h1>Blog</h1>
                 <UploadBox>
                     <DragDrop
-                        file={this.state.inputFile}
-                        handleUpload={this.handleUpload}
+                        inputFile={this.state.inputFile}
+                        handleFileUpload={this.handleFileUpload}
                     />
                     {
                         blogImageUrl &&
@@ -61,16 +52,16 @@ class BlogUploadForm extends React.Component {
                             </UploadImageContainer>
                     }
                     <TextInput
-                        id="blogTitle"
+                        id="uploadTitle"
                         label="Title"
-                        val={blogTitleVal}
-                        handleChange={this.handleChange}
+                        val={uploadTitleVal}
+                        handleChange={handleTextChange}
                     />
                     <TextInput
-                        id="blogHeadline"
+                        id="uploadHeadline"
                         label="Headline"
-                        val={blogHeadlineVal}
-                        handleChange={this.handleChange}
+                        val={uploadHeadlineVal}
+                        handleChange={handleTextChange}
                     />
                     <label className="text-input"><span>Text</span></label>
                     <MyEditor />

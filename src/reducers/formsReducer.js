@@ -4,23 +4,22 @@ export default function(state = initialState.forms, action) {
     switch(action.type) {
         case 'COMMENT_SUBMITTED':
             return Object.assign({}, state, {commentVal: ''});
-        case 'DE_POPULATE_BLOG_FORM':
+        case 'CLEAR_ADMIN_FORM':
             return Object.assign(
                 {},
                 state,
                 {
                     blogTitleVal        : '',
                     blogHeadlineVal     : '',
+                    blogImageUrl        : '',
                     editorHtml          : '',
-                    blogImageUrl        : ''
+                    inputFile           : []
                 }
             );
         case 'EDITOR_CHANGE':
             return Object.assign({}, state, {editorHtml: action.currentState});
         case 'EMAIL_SUCCESS':
             return Object.assign({}, state, {emailVal: ''});
-        case 'FILE_UPLOAD':
-            return Object.assign({}, state, {videoInputFile: [action.file]});
         case 'SAVE_DATA_CLICKED':
             return Object.assign({}, state, {saveDataVal: action.newVal});
         case 'TEXT_CHANGE':
@@ -50,14 +49,12 @@ export default function(state = initialState.forms, action) {
         case 'UPLOAD_SUCCESS':
             return Object.assign({}, state, {
                 authErrorVal        : '',
-                blogTitleVal        : '',
-                blogHeadlineVal     : '',
                 clearForms          : true,
                 editorHtml          : '',
                 blogImageUrl        : '',
                 inputFile           : [],
-                videoTitleVal       : '',
-                videoHeadlineVal    : ''
+                uploadTitleVal      : '',
+                uploadHeadlineVal   : ''
             });
         default:
             return state;

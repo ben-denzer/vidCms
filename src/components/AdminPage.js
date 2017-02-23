@@ -19,18 +19,17 @@ class AdminPage extends React.Component {
     render() {
         if (!this.props.admin) return <AdminContainer>Log In To Continue</AdminContainer>
         const {
-            blogTitleVal,
-            blogHeadlineVal,
             blogImageUrl,
             error,
             allData,
             handleTextChange,
+            inputFile,
             submitBlog,
             submitUploadFree,
             submitUploadPremium,
-            //populateBlogForm,
-            dePopulateBlogForm,
             editorHtml,
+            uploadHeadlineVal,
+            uploadTitleVal,
             videoTitleVal,
             videoHeadlineVal,
             youtubeUrlVal
@@ -40,32 +39,34 @@ class AdminPage extends React.Component {
         return (
             <AdminContainer>
                 <AdminSidebar>
-                    <AdminButton onClick={() => this.props.push('/admin/upload/video')}>Upload Videos</AdminButton>
-                    <AdminButton
-                        onClick={() => {
-                            this.props.dePopulateBlogForm();
-                            this.props.push('/admin/upload/blog')
-                        }}>
+                    <AdminButton onClick={() => this.props.push('/admin/upload/video')}>
+                        Upload Videos
+                    </AdminButton>
+                    <AdminButton onClick={() => this.props.push('/admin/upload/blog')}>
                         Upload Blog
                     </AdminButton>
-                    <AdminButton onClick={() => this.props.push('/admin/users')}>Manage Users</AdminButton>
-                    <AdminButton onClick={() => this.props.push('/admin/edit/blogs/')}>Edit Post</AdminButton>
+                    <AdminButton onClick={() => this.props.push('/admin/users')}>
+                        Manage Users
+                    </AdminButton>
+                    <AdminButton onClick={() => this.props.push('/admin/edit/blogs/')}>
+                        Edit Post
+                    </AdminButton>
                 </AdminSidebar>
                 <AdminMain>
                     <Route path='/admin/upload/blog'
                         render={() => {
                             return (
                                 <BlogUploadForm
-                                    blogs={blogs}
-                                    images={images}
-                                    blogTitleVal={blogTitleVal}
-                                    blogHeadlineVal={blogHeadlineVal}
                                     blogImageUrl={blogImageUrl}
+                                    blogs={blogs}
+                                    editorHtml={editorHtml}
                                     error={error}
                                     handleTextChange={handleTextChange}
+                                    images={images}
+                                    inputFile={inputFile}
                                     submitBlog={submitBlog}
-                                    dePopulateBlogForm={dePopulateBlogForm}
-                                    editorHtml={editorHtml}
+                                    uploadTitleVal={uploadTitleVal}
+                                    uploadHeadlineVal={uploadHeadlineVal}
                                 />
                             );
                         }}
@@ -80,24 +81,12 @@ class AdminPage extends React.Component {
                                     handleTextChange={handleTextChange}
                                     submitUploadFree={submitUploadFree}
                                     submitUploadPremium={submitUploadPremium}
-                                    dePopulateBlogForm={dePopulateBlogForm}
                                     editorHtml={editorHtml}
                                     youtubeUrlVal={youtubeUrlVal}
                                 />
                             );
                         }}
                     />
-                    {/*this.props.children && React.cloneElement(this.props.children,
-                        {
-                            users,
-                            comments,
-                            videos,
-                            blogs,
-                            images,
-                            removeComment: this.removeComment,
-                            commentTrashCan: this.props.commentTrashCan
-                        }
-                    )*/}
                 </AdminMain>
             </AdminContainer>
         );

@@ -2,14 +2,12 @@ import React            from 'react';
 import Sidebar          from './shared/Sidebar';
 import {withRouter}     from 'react-router-dom';
 import {createMarkupWithLinks}     from '../logic/createMarkup';
-import unescapeLinks    from '../logic/unescapeLinks';
 import CommentSection   from '../containers/CommentContainer';
 import {
     PageTitle,
     PageHeadline,
     PageContainer,
-    ContentContainer,
-    SectionHeader
+    ContentContainer
 } from '../styles/share';
 
 const BlogPage = ({allBlogs, allImages}) => {

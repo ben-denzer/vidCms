@@ -2,9 +2,8 @@ import {postToApi, postWithMedia}   from './apiPromise';
 import {unescapeLinks}              from '../logic/shared';
 import {
     AUTH_ERROR,
-    DE_POPULATE_BLOG_FORM,
+    CLEAR_ADMIN_FORM,
     EDITOR_CHANGE,
-    FILE_UPLOAD,
     NEW_MESSAGE,
     TEXT_CHANGE,
     POPULATE_BLOG_FORM,
@@ -22,16 +21,15 @@ const authErrorAction = (err, dispatch) => {
     }
 };
 
-const dePopulateBlogForm    = () => ({type: DE_POPULATE_BLOG_FORM});
+const clearAdminForm        = () => ({type: CLEAR_ADMIN_FORM});
 const editorChange          = currentState => ({type: EDITOR_CHANGE, currentState});
 const handleTextChange      = (inputId, inputVal) => ({type: TEXT_CHANGE, inputId, inputVal});
 const handleCheck           = newVal => ({type: SAVE_DATA_CLICKED, newVal});
-const handleFileUpload      = file => ({type: FILE_UPLOAD, file});
 const populateBlogForm      = thisBlog => ({type: POPULATE_BLOG_FORM, thisBlog});
 const removeClearForms      = () => ({type: REMOVE_CLEAR_FORMS});
 
 const submitBlog = options =>  {
-    if (!options.blogTitleVal) return {
+    if (!options.uploadTitleVal) return {
         type: NEW_MESSAGE,
         messageType: 'error',
         text: 'Please Add Title'
@@ -93,11 +91,10 @@ const submitUploadPremium = options => {
 };
 
 export {
-    dePopulateBlogForm,
+    clearAdminForm,
     editorChange,
     handleTextChange,
     handleCheck,
-    handleFileUpload,
     populateBlogForm,
     removeClearForms,
     submitBlog,
