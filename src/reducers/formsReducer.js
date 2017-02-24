@@ -9,15 +9,14 @@ export default function(state = initialState.forms, action) {
                 {},
                 state,
                 {
-                    blogTitleVal        : '',
-                    blogHeadlineVal     : '',
                     blogImageUrl        : '',
                     editorHtml          : '',
-                    inputFile           : []
+                    uploadHeadlineVal   : '',
+                    uploadTitleVal      : '',
                 }
             );
         case 'EDITOR_CHANGE':
-            return Object.assign({}, state, {editorHtml: action.currentState});
+            return Object.assign({}, state, {editorHtml: action.currentState, clearForms: false});
         case 'EMAIL_SUCCESS':
             return Object.assign({}, state, {emailVal: ''});
         case 'SAVE_DATA_CLICKED':
@@ -52,7 +51,6 @@ export default function(state = initialState.forms, action) {
                 clearForms          : true,
                 editorHtml          : '',
                 blogImageUrl        : '',
-                inputFile           : [],
                 uploadTitleVal      : '',
                 uploadHeadlineVal   : ''
             });

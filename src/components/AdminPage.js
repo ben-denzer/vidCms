@@ -20,6 +20,7 @@ class AdminPage extends React.Component {
         if (!this.props.admin) return <AdminContainer>Log In To Continue</AdminContainer>
         const {
             blogImageUrl,
+            clearForms,
             error,
             allData,
             handleTextChange,
@@ -28,6 +29,7 @@ class AdminPage extends React.Component {
             submitUploadFree,
             submitUploadPremium,
             editorHtml,
+            removeClearForms,
             uploadHeadlineVal,
             uploadTitleVal,
             videoTitleVal,
@@ -59,11 +61,13 @@ class AdminPage extends React.Component {
                                 <BlogUploadForm
                                     blogImageUrl={blogImageUrl}
                                     blogs={blogs}
+                                    clearForms={clearForms}
                                     editorHtml={editorHtml}
                                     error={error}
                                     handleTextChange={handleTextChange}
                                     images={images}
                                     inputFile={inputFile}
+                                    removeClearForms={removeClearForms}
                                     submitBlog={submitBlog}
                                     uploadTitleVal={uploadTitleVal}
                                     uploadHeadlineVal={uploadHeadlineVal}

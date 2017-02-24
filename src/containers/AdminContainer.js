@@ -6,6 +6,7 @@ import {
     handleTextChange,
     submitBlog,
     populateBlogForm,
+    removeClearForms,
     submitUploadFree,
     submitUploadPremium
 } from '../actions/formActions';
@@ -14,6 +15,7 @@ const mapStateToProps = (state) => ({
     user                : state.user,
     admin               : state.user.admin,
     allData             : state.admin.adminData,
+    clearForms          : state.forms.clearForms,
     commentTrashCan     : state.trashCan.commentTrashCan,
     blogImageUrl        : state.forms.blogImageUrl,
     editorHtml          : state.forms.editorHtml,
@@ -31,6 +33,7 @@ const mapDispatchToProps = (dispatch) => ({
                                 dispatch(putCommentInTrash(token, id, trash, comments))
                             },
     populateBlogForm:       (options) => dispatch(populateBlogForm(options)),
+    removeClearForms:       () => dispatch(removeClearForms()),
     submitBlog:             (options) => dispatch(submitBlog(options, dispatch)),
     submitUploadFree:       (options) => dispatch(submitUploadFree(options, dispatch)),
     submitUploadPremium:    (options) => dispatch(submitUploadPremium(options, dispatch))

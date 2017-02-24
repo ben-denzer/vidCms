@@ -15,7 +15,11 @@ class BlogUploadForm extends React.Component {
     componentWillUnmount() {
         this.props.clearAdminForm();
     }
+    componentWillReceiveProps(nextProps) {
+        nextProps.clearForms && this.setState({inputFile: []});
+    }
     handleFileUpload(inputFile) {
+        if (this.props.clearForms) this.props.removeClearForms();
         this.setState({inputFile})
     }
     submit(e) {
