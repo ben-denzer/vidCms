@@ -1,5 +1,5 @@
 import React                from 'react';
-import {/*Link,*/ Route}        from 'react-router-dom';
+import {Route}              from 'react-router-dom';
 import styled               from 'styled-components';
 import BlogUploadForm       from './admin/BlogUploadForm';
 import VideoUploadForm      from './admin/VideoUploadForm';
@@ -19,17 +19,16 @@ class AdminPage extends React.Component {
     render() {
         if (!this.props.admin) return <AdminContainer>Log In To Continue</AdminContainer>
         const {
+            allData,
             blogImageUrl,
             clearForms,
+            editorHtml,
             error,
-            allData,
             handleTextChange,
-            inputFile,
+            removeClearForms,
             submitBlog,
             submitUploadFree,
             submitUploadPremium,
-            editorHtml,
-            removeClearForms,
             uploadHeadlineVal,
             uploadTitleVal,
             videoTitleVal,
@@ -66,7 +65,6 @@ class AdminPage extends React.Component {
                                     error={error}
                                     handleTextChange={handleTextChange}
                                     images={images}
-                                    inputFile={inputFile}
                                     removeClearForms={removeClearForms}
                                     submitBlog={submitBlog}
                                     uploadTitleVal={uploadTitleVal}

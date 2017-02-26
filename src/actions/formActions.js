@@ -29,6 +29,7 @@ const populateBlogForm      = thisBlog => ({type: POPULATE_BLOG_FORM, thisBlog})
 const removeClearForms      = () => ({type: REMOVE_CLEAR_FORMS});
 
 const submitBlog = options =>  {
+    console.log(options);
     if (!options.uploadTitleVal) return {
         type: NEW_MESSAGE,
         messageType: 'error',

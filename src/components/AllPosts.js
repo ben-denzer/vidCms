@@ -9,6 +9,7 @@ import {
 } from '../styles/share';
 
 const AllPosts = ({allBlogs, allImages}) => {
+    console.log(allBlogs);
     let recentPosts = <div key={0}></div>
 
     if (allBlogs && allBlogs.length) {
@@ -30,7 +31,7 @@ const AllPosts = ({allBlogs, allImages}) => {
         <PageContainer className="pageContainer">
             <ContentContainer className="contentContainer">
                 <PageHeading>
-                    <PageTitle className="pageTitle">All Videos</PageTitle>
+                    <PageTitle className="pageTitle">All Articles</PageTitle>
                 </PageHeading>
                 {recentPosts}
             </ContentContainer>

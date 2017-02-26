@@ -19,7 +19,6 @@ export default {
         clearForms          : false,
         editorHtml          : '',
         emailVal            : '',
-        inputFile           : [],
         passwordVal         : '',
         password2Val        : '',
         saveDataVal         : false,
