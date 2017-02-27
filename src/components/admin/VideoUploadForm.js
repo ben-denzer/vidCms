@@ -7,9 +7,21 @@ import {RadioBox, RadioCol, FormLabel, UploadBox, UploadPage} from '../../styles
 class UploadForm extends React.Component {
     constructor(props) {
         super(props);
-        this.submit         = this.submit.bind(this);
-        this.toggleFree     = this.toggleFree.bind(this);
-        this.state          = {videoInputFile: [], premium: false};
+        this.state              = {inputFile: [], premium: false};
+
+        this.handleFileUpload   = this.handleFileUpload.bind(this);
+        this.submit             = this.submit.bind(this);
+        this.toggleFree         = this.toggleFree.bind(this);
+    }
+    componentWillReceiveProps(nextProps) {
+        nextProps.clearForms && this.setState({inputFile: []});
+    }
+    componentWillUnmount() {
+        this.props.clearAdminForm();
+    }
+    handleFileUpload(inputFile) {
+        if (this.props.clearForms) this.props.removeClearForms();
+        this.setState({inputFile})
     }
     submit(e) {
         e.preventDefault();
@@ -25,10 +37,11 @@ class UploadForm extends React.Component {
             });
         } else {
             this.props.submitUploadPremium({
+                editorHtml,
+                token,
                 uploadTitleVal,
                 uploadHeadlineVal,
-                videoInputFile: this.state.videoInputFile[0],
-                editorHtml,
+                videoInputFile: this.state.inputFile[0]
             });
         }
     }
@@ -36,10 +49,9 @@ class UploadForm extends React.Component {
         this.setState({premium});
     }
     render() {
-        const {premium, videoInputFile} = this.state;
+        const {premium, inputFile} = this.state;
         const {
             handleTextChange,
-            handleUpload,
             uploadHeadlineVal,
             uploadTitleVal,
             youtubeUrlVal
@@ -81,8 +93,8 @@ class UploadForm extends React.Component {
                                 handleChange={handleTextChange}
                             /> :
                             <DragDrop
-                                file={videoInputFile}
-                                handleUpload={handleUpload}
+                                inputFile={inputFile}
+                                handleFileUpload={this.handleFileUpload}
                             />
                         }
                     </div>

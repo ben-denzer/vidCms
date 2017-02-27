@@ -79,6 +79,7 @@ class AdminPage extends React.Component {
                         render={() => {
                             return (
                                 <VideoUploadForm
+                                    clearAdminForm={clearAdminForm}
                                     clearForms={clearForms}
                                     editorHtml={editorHtml}
                                     error={error}

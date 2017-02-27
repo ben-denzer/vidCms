@@ -13,6 +13,7 @@ export default function(state = initialState.forms, action) {
                     editorHtml          : '',
                     uploadHeadlineVal   : '',
                     uploadTitleVal      : '',
+                    youtubeUrlVal       : ''
                 }
             );
         case 'EDITOR_CHANGE':
@@ -52,7 +53,8 @@ export default function(state = initialState.forms, action) {
                 editorHtml          : '',
                 blogImageUrl        : '',
                 uploadTitleVal      : '',
-                uploadHeadlineVal   : ''
+                uploadHeadlineVal   : '',
+                youtubeUrlVal       : ''
             });
         default:
             return state;

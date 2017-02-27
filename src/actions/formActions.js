@@ -81,7 +81,7 @@ const submitUploadFree = options => {
 };
 
 const submitUploadPremium = options => {
-    if (!options.videoTitleVal) return {type: NEW_MESSAGE, messageType: 'error', text: 'Please Add Title'};
+    if (!options.uploadTitleVal) return {type: NEW_MESSAGE, messageType: 'error', text: 'Please Add Title'};
 
     return dispatch => {
         postWithMedia(options, 'admin/uploadPremium')
