@@ -24,13 +24,14 @@ class BlogUploadForm extends React.Component {
     }
     submit(e) {
         e.preventDefault();
-        const {editorHtml, submitBlog, uploadTitleVal, uploadHeadlineVal} = this.props;
+        const {editorHtml, submitBlog, token, uploadTitleVal, uploadHeadlineVal} = this.props;
 
         submitBlog({
             uploadTitleVal,
             uploadHeadlineVal,
             inputFile: this.state.inputFile[0],
             editorHtml,
+            token
         });
     }
     render() {

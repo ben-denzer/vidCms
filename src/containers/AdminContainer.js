@@ -13,6 +13,7 @@ import {
 
 const mapStateToProps = (state) => ({
     user                : state.user,
+    token               : state.user.token,
     admin               : state.user.admin,
     allData             : state.admin.adminData,
     clearForms          : state.forms.clearForms,

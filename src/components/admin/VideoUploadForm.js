@@ -7,43 +7,44 @@ import {RadioBox, RadioCol, FormLabel, UploadBox, UploadPage} from '../../styles
 class UploadForm extends React.Component {
     constructor(props) {
         super(props);
-        this.handleChange = this.handleChange.bind(this);
-        this.handleUpload = this.handleUpload.bind(this);
-        this.submit = this.submit.bind(this);
-        this.toggleFree = this.toggleFree.bind(this);
-        this.state = {videoInputFile: [], premium: false};
-    }
-    handleChange(e) {
-        this.props.handleTextChange(e.target.id, e.target.value);
-    }
-    handleUpload(arr) {
-        this.setState({videoInputFile: arr});
+        this.submit         = this.submit.bind(this);
+        this.toggleFree     = this.toggleFree.bind(this);
+        this.state          = {videoInputFile: [], premium: false};
     }
     submit(e) {
         e.preventDefault();
-        const {videoTitleVal, videoHeadlineVal, editorHtml, youtubeUrlVal} = this.props;
+        const {editorHtml, token, uploadTitleVal, uploadHeadlineVal, youtubeUrlVal} = this.props;
 
         if (!this.state.premium) {
             this.props.submitUploadFree({
-                videoTitleVal,
-                videoHeadlineVal,
                 editorHtml,
+                token,
+                uploadTitleVal,
+                uploadHeadlineVal,
                 youtubeUrlVal
             });
         } else {
             this.props.submitUploadPremium({
-                videoTitleVal,
-                videoHeadlineVal,
+                uploadTitleVal,
+                uploadHeadlineVal,
                 videoInputFile: this.state.videoInputFile[0],
                 editorHtml,
             });
         }
-        this.setState({videoInputFile: []});
     }
     toggleFree(premium) {
         this.setState({premium});
     }
     render() {
+        const {premium, videoInputFile} = this.state;
+        const {
+            handleTextChange,
+            handleUpload,
+            uploadHeadlineVal,
+            uploadTitleVal,
+            youtubeUrlVal
+        } = this.props;
+
         return (
             <UploadPage>
                 <h1>Upload</h1>
@@ -62,40 +63,40 @@ class UploadForm extends React.Component {
                                 type="radio"
                                 name="freeVid"
                                 onChange={() => this.toggleFree(false)}
-                                checked={!this.state.premium}
+                                checked={!premium}
                             />
                             <input
                                 type="radio"
                                 name="freeVid"
                                 onChange={() => this.toggleFree(true)}
-                                checked={this.state.premium}
+                                checked={premium}
                             />
                         </RadioCol>
                     </RadioBox>
                     <div>
-                        {!this.state.premium ?
+                        {!premium ?
                             <TextInput
                                 id="youtubeUrl"
-                                val={this.props.youtubeUrlVal}
-                                handleChange={this.handleChange}
+                                val={youtubeUrlVal}
+                                handleChange={handleTextChange}
                             /> :
                             <DragDrop
-                                file={this.state.videoInputFile}
-                                handleUpload={this.handleUpload}
+                                file={videoInputFile}
+                                handleUpload={handleUpload}
                             />
                         }
                     </div>
                     <TextInput
-                        id="videoTitle"
+                        id="uploadTitle"
                         label="Title"
-                        val={this.props.videoTitleVal}
-                        handleChange={this.handleChange}
+                        val={uploadTitleVal}
+                        handleChange={handleTextChange}
                     />
                     <TextInput
-                        id="videoHeadline"
+                        id="uploadHeadline"
                         label="Headline"
-                        val={this.props.videoHeadlineVal}
-                        handleChange={this.handleChange}
+                        val={uploadHeadlineVal}
+                        handleChange={handleTextChange}
                     />
                     <FormLabel className="text-input">Text</FormLabel>
                     <MyEditor />

@@ -21,6 +21,7 @@ class AdminPage extends React.Component {
         const {
             allData,
             blogImageUrl,
+            clearAdminForm,
             clearForms,
             editorHtml,
             error,
@@ -29,10 +30,9 @@ class AdminPage extends React.Component {
             submitBlog,
             submitUploadFree,
             submitUploadPremium,
+            token,
             uploadHeadlineVal,
             uploadTitleVal,
-            videoTitleVal,
-            videoHeadlineVal,
             youtubeUrlVal
         } = this.props;
         const {/*users, comments, videos,*/ blogs, images} = allData;
@@ -60,6 +60,7 @@ class AdminPage extends React.Component {
                                 <BlogUploadForm
                                     blogImageUrl={blogImageUrl}
                                     blogs={blogs}
+                                    clearAdminForm={clearAdminForm}
                                     clearForms={clearForms}
                                     editorHtml={editorHtml}
                                     error={error}
@@ -67,6 +68,7 @@ class AdminPage extends React.Component {
                                     images={images}
                                     removeClearForms={removeClearForms}
                                     submitBlog={submitBlog}
+                                    token={token}
                                     uploadTitleVal={uploadTitleVal}
                                     uploadHeadlineVal={uploadHeadlineVal}
                                 />
@@ -77,13 +79,16 @@ class AdminPage extends React.Component {
                         render={() => {
                             return (
                                 <VideoUploadForm
-                                    videoTitleVal={videoTitleVal}
-                                    videoHeadlineVal={videoHeadlineVal}
+                                    clearForms={clearForms}
+                                    editorHtml={editorHtml}
                                     error={error}
                                     handleTextChange={handleTextChange}
+                                    removeClearForms={removeClearForms}
                                     submitUploadFree={submitUploadFree}
                                     submitUploadPremium={submitUploadPremium}
-                                    editorHtml={editorHtml}
+                                    token={token}
+                                    uploadTitleVal={uploadTitleVal}
+                                    uploadHeadlineVal={uploadHeadlineVal}
                                     youtubeUrlVal={youtubeUrlVal}
                                 />
                             );

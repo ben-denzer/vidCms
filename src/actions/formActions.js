@@ -1,5 +1,5 @@
 import {postToApi, postWithMedia}   from './apiPromise';
-import {unescapeLinks}              from '../logic/shared';
+import {unescapeLinksPromise}       from '../logic/unescapeLinks';
 import {
     AUTH_ERROR,
     CLEAR_ADMIN_FORM,
@@ -29,7 +29,6 @@ const populateBlogForm      = thisBlog => ({type: POPULATE_BLOG_FORM, thisBlog})
 const removeClearForms      = () => ({type: REMOVE_CLEAR_FORMS});
 
 const submitBlog = options =>  {
-    console.log(options);
     if (!options.uploadTitleVal) return {
         type: NEW_MESSAGE,
         messageType: 'error',
@@ -50,7 +49,7 @@ const submitBlog = options =>  {
 };
 
 const submitUploadFree = options => {
-    if (!options.videoTitleVal) return {
+    if (!options.uploadTitleVal) return {
         type: NEW_MESSAGE,
         messageType: 'error',
         text: 'Please Add Title'
@@ -73,7 +72,7 @@ const submitUploadFree = options => {
     options.placeholderUrl = tempUrl.slice(tempUrl.lastIndexOf('/'));
 
     return (dispatch) => {
-        unescapeLinks(options.editorHtml)
+        unescapeLinksPromise(options.editorHtml)
             .then(finalText => Object.assign({}, options, {editorHtml: finalText}))
             .then(options => postToApi(options, 'admin/uploadFree'))
             .then(() => dispatch({type: UPLOAD_SUCCESS}))
