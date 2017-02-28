@@ -1,6 +1,10 @@
 import {connect}                            from 'react-redux';
-import {getFreeVideo, clearCurrentVideo}    from '../actions/contentActions';
 import VideoPage                            from '../components/VideoPage';
+import {
+    getFreeVideo,
+    getPremiumVideo,
+    clearCurrentVideo
+} from '../actions/contentActions';
 
 const mapStateToProps = state => {
     return {
@@ -16,7 +20,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        getFreeVideo:       (id) => dispatch(getFreeVideo(id, dispatch)),
+        getFreeVideo:       (id) => dispatch(getFreeVideo(id)),
+        getPremiumVideo:    (id, token) => dispatch(getPremiumVideo(id, token)),
         clearCurrentVideo:  () => dispatch(clearCurrentVideo()),
     }
 };

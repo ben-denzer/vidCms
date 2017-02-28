@@ -7,10 +7,20 @@ import PremiumVidBox    from './content/PremiumVidBox';
 
 class VideoPage extends React.Component {
     componentWillMount() {
+        console.log('will mount', this.props.token);
         const params = this.props.match.params;
         const videoId = params.id;
         if (params.type === 'free') {
             this.props.getFreeVideo(videoId);
+        } else if (params.type === 'premium' && this.props.token) {
+            this.props.getPremiumVideo(videoId, this.props.token);
+        }
+    }
+    componentWillReceiveProps(nextProps) {
+        if (this.props.match.params.type === 'premium') {
+            if (!this.props.token && nextProps.token) {
+                this.props.getPremiumVideo(this.props.match.params.id, this.props.token);
+            }
         }
     }
     componentWillUnmount() {
@@ -20,13 +30,14 @@ class VideoPage extends React.Component {
         const params = this.props.match.params;
         if (!this.props.title) return <div>Loading...</div>
         const {title, headline, url, text, premium_user} = this.props;
+
         return (
             <VideoPageContainer id="video_page_container">
                 <Title>{title}</Title>
                 <Headline id="video_headline">{headline}</Headline>
                 {
                     params.type === 'premium' ?
-                        <PremiumVidBox premium_user={premium_user} fullUrl={`${apiUrl}${url}`} /> :
+                        <PremiumVidBox premium_user={premium_user} fullUrl={`${apiUrl}uploads/${url}`} /> :
                         <VideoBox src={url} frameBorder="0" allowFullScreen></VideoBox>
                 }
                 <Text id="video_text" dangerouslySetInnerHTML={createMarkup(text)} />
