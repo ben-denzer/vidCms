@@ -7,13 +7,13 @@ export default function(state = initialState.content, action) {
             return Object.assign({}, state, {allBlogs, allComments, allImages, allVideos});
 
         case 'CLEAR_CURRENT_VIDEO':
-            let currentVideo = {};
-            for (let i in state.currentVideo) {
-                if (state.currentVideo.hasOwnProperty(i)) {
-                    currentVideo[i] = '';
+            let currentPost = {};
+            for (let i in state.currentPost) {
+                if (state.currentPost.hasOwnProperty(i)) {
+                    currentPost[i] = '';
                 }
             }
-            return Object.assign({}, state, {currentVideo});
+            return Object.assign({}, state, {currentPost});
 
         case 'COMMENT_SUBMITTED':
             const original = state.allComments;
