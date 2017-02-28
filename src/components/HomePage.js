@@ -15,11 +15,10 @@ const HomePage = (props) => {
         <PageContainer className="pageContainer">
             <ContentContainer className="contentContainer">
                 <PageHeading>
-                    <PageTitle className="pageTitle">Node, React, Web Development, and Life</PageTitle>
+                    <PageTitle className="pageTitle">Node, React, Web Development...</PageTitle>
                 </PageHeading>
                 <p>I took a pretty unconventional path into web development. I am a licenced crane operator, a commercial driver, and a geotechnical driller. I'm also a front end developer at my day job and a full stack JavaScript developer in my spare time.</p>
 
-                <p>This site is about front-end / node.js development and anything else that I find interesting.</p>
                 <HpLinkContainer>
                     <StyledLink to='/blog'>Articles</StyledLink>
                     <StyledLink to='/videos'>Videos</StyledLink>
