@@ -3,8 +3,14 @@ import styled from 'styled-components';
 import {Link} from 'react-router-dom';
 
 const RecentPostLink = props => {
+    const thisLink = props.blogUrl ?
+        `/blog/${props.blogUrl}` :
+        props.premium_video ?
+            `/watch/premium/${props.id}` :
+            `/watch/free/${props.id}`;
+
     return (
-        <StyledLink to={props.blogUrl ? `/blog/${props.blogUrl}` : `/watch/free/${props.id}`}>
+        <StyledLink to={thisLink}>
             <RecentTitle>{props.title}</RecentTitle>
             <RecentHeadline>{props.headline}</RecentHeadline>
         </StyledLink>

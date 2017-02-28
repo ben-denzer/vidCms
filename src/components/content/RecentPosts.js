@@ -25,8 +25,9 @@ const RecentPosts = ({allBlogs, allImages, allVideos}) => {
                 <RecentPostLink
                     key={video.video_id}
                     id={video.video_id}
-                    title={video.video_title}
                     headline={video.video_headline}
+                    premium_video={video.premium}
+                    title={video.video_title}
                 />
             );
         });
