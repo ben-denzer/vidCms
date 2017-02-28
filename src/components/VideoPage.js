@@ -7,19 +7,20 @@ import PremiumVidBox    from './content/PremiumVidBox';
 
 class VideoPage extends React.Component {
     componentWillMount() {
-        console.log('will mount', this.props.token);
-        const params = this.props.match.params;
+        const {getFreeVideo, getPremiumVideo, match, token} = this.props;
+        const params = match.params;
         const videoId = params.id;
         if (params.type === 'free') {
-            this.props.getFreeVideo(videoId);
-        } else if (params.type === 'premium' && this.props.token) {
-            this.props.getPremiumVideo(videoId, this.props.token);
+            getFreeVideo(videoId);
+        } else if (params.type === 'premium' && token) {
+            getPremiumVideo(videoId, token);
         }
     }
     componentWillReceiveProps(nextProps) {
-        if (this.props.match.params.type === 'premium') {
-            if (!this.props.token && nextProps.token) {
-                this.props.getPremiumVideo(this.props.match.params.id, this.props.token);
+        const {getPremiumVideo, match, token} = this.props;
+        if (match.params.type === 'premium') {
+            if (!token && nextProps.token) {
+                getPremiumVideo(match.params.id, nextProps.token);
             }
         }
     }

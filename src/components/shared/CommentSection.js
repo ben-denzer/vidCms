@@ -41,7 +41,6 @@ class CommentBlock extends React.Component {
     }
 
     render() {
-        console.log(this.props.allComments);
         const {token, commentVal} = this.props;
         const filteredComments = this.filterComments();
         let eachComment = ['no comments'];

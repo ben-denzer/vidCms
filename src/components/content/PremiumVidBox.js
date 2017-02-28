@@ -6,7 +6,6 @@ const PremiumVidBox = props => {
     if (!props.premium_user) {
         return <img src={premiumOnly} alt="Log in or sign up to see this video" />
     }
-    console.log(props.fullUrl);
     return (
         <VideoBox controls>
             <source src={props.fullUrl} />

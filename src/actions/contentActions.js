@@ -44,7 +44,6 @@ const getFreeVideo = id => {
 };
 
 const getPremiumVideo = (video_id, token) => {
-    console.log('in action', token);
     return dispatch => {
         postToApi({video_id, token}, 'auth/getPremiumVideo')
             .then(video => dispatch({type: GET_VIDEO_SUCCESS, video}))
