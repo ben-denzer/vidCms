@@ -43,4 +43,4 @@ const userSort = (array, sortBy, filterBy) => {
     });
 };
 
-export {userSort};
+export default userSort;

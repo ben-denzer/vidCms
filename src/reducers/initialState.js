@@ -42,11 +42,11 @@ export default {
         recentBlogs     : [],
     },
     admin: {
-        adminData: {
-            users   : [],
-            comments: [],
-            videos  : []
-        },
+        blogs   : [],
+        comments: [],
+        images  : [],
+        users   : [],
+        videos  : []
     },
     trashCan: {
         commentTrashCan: []

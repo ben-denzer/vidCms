@@ -15,7 +15,7 @@ const mapStateToProps = (state) => ({
     user                : state.user,
     token               : state.user.token,
     admin               : state.user.admin,
-    allData             : state.admin.adminData,
+    allData             : state.admin,
     clearForms          : state.forms.clearForms,
     commentTrashCan     : state.trashCan.commentTrashCan,
     blogImageUrl        : state.forms.blogImageUrl,

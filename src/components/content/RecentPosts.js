@@ -3,8 +3,8 @@ import styled           from 'styled-components';
 import RecentPostLink   from './RecentPostLink';
 
 const RecentPosts = ({allBlogs, allImages, allVideos}) => {
-    let recentPosts = <div></div>
-    let recentVideos = <div></div>
+    let recentPosts = [];
+    let recentVideos = [];
 
     if (allBlogs && allBlogs.length) {
         recentPosts = allBlogs.slice(0,3).map(blog => {
@@ -45,8 +45,9 @@ const RecentPosts = ({allBlogs, allImages, allVideos}) => {
 };
 
 const Heading = styled.h3`
-    font-size: 16px;
-    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    text-decoration: underline;
 `;
 
 const RecentPostsContainer = styled.div`

@@ -1,6 +1,7 @@
 import React from 'react';
 import {browserHistory} from 'react-router';
-import {parseDate, userSort} from '../../logic/shared';
+import parseDate        from '../../logic/parseDate';
+import userSort         from '../../logic/userSort';
 
 class ManageUsers extends React.Component {
     constructor(props) {
@@ -28,7 +29,6 @@ class ManageUsers extends React.Component {
     render() {
         const {sortBy, filterBy, users} = this.state;
         let rows = <tr><td colSpan="8">No Data</td></tr>
-        console.log('users', users, 'len', users.length)
         if (users && users.length) {
             rows = users.map(a => {
                 return (

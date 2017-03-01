@@ -4,8 +4,9 @@ import {apiPromise, postToApi} from './apiPromise';
 const getAdminData = token => {
     return dispatch => {
         postToApi({token}, 'admin/getData')
-            .then(allData => dispatch({type: ADMIN_DATA_SUCCESS, allData}))
-            .catch(err => err === 'unauthorized' ?
+            .then(adminData => {
+                dispatch({type: ADMIN_DATA_SUCCESS, adminData})
+            }).catch(err => err === 'unauthorized' ?
                 dispatch({type: NEW_MESSAGE, error: 'You need to be logged in to access this.'}) :
                 dispatch({type: NEW_MESSAGE, messageType: 'error', text: 'Network Error, Please Try Again'})
             );

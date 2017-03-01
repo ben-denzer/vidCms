@@ -31,6 +31,7 @@ const RecentTitle = styled.h3`
     font-weight: bold;
     color: #222;
     font-weight: bold;
+    margin-top: 3px;
 `;
 
 const RecentHeadline = styled.h4`

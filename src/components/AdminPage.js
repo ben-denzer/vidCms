@@ -3,6 +3,7 @@ import {Route}              from 'react-router-dom';
 import styled               from 'styled-components';
 import BlogUploadForm       from './admin/BlogUploadForm';
 import VideoUploadForm      from './admin/VideoUploadForm';
+import ManageUsers          from './admin/ManageUsers';
 
 class AdminPage extends React.Component {
     componentWillMount() {
@@ -35,8 +36,7 @@ class AdminPage extends React.Component {
             uploadTitleVal,
             youtubeUrlVal
         } = this.props;
-        const {/*users, comments, videos,*/ blogs, images} = allData;
-
+        const {users, comments, videos, blogs, images} = allData;
         return (
             <AdminContainer>
                 <AdminSidebar>
@@ -93,6 +93,11 @@ class AdminPage extends React.Component {
                                     youtubeUrlVal={youtubeUrlVal}
                                 />
                             );
+                        }}
+                    />
+                    <Route path='/admin/users'
+                        render={() => {
+                            return <ManageUsers users={users} />
                         }}
                     />
                 </AdminMain>

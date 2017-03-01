@@ -15,13 +15,15 @@ const HomePage = (props) => {
         <PageContainer className="pageContainer">
             <ContentContainer className="contentContainer">
                 <PageHeading>
-                    <PageTitle className="pageTitle">Node, React, Web Development...</PageTitle>
+                    <PageTitle className="pageTitle">
+                        Node, React, Web Development, and Getting Your First Programming Job
+                    </PageTitle>
                 </PageHeading>
-                <p>I took a pretty unconventional path into web development. I am a licenced crane operator, a commercial driver, and a geotechnical driller. I'm also a front end developer at my day job and a full stack JavaScript developer in my spare time.</p>
+                <p>I took a pretty unconventional path into web development. I am a licenced crane operator, a commercial driver, and a geotechnical driller. For the past few years I have been writing JavaScript and now I'm a full-time developer and I have a website that is making over $20K/year on the side.</p>
 
                 <HpLinkContainer>
-                    <StyledLink to='/blog'>Articles</StyledLink>
-                    <StyledLink to='/videos'>Videos</StyledLink>
+                    <StyledLink to='/blog'>All Articles</StyledLink>
+                    <StyledLink to='/videos'>All Videos</StyledLink>
                 </HpLinkContainer>
                 <RecentPosts allBlogs={props.allBlogs} allVideos={props.allVideos} />
             </ContentContainer>
@@ -43,6 +45,7 @@ const StyledLink = styled(Link)`
     color: blue;
     text-decoration: none;
     font-size: 24px;
+    margin-bottom: 3px;
 
     &:hover {
         color: black;
