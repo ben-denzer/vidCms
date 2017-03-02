@@ -97,9 +97,7 @@ class AdminPage extends React.Component {
                         }}
                     />
                     <Route exact path='/admin/users'
-                        render={() => {
-                            return <ManageUsers users={users} />
-                        }}
+                        render={() => <ManageUsers users={users} />}
                     />
                     <Route path='/admin/users/:id' 
                         render={() => <SingleUser users={users} comments={comments} />} 

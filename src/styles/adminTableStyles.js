@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const AdminMain = styled.div`
+export const AdminRight = styled.div`
     display: flex;
     flex-direction: column;
     padding: 0 40px;
@@ -27,6 +27,13 @@ export const SortRadioContainer = styled.div`
 export const AdminTable = styled.table`
     width: 100%;
     border: 1px solid black;
+`;
+
+export const SectionHeader = styled.h2`
+    font-size: 28px;
+    font-weight: bold;
+    margin-top: 30px;
+    margin-bottom: 20px;
 `;
 
 export const TableRow = styled.tr`

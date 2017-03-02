@@ -3,7 +3,7 @@ import {withRouter}     from 'react-router';
 import parseDate        from '../../logic/parseDate';
 import userSort         from '../../logic/userSort';
 import {
-    AdminMain,
+    AdminRight,
     AdminTable,
     AdminTitle,
     SortContainer,
@@ -58,7 +58,7 @@ class ManageUsers extends React.Component {
             });
         }
         return (
-            <AdminMain>
+            <AdminRight>
                 <AdminTitle>Users</AdminTitle>
                 <SortContainer>
                     <SortRadioContainer>
@@ -111,7 +111,7 @@ class ManageUsers extends React.Component {
                         {rows}
                     </tbody>
                 </AdminTable>
-            </AdminMain>
+            </AdminRight>
         );
     }
 };
