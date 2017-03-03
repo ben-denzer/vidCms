@@ -37,7 +37,9 @@ class AdminPage extends React.Component {
             uploadTitleVal,
             youtubeUrlVal
         } = this.props;
+
         const {users, comments, videos, blogs, images} = allData;
+
         return (
             <AdminContainer>
                 <AdminSidebar>
@@ -56,45 +58,41 @@ class AdminPage extends React.Component {
                 </AdminSidebar>
                 <AdminMain>
                     <Route path='/admin/upload/blog'
-                        render={() => {
-                            return (
-                                <BlogUploadForm
-                                    blogImageUrl={blogImageUrl}
-                                    blogs={blogs}
-                                    clearAdminForm={clearAdminForm}
-                                    clearForms={clearForms}
-                                    editorHtml={editorHtml}
-                                    error={error}
-                                    handleTextChange={handleTextChange}
-                                    images={images}
-                                    removeClearForms={removeClearForms}
-                                    submitBlog={submitBlog}
-                                    token={token}
-                                    uploadTitleVal={uploadTitleVal}
-                                    uploadHeadlineVal={uploadHeadlineVal}
-                                />
-                            );
-                        }}
+                        render={() => (
+                            <BlogUploadForm
+                                blogImageUrl={blogImageUrl}
+                                blogs={blogs}
+                                clearAdminForm={clearAdminForm}
+                                clearForms={clearForms}
+                                editorHtml={editorHtml}
+                                error={error}
+                                handleTextChange={handleTextChange}
+                                images={images}
+                                removeClearForms={removeClearForms}
+                                submitBlog={submitBlog}
+                                token={token}
+                                uploadTitleVal={uploadTitleVal}
+                                uploadHeadlineVal={uploadHeadlineVal}
+                            />
+                        )}
                     />
                     <Route path='/admin/upload/video'
-                        render={() => {
-                            return (
-                                <VideoUploadForm
-                                    clearAdminForm={clearAdminForm}
-                                    clearForms={clearForms}
-                                    editorHtml={editorHtml}
-                                    error={error}
-                                    handleTextChange={handleTextChange}
-                                    removeClearForms={removeClearForms}
-                                    submitUploadFree={submitUploadFree}
-                                    submitUploadPremium={submitUploadPremium}
-                                    token={token}
-                                    uploadTitleVal={uploadTitleVal}
-                                    uploadHeadlineVal={uploadHeadlineVal}
-                                    youtubeUrlVal={youtubeUrlVal}
-                                />
-                            );
-                        }}
+                        render={() => (
+                            <VideoUploadForm
+                                clearAdminForm={clearAdminForm}
+                                clearForms={clearForms}
+                                editorHtml={editorHtml}
+                                error={error}
+                                handleTextChange={handleTextChange}
+                                removeClearForms={removeClearForms}
+                                submitUploadFree={submitUploadFree}
+                                submitUploadPremium={submitUploadPremium}
+                                token={token}
+                                uploadTitleVal={uploadTitleVal}
+                                uploadHeadlineVal={uploadHeadlineVal}
+                                youtubeUrlVal={youtubeUrlVal}
+                            />
+                        )}
                     />
                     <Route exact path='/admin/users'
                         render={() => <ManageUsersPage users={users} />}
