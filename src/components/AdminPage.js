@@ -37,7 +37,7 @@ class AdminPage extends React.Component {
             uploadTitleVal,
             youtubeUrlVal
         } = this.props;
-        const {users, comments, /*videos,*/ blogs, images} = allData;
+        const {users, comments, videos, blogs, images} = allData;
         return (
             <AdminContainer>
                 <AdminSidebar>
@@ -100,7 +100,14 @@ class AdminPage extends React.Component {
                         render={() => <ManageUsersPage users={users} />}
                     />
                     <Route path='/admin/users/:id' 
-                        render={() => <SingleUserPage users={users} comments={comments} />} 
+                        render={() => (
+                            <SingleUserPage
+                                users={users}
+                                comments={comments}
+                                blogs={blogs}
+                                videos={videos}
+                            />
+                        )} 
                     />
                 </AdminMain>
             </AdminContainer>
