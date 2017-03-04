@@ -2,27 +2,26 @@ import React                                from 'react';
 import {withRouter}                         from 'react-router-dom';
 import styled                               from 'styled-components';
 import parseDate                            from '../../logic/parseDate';
-import {normalizeComments, /*sortComments*/}    from '../../logic/sortComments';
+import {normalizeComments, sortComments}    from '../../logic/sortComments';
 import {
     AdminRight,
     AdminTable,
     AdminTitle,
     SortContainer,
     /*SortRadioContainer,
-    SectionHeader,
-    TableCell,*/
+    SectionHeader,*/
+    TableCell,
     TableHeader,
-    //TableRow
+    TableRow
 } from '../../styles/adminTableStyles';
 
 class SingleUser extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            sortBy          : 'new-old',
+            sortBy          : 'newOld',
             sortedComments  : [],
             user            : null,
-            userComments    : []
         }
         this.filterComments = this.filterComments.bind(this);
         this.findUser       = this.findUser.bind(this);
@@ -43,14 +42,13 @@ class SingleUser extends React.Component {
         }
         if (!this.props.comments.length && nextProps.comments.length) {
             const {blogs, comments, videos} = nextProps;
-            console.log('in componentWillReceiveProps', comments, blogs, videos);
             this.filterComments(comments, blogs, videos);
         }
     }
     filterComments(allComments, blogs, videos, id = this.props.match.params.id) {
         const rawComments = allComments.filter(a => Number(a.user_fk) === Number(id));
         normalizeComments(rawComments, blogs, videos)
-            .then(userComments => this.setState({userComments}))
+            .then(userComments => this.sortComments(userComments))
             .catch(err => console.log('error in normalizeComments'));
     }
     findUser(allUsers, id = this.props.match.params.id) {
@@ -58,18 +56,29 @@ class SingleUser extends React.Component {
         this.setState({user});
     }
     sortComments(comments = this.props.comments, sortBy = this.state.sortBy) {
-        return;
+        this.setState({sortedComments: sortComments(comments, sortBy)});
     }
     render() {
-        const {sortBy, user} = this.state;
-        const rows = [];
-        console.log('userComments', this.state.userComments);
+        const {sortBy, user, sortedComments} = this.state;
+
         if (!user) {
             return (
                 <AdminRight>
                     <AdminTitle>User Not Found</AdminTitle>
                 </AdminRight>
             )
+        }
+
+        let rows = [<TableRow key={0}><TableCell colSpan='4'>No Comments Found</TableCell></TableRow>];
+        if (sortedComments.length) {
+            rows = sortedComments.map(a => (
+                <TableRow key={a.id}>
+                    <TableCell>{a.postTitle}</TableCell>
+                    <TableCell>{parseDate(a.date)}</TableCell>
+                    <TableCell>{a.text}</TableCell>
+                    <TableCell> X </TableCell>
+                </TableRow>
+            ));
         }
 
         return (
@@ -94,10 +103,10 @@ class SingleUser extends React.Component {
 
                 <SortContainer>
                     <select id="user-sort" className="admin-sort" value={sortBy} onChange={this.sortComments}>
-                        <option value="A-Z">Posts A-Z</option>
-                        <option value="Z-A">Posts Z-A</option>
-                        <option value="old-new">Oldest to Newest</option>
-                        <option value="new-old">Newest to Oldest</option>
+                        <option value="postsAZ">Posts A-Z</option>
+                        <option value="postsZA">Posts Z-A</option>
+                        <option value="oldNew">Oldest to Newest</option>
+                        <option value="newOld">Newest to Oldest</option>
                     </select>
                 </SortContainer>
                 <AdminTable>
