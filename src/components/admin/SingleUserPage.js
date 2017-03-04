@@ -1,52 +1,73 @@
-import React        from 'react';
-import {withRouter} from 'react-router-dom';
-import styled       from 'styled-components';
-import parseDate    from '../../logic/parseDate';
+import React                                from 'react';
+import {withRouter}                         from 'react-router-dom';
+import styled                               from 'styled-components';
+import parseDate                            from '../../logic/parseDate';
+import {normalizeComments, /*sortComments*/}    from '../../logic/sortComments';
 import {
     AdminRight,
     AdminTable,
     AdminTitle,
     SortContainer,
-    SortRadioContainer,
+    /*SortRadioContainer,
     SectionHeader,
-    TableCell,
+    TableCell,*/
     TableHeader,
-    TableRow
+    //TableRow
 } from '../../styles/adminTableStyles';
 
 class SingleUser extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {user: null, sortBy: 'new-old'}
-        this.findUser = this.findUser.bind(this);
-        this.handleSort = this.handleSort.bind(this);
+        this.state = {
+            sortBy          : 'new-old',
+            sortedComments  : [],
+            user            : null,
+            userComments    : []
+        }
+        this.filterComments = this.filterComments.bind(this);
+        this.findUser       = this.findUser.bind(this);
+        this.sortComments   = this.sortComments.bind(this);
     }
     componentWillMount() {
         if (this.props.users) {
-            this.findUser(this.props.match.params.id);
+            this.findUser(this.props.users);
+        }
+        if (this.props.comments.length) {
+            const {blogs, comments, videos} = this.props;
+            this.filterComments(comments, blogs, videos);
         }
     }
     componentWillReceiveProps(nextProps) {
         if (!this.props.users.length && nextProps.users.length) {
-            this.findUser(this.props.match.params.id);
+            this.findUser(nextProps.users);
+        }
+        if (!this.props.comments.length && nextProps.comments.length) {
+            const {blogs, comments, videos} = nextProps;
+            console.log('in componentWillReceiveProps', comments, blogs, videos);
+            this.filterComments(comments, blogs, videos);
         }
     }
-    findUser(id) {
-        console.log(this.props.users, id);
-        const user = this.props.users.filter(a => a.user_id === Number(id))[0];
+    filterComments(allComments, blogs, videos, id = this.props.match.params.id) {
+        const rawComments = allComments.filter(a => Number(a.user_fk) === Number(id));
+        normalizeComments(rawComments, blogs, videos)
+            .then(userComments => this.setState({userComments}))
+            .catch(err => console.log('error in normalizeComments'));
+    }
+    findUser(allUsers, id = this.props.match.params.id) {
+        const user = allUsers.filter(a => Number(a.user_id) === Number(id))[0];
         this.setState({user});
     }
-    handleSort(param) {
+    sortComments(comments = this.props.comments, sortBy = this.state.sortBy) {
         return;
     }
     render() {
         const {sortBy, user} = this.state;
         const rows = [];
-
+        console.log('userComments', this.state.userComments);
         if (!user) {
             return (
                 <AdminRight>
-                    <AdminTitle>{user.username}</AdminTitle>
+                    <AdminTitle>User Not Found</AdminTitle>
                 </AdminRight>
             )
         }
@@ -56,14 +77,12 @@ class SingleUser extends React.Component {
                 <AdminTitle>{user.username}</AdminTitle>
                 <InfoContainer>
                     <InfoLeft>
-                        <InfoHeading>Username</InfoHeading>
                         <InfoHeading>Email</InfoHeading>
                         <InfoHeading>Signup Date</InfoHeading>
                         <InfoHeading>Admin</InfoHeading>
                         <InfoHeading>Premium</InfoHeading>
                     </InfoLeft>
                     <InfoRight>
-                        <InfoText>{user.username}</InfoText>
                         <InfoText>{user.email || "-none-"}</InfoText>
                         <InfoText>{parseDate(user.signup_date)}</InfoText>
                         <InfoText>{user.admin ? 'yes' : 'no'}</InfoText>
@@ -74,7 +93,7 @@ class SingleUser extends React.Component {
                 <AdminTitle>Comments</AdminTitle>
 
                 <SortContainer>
-                    <select id="user-sort" className="admin-sort" value={sortBy} onChange={this.handleSort}>
+                    <select id="user-sort" className="admin-sort" value={sortBy} onChange={this.sortComments}>
                         <option value="A-Z">Posts A-Z</option>
                         <option value="Z-A">Posts Z-A</option>
                         <option value="old-new">Oldest to Newest</option>
@@ -84,11 +103,10 @@ class SingleUser extends React.Component {
                 <AdminTable>
                     <thead>
                         <tr>
-                            <TableHeader>Username</TableHeader>
-                            <TableHeader>Email</TableHeader>
-                            <TableHeader>Member Since</TableHeader>
-                            <TableHeader>Admin</TableHeader>
-                            <TableHeader>Premium Member</TableHeader>
+                            <TableHeader>Post Title</TableHeader>
+                            <TableHeader>Comment Date</TableHeader>
+                            <TableHeader>Comment</TableHeader>
+                            <TableHeader>Delete</TableHeader>
                         </tr>
                     </thead>
                     <tbody>
