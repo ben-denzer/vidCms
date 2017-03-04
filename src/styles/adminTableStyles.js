@@ -50,7 +50,9 @@ export const TableRow = styled.tr`
 export const TableHeader = styled.th`
     font-size: 18px;
     font-weight: bold;
-    text-align: center;
+    padding: 0 3px;
+    border: 1px solid black;
+    border-collapse: collapse;
 `;
 
 export const TableCell = styled.td`

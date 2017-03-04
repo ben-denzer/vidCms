@@ -37,22 +37,3 @@ export const FormInput = styled.input`
     width: 100%;
 `;
 
-//                 a {
-//                     color: blue;
-
-//                     &:hover {
-//                         cursor: pointer;
-//                         text-decoration: underline;
-//                     }
-//                 }
-
-//                 label {
-//                     display: flex;
-//                     flex-direction: row;
-
-//                     input {
-//                         width: 20px;
-//                     }
-//                 }
-//             }
-

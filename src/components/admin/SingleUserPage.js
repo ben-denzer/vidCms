@@ -8,8 +8,6 @@ import {
     AdminTable,
     AdminTitle,
     SortContainer,
-    /*SortRadioContainer,
-    SectionHeader,*/
     TableCell,
     TableHeader,
     TableRow
@@ -47,9 +45,7 @@ class SingleUser extends React.Component {
     }
     filterComments(allComments, blogs, videos, id = this.props.match.params.id) {
         const rawComments = allComments.filter(a => Number(a.user_fk) === Number(id));
-        normalizeComments(rawComments, blogs, videos)
-            .then(sortedComments => this.setState({sortedComments}))
-            .catch(err => console.log('error in normalizeComments'));
+        this.setState({sortedComments: normalizeComments(rawComments, blogs, videos)});
     }
     findUser(allUsers, id = this.props.match.params.id) {
         const user = allUsers.filter(a => Number(a.user_id) === Number(id))[0];
@@ -72,11 +68,14 @@ class SingleUser extends React.Component {
         let rows = [<TableRow key={0}><TableCell colSpan='4'>No Comments Found</TableCell></TableRow>];
         if (sortedComments.length) {
             rows = sortedComments.map(a => (
-                <TableRow key={a.id}>
-                    <TableCell>{a.postTitle}</TableCell>
+                <TableRow key={a.id} onClick={() => this.props.push(`/admin/comments/${a.id}`)}>
+                    <TableCell>
+                        {a.postTitle.length > 50 ? a.postTitle.slice(0, 30) + '...' : a.postTitle}
+                    </TableCell>
                     <TableCell>{parseDate(a.date)}</TableCell>
-                    <TableCell>{a.text}</TableCell>
-                    <TableCell> X </TableCell>
+                    <TableCell>
+                        {a.text.length > 30 ? a.text.slice(0, 30) + '...' : a.text}
+                    </TableCell>
                 </TableRow>
             ));
         }
@@ -115,7 +114,6 @@ class SingleUser extends React.Component {
                             <TableHeader>Post Title</TableHeader>
                             <TableHeader>Comment Date</TableHeader>
                             <TableHeader>Comment</TableHeader>
-                            <TableHeader>Delete</TableHeader>
                         </tr>
                     </thead>
                     <tbody>

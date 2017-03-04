@@ -4,6 +4,7 @@ import styled               from 'styled-components';
 import BlogUploadForm       from './admin/BlogUploadForm';
 import VideoUploadForm      from './admin/VideoUploadForm';
 import ManageUsersPage      from './admin/ManageUsersPage';
+import SingleCommentPage    from './admin/SingleCommentPage';
 import SingleUserPage       from './admin/SingleUserPage';
 
 class AdminPage extends React.Component {
@@ -105,6 +106,16 @@ class AdminPage extends React.Component {
                                 videos={videos}
                             />
                         )} 
+                    />
+                    <Route exact path='/admin/comments/:id'
+                        render={() => (
+                            <SingleCommentPage
+                                comments={comments}
+                                users={users}
+                                blogs={blogs}
+                                videos={videos}
+                            />
+                        )}
                     />
                 </AdminMain>
             </AdminContainer>
