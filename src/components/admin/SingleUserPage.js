@@ -19,7 +19,7 @@ class SingleUser extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            sortBy          : 'newOld',
+            sortBy          : 'oldNew',
             sortedComments  : [],
             user            : null,
         }
@@ -48,15 +48,15 @@ class SingleUser extends React.Component {
     filterComments(allComments, blogs, videos, id = this.props.match.params.id) {
         const rawComments = allComments.filter(a => Number(a.user_fk) === Number(id));
         normalizeComments(rawComments, blogs, videos)
-            .then(userComments => this.sortComments(userComments))
+            .then(sortedComments => this.setState({sortedComments}))
             .catch(err => console.log('error in normalizeComments'));
     }
     findUser(allUsers, id = this.props.match.params.id) {
         const user = allUsers.filter(a => Number(a.user_id) === Number(id))[0];
         this.setState({user});
     }
-    sortComments(comments = this.props.comments, sortBy = this.state.sortBy) {
-        this.setState({sortedComments: sortComments(comments, sortBy)});
+    sortComments(e, sortBy = e.target.value, comments = this.state.sortedComments) {
+        this.setState({sortedComments: sortComments(comments, sortBy), sortBy});
     }
     render() {
         const {sortBy, user, sortedComments} = this.state;
@@ -102,7 +102,7 @@ class SingleUser extends React.Component {
                 <AdminTitle>Comments</AdminTitle>
 
                 <SortContainer>
-                    <select id="user-sort" className="admin-sort" value={sortBy} onChange={this.sortComments}>
+                    <select id="user-sort" className="admin-sort" value={sortBy} onChange={(e) => this.sortComments(e)}>
                         <option value="postsAZ">Posts A-Z</option>
                         <option value="postsZA">Posts Z-A</option>
                         <option value="oldNew">Oldest to Newest</option>

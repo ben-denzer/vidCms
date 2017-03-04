@@ -21,12 +21,11 @@ const sortComments = (comments, sortBy) => {
             return a.date > b.date ? -1 : 1;
         }
     }
-    if (!comments.length) return;
+    if (!comments || !comments.length) return;
     return comments.sort((a,b) => sortFunctions[sortBy](a,b));
 };
 
 const normalizeComments = (rawComments, blogs, videos) => {
-    console.log('allComments passed', rawComments);
     return new Promise((resolve, reject) => {
         if (!rawComments.length || !blogs.length || !videos.length) reject('wrong args to normalizeComments');
 
