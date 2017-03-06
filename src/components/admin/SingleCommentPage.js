@@ -4,7 +4,7 @@ import styled                   from 'styled-components';
 import {normalizeComments}      from '../../logic/sortComments';
 import parseDate                from '../../logic/parseDate';
 import {AdminRight, AdminTitle} from '../../styles/adminTableStyles';
-import BootstrapModal           from '../shared/BootstrapModal';
+import AdminDeleteModal         from '../shared/AdminDeleteModal';
 
 class SingleCommentPage extends React.Component {
     constructor(props) {
@@ -86,7 +86,7 @@ class SingleCommentPage extends React.Component {
                         </AdminButton>
                         <AdminButton onClick={() => {}}>Ban User</AdminButton>
                     </ButtonContainer>
-                    <BootstrapModal 
+                    <AdminDeleteModal
                         closeModal={this.closeModal}
                         commentId={commentId}
                         modalFunction={modalFunction}

@@ -2,7 +2,7 @@ import React                from 'react'
 import {Modal, Button}      from 'react-bootstrap';
 import '../../styles/modal.css';
 
-const BootstrapModal = (props) => {
+const AdminDeleteModal = (props) => {
     const {closeModal, commentId, modalFunction, show, userId} = props;
     return (
         <div className="modal-container" style={{height: 200}}>
@@ -17,7 +17,7 @@ const BootstrapModal = (props) => {
                         Are You Sure You Want To Delete This {commentId ? 'Comment' : 'User'}?</Modal.Title>
                 </Modal.Header>
                 <Modal.Footer>
-                    <Button onClick={() => modalFunction(commentId, userId)}>Yes</Button>
+                    <Button bsStyle="danger" onClick={() => modalFunction(commentId, userId)}>Yes</Button>
                     <Button onClick={() => closeModal()}>Close</Button>
                 </Modal.Footer>
             </Modal>
@@ -25,4 +25,4 @@ const BootstrapModal = (props) => {
     );
 };
 
-export default BootstrapModal;
+export default AdminDeleteModal;

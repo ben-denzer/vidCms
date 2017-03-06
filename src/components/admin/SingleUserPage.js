@@ -38,7 +38,7 @@ class SingleUser extends React.Component {
         if (!this.props.users.length && nextProps.users.length) {
             this.findUser(nextProps.users);
         }
-        if (!this.props.comments.length && nextProps.comments.length) {
+        if (this.props.comments.length !== nextProps.comments.length) {
             const {blogs, comments, videos} = nextProps;
             this.filterComments(comments, blogs, videos);
         }
