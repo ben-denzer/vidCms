@@ -21,18 +21,22 @@ const SingleCommentPage = props => {
         <AdminRight>
             <AdminTitle>Comment</AdminTitle>
             <InfoContainer>
-                <InfoLeft>
-                    <InfoHeading>User</InfoHeading>
-                    <InfoHeading>Post</InfoHeading>
-                    <InfoHeading>Date</InfoHeading>
-                    <InfoHeading>Text</InfoHeading>
-                </InfoLeft>
-                <InfoRight>
+                <div>
+                    <InfoHeading>User: </InfoHeading>
                     <InfoText>{thisUser.username || 'Not Found'}</InfoText>
+                </div>
+                <div>
+                    <InfoHeading>Post: </InfoHeading>
                     <InfoText>{comment.postTitle || 'Not Found'}</InfoText>
+                </div>
+                <div>
+                    <InfoHeading>Date: </InfoHeading>
                     <InfoText>{parseDate(comment.date) || 'Not Found'}</InfoText>
+                </div>
+                <div>
+                    <InfoHeading>Text: </InfoHeading>
                     <InfoText>{comment.text || 'Not Found'}</InfoText>
-                </InfoRight>
+                </div>
             </InfoContainer>
         </AdminRight>
     );
@@ -40,19 +44,18 @@ const SingleCommentPage = props => {
 
 const InfoContainer = styled.div`
     display: flex;
+    flex-direction: column;
 `;
 
-const InfoLeft = styled.div``;
-const InfoRight = styled.div`
-    margin-left: 15px;
-`;
-
-const InfoHeading = styled.div`
+const InfoHeading = styled.span`
+    width: 20%;
     font-size: 18px;
     font-weight: bold;
+    display: inline;
 `;
 
-const InfoText = styled.div`
+const InfoText = styled.span`
+    width: 70%;
     font-size: 18px;
 `;
 
