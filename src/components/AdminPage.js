@@ -111,10 +111,11 @@ class AdminPage extends React.Component {
                     <Route exact path='/admin/comments/:id'
                         render={() => (
                             <SingleCommentPage
+                                blogs={blogs}
                                 comments={comments}
                                 deleteComments={deleteComments}
+                                token={token}
                                 users={users}
-                                blogs={blogs}
                                 videos={videos}
                             />
                         )}

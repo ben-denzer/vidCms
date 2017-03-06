@@ -11,10 +11,10 @@ class SingleCommentPage extends React.Component {
         super(props);
 
         this.state = {
-            showModal: false,
-            modalTarget: null,  // 'user' or 'comment'
-            modalTargetId: null,
+            commentId: null,
             modalFunction: null,
+            showModal: false,
+            userId: null
         };
 
         this.closeModal         = this.closeModal.bind(this);
@@ -24,30 +24,32 @@ class SingleCommentPage extends React.Component {
 
     closeModal() {
         this.setState({
-            showModal: false,
-            modalTarget: null,
-            modalTargetId: null,
+            commentId: null,
             modalFunction: null,
+            showModal: false,
+            userId: null
         });
     }
 
-    deleteComment(e, id) {
-        console.log('called delete', id);
-        //this.props.deleteComments([id]);
+    deleteComment(commentId, userId) {
+        const {token} = this.props;
+        this.props.deleteComments({token, trash: [commentId]});
+        this.closeModal();
+        this.props.push(`/admin/users/${userId}`);
     }
 
-    showDeleteComment(id) {
+    showDeleteComment(id, user) {
         this.setState({
+            commentId: id,
+            modalFunction: this.deleteComment,
             showModal: true,
-            modalTarget: 'comment',
-            modalTargetId: id,
-            modalFunction: this.deleteComment 
+            userId: user
         });
     }
 
     render() {
         const {blogs, comments, match, users, videos} = this.props;
-        const {showModal, modalTarget, modalTargetId, modalFunction} = this.state;
+        const {commentId, modalFunction, showModal, userId} = this.state;
 
         const thisComment = comments && comments.length ? 
             comments.filter(a => a.comment_id === Number(match.params.id)) :
@@ -57,7 +59,7 @@ class SingleCommentPage extends React.Component {
 
         const thisUser = users.filter(a => thisComment[0].user_fk === a.user_id)[0];
         const comment = normalizeComments(thisComment, blogs, videos)[0];
-        console.log(this.state);
+
         return (
             <AdminRight>
                 <AdminTitle>Comment</AdminTitle>
@@ -79,17 +81,17 @@ class SingleCommentPage extends React.Component {
                         <InfoText>{comment.text || 'Not Found'}</InfoText>
                     </div>
                     <ButtonContainer>
-                        <AdminButton onClick={() => this.showDeleteComment(comment.id)}>
+                        <AdminButton onClick={() => this.showDeleteComment(comment.id, thisUser.user_id)}>
                             Delete Comment
                         </AdminButton>
                         <AdminButton onClick={() => {}}>Ban User</AdminButton>
                     </ButtonContainer>
                     <BootstrapModal 
                         closeModal={this.closeModal}
-                        modalTarget={modalTarget}
-                        modalTargetId={modalTargetId}
+                        commentId={commentId}
                         modalFunction={modalFunction}
                         show={showModal}
+                        userId={userId}
                     />
                 </InfoContainer>
             </AdminRight>
