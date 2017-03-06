@@ -4,7 +4,6 @@ import forms        from './formsReducer';
 import message      from './messageReducer';
 import content      from './contentReducer';
 import admin        from './adminReducer';
-import trashCan     from './trashCanReducer';
 import route        from './routeReducer';
 
 const rootReducer = combineReducers({
@@ -13,7 +12,6 @@ const rootReducer = combineReducers({
     message,
     content,
     admin,
-    trashCan,
     route
 });
 

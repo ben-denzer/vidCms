@@ -48,8 +48,5 @@ export default {
         users   : [],
         videos  : []
     },
-    trashCan: {
-        commentTrashCan: []
-    },
     route: ['/']
 };

@@ -26,6 +26,7 @@ class AdminPage extends React.Component {
             blogImageUrl,
             clearAdminForm,
             clearForms,
+            deleteComments,
             editorHtml,
             error,
             handleTextChange,
@@ -111,6 +112,7 @@ class AdminPage extends React.Component {
                         render={() => (
                             <SingleCommentPage
                                 comments={comments}
+                                deleteComments={deleteComments}
                                 users={users}
                                 blogs={blogs}
                                 videos={videos}

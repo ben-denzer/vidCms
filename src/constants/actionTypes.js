@@ -22,5 +22,4 @@ export const REMOVE_CLEAR_FORMS         = 'REMOVE_CLEAR_FORMS';
 export const SAVE_DATA_CLICKED          = 'SAVE_DATA_CLICKED';
 export const SIGNUP_SUCCESS             = 'SIGNUP_SUCCESS';
 export const TEXT_CHANGE                = 'TEXT_CHANGE';
-export const TRASH_COMMENT              = 'TRASH_COMMENT';
 export const UPLOAD_SUCCESS             = 'UPLOAD_SUCCESS';

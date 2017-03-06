@@ -1,5 +1,5 @@
 import {connect}                            from 'react-redux';
-import {getAdminData, putCommentInTrash}    from '../actions/adminActions';
+import {deleteComments, getAdminData}       from '../actions/adminActions';
 import AdminPage                            from '../components/AdminPage';
 import {
     clearAdminForm,
@@ -17,7 +17,6 @@ const mapStateToProps = (state) => ({
     admin               : state.user.admin,
     allData             : state.admin,
     clearForms          : state.forms.clearForms,
-    commentTrashCan     : state.trashCan.commentTrashCan,
     blogImageUrl        : state.forms.blogImageUrl,
     editorHtml          : state.forms.editorHtml,
     error               : state.message.error,
@@ -28,11 +27,9 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
     clearAdminForm:         () => dispatch(clearAdminForm()),
+    deleteComments:         (options) => dispatch(deleteComments(options)),
     getAdminData:           (token) => dispatch(getAdminData(token, dispatch)),
     handleTextChange:       (e) => dispatch(handleTextChange(e.target.id, e.target.value)),
-    putCommentInTrash:      (token, id, trash, comments) => {
-                                dispatch(putCommentInTrash(token, id, trash, comments))
-                            },
     populateBlogForm:       (options) => dispatch(populateBlogForm(options)),
     removeClearForms:       () => dispatch(removeClearForms()),
     submitBlog:             (options) => dispatch(submitBlog(options, dispatch)),
