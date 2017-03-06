@@ -17,12 +17,22 @@ class SingleCommentPage extends React.Component {
             modalFunction: null,
         };
 
-        this.showDeleteComment  = this.showDeleteComment.bind(this);
+        this.closeModal         = this.closeModal.bind(this);
         this.deleteComment      = this.deleteComment.bind(this);
+        this.showDeleteComment  = this.showDeleteComment.bind(this);
     }
 
-    deleteComment(id) {
-        console.log(id);
+    closeModal() {
+        this.setState({
+            showModal: false,
+            modalTarget: null,
+            modalTargetId: null,
+            modalFunction: null,
+        });
+    }
+
+    deleteComment(e, id) {
+        console.log('called delete', id);
         //this.props.deleteComments([id]);
     }
 
@@ -69,14 +79,17 @@ class SingleCommentPage extends React.Component {
                         <InfoText>{comment.text || 'Not Found'}</InfoText>
                     </div>
                     <ButtonContainer>
-                        <AdminButton onClick={this.showDeleteComment}>Delete Comment</AdminButton>
+                        <AdminButton onClick={() => this.showDeleteComment(comment.id)}>
+                            Delete Comment
+                        </AdminButton>
                         <AdminButton onClick={() => {}}>Ban User</AdminButton>
                     </ButtonContainer>
                     <BootstrapModal 
-                        show={showModal}
+                        closeModal={this.closeModal}
                         modalTarget={modalTarget}
                         modalTargetId={modalTargetId}
                         modalFunction={modalFunction}
+                        show={showModal}
                     />
                 </InfoContainer>
             </AdminRight>

@@ -3,18 +3,24 @@ import {Modal, Button}      from 'react-bootstrap';
 import '../../styles/modal.css';
 
 const BootstrapModal = (props) => {
+    console.log('props', props.modalTargetId);
     return (
-        <Modal show={props.show}>
-            <Modal.Dialog>
+        <div className="modal-container" style={{height: 200}}>
+            <Modal
+                show={props.show}
+                onHide={close}
+                container={this}
+                aria-labelledby="contained-modal-title"
+            >
                 <Modal.Header>
-                    <Modal.Title>Remove this {props.modalTarget}?</Modal.Title>
+                    <Modal.Title id="contained-modal-title">Contained Modal</Modal.Title>
                 </Modal.Header>
                 <Modal.Footer>
-                    <Button onClick={() => props.closeModalModal()}>Close</Button>
-                    <Button bsStyle="primary" onClick={() => props.modalFunction(props.id)}>Yes</Button>
+                    <Button onClick={() => props.modalFunction(props.modalTargetId)}>Yes</Button>
+                    <Button onClick={() => props.closeModal()}>Close</Button>
                 </Modal.Footer>
-            </Modal.Dialog>
-        </Modal>
+            </Modal>
+        </div>
     );
 };
 
