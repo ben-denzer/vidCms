@@ -23,9 +23,9 @@ class SingleCommentPage extends React.Component {
         this.showDeleteModal    = this.showDeleteModal.bind(this);
     }
 
-    banUser(userId) {
+    banUser(commentId = null, bannedUser) {
         const {banUser, push, token} = this.props;
-        banUser({token, userId});
+        banUser({token, bannedUser});
         this.closeModal();
         push('/admin/users');
     }
@@ -46,10 +46,10 @@ class SingleCommentPage extends React.Component {
         push(`/admin/users/${userId}`);
     }
 
-    showDeleteModal(id, user) {
+    showDeleteModal(id, user, func) {
         this.setState({
             commentId: id,
-            modalFunction: this.deleteComment,
+            modalFunction: func,
             showModal: true,
             userId: user
         });
@@ -90,12 +90,12 @@ class SingleCommentPage extends React.Component {
                     </div>
                     <ButtonContainer>
                         <AdminButton 
-                            onClick={() => this.showDeleteModal(comment.id, thisUser.user_id)}
+                            onClick={() => this.showDeleteModal(comment.id, thisUser.user_id, this.deleteComment)}
                         >
                             Delete Comment
                         </AdminButton>
                         <AdminButton 
-                            onClick={() => this.showDeleteModal(null, thisUser.user_id)}
+                            onClick={() => this.showDeleteModal(null, thisUser.user_id, this.banUser)}
                         >
                             Ban User
                         </AdminButton>

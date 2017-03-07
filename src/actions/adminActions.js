@@ -2,6 +2,7 @@ import {ADMIN_DATA_SUCCESS, BANNED_USER, NEW_MESSAGE, DELETE_COMMENTS_SUCCESS} f
 import {apiPromise, postToApi} from './apiPromise';
 
 const banUser = (options) => {
+    console.log(options);
     return {type: BANNED_USER, bannedUser: options.bannedUser};
     // return (dispatch) => {
     //     postToApi(options)

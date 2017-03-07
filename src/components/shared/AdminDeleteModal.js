@@ -4,6 +4,7 @@ import '../../styles/modal.css';
 
 const AdminDeleteModal = (props) => {
     const {closeModal, commentId, modalFunction, show, userId} = props;
+    console.log(props);
     return (
         <div className="modal-container" style={{height: 200}}>
             <Modal

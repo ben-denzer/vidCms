@@ -55,7 +55,6 @@ class ManageUsers extends React.Component {
         let rows = <tr><td colSpan="8">No Data</td></tr>
         if (users && users.length) {
             rows = users.map(a => {
-                console.log(a.username, a.banned_user);
                 return (
                     <TableRow 
                         key={a.user_id}
