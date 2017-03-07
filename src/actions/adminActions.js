@@ -3,7 +3,7 @@ import {apiPromise, postToApi} from './apiPromise';
 
 const banUser = (options) => {
     return (dispatch) => {
-        postToApi(options)
+        postToApi(options, 'admin/banUser')
             .then(bannedUser => dispatch({type: BANNED_USER, bannedUser}))
             .catch(err => err === 'unauthorized' ?
                 dispatch({type: NEW_MESSAGE, error: 'You need to be logged in to access this.'}) :
