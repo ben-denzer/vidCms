@@ -21,8 +21,17 @@ class ManageUsers extends React.Component {
             sortBy: 'A-Z',
             filterBy: 'allUsers'
         };
+
         this.handleRadioChange = this.handleRadioChange.bind(this);
         this.handleSort=  this.handleSort.bind(this);
+
+        this.styles = {
+            bannedUser: {
+                background: 'red',
+                color: 'white',
+                textDecoration: 'line-through'
+            }
+        };
     }
     componentWillReceiveProps(nextProps) {
         const {users, sortBy, filterBy} = this.state;
@@ -46,8 +55,13 @@ class ManageUsers extends React.Component {
         let rows = <tr><td colSpan="8">No Data</td></tr>
         if (users && users.length) {
             rows = users.map(a => {
+                console.log(a.username, a.banned_user);
                 return (
-                    <TableRow key={a.user_id} onClick={() => this.props.push(`/admin/users/${a.user_id}`)}>
+                    <TableRow 
+                        key={a.user_id}
+                        onClick={() => this.props.push(`/admin/users/${a.user_id}`)}
+                        style={a.banned_user ? this.styles.bannedUser : null}
+                    >
                         <TableCell>{a.username}</TableCell>
                         <TableCell>{a.email}</TableCell>
                         <TableCell>{parseDate(a.signup_date)}</TableCell>

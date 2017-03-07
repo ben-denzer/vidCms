@@ -83,6 +83,7 @@ class SingleUser extends React.Component {
         return (
             <AdminRight>
                 <AdminTitle>{user.username}</AdminTitle>
+                {user.banned_user && <BannedUser>Banned</BannedUser>}
                 <InfoContainer>
                     <InfoLeft>
                         <InfoHeading>Email</InfoHeading>
@@ -141,6 +142,16 @@ const InfoHeading = styled.div`
 
 const InfoText = styled.div`
     font-size: 18px;
+`;
+
+const BannedUser = styled.div`
+    font-size: 28px;
+    max-width: 500px;
+    color: white;
+    background-color: red;
+    padding: 5px;
+    margin: 15px auto 15px 0;
+    text-align: center;
 `;
 
 export default withRouter(SingleUser);

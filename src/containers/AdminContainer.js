@@ -1,6 +1,6 @@
-import {connect}                            from 'react-redux';
-import {deleteComments, getAdminData}       from '../actions/adminActions';
-import AdminPage                            from '../components/AdminPage';
+import {connect}                                from 'react-redux';
+import {banUser, deleteComments, getAdminData}  from '../actions/adminActions';
+import AdminPage                                from '../components/AdminPage';
 import {
     clearAdminForm,
     handleTextChange,
@@ -26,6 +26,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
+    banUser:                (options) => dispatch(banUser(options)),
     clearAdminForm:         () => dispatch(clearAdminForm()),
     deleteComments:         (options) => dispatch(deleteComments(options)),
     getAdminData:           (token) => dispatch(getAdminData(token, dispatch)),

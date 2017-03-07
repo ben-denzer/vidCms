@@ -5,6 +5,13 @@ export default function(state= initialState.admin, action) {
         case 'ADMIN_DATA_SUCCESS':
             const {users, blogs, images, comments, videos} = action.adminData;
             return Object.assign({}, {users, blogs, images, comments, videos});
+        case 'BANNED_USER':
+            return state.map(a => {
+                if (a.id === action.bannedUser) {
+                    return Object.assign({}, a, {banned_user: true});
+                }
+                return a;
+            });
         case 'DELETE_COMMENTS_SUCCESS':
             return Object.assign({}, state, {
                 comments: state.comments.filter(a => {

@@ -17,9 +17,17 @@ class SingleCommentPage extends React.Component {
             userId: null
         };
 
+        this.banUser            = this.banUser.bind(this);
         this.closeModal         = this.closeModal.bind(this);
         this.deleteComment      = this.deleteComment.bind(this);
-        this.showDeleteComment  = this.showDeleteComment.bind(this);
+        this.showDeleteModal    = this.showDeleteModal.bind(this);
+    }
+
+    banUser(userId) {
+        const {banUser, push, token} = this.props;
+        banUser({token, userId});
+        this.closeModal();
+        push('/admin/users');
     }
 
     closeModal() {
@@ -32,13 +40,13 @@ class SingleCommentPage extends React.Component {
     }
 
     deleteComment(commentId, userId) {
-        const {token} = this.props;
-        this.props.deleteComments({token, trash: [commentId]});
+        const {deleteComments, push, token} = this.props;
+        deleteComments({token, trash: [commentId]});
         this.closeModal();
-        this.props.push(`/admin/users/${userId}`);
+        push(`/admin/users/${userId}`);
     }
 
-    showDeleteComment(id, user) {
+    showDeleteModal(id, user) {
         this.setState({
             commentId: id,
             modalFunction: this.deleteComment,
@@ -81,10 +89,16 @@ class SingleCommentPage extends React.Component {
                         <InfoText>{comment.text || 'Not Found'}</InfoText>
                     </div>
                     <ButtonContainer>
-                        <AdminButton onClick={() => this.showDeleteComment(comment.id, thisUser.user_id)}>
+                        <AdminButton 
+                            onClick={() => this.showDeleteModal(comment.id, thisUser.user_id)}
+                        >
                             Delete Comment
                         </AdminButton>
-                        <AdminButton onClick={() => {}}>Ban User</AdminButton>
+                        <AdminButton 
+                            onClick={() => this.showDeleteModal(null, thisUser.user_id)}
+                        >
+                            Ban User
+                        </AdminButton>
                     </ButtonContainer>
                     <AdminDeleteModal
                         closeModal={this.closeModal}

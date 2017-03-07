@@ -23,6 +23,7 @@ class AdminPage extends React.Component {
         if (!this.props.admin) return <AdminContainer>Log In To Continue</AdminContainer>
         const {
             allData,
+            banUser,
             blogImageUrl,
             clearAdminForm,
             clearForms,
@@ -111,6 +112,7 @@ class AdminPage extends React.Component {
                     <Route exact path='/admin/comments/:id'
                         render={() => (
                             <SingleCommentPage
+                                banUser={banUser}
                                 blogs={blogs}
                                 comments={comments}
                                 deleteComments={deleteComments}
