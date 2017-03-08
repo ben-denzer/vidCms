@@ -4,7 +4,6 @@ import AuthButtons  from '../AuthButtons';
 import {PageTitle}  from '../../../styles/share';
 import {FormBox}    from '../../../styles/authFormStyles';
 
-
 const LoginForm = (props) => {
     return (
         <FormBox id="loginForm">
@@ -20,10 +19,10 @@ const LoginForm = (props) => {
                 handleChange={props.handleChange}
             />
             <AuthButtons
+                authErrorVal={props.authErrorVal}
                 formType="login"
                 handleCheck={props.handleCheck}
                 authSubmit={props.authSubmit}
-                message={props.message}
             />
         </FormBox>
     );

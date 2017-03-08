@@ -2,6 +2,8 @@ import initialState from './initialState';
 
 export default function(state = initialState.forms, action) {
     switch(action.type) {
+        case 'AUTH_ERROR':
+            return Object.assign({}, state, {authErrorVal: action.error});
         case 'COMMENT_SUBMITTED':
             return Object.assign({}, state, {commentVal: ''});
         case 'CLEAR_ADMIN_FORM':

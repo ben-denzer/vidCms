@@ -32,7 +32,7 @@ const SignupForm = (props) => {
                 formType="signup"
                 handleCheck={props.handleCheck}
                 authSubmit={props.authSubmit}
-                message={props.message}
+                authErrorVal={props.authErrorVal}
             />
         </FormBox>
     );

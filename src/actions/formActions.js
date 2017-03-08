@@ -22,6 +22,7 @@ const authErrorAction = (err, dispatch) => {
 };
 
 const clearAdminForm        = () => ({type: CLEAR_ADMIN_FORM});
+const clearAuthError        = () => ({type: AUTH_ERROR, error: null});
 const editorChange          = currentState => ({type: EDITOR_CHANGE, currentState});
 const handleTextChange      = (inputId, inputVal) => ({type: TEXT_CHANGE, inputId, inputVal});
 const handleCheck           = newVal => ({type: SAVE_DATA_CLICKED, newVal});
@@ -92,6 +93,7 @@ const submitUploadPremium = options => {
 
 export {
     clearAdminForm,
+    clearAuthError,
     editorChange,
     handleTextChange,
     handleCheck,

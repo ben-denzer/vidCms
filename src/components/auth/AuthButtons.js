@@ -2,17 +2,17 @@ import React            from 'react';
 import {Link}           from 'react-router-dom';
 import styled           from 'styled-components';
 import SaveDataCheckbox from './SaveDataCheckbox';
-import MessageBox       from '../shared/MessageBox';
 
 const AuthButtons = (props) => {
+    const {authErrorVal, authSubmit, formType, handleCheck} = props;
     return (
         <AuthButtonsContainer>
             <AuthButtonsTop>
-                {props.formType === 'login' ? <Link to='/auth/forgotPassword'>Forgot Password</Link> : <div></div>}
-                <SaveDataCheckbox handleCheck={() => props.handleCheck()} />
+                {formType === 'login' ? <Link to='/auth/forgotPassword'>Forgot Password</Link> : <div></div>}
+                <SaveDataCheckbox handleCheck={() => handleCheck()} />
             </AuthButtonsTop>
-            <AuthSubmitButton onClick={props.authSubmit}>Submit</AuthSubmitButton>
-            <MessageBox message={props.message} />
+            <AuthSubmitButton onClick={authSubmit}>Submit</AuthSubmitButton>
+            {authErrorVal && <div className="alert alert-danger" role="alert">{authErrorVal}</div>}
         </AuthButtonsContainer>
     );
 };

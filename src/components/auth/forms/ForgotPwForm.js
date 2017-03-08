@@ -1,21 +1,21 @@
 import React        from 'react';
 import TextInput    from '../../shared/TextInput';
-import MessageBox   from '../../shared/MessageBox';
 import {PageTitle}  from '../../../styles/share';
 import {FormBox}    from '../../../styles/authFormStyles';
 
 const ForgotPwForm = (props) => {
+    const {authErrorVal, authSubmit, emailVal, handleChange} = props;
     return (
         <FormBox id="forgotPwForm">
             <PageTitle>Forgot Password</PageTitle>
             <TextInput
                 id="email"
-                val={props.emailVal}
-                handleChange={props.handleChange}
+                val={emailVal}
+                handleChange={handleChange}
             />
             <div id="auth_buttons_container">
-                <button onClick={props.authSubmit}>Submit</button>
-                <MessageBox message={props.message} />
+                <button onClick={authSubmit}>Submit</button>
+                {authErrorVal && <div className="alert alert-danger" role="alert">{authErrorVal}</div>}
             </div>
         </FormBox>
     );

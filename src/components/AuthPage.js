@@ -9,9 +9,14 @@ import ResetForm        from './auth/forms/ResetForm';
 class AuthPage extends React.Component {
     constructor(props) {
         super(props);
+        this.authSubmit     = this.authSubmit.bind(this);
         this.handleChange   = this.handleChange.bind(this);
         this.handleCheck    = this.handleCheck.bind(this);
-        this.authSubmit     = this.authSubmit.bind(this);
+    }
+    componentWillReceiveProps(nextProps) {
+        if (!this.props.authErrorVal && nextProps.authErrorVal) {
+            window.setTimeout(this.props.clearAuthError, 5000);
+        }
     }
     handleChange(e) {
         this.props.handleTextChange(e.target.id, e.target.value);
@@ -69,13 +74,14 @@ class AuthPage extends React.Component {
         }
     }
     render() {
-        const {usernameVal, passwordVal, password2Val, emailVal, message} = this.props;
+        const {usernameVal, passwordVal, password2Val, emailVal, message, authErrorVal} = this.props;
         return (
             <InteriorPage>
                 <Route exact path='/auth/login'
                     render={() => {
                         return (
                             <LoginForm
+                                authErrorVal={authErrorVal}
                                 usernameVal={usernameVal}
                                 passwordVal={passwordVal}
                                 handleChange={this.handleChange}
@@ -90,6 +96,7 @@ class AuthPage extends React.Component {
                     render={() => {
                         return (
                             <SignupForm
+                                authErrorVal={authErrorVal}
                                 usernameVal={usernameVal}
                                 passwordVal={passwordVal}
                                 password2Val={password2Val}
@@ -106,6 +113,7 @@ class AuthPage extends React.Component {
                     render={() => {
                         return (
                             <ForgotPwForm
+                                authErrorVal={authErrorVal}
                                 emailVal={emailVal}
                                 handleChange={this.handleChange}
                                 authSubmit={this.authSubmit}
@@ -118,6 +126,7 @@ class AuthPage extends React.Component {
                     render={() => {
                         return (
                             <ResetForm
+                                authErrorVal={authErrorVal}
                                 usernameVal={usernameVal}
                                 passwordVal={passwordVal}
                                 password2Val={password2Val}

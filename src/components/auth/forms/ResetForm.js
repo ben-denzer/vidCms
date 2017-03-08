@@ -1,6 +1,5 @@
 import React        from 'react';
 import TextInput    from '../../shared/TextInput';
-import MessageBox   from '../../shared/MessageBox';
 import {PageTitle}  from '../../../styles/share';
 import {FormBox}    from '../../../styles/authFormStyles';
 
@@ -34,7 +33,7 @@ const ResetForm = (props) => {
             {formFields}
             <div id="auth_buttons_container">
                 <button onClick={props.authSubmit}>Submit</button>
-                <MessageBox message={props.message} />
+                {props.authErrorVal && <div className="alert alert-danger" role="alert">{props.authErrorVal}</div>}
             </div>
         </FormBox>
     );
