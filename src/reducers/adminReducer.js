@@ -12,7 +12,10 @@ export default function(state= initialState.admin, action) {
                 }
                 return a;
             });
-            return Object.assign({}, state, {users: updatedUsers});
+            const updatedComments = state.comments.filter(a => {
+                return a.user_fk !== action.bannedUser;
+            });
+            return Object.assign({}, state, {users: updatedUsers, comments: updatedComments});
         case 'DELETE_COMMENTS_SUCCESS':
             return Object.assign({}, state, {
                 comments: state.comments.filter(a => {
