@@ -27,18 +27,21 @@ class ManageUsers extends React.Component {
 
         this.styles = {
             bannedUser: {
-                background: 'red',
-                color: 'white',
-                textDecoration: 'line-through'
+                show: {
+                    background: 'red',
+                    color: 'white',
+                    textDecoration: 'line-through'
+                },
+                hide: {
+                    display: 'none'
+                }
             }
         };
     }
     componentWillReceiveProps(nextProps) {
-        const {users, sortBy, filterBy} = this.state;
-        if (!users.length && nextProps.users.length) {
-            userSort(nextProps.users, sortBy, filterBy)
-                .then(users => this.setState({users}));
-        }
+        const {sortBy, filterBy} = this.state;
+        userSort(nextProps.users, sortBy, filterBy)
+            .then(users => this.setState({users}));
     }
     handleSort(e) {
         const tempVal = e.target.value;
@@ -59,7 +62,7 @@ class ManageUsers extends React.Component {
                     <TableRow 
                         key={a.user_id}
                         onClick={() => this.props.push(`/admin/users/${a.user_id}`)}
-                        style={a.banned_user ? this.styles.bannedUser : null}
+                        style={a.banned_user && this.styles.bannedUser.show}
                     >
                         <TableCell>{a.username}</TableCell>
                         <TableCell>{a.email}</TableCell>
@@ -101,6 +104,15 @@ class ManageUsers extends React.Component {
                                 onChange={this.handleRadioChange}
                             />
                             Free Users
+                        </label>
+                        <label>
+                            <input
+                                type="radio"
+                                id="banned"
+                                checked={filterBy === 'banned'}
+                                onChange={this.handleRadioChange}
+                            />
+                            Banned Users
                         </label>
                     </SortRadioContainer>
                     <select id="user-sort" className="admin-sort" value={sortBy} onChange={this.handleSort}>

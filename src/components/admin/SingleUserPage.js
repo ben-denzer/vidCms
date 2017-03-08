@@ -3,6 +3,7 @@ import {withRouter}                         from 'react-router-dom';
 import styled                               from 'styled-components';
 import parseDate                            from '../../logic/parseDate';
 import {normalizeComments, sortComments}    from '../../logic/sortComments';
+import AdminDeleteModal                     from '../shared/AdminDeleteModal';
 import {
     AdminRight,
     AdminTable,
@@ -13,18 +14,24 @@ import {
     TableRow
 } from '../../styles/adminTableStyles';
 
-class SingleUser extends React.Component {
+class SingleUserPage extends React.Component {
     constructor(props) {
         super(props);
+
         this.state = {
+            showModal       : false,
             sortBy          : 'oldNew',
             sortedComments  : [],
             user            : null,
         }
+
+        this.banUser        = this.banUser.bind(this);
+        this.closeModal     = this.closeModal.bind(this);
         this.filterComments = this.filterComments.bind(this);
         this.findUser       = this.findUser.bind(this);
         this.sortComments   = this.sortComments.bind(this);
     }
+
     componentWillMount() {
         if (this.props.users) {
             this.findUser(this.props.users);
@@ -34,6 +41,7 @@ class SingleUser extends React.Component {
             this.filterComments(comments, blogs, videos);
         }
     }
+
     componentWillReceiveProps(nextProps) {
         if (!this.props.users.length && nextProps.users.length) {
             this.findUser(nextProps.users);
@@ -43,19 +51,43 @@ class SingleUser extends React.Component {
             this.filterComments(comments, blogs, videos);
         }
     }
+
+    banUser(commentId = null, bannedUser) {
+        const {banUser, push, token} = this.props;
+        banUser({token, bannedUser});
+        this.closeModal();
+        push('/admin/users');
+    }
+
+    closeModal() {
+        this.setState({
+            commentId: null,
+            modalFunction: null,
+            showModal: false,
+            userId: null
+        });
+    }
+
     filterComments(allComments, blogs, videos, id = this.props.match.params.id) {
         const rawComments = allComments.filter(a => Number(a.user_fk) === Number(id));
         this.setState({sortedComments: normalizeComments(rawComments, blogs, videos)});
     }
+
     findUser(allUsers, id = this.props.match.params.id) {
         const user = allUsers.filter(a => Number(a.user_id) === Number(id))[0];
         this.setState({user});
     }
+
+    showDeleteModal(commentId, user, func = this.banUser) {
+        this.setState({ showModal: true });
+    }
+
     sortComments(e, sortBy = e.target.value, comments = this.state.sortedComments) {
         this.setState({sortedComments: sortComments(comments, sortBy), sortBy});
     }
+
     render() {
-        const {sortBy, user, sortedComments} = this.state;
+        const {showModal, sortBy, sortedComments, user} = this.state;
 
         if (!user) {
             return (
@@ -83,7 +115,15 @@ class SingleUser extends React.Component {
         return (
             <AdminRight>
                 <AdminTitle>{user.username}</AdminTitle>
-                {user.banned_user && <BannedUser>Banned</BannedUser>}
+                {
+                    user.banned_user ?
+                        <BannedUser>Banned</BannedUser> :
+                        <AdminButton 
+                            onClick={() => this.showDeleteModal(null, user.user_id)}
+                        >
+                            Ban User
+                        </AdminButton>
+                }
                 <InfoContainer>
                     <InfoLeft>
                         <InfoHeading>Email</InfoHeading>
@@ -121,27 +161,21 @@ class SingleUser extends React.Component {
                         {rows}
                     </tbody>
                 </AdminTable>
+                <AdminDeleteModal
+                    closeModal={this.closeModal}
+                    commentId={null}
+                    modalFunction={this.banUser}
+                    show={showModal}
+                    userId={user.user_id}
+                />
             </AdminRight>
         );
     }
-};
+}
 
-const InfoContainer = styled.div`
-    display: flex;
-`;
-
-const InfoLeft = styled.div``;
-const InfoRight = styled.div`
-    margin-left: 15px;
-`;
-
-const InfoHeading = styled.div`
-    font-size: 18px;
-    font-weight: bold;
-`;
-
-const InfoText = styled.div`
-    font-size: 18px;
+const AdminButton = styled.button`
+    margin: 10px;
+    max-width: 150px;
 `;
 
 const BannedUser = styled.div`
@@ -154,4 +188,23 @@ const BannedUser = styled.div`
     text-align: center;
 `;
 
-export default withRouter(SingleUser);
+const InfoContainer = styled.div`
+    display: flex;
+`;
+
+const InfoHeading = styled.div`
+    font-size: 18px;
+    font-weight: bold;
+`;
+
+const InfoLeft = styled.div``;
+
+const InfoRight = styled.div`
+    margin-left: 15px;
+`;
+
+const InfoText = styled.div`
+    font-size: 18px;
+`;
+
+export default withRouter(SingleUserPage);

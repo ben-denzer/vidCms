@@ -10,13 +10,16 @@ const userSort = (array, sortBy, filterBy) => {
         let filtered;
         switch(filterBy) {
             case 'allUsers':
-                filtered = array;
+                filtered = array.filter(a => !a.banned_user);
                 break;
-            case 'premium':
-                filtered = array.filter(a => a.premium);
+            case 'banned':
+                filtered = array.filter(a => a.banned_user);
                 break;
             case 'free':
                 filtered = array.filter(a => !a.premium);
+                break;
+            case 'premium':
+                filtered = array.filter(a => a.premium);
                 break;
             default:
                 break;

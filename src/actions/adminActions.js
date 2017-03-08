@@ -2,9 +2,11 @@ import {ADMIN_DATA_SUCCESS, BANNED_USER, NEW_MESSAGE, DELETE_COMMENTS_SUCCESS} f
 import {apiPromise, postToApi} from './apiPromise';
 
 const banUser = (options) => {
+    console.log(options);
+    const {bannedUser} = options;
     return (dispatch) => {
         postToApi(options, 'admin/banUser')
-            .then(bannedUser => dispatch({type: BANNED_USER, bannedUser}))
+            .then(() => dispatch({type: BANNED_USER, bannedUser}))
             .catch(err => err === 'unauthorized' ?
                 dispatch({type: NEW_MESSAGE, error: 'You need to be logged in to access this.'}) :
                 dispatch({type: NEW_MESSAGE, messageType: 'error', text: 'Network Error, Please Try Again'})

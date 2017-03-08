@@ -102,9 +102,11 @@ class AdminPage extends React.Component {
                     <Route path='/admin/users/:id' 
                         render={() => (
                             <SingleUserPage
-                                users={users}
-                                comments={comments}
+                                banUser={banUser}
                                 blogs={blogs}
+                                comments={comments}
+                                token={token}
+                                users={users}
                                 videos={videos}
                             />
                         )} 

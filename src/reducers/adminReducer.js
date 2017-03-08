@@ -7,7 +7,6 @@ export default function(state= initialState.admin, action) {
             return Object.assign({}, {users, blogs, images, comments, videos});
         case 'BANNED_USER':
             const updatedUsers = state.users.map(a => {
-                console.log(a.user_id, action.bannedUser);
                 if (a.user_id === action.bannedUser) {
                     return Object.assign({}, a, {banned_user: true});
                 }
