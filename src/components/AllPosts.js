@@ -9,7 +9,6 @@ import {
 } from '../styles/share';
 
 const AllPosts = ({allBlogs, allImages}) => {
-    console.log(allBlogs);
     let recentPosts = <div key={0}></div>
 
     if (allBlogs && allBlogs.length) {

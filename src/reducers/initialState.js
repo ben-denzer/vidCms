@@ -1,9 +1,13 @@
 export default {
     user: {
-        username    : '',
-        token       : '',
-        admin       : false,
-        premium     : false
+        admin                   : false,
+        email                   : '',
+        token                   : '',
+        premium                 : false,
+        premiumExpirationDate   : '',
+        premiumSignupDate       : '',
+        signupDate              : '',
+        username                : '',
     },
     message: {
         success         : '',

@@ -38,7 +38,7 @@ const checkForToken = () => {
     }
 };
 
-const login = credentials => {
+const login = (credentials) => {
     return dispatch => {
         const {username, password, saveData} = credentials;
         const options = {username, password};
@@ -56,10 +56,10 @@ const logout = () => {
     return {type: LOGOUT}
 };
 
-const resetPw = (credentials, tokenUrl, dispatch) => {
+const resetPw = (credentials, tokenUrl) => {
     const {username, password, p2} = credentials;
-    if (password.length < 4) return dispatch({type: AUTH_ERROR, error: 'Password Must Be at Least 4 Characters Long'});
-    if (password !== p2) return dispatch({type: AUTH_ERROR, error: 'Passwords Do Not Match'});
+    if (password.length < 4) return {type: AUTH_ERROR, error: 'Password Must Be at Least 4 Characters Long'};
+    if (password !== p2) return {type: AUTH_ERROR, error: 'Passwords Do Not Match'};
 
     const options = {username, password};
     return (dispatch) => {
@@ -79,7 +79,7 @@ const resetPw = (credentials, tokenUrl, dispatch) => {
     };
 };
 
-const sendResetEmail = (options, dispatch) => {
+const sendResetEmail = (options) => {
     return (dispatch) => {
         postToApi(options, 'auth/resetPassword')
             .then(() => dispatch({type: EMAIL_SUCCESS}))

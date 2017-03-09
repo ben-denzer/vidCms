@@ -4,6 +4,7 @@ import styled           from 'styled-components';
 import Navbar           from './shared/Navbar';
 import HomePage         from './HomePage';
 import AboutPage        from './AboutPage';
+import AccountPage      from './AccountPage';
 import AllPosts         from './AllPosts';
 import AllVideos        from './AllVideos';
 import AuthContainer    from '../containers/AuthContainer';
@@ -29,6 +30,9 @@ class App extends React.Component {
 
                 <Route exact path='/'
                     render={() => <HomePage allBlogs={allBlogs} allImages={allImages} allVideos={allVideos} />}
+                />
+                <Route exact path='/account'
+                    render={() => <AccountPage allUsers={allUsers} />} 
                 />
                 <Route exact path='/about'
                     component={AboutPage}
