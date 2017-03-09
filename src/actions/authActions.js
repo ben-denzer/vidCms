@@ -97,9 +97,9 @@ const signup = credentials => {
         const options = {username, password, email, premium};
         postToApi(options, 'auth/signup')
             .then(data => {
-                const {token} = data;
+                const {token, userData} = data;
                 if (saveData) window.localStorage.setItem('token', token);
-                dispatch({type: SIGNUP_SUCCESS, username, token, premium});
+                dispatch({type: SIGNUP_SUCCESS, userData, token});
             }).catch(err => authErrorAction(err, dispatch, 'signup'));
     }
 };

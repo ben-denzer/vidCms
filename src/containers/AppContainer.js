@@ -9,6 +9,8 @@ const mapStateToProps = state => {
     const {username}                                = state.user;
     const lastRoute                                 = state.route[0];
 
+    console.log(state.user);
+
     return {
         username,
         allBlogs,
@@ -18,7 +20,8 @@ const mapStateToProps = state => {
         error,
         info,
         pendingApiCalls,
-        lastRoute
+        lastRoute,
+        user: state.user
     }
 };
 

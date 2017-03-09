@@ -23,7 +23,7 @@ class App extends React.Component {
         }
     }
     render() {
-        const {username, logout, lastRoute, allBlogs, allImages, allVideos} = this.props;
+        const {username, user, logout, lastRoute, allBlogs, allImages, allVideos} = this.props;
         return (
             <AppContainer>
                 <Navbar username={username} logout={logout} />
@@ -32,7 +32,7 @@ class App extends React.Component {
                     render={() => <HomePage allBlogs={allBlogs} allImages={allImages} allVideos={allVideos} />}
                 />
                 <Route exact path='/account'
-                    render={() => <AccountPage allUsers={allUsers} />} 
+                    render={() => <AccountPage user={user} />} 
                 />
                 <Route exact path='/about'
                     component={AboutPage}

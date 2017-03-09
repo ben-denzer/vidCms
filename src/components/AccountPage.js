@@ -7,14 +7,14 @@ import {
     ContentContainer
 } from '../styles/share';
 
-const AccountPage = (props) => {
+const AccountPage = ({user}) => {
     return (
         <PageContainer>
             <PageTitle>My Account</PageTitle>
             <ContentContainer>
                 <InfoRow>
                     <InfoBold>Username: </InfoBold>
-                    <InfoText>{thisUser.username}</InfoText>
+                    <InfoText>{user.username}</InfoText>
                 </InfoRow>
             </ContentContainer>
         </PageContainer>
