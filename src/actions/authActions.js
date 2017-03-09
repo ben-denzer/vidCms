@@ -44,9 +44,9 @@ const login = (credentials) => {
         const options = {username, password};
         postToApi(options, 'auth/login')
             .then(data => {
-                const {token, premium, admin} = data;
+                const {token, userData} = data;
                 if (saveData) window.localStorage.setItem('token', data.token);
-                dispatch({type: LOGIN_SUCCESS, username, token, premium, admin});
+                dispatch({type: LOGIN_SUCCESS, userData, token, admin: userData.admin});
             }).catch(err => authErrorAction(err, dispatch, 'login'));
     };
 };
