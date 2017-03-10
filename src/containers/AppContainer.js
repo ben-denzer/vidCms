@@ -12,15 +12,14 @@ const mapStateToProps = state => {
     console.log(state.user);
 
     return {
-        username,
         allBlogs,
         allImages,
         allVideos,
-        success,
         error,
         info,
-        pendingApiCalls,
         lastRoute,
+        pendingApiCalls,
+        success,
         user: state.user
     }
 };

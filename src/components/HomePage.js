@@ -52,6 +52,4 @@ const StyledLink = styled(Link)`
     }
 `;
 
-
-
 export default HomePage;

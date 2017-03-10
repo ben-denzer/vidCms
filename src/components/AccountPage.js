@@ -1,7 +1,8 @@
-import React from 'react';
-import styled from 'styled-components';
+import React        from 'react';
+import {Link}       from 'react-router-dom';
+import styled       from 'styled-components';
+import parseDate    from '../logic/parseDate';
 import {
-    PageHeading,
     PageTitle,
     PageContainer,
     ContentContainer
@@ -12,10 +13,26 @@ const AccountPage = ({user}) => {
         <PageContainer>
             <PageTitle>My Account</PageTitle>
             <ContentContainer>
+                <Link 
+                    type="button"
+                    className="btn btn-info"
+                    to="/account/changePw"
+                >
+                    Change Password
+                </Link>
                 <InfoRow>
                     <InfoBold>Username: </InfoBold>
                     <InfoText>{user.username}</InfoText>
                 </InfoRow>
+                <InfoRow>
+                    <InfoBold>Email: </InfoBold>
+                    <InfoText>{user.email}</InfoText>
+                </InfoRow>
+                <InfoRow>
+                    <InfoBold>Member Since: </InfoBold>
+                    <InfoText>{parseDate(user.signupDate)}</InfoText>
+                </InfoRow>
+
             </ContentContainer>
         </PageContainer>
     );
@@ -28,6 +45,7 @@ const InfoRow = styled.div`
 const InfoBold = styled.span`
     font-size: 18px;
     font-weight: bold;
+    margin-right: 10px;
 `;
 
 const InfoText = styled.span`

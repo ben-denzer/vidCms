@@ -31,8 +31,8 @@ const checkForToken = () => {
         if (token) {
             postToApi({token}, 'auth/loginWithToken')
                 .then(data => {
-                    const {username, token, premium, admin} = data;
-                    dispatch({type: LOGIN_SUCCESS, username, token, premium, admin});
+                    const {token, userData} = data;
+                    dispatch({type: LOGIN_SUCCESS, token, userData, admin: userData.admin});
                 }).catch(() => dispatch({type: AUTH_ERROR, messageType: 'info', text: 'Session Expired'}));
         }
     }

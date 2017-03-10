@@ -23,16 +23,19 @@ class App extends React.Component {
         }
     }
     render() {
-        const {username, user, logout, lastRoute, allBlogs, allImages, allVideos} = this.props;
+        const {allBlogs, allImages, allVideos, lastRoute, logout, push, user} = this.props;
         return (
             <AppContainer>
-                <Navbar username={username} logout={logout} />
+                <Navbar username={user.username} logout={logout} />
 
                 <Route exact path='/'
                     render={() => <HomePage allBlogs={allBlogs} allImages={allImages} allVideos={allVideos} />}
                 />
                 <Route exact path='/account'
-                    render={() => <AccountPage user={user} />} 
+                    render={() => <AccountPage push={push} user={user} />} 
+                />
+                <Route exact path='/account/changePw'
+                    render={() => <ChangePwForm user={user} />}
                 />
                 <Route exact path='/about'
                     component={AboutPage}
@@ -42,7 +45,7 @@ class App extends React.Component {
                 />
                 <PrivateRoute path="/auth"
                     component={AuthContainer}
-                    username={username}
+                    username={user.username}
                     lastRoute={lastRoute}
                 />
                 <Route exact path='/blog'
