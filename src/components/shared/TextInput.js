@@ -3,7 +3,7 @@ import {FormLabel, FormLabelSpan, FormInput} from '../../styles/authFormStyles';
 
 const TextInput = (props) => {
     const inputType = () => {
-        if (/password/.test(props.id)) return 'password';
+        if (/password/i.test(props.id)) return 'password';
         if (/email/.test(props.id)) return 'email';
         return 'text';
     }

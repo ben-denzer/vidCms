@@ -1,14 +1,16 @@
 import React            from 'react';
 import {Route, Redirect, withRouter} from 'react-router-dom';
 import styled           from 'styled-components';
-import Navbar           from './shared/Navbar';
-import HomePage         from './HomePage';
+
 import AboutPage        from './AboutPage';
 import AccountPage      from './AccountPage';
+import AdminContainer   from '../containers/AdminContainer';
 import AllPosts         from './AllPosts';
 import AllVideos        from './AllVideos';
 import AuthContainer    from '../containers/AuthContainer';
-import AdminContainer   from '../containers/AdminContainer';
+import ChangePwForm     from './account/ChangePwForm';
+import HomePage         from './HomePage';
+import Navbar           from './shared/Navbar';
 import SingleBlogPage   from './SingleBlogPage';
 import VideoContainer   from '../containers/VideoContainer';
 
