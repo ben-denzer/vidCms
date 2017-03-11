@@ -5,7 +5,7 @@ import message      from './messageReducer';
 import content      from './contentReducer';
 import admin        from './adminReducer';
 import route        from './routeReducer';
-
+ 
 const rootReducer = combineReducers({
     user,
     forms,

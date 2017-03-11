@@ -8,6 +8,8 @@ export default function(state = initialState.message, action) {
     switch(action.type) {
         case 'API_STARTED':
             return Object.assign({}, state, {pendingApiCalls: state.pendingApiCalls + 1});
+        case 'CHANGE_PW_SUCCESS':
+            return Object.assign({}, state, {error: '', success: 'Password Changed', info: ''});
         case 'CLEAR_MESSAGE':
             return Object.assign({}, state, {error: '', success: '', info: ''});
         case 'DELETE_COMMENTS_SUCCESS':

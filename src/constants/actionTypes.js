@@ -3,6 +3,7 @@ export const ALL_CONTENT_SUCCESS        = 'ALL_CONTENT_SUCCESS';
 export const API_STARTED                = 'API_STARTED';
 export const AUTH_ERROR                 = 'AUTH_ERROR';
 export const BANNED_USER                = 'BANNED_USER';
+export const CHANGE_PW_SUCCESS          = 'CHANGE_PW_SUCCESS';
 export const CLEAR_ADMIN_FORM           = 'CLEAR_ADMIN_FORM';
 export const CLEAR_CURRENT_VIDEO        = 'CLEAR_CURRENT_VIDEO';
 export const CLEAR_MESSAGE              = 'CLEAR_MESSAGE';

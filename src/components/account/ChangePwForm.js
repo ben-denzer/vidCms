@@ -22,7 +22,7 @@ const ChangePwForm = (props) => {
             <TextInput
                 key={a.id}
                 id={a.id}
-                val={props[`${a.id}Val`]}
+                val={props.forms[`${a.id}Val`] || ''}
                 label={a.label}
                 handleChange={props.handleChange}
             />
@@ -36,7 +36,7 @@ const ChangePwForm = (props) => {
             <PageTitle>Change Password</PageTitle>
             {formFields}
             <div id="auth_buttons_container">
-                <button onClick={props.authSubmit}>Submit</button>
+                <button onClick={props.submitChangePw}>Submit</button>
                 {props.authErrorVal && <div className="alert alert-danger" role="alert">{props.authErrorVal}</div>}
             </div>
         </FormBox>

@@ -1,6 +1,7 @@
 import initialState from './initialState';
 
 export default function(state = initialState.user, action) {
+    console.log(action.type);
     switch(action.type) {
         case 'SIGNUP_SUCCESS':
         case 'LOGIN_SUCCESS':

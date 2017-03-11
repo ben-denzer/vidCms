@@ -1,6 +1,7 @@
 import {postToApi} from './apiPromise';
 import {
     AUTH_ERROR,
+    CHANGE_PW_SUCCESS,
     LOGIN_SUCCESS,
     LOGOUT,
     NEW_MESSAGE,
@@ -32,7 +33,6 @@ const checkForToken = () => {
             postToApi({token}, 'auth/loginWithToken')
                 .then(data => {
                     const {token, userData} = data;
-                    console.log('in action', userData);
                     dispatch({type: LOGIN_SUCCESS, token, userData, admin: userData.admin});
                 }).catch(() => dispatch({type: AUTH_ERROR, messageType: 'info', text: 'Session Expired'}));
         }
@@ -105,4 +105,18 @@ const signup = credentials => {
     }
 };
 
-export {checkForToken, login, logout, resetPw, sendResetEmail, signup};
+const submitChangePw = (e) => {
+    e.preventDefault();
+    return (dispatch, getState) => {
+        const {token, username} = getState().user;
+        const {oldPasswordVal, passwordVal, password2Val} = getState().forms;
+        if (passwordVal !== password2Val) return {type: AUTH_ERROR, error: 'passwords don\'t match'}
+        
+        const options = {token, username, password: oldPasswordVal, newPw: passwordVal};
+        postToApi(options, 'auth/changePw')
+            .then(() => dispatch({type: CHANGE_PW_SUCCESS}))
+            .catch((err) => authErrorAction(err, dispatch));
+    }
+}
+
+export {checkForToken, login, logout, resetPw, sendResetEmail, signup, submitChangePw};
