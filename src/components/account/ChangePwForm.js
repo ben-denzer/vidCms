@@ -29,8 +29,6 @@ const ChangePwForm = (props) => {
         );
     });
 
-    if (props.oldPasswordVal) console.log(props.oldPasswordVal);
-
     return (
         <FormBox id="signupForm">
             <PageTitle>Change Password</PageTitle>

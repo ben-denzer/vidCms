@@ -110,7 +110,9 @@ const submitChangePw = (e) => {
     return (dispatch, getState) => {
         const {token, username} = getState().user;
         const {oldPasswordVal, passwordVal, password2Val} = getState().forms;
-        if (passwordVal !== password2Val) return {type: AUTH_ERROR, error: 'passwords don\'t match'}
+        if (passwordVal !== password2Val) {
+            return dispatch({type: AUTH_ERROR, error: 'passwords don\'t match'});
+        }
         
         const options = {token, username, password: oldPasswordVal, newPw: passwordVal};
         postToApi(options, 'auth/changePw')
