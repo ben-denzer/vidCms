@@ -2,8 +2,8 @@ import initialState from './initialState';
 
 export default function(state = initialState.message, action) {
 
-    const isApiSuccess = /SUCCESS$/.test(action.type);
-    if (isApiSuccess) return Object.assign({}, state, {pendingApiCalls: state.pendingApiCalls - 1});
+    //const isApiSuccess = /SUCCESS$/.test(action.type);
+    //if (isApiSuccess) return Object.assign({}, state, {pendingApiCalls: state.pendingApiCalls - 1});
 
     switch(action.type) {
         case 'API_STARTED':
@@ -16,6 +16,8 @@ export default function(state = initialState.message, action) {
             return Object.assign({}, state, {success: 'Comments Deleted'});
         case 'EMAIL_SUCCESS':
             return Object.assign({}, state, {success: 'Email Sent, Make Sure To Check Your Spam Folder'});
+        case 'LOGIN_SUCCESS':
+            return Object.assign({}, state, {success: 'Welcome'});
         case 'NETWORK_ERROR':
             return Object.assign({}, state, {error: 'There was a problem with the network. Please refresh your browser to try again'});
         case 'NEW_MESSAGE':

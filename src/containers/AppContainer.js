@@ -4,32 +4,29 @@ import App                                  from '../components/App';
 import {addLocationToHistory}               from '../actions/routeActions';
 import {handleTextChange}                   from '../actions/formActions';
 import {submitChangePw}                     from '../actions/authActions';
+import {clearMessage}                       from '../actions/messageActions';
 
 const mapStateToProps = state => {
     const {allBlogs, allImages, allVideos}          = state.content;
-    const {success, error, info, pendingApiCalls}   = state.message;
-    const lastRoute                                 = state.route[0];
 
     return {
         allBlogs,
         allImages,
         allVideos,
-        error,
-        forms: state.forms,
-        info,
-        lastRoute,
-        pendingApiCalls,
-        success,
-        user: state.user
+        forms       : state.forms,
+        lastRoute   : state.route[0],
+        message     : state.message,
+        user        : state.user
     }
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        addLocationToHistory  : pathname => dispatch(addLocationToHistory(pathname)),
-        handleTextChange      : (e, {id, value} = e.target) => dispatch(handleTextChange(id, value)),
-        logout                : () => dispatch(logout()),
-        submitChangePw        : (e) => dispatch(submitChangePw(e))
+        addLocationToHistory    : pathname => dispatch(addLocationToHistory(pathname)),
+        clearMessage            : () => dispatch(clearMessage()),
+        handleTextChange        : (e, {id, value} = e.target) => dispatch(handleTextChange(id, value)),
+        logout                  : () => dispatch(logout()),
+        submitChangePw          : (e) => dispatch(submitChangePw(e))
     }
 };
 

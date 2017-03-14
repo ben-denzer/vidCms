@@ -45,6 +45,7 @@ const login = (credentials) => {
         const options = {username, password};
         postToApi(options, 'auth/login')
             .then(data => {
+                console.log('login action');
                 const {token, userData} = data;
                 if (saveData) window.localStorage.setItem('token', data.token);
                 dispatch({type: LOGIN_SUCCESS, userData, token, admin: userData.admin});

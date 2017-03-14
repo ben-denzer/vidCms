@@ -10,6 +10,7 @@ import AllVideos        from './AllVideos';
 import AuthContainer    from '../containers/AuthContainer';
 import ChangePwForm     from './account/ChangePwForm';
 import HomePage         from './HomePage';
+import MessageBar       from './shared/MessageBar';
 import Navbar           from './shared/Navbar';
 import SingleBlogPage   from './SingleBlogPage';
 import VideoContainer   from '../containers/VideoContainer';
@@ -19,9 +20,17 @@ class App extends React.Component {
         this.props.addLocationToHistory(this.props.location.pathname);
     }
     componentWillReceiveProps(nextProps) {
-        if (this.props.location.pathname !== nextProps.location.pathname) {
+        const {addLocationToHistory, location, push} = this.props;
+
+        if (location.pathname !== nextProps.location.pathname) {
             window.scrollTo(0,0);
-            this.props.addLocationToHistory(nextProps.location.pathname);
+            addLocationToHistory(nextProps.location.pathname);
+        }
+
+        if (nextProps.message && nextProps.message.success === 'Password Changed') {
+            if (/changePw/.test(location.pathname)) {
+                push('/account');
+            }
         }
     }
     render() {
@@ -29,10 +38,12 @@ class App extends React.Component {
             allBlogs,
             allImages,
             allVideos,
+            clearMessage,
             forms,
             handleTextChange,
             lastRoute,
             logout,
+            message,
             push,
             submitChangePw,
             user
@@ -42,6 +53,8 @@ class App extends React.Component {
             <AppContainer>
                 <Navbar username={user.username} logout={logout} />
 
+                <MessageBar clearMessage={clearMessage} message={message} />
+
                 <Route exact path='/'
                     render={() => <HomePage allBlogs={allBlogs} allImages={allImages} allVideos={allVideos} />}
                 />
@@ -50,7 +63,8 @@ class App extends React.Component {
                 />
                 <Route exact path='/account/changePw'
                     render={() => (
-                        <ChangePwForm 
+                        <UserRoute
+                            component={ChangePwForm} 
                             forms={forms}
                             handleChange={handleTextChange}
                             submitChangePw={submitChangePw}
@@ -64,7 +78,7 @@ class App extends React.Component {
                 <Route path='/admin'
                     component={AdminContainer}
                 />
-                <PrivateRoute path="/auth"
+                <AuthRoute path="/auth"
                     component={AuthContainer}
                     username={user.username}
                     lastRoute={lastRoute}
@@ -84,9 +98,15 @@ class App extends React.Component {
     }
 };
 
-const PrivateRoute = ({ path, username, component, lastRoute }) => {
+const AuthRoute = ({ path, username, component, lastRoute }) => {
     if (!username) return <Route path={path} component={component} />;
     return <Redirect to={lastRoute} />
+};
+
+const UserRoute = ({component, forms, handleChange, submitChangePw, user}) => {
+    const props = {forms, handleChange, submitChangePw, user};
+    if (!user.username) return <Redirect to="/account" />
+    return <Route component={component} {...props} />
 };
 
 const AppContainer = styled.div`

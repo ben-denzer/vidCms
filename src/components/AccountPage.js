@@ -13,13 +13,13 @@ const AccountPage = ({user}) => {
         <PageContainer>
             <PageTitle>My Account</PageTitle>
             <ContentContainer>
-                <Link 
+                <StyledLink 
                     type="button"
                     className="btn btn-info"
                     to="/account/changePw"
                 >
                     Change Password
-                </Link>
+                </StyledLink>
                 <InfoRow>
                     <InfoBold>Username: </InfoBold>
                     <InfoText>{user.username}</InfoText>
@@ -32,7 +32,10 @@ const AccountPage = ({user}) => {
                     <InfoBold>Member Since: </InfoBold>
                     <InfoText>{parseDate(user.signupDate)}</InfoText>
                 </InfoRow>
-
+                <InfoRow>
+                    <InfoBold>Premium Member: </InfoBold>
+                    <InfoText>{user.premium ? `since ${parseDate(user.premiumSignupDate)}` : 'No'}</InfoText>
+                </InfoRow>
             </ContentContainer>
         </PageContainer>
     );
@@ -50,6 +53,10 @@ const InfoBold = styled.span`
 
 const InfoText = styled.span`
     font-size: 18px;
+`;
+
+const StyledLink = styled(Link)`
+    max-width: 150px;
 `;
 
 export default AccountPage;

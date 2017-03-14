@@ -6,26 +6,19 @@ export default function(state = initialState.forms, action) {
             return Object.assign({}, state, {authErrorVal: action.error});
         case 'CHANGE_PW_SUCCESS':
             return Object.assign({}, state, {
-                usernameVal     : '',
                 passwordVal     : '',
                 password2Val    : '',
                 oldPasswordVal  : '',
-                emailVal        : '',
-                saveDataVal     : false,
                 authErrorVal    : ''
-            })
+            });
         case 'CLEAR_ADMIN_FORM':
-            return Object.assign(
-                {},
-                state,
-                {
+            return Object.assign({}, state, {
                     blogImageUrl        : '',
                     editorHtml          : '',
                     uploadHeadlineVal   : '',
                     uploadTitleVal      : '',
                     youtubeUrlVal       : ''
-                }
-            );
+            });
         case 'COMMENT_SUBMITTED':
             return Object.assign({}, state, {commentVal: ''});
         case 'EDITOR_CHANGE':
