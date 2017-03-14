@@ -108,13 +108,19 @@ const signup = credentials => {
 const submitChangePw = (e) => {
     e.preventDefault();
     return (dispatch, getState) => {
-        const {token, username} = getState().user;
+        const user = getState().user;
         const {oldPasswordVal, passwordVal, password2Val} = getState().forms;
         if (passwordVal !== password2Val) {
             return dispatch({type: AUTH_ERROR, error: 'passwords don\'t match'});
         }
         
-        const options = {token, username, password: oldPasswordVal, newPw: passwordVal};
+        const options = {
+            token: user.token,
+            username: user.username,
+            password: oldPasswordVal,
+            newPw: passwordVal
+        };
+        console.log(options);
         postToApi(options, 'auth/changePw')
             .then(() => dispatch({type: CHANGE_PW_SUCCESS}))
             .catch((err) => authErrorAction(err, dispatch));

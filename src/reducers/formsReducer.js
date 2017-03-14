@@ -4,8 +4,16 @@ export default function(state = initialState.forms, action) {
     switch(action.type) {
         case 'AUTH_ERROR':
             return Object.assign({}, state, {authErrorVal: action.error});
-        case 'COMMENT_SUBMITTED':
-            return Object.assign({}, state, {commentVal: ''});
+        case 'CHANGE_PW_SUCCESS':
+            return Object.assign({}, state, {
+                usernameVal     : '',
+                passwordVal     : '',
+                password2Val    : '',
+                oldPasswordVal  : '',
+                emailVal        : '',
+                saveDataVal     : false,
+                authErrorVal    : ''
+            })
         case 'CLEAR_ADMIN_FORM':
             return Object.assign(
                 {},
@@ -18,6 +26,8 @@ export default function(state = initialState.forms, action) {
                     youtubeUrlVal       : ''
                 }
             );
+        case 'COMMENT_SUBMITTED':
+            return Object.assign({}, state, {commentVal: ''});
         case 'EDITOR_CHANGE':
             return Object.assign({}, state, {editorHtml: action.currentState, clearForms: false});
         case 'EMAIL_SUCCESS':

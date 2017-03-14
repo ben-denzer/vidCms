@@ -14,7 +14,6 @@ export default {
         error           : '',
         info            : '',
         pendingApiCalls : 0
-
     },
     forms: {
         authErrorVal        : '',

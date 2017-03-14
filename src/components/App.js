@@ -37,7 +37,7 @@ class App extends React.Component {
             submitChangePw,
             user
         } = this.props;
-        
+
         return (
             <AppContainer>
                 <Navbar username={user.username} logout={logout} />
