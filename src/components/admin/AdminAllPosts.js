@@ -32,7 +32,6 @@ class AdminAllPosts extends React.Component {
     }
     render() {
         const {blogs, videos} = this.props;
-        console.log(blogs);
         const {sortBy, filterBy} = this.state;
 
         let rows = <tr><td colSpan="2">No Data</td></tr>

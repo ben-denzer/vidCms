@@ -53,6 +53,7 @@ export const TableHeader = styled.th`
     padding: 0 3px;
     border: 1px solid black;
     border-collapse: collapse;
+    min-width: 120px;
 `;
 
 export const TableCell = styled.td`
