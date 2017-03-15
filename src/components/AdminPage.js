@@ -1,6 +1,8 @@
 import React                from 'react';
 import {Route}              from 'react-router-dom';
 import styled               from 'styled-components';
+
+import AdminAllPosts        from './admin/AdminAllPosts';
 import BlogUploadForm       from './admin/BlogUploadForm';
 import VideoUploadForm      from './admin/VideoUploadForm';
 import ManageUsersPage      from './admin/ManageUsersPage';
@@ -54,7 +56,7 @@ class AdminPage extends React.Component {
                     <AdminButton onClick={() => this.props.push('/admin/users')}>
                         Manage Users
                     </AdminButton>
-                    <AdminButton onClick={() => this.props.push('/admin/edit/blogs/')}>
+                    <AdminButton onClick={() => this.props.push('/admin/allPosts/')}>
                         Edit Post
                     </AdminButton>
                 </AdminSidebar>
@@ -120,6 +122,14 @@ class AdminPage extends React.Component {
                                 deleteComments={deleteComments}
                                 token={token}
                                 users={users}
+                                videos={videos}
+                            />
+                        )}
+                    />
+                    <Route exact path='/admin/allPosts' 
+                        render={() => (
+                            <AdminAllPosts 
+                                blogs={blogs}
                                 videos={videos}
                             />
                         )}
