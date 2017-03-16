@@ -33,6 +33,7 @@ class AdminPage extends React.Component {
             editorHtml,
             error,
             handleTextChange,
+            populateBlogForm,
             removeClearForms,
             submitBlog,
             submitUploadFree,
@@ -44,6 +45,7 @@ class AdminPage extends React.Component {
         } = this.props;
 
         const {users, comments, videos, blogs, images} = allData;
+        console.log(editorHtml);
         return (
             <AdminContainer>
                 <AdminSidebar>
@@ -61,7 +63,7 @@ class AdminPage extends React.Component {
                     </AdminButton>
                 </AdminSidebar>
                 <AdminMain>
-                    <Route path='/admin/upload/blog'
+                    <Route path='/admin/edit/blog/:id'
                         render={() => (
                             <BlogUploadForm
                                 blogImageUrl={blogImageUrl}
@@ -69,9 +71,26 @@ class AdminPage extends React.Component {
                                 clearAdminForm={clearAdminForm}
                                 clearForms={clearForms}
                                 editorHtml={editorHtml}
-                                error={error}
                                 handleTextChange={handleTextChange}
                                 images={images}
+                                populateBlogForm={populateBlogForm}
+                                removeClearForms={removeClearForms}
+                                submitBlog={submitBlog}
+                                token={token}
+                                uploadTitleVal={uploadTitleVal}
+                                uploadHeadlineVal={uploadHeadlineVal}
+                            />
+                        )}
+                    />
+                    <Route path='/admin/upload/blog'
+                        render={() => (
+                            <BlogUploadForm
+                                blogImageUrl={blogImageUrl}
+                                clearAdminForm={clearAdminForm}
+                                clearForms={clearForms}
+                                editorHtml={editorHtml}
+                                handleTextChange={handleTextChange}
+                                populateBlogForm={populateBlogForm}
                                 removeClearForms={removeClearForms}
                                 submitBlog={submitBlog}
                                 token={token}

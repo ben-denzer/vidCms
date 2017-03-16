@@ -31,7 +31,7 @@ const mapDispatchToProps = (dispatch) => ({
     deleteComments:         (options) => dispatch(deleteComments(options)),
     getAdminData:           (token) => dispatch(getAdminData(token, dispatch)),
     handleTextChange:       (e) => dispatch(handleTextChange(e.target.id, e.target.value)),
-    populateBlogForm:       (options) => dispatch(populateBlogForm(options)),
+    populateBlogForm:       (thisBlog) => dispatch(populateBlogForm(thisBlog)),
     removeClearForms:       () => dispatch(removeClearForms()),
     submitBlog:             (options) => dispatch(submitBlog(options, dispatch)),
     submitUploadFree:       (options) => dispatch(submitUploadFree(options, dispatch)),

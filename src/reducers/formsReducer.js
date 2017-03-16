@@ -30,12 +30,13 @@ export default function(state = initialState.forms, action) {
         case 'TEXT_CHANGE':
             return Object.assign({}, state, {[action.inputId + 'Val']: action.inputVal});
         case 'POPULATE_BLOG_FORM':
+            console.log(action);
             return Object.assign(
                 {},
                 state,
                 {
-                    blogTitleVal        : action.thisBlog.blog_title,
-                    blogHeadlineVal     : action.thisBlog.blog_headline,
+                    uploadTitleVal      : action.thisBlog.blog_title,
+                    uploadHeadlineVal   : action.thisBlog.blog_headline,
                     editorHtml          : action.thisBlog.blog_text,
                     blogImageUrl        : action.thisBlog.image_url,
                 }
