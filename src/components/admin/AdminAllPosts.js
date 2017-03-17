@@ -17,7 +17,7 @@ class AdminAllPosts extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state              = {sortBy: 'newOld', filterBy: 'blogs'};
+        this.state = {sortBy: 'newOld', filterBy: 'blogs'};
 
         this.handleRadioChange  = this.handleRadioChange.bind(this);
         this.handleSort         = this.handleSort.bind(this);

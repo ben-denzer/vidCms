@@ -1,6 +1,6 @@
-import React                    from 'react';
-import {withRouter, Redirect}   from 'react-router-dom';
-import {mediaUrl}               from '../../.keys';
+import React            from 'react';
+import {withRouter}     from 'react-router-dom';
+import {mediaUrl}       from '../../.keys';
 
 import TextInput        from '../shared/TextInput';
 import MyEditor         from './children/MyEditor';
@@ -22,13 +22,10 @@ class BlogUploadForm extends React.Component {
         this.handlePopulateForm     = this.handlePopulateForm.bind(this);
     }
     componentWillMount() {
-        const {blogs, clearAdminForm, images, match, push} = this.props;
+        const {blogs, clearAdminForm, images, match} = this.props;
         if (match.params.id) {
             if (blogs && blogs.length) {
                 this.handlePopulateForm(blogs, images);
-            } else {
-                console.log('hit push');
-                return push('/admin/allPosts');
             }
         } else {
             clearAdminForm();
