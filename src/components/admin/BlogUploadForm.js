@@ -1,6 +1,6 @@
-import React            from 'react';
-import {withRouter}     from 'react-router-dom';
-import {apiUrl}         from '../../.keys';
+import React                    from 'react';
+import {withRouter, Redirect}   from 'react-router-dom';
+import {mediaUrl}               from '../../.keys';
 
 import TextInput        from '../shared/TextInput';
 import MyEditor         from './children/MyEditor';
@@ -16,26 +16,32 @@ import {
 class BlogUploadForm extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {inputFile: []};
-        this.submit = this.submit.bind(this);
-        this.handleFileUpload = this.handleFileUpload.bind(this);
+        this.state                  = {inputFile: []};
+        this.submit                 = this.submit.bind(this);
+        this.handleFileUpload       = this.handleFileUpload.bind(this);
+        this.handlePopulateForm     = this.handlePopulateForm.bind(this);
     }
     componentWillMount() {
-        const {blogs, clearAdminForm, match, populateBlogForm} = this.props;
-        if (match.params.id && blogs && blogs.length) {
-            const thisBlog = blogs.filter(a => Number(a.blog_id) === Number(match.params.id))[0];
-            populateBlogForm(thisBlog)
+        const {blogs, clearAdminForm, images, match, push} = this.props;
+        if (match.params.id) {
+            if (blogs && blogs.length) {
+                this.handlePopulateForm(blogs, images);
+            } else {
+                console.log('hit push');
+                return push('/admin/allPosts');
+            }
         } else {
             clearAdminForm();
         }
     }
     componentWillReceiveProps(nextProps) {
-        const {blogs, match, populateBlogForm} = this.props;
+        const {blogs, match} = this.props;
         nextProps.clearForms && this.setState({inputFile: []});
-        if (!blogs || !blogs.length) {
-            if (nextProps.blogs && nextProps.blogs.length) {
-                const thisBlog = nextProps.blogs.filter(a => Number(a.blog_id) === Number(match.params.id))[0];
-                populateBlogForm(thisBlog)
+        if (match.params.id) {
+            if (!blogs || !blogs.length) {
+                if (nextProps.blogs && nextProps.blogs.length) {
+                    this.handlePopulateForm(nextProps.blogs, nextProps.images);
+                }
             }
         }
     }
@@ -45,6 +51,13 @@ class BlogUploadForm extends React.Component {
     handleFileUpload(inputFile) {
         if (this.props.clearForms) this.props.removeClearForms();
         this.setState({inputFile})
+    }
+    handlePopulateForm(blogs, images) {
+        const {match}   = this.props;
+        const blogInfo  = blogs.filter(a => Number(a.blog_id) === Number(match.params.id))[0];
+        const thisImg   = images.filter(a => a.blog_fk === blogInfo.blog_post_url)[0].image_url;
+        const thisBlog  = thisImg ? Object.assign({}, blogInfo, {image_url: thisImg}) : blogInfo;
+        this.props.populateBlogForm(thisBlog);
     }
     submit(e) {
         e.preventDefault();
@@ -77,7 +90,7 @@ class BlogUploadForm extends React.Component {
                     {
                         blogImageUrl &&
                             <UploadImageContainer>
-                                <UploadImage src={`${apiUrl}${blogImageUrl}`} role="presentation" />
+                                <UploadImage src={`${mediaUrl}${blogImageUrl}`} role="presentation" />
                             </UploadImageContainer>
                     }
                     <TextInput

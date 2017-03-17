@@ -45,7 +45,6 @@ class AdminPage extends React.Component {
         } = this.props;
 
         const {users, comments, videos, blogs, images} = allData;
-        console.log(editorHtml);
         return (
             <AdminContainer>
                 <AdminSidebar>
