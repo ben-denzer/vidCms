@@ -98,7 +98,7 @@ class SingleUserPage extends React.Component {
         }
 
         let rows = [<TableRow key={0}><TableCell colSpan='4'>No Comments Found</TableCell></TableRow>];
-        if (sortedComments.length) {
+        if (sortedComments && sortedComments.length) {
             rows = sortedComments.map(a => (
                 <TableRow key={a.id} onClick={() => this.props.push(`/admin/comments/${a.id}`)}>
                     <TableCell>

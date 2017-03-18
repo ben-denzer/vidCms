@@ -1,6 +1,7 @@
-import React        from 'react';
-import {withRouter} from 'react-router-dom';
-import parseDate    from '../../logic/parseDate';
+import React                from 'react';
+import {withRouter}         from 'react-router-dom';
+import parseDate            from '../../logic/parseDate';
+import filterPostsService   from '../../logic/filterPostsService';
 
 import {
     AdminRight,
@@ -17,25 +18,43 @@ class AdminAllPosts extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = {sortBy: 'newOld', filterBy: 'blogs'};
+        this.state = {sortBy: 'newOld', filterBy: 'all'};
 
         this.handleRadioChange  = this.handleRadioChange.bind(this);
         this.handleSort         = this.handleSort.bind(this);
     }
     handleRadioChange(e) {
-        console.log(e);
-        return;
+        this.setState({filterBy: e.target.id});
     }
     handleSort(e) {
-        console.log('sort', e);
-        return;
+        this.setState({sortBy: e.target.id});
     }
     render() {
         const {blogs, videos} = this.props;
         const {sortBy, filterBy} = this.state;
 
+        const filteredPosts = filterPostsService(blogs, videos, sortBy, filterBy);
+
         let rows = <tr><td colSpan="2">No Data</td></tr>
-        if (filterBy === 'blogs' && blogs && blogs.length) {
+
+        if (filteredPosts && filteredPosts.length) {
+            rows = filteredPosts.map(a => {
+                const postType = a.blog_id ? 'blog' : 'video';
+                return (
+                    <TableRow 
+                        key={a.blog_id || a.video_id}
+                        onClick={() => this.props.push(`/admin/edit/${postType}/${a.blog_id}`)}
+                    >
+                        <TableCell>{parseDate(a.blog_date || a.video_date)}</TableCell>
+                        <TableCell>{a.blog_title || a.video_title}</TableCell>
+                    </TableRow>
+                );
+            });
+        };
+
+
+
+        /*if (filterBy === 'blogs' && blogs && blogs.length) {
             rows = blogs.map(a => {
                 return (
                     <TableRow 
@@ -47,12 +66,21 @@ class AdminAllPosts extends React.Component {
                     </TableRow>
                 );
             });
-        }
+        }*/
         return (
             <AdminRight>
                 <AdminTitle>Users</AdminTitle>
                 <SortContainer>
                     <SortRadioContainer>
+                        <label>
+                            <input
+                                type="radio"
+                                id="all"
+                                checked={filterBy === 'all'}
+                                onChange={this.handleRadioChange}
+                            />
+                            All Posts
+                        </label>
                         <label>
                             <input
                                 type="radio"
@@ -73,10 +101,10 @@ class AdminAllPosts extends React.Component {
                         </label>
                     </SortRadioContainer>
                     <select id="user-sort" className="admin-sort" value={sortBy} onChange={this.handleSort}>
-                        <option value="A-Z">A-Z</option>
-                        <option value="Z-A">Z-A</option>
-                        <option value="old-new">Oldest to Newest</option>
-                        <option value="new-old">Newest to Oldest</option>
+                        <option value="postsAZ">A-Z</option>
+                        <option value="postsZA">Z-A</option>
+                        <option value="oldNew">Oldest to Newest</option>
+                        <option value="newOld">Newest to Oldest</option>
                     </select>
                 </SortContainer>
                 <AdminTable>
