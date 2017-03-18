@@ -7,6 +7,7 @@ export default {
         premiumExpirationDate   : '',
         premiumSignupDate       : '',
         signupDate              : '',
+        user_id                 : null,
         username                : '',
     },
     message: {
