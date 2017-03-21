@@ -28,7 +28,8 @@ const BlogPage = ({allBlogs, allImages}) => {
                 </PageContainer>
             );
         } else {
-            image = allImages.filter(image => image.blog_fk === post.blog_post_url)[0].image_url;
+            const imgTest = allImages.filter(image => image.blog_fk === post.blog_id);
+            if (imgTest.length) image = imgTest[0].image_id;
         }
     }
 

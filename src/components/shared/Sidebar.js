@@ -1,14 +1,14 @@
-import React            from 'react';
-import styled           from 'styled-components';
-import {Link}           from 'react-router-dom';
-import profile          from '../../img/profile.jpg';
-import {SectionHeader}  from '../../styles/share';
-import {mediaUrl}       from '../../.keys';
+import React                        from 'react';
+import styled                       from 'styled-components';
+import {Link}                       from 'react-router-dom';
+import profile                      from '../../img/profile.jpg';
+import {SectionHeader}              from '../../styles/share';
+import {mediaUrl, defaultImage}     from '../../.keys';
 
 const Sidebar = (props) => {
     return (
         <SidebarContainer>
-            {props.img && <BlogImg src={`${mediaUrl}${props.img}`} alt={props.alt} />}
+            <BlogImg src={props.img ? `${mediaUrl}${props.img}` : defaultImage} alt={props.alt} />
             <SidebarAd />
             <SidebarContent>
                 <SectionHeader>About The Author</SectionHeader>

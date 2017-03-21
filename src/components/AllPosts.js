@@ -13,7 +13,9 @@ const AllPosts = ({allBlogs, allImages}) => {
 
     if (allBlogs && allBlogs.length) {
         recentPosts = allBlogs.map(blog => {
-            const imgUrl = allImages.filter(image => image.blog_fk === blog.blog_post_url)[0].image_url;
+            const tempImg = allImages.filter(image => Number(image.blog_fk) === Number(blog.blog_id));
+            const imgUrl = tempImg.length && tempImg[0].image_url;
+
             return (
                 <BlogThumbnail
                     key={blog.blog_id}

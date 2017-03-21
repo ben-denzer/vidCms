@@ -1,14 +1,21 @@
-import React        from 'react';
-import styled       from 'styled-components';
-import {withRouter} from 'react-router-dom';
-import {mediaUrl}   from '../../.keys';
+import React                        from 'react';
+import styled                       from 'styled-components';
+import {withRouter}                 from 'react-router-dom';
+import {mediaUrl, defaultImage}     from '../../.keys';
 
 const BlogThumbnail = props => {
     const {title, headline, blogUrl, imgUrl} = props;
 
     return (
-        <BlogThumbnailContainer onClick={() => props.push(`/blog/${blogUrl}`)} className='BlogThumbnailContainer'>
-            <Image className='RecentPostImage' src={`${mediaUrl}${imgUrl}`} alt={title} />
+        <BlogThumbnailContainer
+            onClick={() => props.push(`/blog/${blogUrl}`)}
+            className='BlogThumbnailContainer'
+        >
+            <Image 
+                className='RecentPostImage'
+                src={imgUrl ? `${mediaUrl}${imgUrl}` : defaultImage}
+                alt={title}
+            />
             <TextContainer className='TextContainer'>
                 <Title>{title}</Title>
                 <Headline>{headline}</Headline>
