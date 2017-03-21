@@ -16,7 +16,8 @@ const BlogPage = ({allBlogs, allImages}) => {
     const path = location.pathname;
 
     if (allBlogs && allBlogs.length) {
-        post = allBlogs.filter(blog => path.slice(path.lastIndexOf('/') + 1) === blog.blog_post_url)[0];
+        const temp = allBlogs.filter(blog => path.slice(path.lastIndexOf('/') + 1) === blog.blog_post_url);
+        post = temp.length && temp[0];
 
         if (!post) {
             return (
@@ -28,8 +29,8 @@ const BlogPage = ({allBlogs, allImages}) => {
                 </PageContainer>
             );
         } else {
-            const imgTest = allImages.filter(image => image.blog_fk === post.blog_id);
-            if (imgTest.length) image = imgTest[0].image_id;
+            const imgTest = allImages.filter(image => Number(image.blog_fk) === Number(post.blog_id));
+            if (imgTest.length) image = imgTest[0].image_url;
         }
     }
 

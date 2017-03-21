@@ -7,7 +7,7 @@ const filterPostsService = (blogs, videos, sortBy, filterBy) => {
         videos(blogs, videos)   { return videos; }
     }
 
-    return filters[filterBy](blogs, videos).sort((a,b) => sortFunctions[sortBy](a,b));;
+    filters[filterBy](blogs, videos).sort((a,b) => sortFunctions[sortBy](a,b));;
 };
 
 export default filterPostsService;
