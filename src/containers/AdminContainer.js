@@ -2,7 +2,9 @@ import {connect}                                from 'react-redux';
 import {banUser, deleteComments, getAdminData}  from '../actions/adminActions';
 import AdminPage                                from '../components/AdminPage';
 import {
+    changeBlogImage,
     clearAdminForm,
+    editBlog,
     handleTextChange,
     submitBlog,
     populateBlogForm,
@@ -27,8 +29,10 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
     banUser:                (options) => dispatch(banUser(options)),
+    changeBlogImage:        (options) => dispatch(changeBlogImage(options)),
     clearAdminForm:         () => dispatch(clearAdminForm()),
     deleteComments:         (options) => dispatch(deleteComments(options)),
+    editBlog:               (options) => dispatch(editBlog),
     getAdminData:           (token) => dispatch(getAdminData(token, dispatch)),
     handleTextChange:       (e) => dispatch(handleTextChange(e.target.id, e.target.value)),
     populateBlogForm:       (thisBlog) => dispatch(populateBlogForm(thisBlog)),

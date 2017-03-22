@@ -21,13 +21,24 @@ const authErrorAction = (err, dispatch) => {
     }
 };
 
-const clearAdminForm        = () => ({type: CLEAR_ADMIN_FORM});
-const clearAuthError        = () => ({type: AUTH_ERROR, error: null});
-const editorChange          = currentState => ({type: EDITOR_CHANGE, currentState});
-const handleTextChange      = (inputId, inputVal) => ({type: TEXT_CHANGE, inputId, inputVal});
-const handleCheck           = newVal => ({type: SAVE_DATA_CLICKED, newVal});
-const populateBlogForm      = thisBlog => ({type: POPULATE_BLOG_FORM, thisBlog});
-const removeClearForms      = () => ({type: REMOVE_CLEAR_FORMS});
+const changeBlogImage = (options) => {
+    console.log('changeImage');
+    return;
+};
+
+const clearAdminForm = () => ({type: CLEAR_ADMIN_FORM});
+const clearAuthError = () => ({type: AUTH_ERROR, error: null});
+
+const editBlog = (options) => {
+    console.log('editBlog');
+    return;
+};
+
+const editorChange      = currentState => ({type: EDITOR_CHANGE, currentState});
+const handleTextChange  = (inputId, inputVal) => ({type: TEXT_CHANGE, inputId, inputVal});
+const handleCheck       = newVal => ({type: SAVE_DATA_CLICKED, newVal});
+const populateBlogForm  = thisBlog => ({type: POPULATE_BLOG_FORM, thisBlog});
+const removeClearForms  = () => ({type: REMOVE_CLEAR_FORMS});
 
 const submitBlog = options =>  {
     if (!options.uploadTitleVal) return {
@@ -55,14 +66,14 @@ const submitUploadFree = options => {
         messageType: 'error',
         text: 'Please Add Title'
     };
-    
+
     if (!options.youtubeUrlVal) return {
         type: NEW_MESSAGE,
         messageType: 'error',
         text: 'Please Add Embed Code'
     };
 
-    const tempUrl = options.youtubeUrlVal.split('"').filter(a => /^http/.test(a)); 
+    const tempUrl = options.youtubeUrlVal.split('"').filter(a => /^http/.test(a));
     if (tempUrl.length !== 1) return {
         type: NEW_MESSAGE,
         messageType: 'error',
@@ -92,8 +103,10 @@ const submitUploadPremium = options => {
 };
 
 export {
+    changeBlogImage,
     clearAdminForm,
     clearAuthError,
+    editBlog,
     editorChange,
     handleTextChange,
     handleCheck,

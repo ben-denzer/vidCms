@@ -51,22 +51,47 @@ class BlogUploadForm extends React.Component {
     }
     handlePopulateForm(blogs, images) {
         const {match}   = this.props;
-        const blogInfo  = blogs.filter(a => Number(a.blog_id) === Number(match.params.id))[0];
-        const thisImg   = images.filter(a => a.blog_fk === blogInfo.blog_post_url)[0].image_url;
-        const thisBlog  = thisImg ? Object.assign({}, blogInfo, {image_url: thisImg}) : blogInfo;
+        const blogInfo  = blogs.filter(a => {
+            return Number(a.blog_id) === Number(match.params.id);
+        })[0];
+        console.log('bloginfo', blogInfo);
+        const thisImg   = images.filter(a => a.blog_fk === blogInfo.blog_id);
+        const thisBlog  = thisImg.length ?
+            Object.assign({}, blogInfo, {image_url: thisImg[0].image_url}) :
+            blogInfo;
         this.props.populateBlogForm(thisBlog);
     }
     submit(e) {
         e.preventDefault();
-        const {editorHtml, submitBlog, token, uploadTitleVal, uploadHeadlineVal} = this.props;
-
-        submitBlog({
-            uploadTitleVal,
-            uploadHeadlineVal,
-            inputFile: this.state.inputFile[0],
+        const {
+            changeBlogImage,
+            editBlog,
             editorHtml,
-            token
-        });
+            submitBlog,
+            token,
+            uploadTitleVal,
+            uploadHeadlineVal
+        } = this.props;
+
+        if (/upload/.test(location.pathname)) {
+            submitBlog({
+                uploadTitleVal,
+                uploadHeadlineVal,
+                inputFile: this.state.inputFile[0],
+                editorHtml,
+                token
+            });
+        } else {
+            editBlog({
+                uploadTitleVal,
+                uploadHeadlineVal,
+                editorHtml,
+                token
+            });
+            if (this.state.inputFile[0]) {
+                changeBlogImage({inputFile: this.state.inputFile[0], token});
+            }
+        }
     }
     render() {
         const {

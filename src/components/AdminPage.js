@@ -27,9 +27,11 @@ class AdminPage extends React.Component {
             allData,
             banUser,
             blogImageUrl,
+            changeBlogImage,
             clearAdminForm,
             clearForms,
             deleteComments,
+            editBlog,
             editorHtml,
             error,
             handleTextChange,
@@ -67,8 +69,10 @@ class AdminPage extends React.Component {
                             <BlogUploadForm
                                 blogImageUrl={blogImageUrl}
                                 blogs={blogs}
+                                changeBlogImage={changeBlogImage}
                                 clearAdminForm={clearAdminForm}
                                 clearForms={clearForms}
+                                editBlog={editBlog}
                                 editorHtml={editorHtml}
                                 handleTextChange={handleTextChange}
                                 images={images}
@@ -119,7 +123,7 @@ class AdminPage extends React.Component {
                     <Route exact path='/admin/users'
                         render={() => <ManageUsersPage users={users} />}
                     />
-                    <Route path='/admin/users/:id' 
+                    <Route path='/admin/users/:id'
                         render={() => (
                             <SingleUserPage
                                 banUser={banUser}
@@ -129,7 +133,7 @@ class AdminPage extends React.Component {
                                 users={users}
                                 videos={videos}
                             />
-                        )} 
+                        )}
                     />
                     <Route exact path='/admin/comments/:id'
                         render={() => (
@@ -144,9 +148,9 @@ class AdminPage extends React.Component {
                             />
                         )}
                     />
-                    <Route exact path='/admin/allPosts' 
+                    <Route path='/admin/allPosts'
                         render={() => (
-                            <AdminAllPosts 
+                            <AdminAllPosts
                                 blogs={blogs}
                                 videos={videos}
                             />

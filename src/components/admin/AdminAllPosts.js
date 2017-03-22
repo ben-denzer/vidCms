@@ -41,7 +41,7 @@ class AdminAllPosts extends React.Component {
             rows = filteredPosts.map(a => {
                 const postType = a.blog_id ? 'blog' : 'video';
                 return (
-                    <TableRow 
+                    <TableRow
                         key={a.blog_id || a.video_id}
                         onClick={() => this.props.push(`/admin/edit/${postType}/${a.blog_id}`)}
                     >
@@ -57,7 +57,7 @@ class AdminAllPosts extends React.Component {
         /*if (filterBy === 'blogs' && blogs && blogs.length) {
             rows = blogs.map(a => {
                 return (
-                    <TableRow 
+                    <TableRow
                         key={a.blog_id}
                         onClick={() => this.props.push(`/admin/edit/blog/${a.blog_id}`)}
                     >
@@ -69,7 +69,7 @@ class AdminAllPosts extends React.Component {
         }*/
         return (
             <AdminRight>
-                <AdminTitle>Users</AdminTitle>
+                <AdminTitle>Posts</AdminTitle>
                 <SortContainer>
                     <SortRadioContainer>
                         <label>
