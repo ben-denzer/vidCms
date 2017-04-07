@@ -54,7 +54,6 @@ class BlogUploadForm extends React.Component {
         const blogInfo  = blogs.filter(a => {
             return Number(a.blog_id) === Number(match.params.id);
         })[0];
-        console.log('bloginfo', blogInfo);
         const thisImg   = images.filter(a => a.blog_fk === blogInfo.blog_id);
         const thisBlog  = thisImg.length ?
             Object.assign({}, blogInfo, {image_url: thisImg[0].image_url}) :
@@ -67,6 +66,7 @@ class BlogUploadForm extends React.Component {
             changeBlogImage,
             editBlog,
             editorHtml,
+            match,
             submitBlog,
             token,
             uploadTitleVal,
@@ -83,13 +83,14 @@ class BlogUploadForm extends React.Component {
             });
         } else {
             editBlog({
+                blogId: match.params.id,
                 uploadTitleVal,
                 uploadHeadlineVal,
                 editorHtml,
                 token
             });
             if (this.state.inputFile[0]) {
-                changeBlogImage({inputFile: this.state.inputFile[0], token});
+                //changeBlogImage({inputFile: this.state.inputFile[0], token});
             }
         }
     }
