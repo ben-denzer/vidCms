@@ -45,7 +45,6 @@ const login = (credentials) => {
         const options = {username, password};
         postToApi(options, 'auth/login')
             .then(data => {
-                console.log('login action');
                 const {token, userData} = data;
                 if (saveData) window.localStorage.setItem('token', data.token);
                 dispatch({type: LOGIN_SUCCESS, userData, token, admin: userData.admin});
@@ -114,14 +113,14 @@ const submitChangePw = (e) => {
         if (passwordVal !== password2Val) {
             return dispatch({type: AUTH_ERROR, error: 'passwords don\'t match'});
         }
-        
+
         const options = {
             token: user.token,
             username: user.username,
             password: oldPasswordVal,
             newPw: passwordVal
         };
-        console.log(options);
+
         postToApi(options, 'auth/changePw')
             .then(() => dispatch({type: CHANGE_PW_SUCCESS}))
             .catch((err) => authErrorAction(err, dispatch));

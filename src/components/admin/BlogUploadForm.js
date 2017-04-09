@@ -63,7 +63,7 @@ class BlogUploadForm extends React.Component {
     submit(e) {
         e.preventDefault();
         const {
-            changeBlogImage,
+            //changeBlogImage,
             editBlog,
             editorHtml,
             match,

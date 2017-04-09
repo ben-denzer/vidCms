@@ -30,7 +30,6 @@ const clearAdminForm = () => ({type: CLEAR_ADMIN_FORM});
 const clearAuthError = () => ({type: AUTH_ERROR, error: null});
 
 const editBlog = (options) => {
-    console.log('edit called', options);
     if (!options.uploadTitleVal) return {
         type: NEW_MESSAGE,
         messageType: 'error',
@@ -42,7 +41,7 @@ const editBlog = (options) => {
         messageType: 'error',
         text: 'Post Can\'t Be Empty'
     };
-    console.log('made it here');
+
     return dispatch => {
         postToApi(options, 'admin/editBlog')
             .then(() => dispatch({type: UPLOAD_SUCCESS}))
