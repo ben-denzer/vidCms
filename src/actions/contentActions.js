@@ -37,7 +37,7 @@ const getAllContent = () => {
 
 const getFreeVideo = id => {
     return dispatch => {
-        postToApi({id}, 'public/getFreeVideo')
+        getPublicJson({id}, 'public/getFreeVideo')
             .then(video => dispatch({type: GET_VIDEO_SUCCESS, video}))
             .catch(() => dispatch({type: NETWORK_ERROR}));
     }
@@ -45,7 +45,7 @@ const getFreeVideo = id => {
 
 const getPremiumVideo = (video_id, token) => {
     return dispatch => {
-        postToApi({video_id, token}, 'auth/getPremiumVideo')
+        getPublicJson({video_id, token}, 'auth/getPremiumVideo')
             .then(video => dispatch({type: GET_VIDEO_SUCCESS, video}))
             .catch(() => dispatch({type: NETWORK_ERROR}));
     }
@@ -68,7 +68,7 @@ const submitComment = (options, dispatch) => {
     return {
         type: COMMENT_SUBMITTED,
         username: options.username,
-        comment_text: options.comment, 
+        comment_text: options.comment,
         post_fk: options.post_fk
     };
 };
