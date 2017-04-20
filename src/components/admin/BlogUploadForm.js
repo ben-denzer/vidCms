@@ -63,7 +63,7 @@ class BlogUploadForm extends React.Component {
     submit(e) {
         e.preventDefault();
         const {
-            //changeBlogImage,
+            changeBlogImage,
             editBlog,
             editorHtml,
             match,
@@ -90,7 +90,11 @@ class BlogUploadForm extends React.Component {
                 token
             });
             if (this.state.inputFile[0]) {
-                //changeBlogImage({inputFile: this.state.inputFile[0], token});
+                changeBlogImage({
+                    blogId: match.params.id,
+                    inputFile: this.state.inputFile[0],
+                    token
+                });
             }
         }
     }

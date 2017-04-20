@@ -21,9 +21,12 @@ const authErrorAction = (err, dispatch) => {
     }
 };
 
-const changeBlogImage = (options) => {
-    console.log('changeImage');
-    return;
+const changeBlogImage = (options, token) => {
+    return dispatch => {
+        postWithMedia(options, 'admin/editImage')
+            .then({ type: UPLOAD_SUCCESS })
+            .catch(() => err => authErrorAction(err, dispatch));
+    }
 };
 
 const clearAdminForm = () => ({type: CLEAR_ADMIN_FORM});
