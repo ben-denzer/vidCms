@@ -22,6 +22,7 @@ const mapStateToProps = (state) => ({
     blogImageUrl        : state.forms.blogImageUrl,
     editorHtml          : state.forms.editorHtml,
     error               : state.message.error,
+    seoDescriptionVal   : state.forms.seoDescriptionVal,
     uploadTitleVal      : state.forms.uploadTitleVal,
     uploadHeadlineVal   : state.forms.uploadHeadlineVal,
     youtubeUrlVal       : state.forms.youtubeUrlVal,

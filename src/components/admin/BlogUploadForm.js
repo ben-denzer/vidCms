@@ -67,6 +67,7 @@ class BlogUploadForm extends React.Component {
             editBlog,
             editorHtml,
             match,
+            seoDescriptionVal,
             submitBlog,
             token,
             uploadTitleVal,
@@ -79,6 +80,7 @@ class BlogUploadForm extends React.Component {
                 uploadHeadlineVal,
                 inputFile: this.state.inputFile[0],
                 editorHtml,
+                seoDescriptionVal,
                 token
             });
         } else {
@@ -87,6 +89,7 @@ class BlogUploadForm extends React.Component {
                 uploadTitleVal,
                 uploadHeadlineVal,
                 editorHtml,
+                seoDescriptionVal,
                 token
             });
             if (this.state.inputFile[0]) {
@@ -102,6 +105,7 @@ class BlogUploadForm extends React.Component {
         const {
             blogImageUrl,
             handleTextChange,
+            seoDescriptionVal,
             uploadTitleVal,
             uploadHeadlineVal
         } = this.props;
@@ -130,6 +134,12 @@ class BlogUploadForm extends React.Component {
                         id="uploadHeadline"
                         label="Headline"
                         val={uploadHeadlineVal}
+                        handleChange={handleTextChange}
+                    />
+                    <TextInput
+                        id="seoDescription"
+                        label="Seo Description"
+                        val={seoDescriptionVal}
                         handleChange={handleTextChange}
                     />
                     <label className="text-input"><span>Text</span></label>

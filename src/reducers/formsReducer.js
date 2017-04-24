@@ -38,6 +38,7 @@ export default function(state = initialState.forms, action) {
                     uploadHeadlineVal   : action.thisBlog.blog_headline,
                     editorHtml          : action.thisBlog.blog_text,
                     blogImageUrl        : action.thisBlog.image_url,
+                    seoDescriptionVal   : action.thisBlog.blog_seo_description,
                 }
             );
         case 'REMOVE_CLEAR_FORMS':
@@ -57,6 +58,7 @@ export default function(state = initialState.forms, action) {
                 clearForms          : true,
                 editorHtml          : '',
                 blogImageUrl        : '',
+                seoDescriptionVal   : '',
                 uploadTitleVal      : '',
                 uploadHeadlineVal   : '',
                 youtubeUrlVal       : ''

@@ -1,6 +1,7 @@
 import React            from 'react';
 import Sidebar          from './shared/Sidebar';
 import {withRouter}     from 'react-router-dom';
+import {Helmet}         from 'react-helmet';
 import {createMarkupWithLinks}     from '../logic/createMarkup';
 import CommentSection   from '../containers/CommentContainer';
 import {
@@ -34,10 +35,14 @@ const BlogPage = ({allBlogs, allImages}) => {
         }
     }
 
-    const {blog_title, blog_headline, blog_text} = post;
+    const {blog_title, blog_headline, blog_seo_description, blog_text} = post;
 
     return (
         <PageContainer className="pageContainer">
+            <Helmet>
+                <title>{`${blog_title} | Ben Denzer`}</title>
+                <meta name="description" content={`${blog_seo_description || blog_headline}`} />
+            </Helmet>
             <ContentContainer className="contentContainer">
                 <PageTitle className="pageTitle">{blog_title}</PageTitle>
                 <PageHeadline className="sectionHeader">{blog_headline}</PageHeadline>

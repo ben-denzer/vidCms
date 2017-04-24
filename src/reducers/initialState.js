@@ -26,6 +26,7 @@ export default {
         passwordVal         : '',
         password2Val        : '',
         saveDataVal         : false,
+        seoDescriptionVal   : '',
         usernameVal         : '',
         uploadTitleVal      : '',
         uploadHeadlineVal   : '',

@@ -37,6 +37,7 @@ class AdminPage extends React.Component {
             handleTextChange,
             populateBlogForm,
             removeClearForms,
+            seoDescriptionVal,
             submitBlog,
             submitUploadFree,
             submitUploadPremium,
@@ -78,6 +79,7 @@ class AdminPage extends React.Component {
                                 images={images}
                                 populateBlogForm={populateBlogForm}
                                 removeClearForms={removeClearForms}
+                                seoDescriptionVal={seoDescriptionVal}
                                 submitBlog={submitBlog}
                                 token={token}
                                 uploadTitleVal={uploadTitleVal}
@@ -95,6 +97,7 @@ class AdminPage extends React.Component {
                                 handleTextChange={handleTextChange}
                                 populateBlogForm={populateBlogForm}
                                 removeClearForms={removeClearForms}
+                                seoDescriptionVal={seoDescriptionVal}
                                 submitBlog={submitBlog}
                                 token={token}
                                 uploadTitleVal={uploadTitleVal}
