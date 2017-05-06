@@ -26,7 +26,7 @@ const MyNav = (props) => {
                         }
                         {
                             props.username ?
-                                <li role="presentation"><Link onClick={() => props.logout()}>Log Out</Link></li> :
+                                <li role="presentation"><a onClick={() => props.logout()}>Log Out</a></li> :
                                 <li role="presentation"><Link to='/auth/signup'>Sign Up</Link></li>
                         }
                     </ul>
