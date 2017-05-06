@@ -1,4 +1,5 @@
 import {postToApi} from './apiPromise';
+import validateEmail from '../logic/validateEmail';
 import {
     AUTH_ERROR,
     CHANGE_PW_SUCCESS,
@@ -14,7 +15,7 @@ const authErrorAction = (err, dispatch, formName) => {
     if (err) {
         let error;
         if (formName === 'signup') {
-            error = 'Username is taken. Please try again.';
+            error = err;
         } else if (formName === 'reset') {
             error = 'Your Token Has Expired, Please Click On "Login", and "Forgot Password" again';
         } else {  // login error
@@ -92,8 +93,9 @@ const signup = credentials => {
     return (dispatch) => {
         const {username, password, p2, email, saveData, premium} = credentials;
         if (username.length < 2) return dispatch({type: AUTH_ERROR, error: 'Username Must Be at Least 2 Characters Long'});
-        if (password.length < 4) return dispatch({type: AUTH_ERROR, error: 'Password Must Be at Least 4 Characters Long'});
+        if (password.length < 7) return dispatch({type: AUTH_ERROR, error: 'Password Must Be at Least 7 Characters Long'});
         if (password !== p2) return dispatch({type: AUTH_ERROR, error: 'Passwords Do Not Match'});
+        if (!validateEmail(email)) return dispatch({type: AUTH_ERROR, error: 'Invalid Email'});
 
         const options = {username, password, email, premium};
         postToApi(options, 'auth/signup')
