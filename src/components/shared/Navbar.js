@@ -8,7 +8,7 @@ const MyNav = (props) => {
     return (
         <Header>
             <AboveNav>
-                <LogoH1>Construction 2 Code</LogoH1>
+                <LogoH1>Construction To Code</LogoH1>
             </AboveNav>
             <Navbar inverse collapseOnSelect fluid>
                 <Navbar.Toggle />

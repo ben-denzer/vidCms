@@ -19,7 +19,9 @@ const HomePage = (props) => {
                         Node, React, Web Development, and Getting Your First Programming Job
                     </PageTitle>
                 </PageHeading>
-                <p>I took a pretty unconventional path into web development. I am a licenced crane operator, a commercial driver, and a geotechnical driller. For the past few years I have been writing JavaScript and now I'm a full-time developer and I have a website that is making over $20K/year on the side.</p>
+                <p>I am a licenced crane operator, a commercial driver, and a geotechnical driller. For the past few years I have been writing JavaScript and now I'm a full-time developer and I have a website that is making over $20,000/year on the side.</p>
+
+                <p>I'll be writing about anything related to programming: web applications, servers, databases, mobile apps, how I got my first programming job, and whatever else I think of.</p>
 
                 <HpLinkContainer>
                     <StyledLink to='/blog'>All Articles</StyledLink>
