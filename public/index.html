@@ -31,15 +31,17 @@
       To create a production bundle, use `npm run build`.
     -->
     <script>
-        window.ga = window.ga || function () { (ga.q = ga.q || []).push(arguments) }; ga.l = +new Date;
-        ga('create', 'UA-51493523-4', 'auto');
+        if (!/localhost/.test(window.location.href)) {
+            window.ga = window.ga || function () { (ga.q = ga.q || []).push(arguments) }; ga.l = +new Date;
+            ga('create', 'UA-51493523-4', 'auto');
 
-        // Replace the following lines with the plugins you want to use.
-        ga('require', 'eventTracker');
-        ga('require', 'outboundLinkTracker');
-        ga('require', 'urlChangeTracker');
+            // Replace the following lines with the plugins you want to use.
+            ga('require', 'eventTracker');
+            ga('require', 'outboundLinkTracker');
+            ga('require', 'urlChangeTracker');
 
-        ga('send', 'pageview');
+            ga('send', 'pageview');
+        }
     </script>
     <script async src="https://www.google-analytics.com/analytics.js"></script>
     <script async src="/js/autotrack.js"></script>
