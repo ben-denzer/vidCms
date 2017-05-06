@@ -8,7 +8,7 @@ const MyNav = (props) => {
     return (
         <Header>
             <AboveNav>
-                <LogoH1>NodeReact.com</LogoH1>
+                <LogoH1>Construction 2 Code</LogoH1>
             </AboveNav>
             <Navbar inverse collapseOnSelect fluid>
                 <Navbar.Toggle />
@@ -26,7 +26,7 @@ const MyNav = (props) => {
                         }
                         {
                             props.username ?
-                                <li role="presentation"><a onClick={() => props.logout()}>Log Out</a></li> :
+                                <li role="presentation"><Link onClick={() => props.logout()}>Log Out</Link></li> :
                                 <li role="presentation"><Link to='/auth/signup'>Sign Up</Link></li>
                         }
                     </ul>
