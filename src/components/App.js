@@ -59,16 +59,16 @@ class App extends React.Component {
                     render={() => <HomePage allBlogs={allBlogs} allImages={allImages} allVideos={allVideos} />}
                 />
                 <Route exact path='/account'
-                    render={() => <AccountPage push={push} user={user} />} 
+                    render={() => <AccountPage push={push} user={user} />}
                 />
                 <Route exact path='/account/changePw'
                     render={() => (
                         <UserRoute
-                            component={ChangePwForm} 
+                            component={ChangePwForm}
                             forms={forms}
                             handleChange={handleTextChange}
                             submitChangePw={submitChangePw}
-                            user={user} 
+                            user={user}
                         />
                     )}
                 />
