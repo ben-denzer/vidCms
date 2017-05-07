@@ -1,5 +1,6 @@
 import React            from 'react';
 import styled           from 'styled-components';
+import {Helmet}         from 'react-helmet';
 import VideoThumbnail   from './content/VideoThumbnail';
 import Sidebar          from './shared/Sidebar';
 import {
@@ -29,6 +30,10 @@ const VideoHome = ({allVideos}) => {
 
     return (
         <PageContainer className="pageContainer">
+            <Helmet>
+                <title>All Videos | Construction to Code</title>
+                <meta name="description" content="All videos from the Construction to Code blog. Linux, NginX, MySQL, Node.js, Express, JavaScript, Elm Lang and more" />
+            </Helmet>
             <ContentContainer className="contentContainer">
                 <PageHeading>
                     <PageTitle className="pageTitle">All Videos</PageTitle>

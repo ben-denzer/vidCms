@@ -1,4 +1,5 @@
 import React            from 'react';
+import {Helmet}         from 'react-helmet';
 import BlogThumbnail    from './content/BlogThumbnail';
 import Sidebar          from './shared/Sidebar';
 import {
@@ -30,6 +31,10 @@ const AllPosts = ({allBlogs, allImages}) => {
 
     return (
         <PageContainer className="pageContainer">
+            <Helmet>
+                <title>{`All Posts - Construction To Code`}</title>
+                <meta name="description" content="View all posts from the Construction to Code Blog. JavaScript, React, Node, Express, Linux, NginX, MySQL and more" />
+            </Helmet>
             <ContentContainer className="contentContainer">
                 <PageHeading>
                     <PageTitle className="pageTitle">All Articles</PageTitle>
