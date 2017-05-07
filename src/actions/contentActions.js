@@ -37,7 +37,7 @@ const getAllContent = () => {
 
 const getFreeVideo = id => {
     return dispatch => {
-        getPublicJson({id}, 'public/getFreeVideo')
+        getPublicJson(`public/getFreeVideo/${id}`)
             .then(video => dispatch({type: GET_VIDEO_SUCCESS, video}))
             .catch(() => dispatch({type: NETWORK_ERROR}));
     }

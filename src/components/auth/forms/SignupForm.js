@@ -1,4 +1,5 @@
 import React        from 'react';
+import {Helmet}     from 'react-helmet';
 import TextInput    from '../../shared/TextInput';
 import AuthButtons  from '../AuthButtons';
 import {PageTitle}  from '../../../styles/share';
@@ -26,6 +27,9 @@ const SignupForm = (props) => {
 
     return (
         <FormBox id="signupForm">
+            <Helmet>
+                <title>Sign Up | Construction To Code</title>
+            </Helmet>
             <PageTitle>Sign Up</PageTitle>
             {textInputs}
             <AuthButtons

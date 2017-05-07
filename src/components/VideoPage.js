@@ -1,5 +1,6 @@
 import React            from 'react';
 import styled           from 'styled-components';
+import {Helmet}         from 'react-helmet';
 import createMarkup     from '../logic/createMarkup';
 import {apiUrl}         from '../.keys';
 import CommentSection   from '../containers/CommentContainer';
@@ -34,6 +35,10 @@ class VideoPage extends React.Component {
 
         return (
             <VideoPageContainer id="video_page_container">
+                <Helmet>
+                    <title>{`${title} | Construction to Code`}</title>
+                    <meta name="description" content={headline} />
+                </Helmet>
                 <Title>{title}</Title>
                 <Headline id="video_headline">{headline}</Headline>
                 {

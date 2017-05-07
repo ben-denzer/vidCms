@@ -1,4 +1,5 @@
 import React        from 'react';
+import {Helmet}     from 'react-helmet';
 import TextInput    from '../../shared/TextInput';
 import {PageTitle}  from '../../../styles/share';
 import {FormBox}    from '../../../styles/authFormStyles';
@@ -7,6 +8,9 @@ const ForgotPwForm = (props) => {
     const {authErrorVal, authSubmit, emailVal, handleChange} = props;
     return (
         <FormBox id="forgotPwForm">
+            <Helmet>
+                <title>Forgot Password | Construction To Code</title>
+            </Helmet>
             <PageTitle>Forgot Password</PageTitle>
             <TextInput
                 id="email"

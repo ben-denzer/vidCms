@@ -26,7 +26,7 @@ const BlogPage = ({allBlogs, allImages}) => {
                     <ContentContainer className="contentContainer">
                         <PageTitle className="pageTitle">Page Not Found</PageTitle>
                     </ContentContainer>
-                    <Sidebar />
+                    <Sidebar noAd />
                 </PageContainer>
             );
         } else {
@@ -40,7 +40,7 @@ const BlogPage = ({allBlogs, allImages}) => {
     return (
         <PageContainer className="pageContainer">
             <Helmet>
-                <title>{`${blog_title} | Ben Denzer`}</title>
+                <title>{`${blog_title} | Construction to Code`}</title>
                 <meta name="description" content={`${blog_seo_description || blog_headline}`} />
             </Helmet>
             <ContentContainer className="contentContainer">
@@ -49,7 +49,7 @@ const BlogPage = ({allBlogs, allImages}) => {
                 <div dangerouslySetInnerHTML={blog_text && createMarkupWithLinks(blog_text)} />
                 <CommentSection />
             </ContentContainer>
-            <Sidebar img={image} alt="Blog Image" />
+            <Sidebar noAd img={image} alt="Blog Image" />
         </PageContainer>
     );
 };

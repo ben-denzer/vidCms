@@ -1,6 +1,7 @@
 import React        from 'react';
 import {Link}       from 'react-router-dom';
 import styled       from 'styled-components';
+import {Helmet}     from 'react-helmet';
 import parseDate    from '../logic/parseDate';
 import {
     PageTitle,
@@ -11,9 +12,12 @@ import {
 const AccountPage = ({user}) => {
     return (
         <PageContainer>
+            <Helmet>
+                <title>My Account | Construction to Code</title>
+            </Helmet>
             <PageTitle>My Account</PageTitle>
             <ContentContainer>
-                <StyledLink 
+                <StyledLink
                     type="button"
                     className="btn btn-info"
                     to="/account/changePw"

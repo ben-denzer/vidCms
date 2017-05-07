@@ -32,7 +32,7 @@ const AllPosts = ({allBlogs, allImages}) => {
     return (
         <PageContainer className="pageContainer">
             <Helmet>
-                <title>{`All Posts - Construction To Code`}</title>
+                <title>All Posts | Construction To Code</title>
                 <meta name="description" content="View all posts from the Construction to Code Blog. JavaScript, React, Node, Express, Linux, NginX, MySQL and more" />
             </Helmet>
             <ContentContainer className="contentContainer">
@@ -41,7 +41,7 @@ const AllPosts = ({allBlogs, allImages}) => {
                 </PageHeading>
                 {recentPosts}
             </ContentContainer>
-            <Sidebar />
+            <Sidebar noAd />
         </PageContainer>
     );
 };

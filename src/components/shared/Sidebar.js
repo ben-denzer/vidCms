@@ -31,7 +31,7 @@ const SidebarAd = styled.div`
     height: 300px;
     width: 100%;
     background-color: #222;
-    margin: 15px 0;
+    margin: 15px 0 0;
 `;
 
 const SidebarContainer = styled.div`
@@ -44,6 +44,7 @@ const SidebarContent = styled.div`
     background-color: #999;
     border: 2px solid #222;
     padding: 0 10px;
+    margin-top: 15px;
 `;
 
 const ProfileImg = styled.img`

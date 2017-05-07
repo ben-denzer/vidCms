@@ -1,4 +1,5 @@
 import React        from 'react';
+import {Helmet}     from 'react-helmet';
 import TextInput    from '../../shared/TextInput';
 import AuthButtons  from '../AuthButtons';
 import {PageTitle}  from '../../../styles/share';
@@ -7,6 +8,9 @@ import {FormBox}    from '../../../styles/authFormStyles';
 const LoginForm = (props) => {
     return (
         <FormBox id="loginForm">
+            <Helmet>
+                <title>Log In | Construction To Code</title>
+            </Helmet>
             <PageTitle>Log In</PageTitle>
             <TextInput
                 id="username"

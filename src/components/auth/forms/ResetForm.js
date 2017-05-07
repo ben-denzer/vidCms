@@ -1,4 +1,5 @@
 import React        from 'react';
+import {Helmet}     from 'react-helmet';
 import TextInput    from '../../shared/TextInput';
 import {PageTitle}  from '../../../styles/share';
 import {FormBox}    from '../../../styles/authFormStyles';
@@ -29,6 +30,9 @@ const ResetForm = (props) => {
 
     return (
         <FormBox id="signupForm">
+            <Helmet>
+                <title>Reset Password | Construction To Code</title>
+            </Helmet>
             <PageTitle>Reset Password</PageTitle>
             {formFields}
             <div id="auth_buttons_container">

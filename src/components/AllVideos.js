@@ -42,7 +42,7 @@ const VideoHome = ({allVideos}) => {
                     {videos}
                 </VideoThumbContainer>
             </ContentContainer>
-            <Sidebar />
+            <Sidebar noAd />
         </PageContainer>
     );
 };

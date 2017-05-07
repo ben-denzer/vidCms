@@ -11,7 +11,7 @@ const AboutPage = (props) => {
     return (
         <PageContainer className="pageContainer">
             <Helmet>
-                <title>{`About Me | Ben Denzer`}</title>
+                <title>About Me | Ben Denzer</title>
                 <meta name="description" content="If you'd like to contact me, follow the links below" />
             </Helmet>
             <ContentContainer className="contentContainer">
