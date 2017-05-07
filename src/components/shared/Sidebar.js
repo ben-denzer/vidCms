@@ -8,8 +8,11 @@ import {mediaUrl, defaultImage}     from '../../.keys';
 const Sidebar = (props) => {
     return (
         <SidebarContainer>
-            <BlogImg src={props.img ? `${mediaUrl}${props.img}` : defaultImage} alt={props.alt} />
-            <SidebarAd />
+            {!props.noImage && (
+                <BlogImg src={props.img ? `${mediaUrl}${props.img}` : defaultImage} alt={props.alt} />
+            )}
+            {!props.noAd && <SidebarAd />}
+
             <SidebarContent>
                 <SectionHeader>About The Author</SectionHeader>
                 <ProfileImg src={profile} alt="Ben Denzer" />

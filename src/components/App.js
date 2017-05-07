@@ -55,9 +55,6 @@ class App extends React.Component {
 
                 <MessageBar clearMessage={clearMessage} message={message} />
 
-                <Route exact path='/'
-                    render={() => <HomePage allBlogs={allBlogs} allImages={allImages} allVideos={allVideos} />}
-                />
                 <Route exact path='/account'
                     render={() => <AccountPage push={push} user={user} />}
                 />
@@ -83,16 +80,19 @@ class App extends React.Component {
                     username={user.username}
                     lastRoute={lastRoute}
                 />
-                <Route exact path='/blog'
+                <Route exact path="/blog"
                     render={() => <AllPosts allBlogs={allBlogs} allImages={allImages} />}
                 />
-                <Route path='/blog/:id'
+                <Route path="/blog/:id"
                     render={() => <SingleBlogPage allBlogs={allBlogs} allImages={allImages} />}
                 />
                 <Route exact path="/videos"
                     render={() => <AllVideos allVideos={allVideos} />}
                 />
                 <Route path="/watch/:type/:id" component={VideoContainer} />
+                <Route exact path='/'
+                    render={() => <HomePage allBlogs={allBlogs} allImages={allImages} allVideos={allVideos} />}
+                />
             </AppContainer>
         );
     }

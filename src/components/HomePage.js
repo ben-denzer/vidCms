@@ -1,6 +1,7 @@
 import React        from 'react';
 import styled       from 'styled-components';
 import {Link}       from 'react-router-dom';
+import {Helmet}     from 'react-helmet';
 import RecentPosts  from './content/RecentPosts';
 import Sidebar      from './shared/Sidebar';
 import {
@@ -13,6 +14,10 @@ import {
 const HomePage = (props) => {
     return (
         <PageContainer className="pageContainer">
+            <Helmet>
+                <title>Construction To Code Blog</title>
+                <meta name="description" content="Articles and videos about anything related to web development. JavaScript, React, Redux, Node.js, Express, Elm Lang, Electron, and more." />
+            </Helmet>
             <ContentContainer className="contentContainer">
                 <PageHeading>
                     <PageTitle className="pageTitle">
@@ -29,7 +34,7 @@ const HomePage = (props) => {
                 </HpLinkContainer>
                 <RecentPosts allBlogs={props.allBlogs} allVideos={props.allVideos} />
             </ContentContainer>
-            <Sidebar />
+            <Sidebar noAd />
         </PageContainer>
     );
 };

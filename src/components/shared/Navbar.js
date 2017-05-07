@@ -15,10 +15,9 @@ const MyNav = (props) => {
                 <Navbar.Collapse>
                     <ul className="nav navbar-nav navbar-right">
                         <li role="presentation"><Link to='/'>Home</Link></li>
-                        <li role="presentation"><Link to='/about'>About</Link></li>
                         <li role="presentation"><Link to='/videos'>Videos</Link></li>
                         <li role="presentation"><Link to='/blog'>Blog</Link></li>
-                        <li role="presentation"><Link to='/contact'>Contact</Link></li>
+                        <li role="presentation"><Link to='/about'>About</Link></li>
                         {
                             props.username ?
                                 <li role="presentation"><Link to='/account'>My Account</Link></li> :
