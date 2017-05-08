@@ -15,9 +15,9 @@ const unescapeLinks = text => {
 
 const unescapeLinksPromise = text => {
     return new Promise((resolve, reject) => {
-        if (!text) reject({error: 'no args to unescapeLinksPromise'});
+        if (!text) resolve('');
         const pattern = /(https?:\/\/)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g;
-        
+
         const final = text.replace(
             pattern,
             match => {
